@@ -6,7 +6,7 @@ import moment from "moment";
 import SideBar from "../../components/Doctor/SideBar";
 import { IoArrowBackSharp } from "react-icons/io5";
 // import signature from "../BloodTest/signature_maker_after_.webp";
-import signature from "../../images/signature_maker_after_.webp";
+// import signature from "../../images/signature_maker_after_.webp";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import HeadBar from "../../components/Doctor/HeadBar";

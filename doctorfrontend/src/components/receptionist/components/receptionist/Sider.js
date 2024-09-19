@@ -45,10 +45,8 @@ const Sider = () => {
           >
             <li>
               <Link
-                to="/receptionist-dashboard"
-                className={`link-div ${getSidebarClass(
-                  "/receptionist-dashboard"
-                )}`}
+                to="/Receptioinstdash"
+                className={`link-div ${getSidebarClass("/Receptioinstdash")}`}
               >
                 <div>
                   <i className="fs-4 bi bi-house-door-fill"></i>
@@ -63,8 +61,8 @@ const Sider = () => {
             <hr />
             <li>
               <Link
-                to="/all_patient"
-                className={`link-div ${getSidebarClass("/all_patient")}`}
+                to="/AllPatient"
+                className={`link-div ${getSidebarClass("/AllPatient")}`}
               >
                 <div>
                   <i className="bi bi-people-fill h1"></i>
@@ -145,7 +143,9 @@ const Sider = () => {
                   <li>
                     <Link
                       to="/all_credit_invoice"
-                      className={`link-div ${getSidebarClass("/all_credit_invoice")}`}
+                      className={`link-div ${getSidebarClass(
+                        "/all_credit_invoice"
+                      )}`}
                     >
                       All Credit Invoice
                     </Link>
@@ -157,7 +157,7 @@ const Sider = () => {
 
             <li>
               <Link
-                to="/doctor_section"
+                to="/DoctorSection"
                 className={`link-div ${getSidebarClass("/doctor_section")}`}
               >
                 <div>

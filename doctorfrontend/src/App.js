@@ -1,9 +1,10 @@
 import "./App.css";
+
 import { Route, Routes, useNavigate } from "react-router-dom";
 import DoctorDashboard from "./pages/DoctorPage/DoctorDashboard";
 import ProfileDashboard from "./components/Doctor/Profile/ProfileDashboard";
 import PatientProfile from "./pages/DoctorPage/PatientProfile";
-import AllPatient from "./pages/DoctorPage/AllPatient";
+// import AllPatient from "./pages/DoctorPage/AllPatient";
 import ExaminationDashBoard from "./components/Doctor/Examination/ExaminationDashBoard";
 import ExaminationDashBoardPatient from "./components/Doctor/Examination/ExaminationDashBoardPatient";
 import ExaminationDashBoardPediatric from "./components/Doctor/Examination/ExaminationDashBoardPediatric";
@@ -39,6 +40,55 @@ import PrescriptionQuick from "./pages/DoctorPage/PrescriptionQuick";
 import SittingBill from "./components/Doctor/Treatment/SittingBill";
 import QPrescriptionForm from "./components/Doctor/Prescription/Quick Prescription/QPrescriptionForm";
 import ViewQuickPrescription from "./pages/DoctorPage/ViewQuickPrescription";
+import Receptioinstdash from "./components/receptionist/pages/receptionist/Receptioinstdash";
+import AllPatient from "./components/receptionist/pages/receptionist/AllPatient";
+// import DoctorSection from "./pages/receptionist/DoctorSection";
+
+/* ---Receptionist */
+
+import Registration from "./components/receptionist/components/receptionist/Registration";
+import UniversalLogin from "./components/receptionist/pages/UniversalLogin";
+// import PasswordReset from "./components/receptionist/pages/PasswordReset";
+import EditPopup from "./components/receptionist/components/receptionist/Appointment/EditPopup";
+import ModifyPopup from "./components/receptionist/components/receptionist/Appointment/ModifyPopup";
+import DeletePopup from "./components/receptionist/components/receptionist/Appointment/DeletePopup";
+import Doctorprofile from "./components/receptionist/components/receptionist/DoctorSection/Doctorprofile";
+import PrintOpdBill from "./components/receptionist/components/receptionist/ReceptioinstDashboard/PrintOpdBill";
+// import PrintSecurityAmt from "./components/receptionist/components/receptionist/SecurityAmount/PrintSecurityAmt";
+
+import Receptionistdash from "./components/receptionist/pages/receptionist/Receptioinstdash";
+// import PatientProfile from "./components/receptionist/pages/receptionist/PatientProfile";
+// import AllPatient from "./components/receptionist/pages/receptionist/AllPatient";
+import AppointmentSection from "./components/receptionist/pages/receptionist/AppointmentSection";
+
+import BillSection from "./components/receptionist/pages/receptionist/BillSection";
+import DoctorSection from "./components/receptionist/pages/receptionist/DoctorSection";
+
+import VideoSection from "./components/receptionist/pages/receptionist/VideoSection";
+import LabSection from "./components/receptionist/pages/receptionist/LabSection";
+import ReportSection from "./components/receptionist/pages/receptionist/ReportSection";
+import NewPatient from "./components/receptionist/pages/receptionist/NewPatient";
+import Inquiry from "./components/receptionist/pages/receptionist/Inquiry";
+
+import OpdCollection from "./components/receptionist/pages/receptionist/OpdColletion";
+import Profile from "./components/receptionist/pages/receptionist/Profile";
+// import SecurityAmount from "./components/receptionist/pages/receptionist/SecurityAmount ";
+
+import BranchInfo from "./components/receptionist/pages/receptionist/BranchInfo";
+// import AttendanceLeave from "./components/receptionist/pages/receptionist/AttendanceLeave";
+import PatientsDue from "./components/receptionist/pages/receptionist/PatientsDue";
+// import PatintDuePaymentPrint from "./components/receptionist/pages/receptionist/PatintDuePaymentPrint";
+import PatientsPaid from "./components/receptionist/pages/receptionist/PatientsPaid";
+// import PatientBillsByTpid from "./components/receptionist/pages/receptionist/PatientBillsByTpid";
+import F404page from "./components/receptionist/pages/receptionist/F404page";
+import SittingBillDetails from "./components/receptionist/pages/receptionist/SittingBillDetails";
+import SittingBillPayment from "./components/receptionist/pages/receptionist/SittingBillPayment";
+// import SittingBill from "./components/receptionist/pages/receptionist/SittingBill";
+import SittingPaidBillDetails from "./components/receptionist/pages/receptionist/SittingPaidBillDetails";
+import AllCreditInvoice from "./components/receptionist/pages/receptionist/AllCreditInvoice";
+import FinalInvoices from "./components/receptionist/pages/receptionist/FinalInvoices";
+import CreditPatientBillsByTpid from "./components/receptionist/pages/receptionist/CreditPatientBillsByTpid";
+import CreditSittingBill from "./components/receptionist/pages/receptionist/CreditSittingBill";
 
 function App() {
   const navigate = useNavigate();
@@ -151,8 +201,10 @@ function App() {
 
         <Route
           path="/"
-          element={user === null ? <DoctorLogin /> : <DoctorDashboard />}
+          element={user === null ? <DoctorLogin /> : <Receptioinstdash />}
         />
+
+        <Route path="/AllPatient" element={<AllPatient />} />
         {/* <Route
           path="/doctor-dashboard"
           element={
@@ -167,7 +219,7 @@ function App() {
         /> */}
 
         <Route
-          path="/doctor-dashboard"
+          path="/Receptioinstdash"
           element={
             user === null ? (
               <DoctorLogin />
@@ -181,10 +233,10 @@ function App() {
                   style={{ background: "transparent" }}
                 ></Lottie>
               </>
-            ) : todayAttendance.length === 0 ? (
-              <AttendanceLeave />
             ) : (
-              <DoctorDashboard />
+              // ) : todayAttendance.length === 0 ? (
+              //   <AttendanceLeave />
+              <Receptioinstdash />
             )
           }
         />
@@ -203,9 +255,9 @@ function App() {
                   style={{ background: "transparent" }}
                 ></Lottie>
               </>
-            ) : todayAttendance.length === 0 ? (
-              <AttendanceLeave />
             ) : (
+              // ) : todayAttendance.length === 0 ? (
+              //   <AttendanceLeave />
               <ExaminationDashBoard />
             )
           }
@@ -225,9 +277,9 @@ function App() {
                   style={{ background: "transparent" }}
                 ></Lottie>
               </>
-            ) : todayAttendance.length === 0 ? (
-              <AttendanceLeave />
             ) : (
+              // ) : todayAttendance.length === 0 ? (
+              //   <AttendanceLeave />
               <ExaminationDashBoardPatient />
             )
           }
@@ -819,6 +871,275 @@ function App() {
         {/* ---Quick Prescription */}
 
         {/* ****************** Doctor Routes End Here ******************* */}
+
+        {/* ---Receptionist */}
+
+        {/* ****************** Receptionist Routes End Here ******************* */}
+        <Route
+          path="/"
+          element={user.currentUser ? <Receptionistdash /> : <UniversalLogin />}
+        />
+
+        {/* receptionist routes start */}
+        <Route
+          path="/receptionist_login"
+          element={user.currentUser ? <Receptionistdash /> : <UniversalLogin />}
+        />
+        <Route path="/receptionist_registration" element={<Registration />} />
+        <Route
+          path="/receptionist-dashboard"
+          element={
+            user.currentUser === null ? (
+              <UniversalLogin />
+            ) : (
+              <Receptionistdash />
+            )
+          }
+        />
+        <Route
+          path="/all_patient"
+          element={
+            user.currentUser === null ? <UniversalLogin /> : <AllPatient />
+          }
+        />
+        <Route
+          path="/inquiry"
+          element={user.currentUser === null ? <UniversalLogin /> : <Inquiry />}
+        />
+        <Route
+          path="/patient_profile/:pid"
+          element={
+            user.currentUser === null ? <UniversalLogin /> : <PatientProfile />
+          }
+        />
+        <Route
+          path="/print_Opd_Reciept/:appointmentId"
+          element={
+            user.currentUser === null ? <UniversalLogin /> : <PrintOpdBill />
+          }
+        />
+        <Route
+          path="/print_security_amount/:SId"
+          element={
+            user.currentUser === null ? (
+              <UniversalLogin />
+            ) : (
+              <PrintSecurityAmt />
+            )
+          }
+        />
+        <Route
+          path="/appointment"
+          element={
+            user.currentUser === null ? (
+              <UniversalLogin />
+            ) : (
+              <AppointmentSection />
+            )
+          }
+        />
+        <Route
+          path="/edit_appointment"
+          element={
+            user.currentUser === null ? <UniversalLogin /> : <EditPopup />
+          }
+        />
+        <Route
+          path="/modify_appointment"
+          element={
+            user.currentUser === null ? <UniversalLogin /> : <ModifyPopup />
+          }
+        />
+        <Route
+          path="/delete_appointment"
+          element={
+            user.currentUser === null ? <UniversalLogin /> : <DeletePopup />
+          }
+        />
+        <Route
+          path="/bill_section"
+          element={
+            user.currentUser === null ? <UniversalLogin /> : <BillSection />
+          }
+        />
+        <Route
+          path="/DoctorSection"
+          element={
+            user.currentUser === null ? <UniversalLogin /> : <DoctorSection />
+          }
+        />
+        <Route
+          path="/doctor_profile"
+          element={
+            user.currentUser === null ? <UniversalLogin /> : <Doctorprofile />
+          }
+        />
+        <Route
+          path="/video"
+          element={
+            user.currentUser === null ? <UniversalLogin /> : <VideoSection />
+          }
+        />
+        <Route
+          path="/lab"
+          element={
+            user.currentUser === null ? <UniversalLogin /> : <LabSection />
+          }
+        />
+        <Route
+          path="/report"
+          element={
+            user.currentUser === null ? <UniversalLogin /> : <ReportSection />
+          }
+        />
+        <Route
+          path="/new_patient"
+          element={
+            user.currentUser === null ? <UniversalLogin /> : <NewPatient />
+          }
+        />
+        <Route
+          path="/opd_collection"
+          element={
+            user.currentUser === null ? <UniversalLogin /> : <OpdCollection />
+          }
+        />
+        <Route
+          path="/receptionist_profile"
+          element={user.currentUser === null ? <UniversalLogin /> : <Profile />}
+        />
+        <Route
+          path="/security_amount"
+          element={
+            user.currentUser === null ? <UniversalLogin /> : <SecurityAmount />
+          }
+        />
+        {/* <Route
+        path="/due_amount"
+        element={
+          user.currentUser === null ? <UniversalLogin /> : <PatientsDue />
+        }
+      /> */}
+        <Route
+          path="/invoices"
+          element={
+            user.currentUser === null ? <UniversalLogin /> : <FinalInvoices />
+          }
+        />
+        {/* <Route
+        path="/sitting-due-amount"
+        element={
+          user.currentUser === null ? (
+            <UniversalLogin />
+          ) : (
+            <SittingBillDetails />
+          )
+        }
+      /> */}
+        {/* <Route
+        path="/sitting-paid-amount"
+        element={
+          user.currentUser === null ? (
+            <UniversalLogin />
+          ) : (
+            <SittingPaidBillDetails />
+          )
+        }
+      /> */}
+        {/* <Route
+        path="/paid_amount"
+        element={
+          user.currentUser === null ? <UniversalLogin /> : <PatientsPaid />
+        }
+      /> */}
+        <Route
+          path="/all_credit_invoice"
+          element={
+            user.currentUser === null ? (
+              <UniversalLogin />
+            ) : (
+              <AllCreditInvoice />
+            )
+          }
+        />
+        <Route
+          path="/PatintDuePaymentPrint/:bid/:tpid/:uhid"
+          element={
+            user.currentUser === null ? (
+              <UniversalLogin />
+            ) : (
+              <PatintDuePaymentPrint />
+            )
+          }
+        />
+        <Route
+          path="/SittingBillPayment/:sbid/:tpid/:uhid"
+          element={
+            user.currentUser === null ? (
+              <UniversalLogin />
+            ) : (
+              <SittingBillPayment />
+            )
+          }
+        />
+        <Route
+          path="/patient-bill/:billid/:tpid"
+          element={
+            user.currentUser === null ? (
+              <UniversalLogin />
+            ) : (
+              <PatientBillsByTpid />
+            )
+          }
+        />
+        <Route
+          path="/credit-patient-bill/:billid/:tpid"
+          element={
+            user.currentUser === null ? (
+              <UniversalLogin />
+            ) : (
+              <CreditPatientBillsByTpid />
+            )
+          }
+        />
+        <Route
+          path="/branch-details"
+          element={
+            user.currentUser === null ? <UniversalLogin /> : <BranchInfo />
+          }
+        />
+
+        <Route
+          path="/ViewPatientSittingBill/:tpid/:sbid/:treatment"
+          element={
+            user.currentUser === null ? <UniversalLogin /> : <SittingBill />
+          }
+        />
+        <Route
+          path="/ViewCreditPatientSittingBill/:tpid/:sbid"
+          element={
+            user.currentUser === null ? (
+              <UniversalLogin />
+            ) : (
+              <CreditSittingBill />
+            )
+          }
+        />
+        <Route
+          path="/ViewPatientSittingBill/:tpid/:sbid"
+          element={
+            user.currentUser === null ? <UniversalLogin /> : <SittingBill />
+          }
+        />
+        <Route
+          path="/attendanceLeave"
+          element={
+            user.currentUser === null ? <UniversalLogin /> : <AttendanceLeave />
+          }
+        />
+
+        <Route path="/password-reset" element={<PasswordReset />} />
+        <Route path="*" element={<F404page />} />
       </Routes>
     </>
   );

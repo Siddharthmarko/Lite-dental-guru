@@ -76,7 +76,8 @@ const DoctorLogin = () => {
         dispatch(setUser(response.data.user));
         dispatch(setBranch(storeBranch));
         setLoading(false);
-        navigate("/doctor-dashboard");
+        // navigate("/doctor-dashboard");
+        navigate("/Receptioinstdash");
         // setPopupVisible(true);
       } else {
         setLoading(false);

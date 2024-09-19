@@ -63,8 +63,7 @@ function Card() {
 
       const filteredPatients = response?.data?.data.filter(
         (patient) =>
-         (  patient?.payment_Status  &&
-          patient?.created_at.includes(selectedDate) )
+          patient?.payment_Status && patient?.created_at.includes(selectedDate)
         //  (  patient?.payment_Status  &&
         //   patient?.created_at.includes(selectedDate) )
       );
@@ -80,7 +79,7 @@ function Card() {
     }
   };
 
-console.log(opdData)
+  console.log(opdData);
   const getNewPatient = async () => {
     try {
       const response = await axios.get(
@@ -144,7 +143,7 @@ console.log(opdData)
     opdData.forEach((data) => {
       // Check if the OPD amount is a valid number
       const opdAmount = parseInt(data?.opd_amount);
-      if (!isNaN(opdAmount) &&   data.appointment_status !=="Cancel") {
+      if (!isNaN(opdAmount) && data.appointment_status !== "Cancel") {
         totalAmount += opdAmount;
       }
     });
@@ -305,7 +304,7 @@ console.log(opdData)
 
                 <p className="view">
                   <Link
-                    to="/all_patient"
+                    to="/AllPatient"
                     className=" text-decoration-none"
                     style={{ color: "black" }}
                   >

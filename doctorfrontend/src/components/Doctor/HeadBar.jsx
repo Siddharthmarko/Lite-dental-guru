@@ -1,5 +1,5 @@
 import React from "react";
-import dental_logo from "../../images/dentalnew.png";
+// import dental_logo from "../../images/dentalnew.png";
 import { AiFillBell } from "react-icons/ai";
 import { FaUserAlt } from "react-icons/fa";
 import styled from "styled-components";
