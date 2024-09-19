@@ -338,4 +338,4 @@ router.post("/sendWhatsapp", preUpload.single("media_url"), sendWhatsapp);
 router.post("/sendWhatsapptextonly", sendWhatsappTextOnly);
 router.post("/sendSMS", authenticate, sendSMS);
 
-module.exports = router;
+module.exports = {receptionist_Routes: router};

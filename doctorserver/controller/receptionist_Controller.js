@@ -1,6 +1,6 @@
-const { db } = require("../db");
+const { db } = require("../connect.js");
 const dotenv = require("dotenv");
-const bcrypt = require("bcryptjs");
+const bcrypt = require("bcrypt");
 const JWT = require("jsonwebtoken");
 dotenv.config();
 const nodemailer = require("nodemailer");

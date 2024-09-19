@@ -125,7 +125,7 @@
 
 const cron = require('node-cron');
 const nodemailer = require('nodemailer');
-const { db } = require("../db");
+const { db } = require("../connect.js");
 const dotenv = require("dotenv");
 dotenv.config();
 const moment = require('moment-timezone');

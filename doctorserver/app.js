@@ -4,7 +4,11 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const path = require("path");
 const { authRoutes } = require("./router/authRouter");
-require("./backup");
+const { receptionist_Routes } = require("./router/receptionist_Routes");
+// require("./backup");
+const {sendEmails, sendSMS, sendWhatsappTextOnly} = require("./cron/sendAppointmentEmails");
+const cron = require('node-cron');
+const { zipLogs } = require("./scheduler");
 
 dotenv.config();
 // Create Express app
@@ -32,9 +36,25 @@ app.use("/prescription", express.static(path.join(__dirname, "prescription")));
 
 // REST API Routes
 app.use("/api/doctor", authRoutes);
+app.use('/api/v1/receptionist',receptionist_Routes);
 
 // PORT
 const PORT = process.env.PORT || 8888;
+
+// Schedule the cron job to send appointment emails
+cron.schedule('0 8 * * *', () => {
+  console.log('Sending emails for appointments scheduled for today...');
+  sendEmails();
+  sendSMS()
+  sendWhatsappTextOnly()
+},{
+  scheduled: true,
+  timezone: "Asia/Kolkata"
+});
+
+cron.schedule("0 0 * * *", () => {
+  zipLogs();
+});
 
 // Run server
 app.listen(PORT, () => {
