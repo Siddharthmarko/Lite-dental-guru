@@ -32,13 +32,13 @@ prescription/*
 # Ignore everything inside the images folder globally
 images/*
 
-# EXCEPTION: Allow images in doctorfrontend/src/components/Doctor/Assets
-!doctorfrontend/src/components/Doctor/Assets/
-!doctorfrontend/src/components/Doctor/Assets/*.png
-!doctorfrontend/src/components/Doctor/Assets/*.jpg
-!doctorfrontend/src/components/Doctor/Assets/*.jpeg
-!doctorfrontend/src/components/Doctor/Assets/*.gif
-!doctorfrontend/src/components/Doctor/Assets/*.svg
-!doctorfrontend/src/components/Doctor/Assets/*.webp
-!doctorfrontend/src/components/Doctor/Assets/*.bmp
-!doctorfrontend/src/components/Doctor/Assets/*.tiff
+# Exception: Track images in doctorfrontend/src/components/Doctor/Assest and all subdirectories
+!doctorfrontend/src/components/Doctor/Assest/
+!doctorfrontend/src/components/Doctor/Assest/**/*.png
+!doctorfrontend/src/components/Doctor/Assest/**/*.jpg
+!doctorfrontend/src/components/Doctor/Assest/**/*.jpeg
+!doctorfrontend/src/components/Doctor/Assest/**/*.gif
+!doctorfrontend/src/components/Doctor/Assest/**/*.svg
+!doctorfrontend/src/components/Doctor/Assest/**/*.webp
+!doctorfrontend/src/components/Doctor/Assest/**/*.bmp
+!doctorfrontend/src/components/Doctor/Assest/**/*.tiff
