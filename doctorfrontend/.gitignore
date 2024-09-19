@@ -24,13 +24,3 @@ yarn-error.log*
 
 # ignore PDF files
 *.pdf
-
-# ignore image files
-*.png
-*.jpg
-*.jpeg
-*.gif
-*.svg
-*.webp
-*.bmp
-*.tiff
