@@ -9,7 +9,7 @@ import { FaArrowCircleLeft } from "react-icons/fa";
 import { FaArrowCircleRight } from "react-icons/fa";
 import moment from "moment";
 import cogoToast from "cogo-toast";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import CancleAppointment from "./CancelAppointment";
 import Lottie from "react-lottie";
 import animationData from "../../../images/animation/loading-effect.json";
@@ -40,6 +40,7 @@ const AppointTable = () => {
   const [selectedDateAppData, setSelectedDateAppData] = useState([]);
   const [doctors, setDoctors] = useState([]);
   const [selectedDoctor, setSelectedDoctor] = useState(null); // State to store the selected Doctor
+  const navigate = useNavigate();
 
   const getDoctors = async () => {
     try {
@@ -257,6 +258,7 @@ const AppointTable = () => {
       cogoToast.error("Error updating status");
     }
   };
+
   const handleStatusCancel = async (appointmentId, patient_uhid, newStatus) => {
     //  // If the action is 'cancel_treatment', add the reason to the request body
     let reason;
@@ -689,8 +691,40 @@ const AppointTable = () => {
                                               : null
                                           }
                                         >
-                                          Start Treatment"
+                                          Change Status to "Appoint"
                                         </a>
+                                      </button> 
+                                    </li>
+                                  )}
+                                {patient.appointment_status === "Check-In" &&
+                                  patient.appointment_status !== "Cancel" &&
+                                  appointmentDate <= todayDate && (
+                                    <li className="text-center">
+                                      {" "}
+                                      <button
+                                        className={`btn btn-warning mx-2 my-1 ${
+                                          loading ? "disabled" : ""
+                                        }`}
+                                      >
+<Link to={`/examination-Dashboard/${patient.appoint_id}/${patient.uhid}`}  >
+                                          Start Treatment
+                                        </Link>
+                                      </button>
+                                    </li>
+                                  )}
+                                {patient.appointment_status === "Check-In" &&
+                                  patient.appointment_status !== "Cancel" &&
+                                  appointmentDate <= todayDate && (
+                                    <li className="text-center">
+                                      {" "}
+                                      <button
+                                        className={`btn btn-warning mx-2 my-1 ${
+                                          loading ? "disabled" : ""
+                                        }`}
+                                      >
+<Link to={`/Quick-Prescription/${patient.appoint_id}/${patient.uhid}`}  >
+                                          Quick Prescription
+                                        </Link>
                                       </button>
                                     </li>
                                   )}

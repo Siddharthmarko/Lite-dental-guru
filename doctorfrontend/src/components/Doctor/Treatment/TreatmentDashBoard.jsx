@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import HeadBar from "../HeadBar";
-import SideBar from "../SideBar";
+import HeadBar from "../../receptionist/components/receptionist/Header";
+import SideBar from "../../receptionist/components/receptionist/Sider"; 
 import { useParams } from "react-router-dom";
 import NewTreatment from "./NewTreatment";
 

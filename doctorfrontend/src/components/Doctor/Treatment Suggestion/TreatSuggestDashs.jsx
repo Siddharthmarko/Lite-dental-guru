@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import HeadBar from "../HeadBar";
-import SideBar from "../SideBar";
+import HeadBar from "../../receptionist/components/receptionist/Header";
+import SideBar from "../../receptionist/components/receptionist/Sider"; 
 import TreatSuggest from "./TreatSuggest";
 
 const TreatSuggestDashs = () => {

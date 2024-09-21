@@ -2737,7 +2737,6 @@ const LoginReceptionist = (req, res) => {
             working_days: user.working_days,
             employee_designation: user.employee_designation,
             employee_picture: user.employee_picture,
-
             token: token,
           },
         });

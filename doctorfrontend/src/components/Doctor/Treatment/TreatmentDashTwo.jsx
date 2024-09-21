@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import HeadBar from "../HeadBar";
-import SideBar from "../SideBar";
+import HeadBar from "../../receptionist/components/receptionist/Header";
+import SideBar from "../../receptionist/components/receptionist/Sider"; 
 import { useNavigate, useParams } from "react-router-dom";
 import TreatmentForm from "./TreatmentForm";
 import { useSelector } from "react-redux";

@@ -77,7 +77,7 @@ const DoctorLogin = () => {
         dispatch(setBranch(storeBranch));
         setLoading(false);
         // navigate("/doctor-dashboard");
-        navigate("/Receptioinstdash");
+        navigate("/dashboard");
         // setPopupVisible(true);
       } else {
         setLoading(false);

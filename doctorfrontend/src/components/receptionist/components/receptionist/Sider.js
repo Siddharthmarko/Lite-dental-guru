@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 // import { ImLab } from "react-icons/im";
 import { FaHistory } from "react-icons/fa";
+import { IoSettings } from "react-icons/io5";
 import { clearUser } from "../../redux/user/userSlice";
 import { useDispatch } from "react-redux";
 // import { useDispatch } from 'react-redux'
@@ -45,7 +46,7 @@ const Sider = () => {
           >
             <li>
               <Link
-                to="/Receptioinstdash"
+                to="/dashboard"
                 className={`link-div ${getSidebarClass("/Receptioinstdash")}`}
               >
                 <div>
@@ -174,21 +175,12 @@ const Sider = () => {
             </li>
             <hr />
 
-            <li>
-              <Link
-                to="/inquiry"
-                className={`link-div ${getSidebarClass("/inquiry")}`}
-              >
-                <div>
-                  <i className="fs-4 bi bi-table"></i>
-                </div>
-                <div>
-                  <h3 className=" d-none d-sm-inline " id="navleft1">
-                    Inquiry
-                  </h3>
-                </div>
-              </Link>
-            </li>
+            <li className="nav-item mx-3">
+                  <Link to="/clinic-setting" color="white" >
+                    <IoSettings className="icon" color="white" />
+                    <p style={{color: "white"}}>Setting</p> 
+                  </Link>
+                </li>
 
             <hr />
             {/* <li>

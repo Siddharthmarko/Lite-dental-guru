@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import HeadBar from "../HeadBar";
-import SideBar from "../SideBar";
+import Header from "../../receptionist/components/receptionist/Header";
+import Sider from "../../receptionist/components/receptionist/Sider";
 import { useParams } from "react-router-dom";
 import ExaminationDashTwo from "./ExaminationDashTwo";
 
@@ -11,14 +11,16 @@ const ExaminationDashBoard = () => {
   return (
     <>
       <Wrapper>
-        <HeadBar />
+      <div className='header'>
+      <Header/>
+      </div>
 
         <div className="main">
           <div className="container-fluid">
             <div className="row flex-nowrap">
-              <div className="col-lg-1 col-1 p-0">
-                <SideBar />
-              </div>
+            <div className="col-lg-1 col-1" id='sider'>
+   <Sider/>
+    </div>
               <div className="col-lg-11 col-11 ps-0">
                 <ExaminationDashTwo />
               </div>

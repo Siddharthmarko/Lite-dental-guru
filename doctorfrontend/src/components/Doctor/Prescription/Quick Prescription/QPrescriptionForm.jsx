@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import HeadBar from "../../HeadBar";
-import Sider from "../../SideBar";
+import HeadBar from "../../../receptionist/components/receptionist/Header";
+import Sider from "../../../receptionist/components/receptionist/Sider";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
