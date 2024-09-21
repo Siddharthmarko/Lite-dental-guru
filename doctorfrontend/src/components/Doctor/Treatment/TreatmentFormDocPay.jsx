@@ -1095,7 +1095,7 @@ const TreatmentFormDocPay = () => {
                   {branchData[0]?.allow_insurance !== "Yes" ||
                   getPatientData[0]?.patient_type !== "Credit" ? (
                     <>
-                      <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-12 col-12">
+                      {/* <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-12 col-12">
                         <div class="mb-3">
                           <label htmlFor="" class="form-label fw-bold">
                             Remaining Security Amount :{" "}
@@ -1142,7 +1142,7 @@ const TreatmentFormDocPay = () => {
                             )}
                           </div>
                         </div>
-                      </div>
+                      </div> */}
                     </>
                   ) : (
                     ""

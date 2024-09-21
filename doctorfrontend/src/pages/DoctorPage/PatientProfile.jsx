@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import HeadBar from "../../components/Doctor/HeadBar";
-import Sider from "../../components/Doctor/SideBar";
+import Header from "../../components/receptionist/components/receptionist/Header";
+// import Sider from "../../components/Doctor/SideBar";
+import Sider from "../../components/receptionist/components/receptionist/Sider";
 import Navbar from "../../components/Doctor/PatientProfile/Navbar";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
@@ -74,8 +75,8 @@ const PatientProfile = () => {
 
   return (
     <Wrapper>
-      <HeadBar />
-
+      {/* <HeadBar /> */}
+      <Header />
       <div className="row mrgnzero">
         <div
           className="col-xxl-1 col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"

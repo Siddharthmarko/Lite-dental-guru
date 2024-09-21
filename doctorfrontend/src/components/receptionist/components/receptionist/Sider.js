@@ -90,7 +90,7 @@ const Sider = () => {
               </div>
               {showAmountDropdown && (
                 <ul className="drop">
-                  <li>
+                  {/* <li>
                     <Link
                       to="/security_amount"
                       className={`link-div ${getSidebarClass(
@@ -99,7 +99,7 @@ const Sider = () => {
                     >
                       Security Amount
                     </Link>
-                  </li>
+                  </li> */}
                   <hr />
                   <li>
                     <Link
@@ -175,12 +175,32 @@ const Sider = () => {
             </li>
             <hr />
 
-            <li className="nav-item mx-3">
-                  <Link to="/clinic-setting" color="white" >
-                    <IoSettings className="icon" color="white" />
-                    <p style={{color: "white"}}>Setting</p> 
-                  </Link>
-                </li>
+            <li>
+              <Link
+                to="/clinic-setting"
+                className={`link-div ${getSidebarClass("/clinic-setting")}`}
+              >
+                <div>
+                  <span className="fs-4 bi">
+                    <IoSettings />
+                  </span>
+                </div>
+                <div>
+                  <h3 className=" d-none d-sm-inline" id="navleft1">
+                    Setting
+                  </h3>
+                </div>
+              </Link>
+            </li>
+
+            {/* <li className="nav-item mx-3">
+              <Link to="/clinic-setting" color="white">
+                <span className="fs-4 bi">
+                  <IoSettings className="icon" color="white" />
+                </span>
+                <p style={{ color: "white" }}>Setting</p>
+              </Link>
+            </li> */}
 
             <hr />
             {/* <li>

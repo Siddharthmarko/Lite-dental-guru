@@ -90,9 +90,9 @@ import FinalInvoices from "./components/receptionist/pages/receptionist/FinalInv
 import CreditPatientBillsByTpid from "./components/receptionist/pages/receptionist/CreditPatientBillsByTpid";
 import CreditSittingBill from "./components/receptionist/pages/receptionist/CreditSittingBill";
 
-// ************** Super Admin Routes Start Here ******************* 
+// ************** Super Admin Routes Start Here *******************
 
-import ClinicSetting from './components/superAdmin/ClinicSetting'
+import ClinicSetting from "./components/superAdmin/ClinicSetting";
 import ManageStaff from "./components/superAdmin/ManageStaff";
 import ClinicConfigSetting from "./components/superAdmin/ClinicConfigSetting";
 import TreatmentSetting from "./components/superAdmin/TreatmentSetting";
@@ -1165,25 +1165,17 @@ function App() {
         <Route
           path="/clinic-setting"
           element={
-            user?.currentUser === null ? (
-              <UniversalLogin />
-            ) : (
-              <ClinicSetting />
-            )
+            user?.currentUser === null ? <UniversalLogin /> : <ClinicSetting />
           }
         />
         <Route
-          path="/manage-staff"  
+          path="/manage-staff"
           element={
-            user?.currentUser === null ? (
-              <UniversalLogin />
-            ) : (
-              <ManageStaff />
-            )
+            user?.currentUser === null ? <UniversalLogin /> : <ManageStaff />
           }
         />
         <Route
-          path="/clinic-config-setting"  
+          path="/clinic-config-setting"
           element={
             user?.currentUser === null ? (
               <UniversalLogin />
@@ -1193,12 +1185,12 @@ function App() {
           }
         />
         <Route
-          path="/treatment-setting"  
+          path="/treatment-setting"
           element={
             user?.currentUser === null ? (
               <UniversalLogin />
             ) : (
-              <TreatmentSetting/>
+              <TreatmentSetting />
             )
           }
         />

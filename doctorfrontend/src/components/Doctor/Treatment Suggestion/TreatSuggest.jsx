@@ -1380,41 +1380,41 @@ const TreatSuggest = () => {
 
           <div className="d-flex justify-content-center align-items-center">
             {treatList.length > 0 ? (
+              // <>
+              //   {branchData[0]?.doctor_payment === "Yes" ? (
+              //     <>
+              //       {branchData[0]?.allow_insurance !== "Yes" ||
+              //       getPatientData[0]?.patient_type !== "Credit" ||
+              //       getPatientData[0]?.patient_type === null ? (
+              //         <button
+              //           type="button"
+              //           className="btn btn-info text-light shadow fw-bold"
+              //           onClick={handleCollect}
+              //         >
+              //           Security Amount
+              //         </button>
+              //       ) : (
+              //         <button
+              //           type="button"
+              //           className="btn btn-info text-light mx-2 shadow fw-bold"
+              //           onClick={generatePres}
+              //         >
+              //           Print Prescription
+              //         </button>
+              //       )}
+              //     </>
+              //   ) : (
+              //     <>
+              //       <button
+              //         type="button"
+              //         className="btn btn-info text-light mx-2 shadow fw-bold"
+              //         onClick={insertCorrectData}
+              //       >
+              //         Print Prescription
+              //       </button>
+              //     </>
+              //   )}
               <>
-                {branchData[0]?.doctor_payment === "Yes" ? (
-                  <>
-                    {branchData[0]?.allow_insurance !== "Yes" ||
-                    getPatientData[0]?.patient_type !== "Credit" ||
-                    getPatientData[0]?.patient_type === null ? (
-                      <button
-                        type="button"
-                        className="btn btn-info text-light shadow fw-bold"
-                        onClick={handleCollect}
-                      >
-                        Security Amount
-                      </button>
-                    ) : (
-                      <button
-                        type="button"
-                        className="btn btn-info text-light mx-2 shadow fw-bold"
-                        onClick={generatePres}
-                      >
-                        Print Prescription
-                      </button>
-                    )}
-                  </>
-                ) : (
-                  <>
-                    <button
-                      type="button"
-                      className="btn btn-info text-light mx-2 shadow fw-bold"
-                      onClick={insertCorrectData}
-                    >
-                      Print Prescription
-                    </button>
-                  </>
-                )}
-
                 <button
                   className="btn btn-info text-light mx-2 shadow fw-bold"
                   onClick={handleChangePage}

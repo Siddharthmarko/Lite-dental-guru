@@ -810,7 +810,7 @@ const PatientBillsByTpid = () => {
                     backgroundColor: "#0dcaf0",
                     border: "#0dcaf0",
                   }}
-                  onClick={() => navigate("/doctor-dashboard")}
+                  onClick={() => navigate("/dashboard")}
                 >
                   Appointment Dashboard
                 </button>
@@ -844,7 +844,7 @@ const PatientBillsByTpid = () => {
                             backgroundColor: "#0dcaf0",
                             border: "#0dcaf0",
                           }}
-                          onClick={() => navigate("/doctor-dashboard")}
+                          onClick={() => navigate("/dashboard")}
                         >
                           Dashboard
                         </button>
@@ -863,7 +863,7 @@ const PatientBillsByTpid = () => {
                         backgroundColor: "#0dcaf0",
                         border: "#0dcaf0",
                       }}
-                      onClick={() => navigate("/doctor-dashboard")}
+                      onClick={() => navigate("/dashboard")}
                     >
                       Appointment Dashboard
                     </button>

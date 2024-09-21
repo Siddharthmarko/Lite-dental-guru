@@ -301,14 +301,14 @@ const TreatmentSetting = () => {
     getProcedure();
   }, []);
 
-//   const defaultOptions = {
-//     loop: true,
-//     autoplay: true,
-//     animationData: animationData,
-//     rendererSettings: {
-//       preserveAspectRatio: "xMidYMid slice",
-//     },
-//   };
+  //   const defaultOptions = {
+  //     loop: true,
+  //     autoplay: true,
+  //     animationData: animationData,
+  //     rendererSettings: {
+  //       preserveAspectRatio: "xMidYMid slice",
+  //     },
+  //   };
 
   console.log(trID);
 
@@ -416,7 +416,7 @@ const TreatmentSetting = () => {
                       </div>
                       {null ? (
                         <Lottie
-                        //   options={defaultOptions}
+                          //   options={defaultOptions}
                           height={300}
                           width={400}
                           style={{ background: "transparent" }}
