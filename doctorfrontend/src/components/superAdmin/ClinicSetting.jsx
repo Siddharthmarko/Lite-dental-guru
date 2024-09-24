@@ -20,7 +20,6 @@ const ClinicSetting = () => {
                   <div className="container-fluid">
                     <div className="row mt-3">
                       {/* <div className="col-1"></div> */}
-
                       <div className="col-12">
                         <nav class="navbar navbar-expand-lg bg-body-tertiary">
                           <div class="container d-flex justify-content-center">
@@ -32,7 +31,17 @@ const ClinicSetting = () => {
                         {/* <div className="col-1"></div> */}
                         <div className="col-12">
                           <div class="row g-5">
-                         
+                          <div class="col-xl-3 col-lg-3 col-md-5 col-sm-12 col-12">
+                        <Link to="/calender-setting">
+                          <div className="card">
+                            <div class="card-body">
+                              <h4 className="d-flex justify-content-center text-light align-items-center">
+                                Calender
+                              </h4>
+                            </div>
+                          </div>
+                        </Link>
+                      </div>
                             <div class="col-xl-3 col-lg-3 col-md-5 col-sm-12">
                               <Link to="/clinic-config-setting">
                                 <div className="card">

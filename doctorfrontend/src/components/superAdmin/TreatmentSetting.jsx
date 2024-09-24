@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Sider from "../receptionist/components/receptionist/Sider";
 import Header from "../receptionist/components/receptionist/Header";
 import { FaSearch } from "react-icons/fa";
-// import BranchSelector from "../../../components/BranchSelector";
+import BranchSelector from "./BranchSelector";
 import axios from "axios";
 import cogoToast from "cogo-toast";
 import { IoMdArrowRoundBack } from "react-icons/io";
@@ -19,6 +19,7 @@ import { MdDelete } from "react-icons/md";
 const TreatmentSetting = () => {
   const location = useLocation();
   const user = useSelector((state) => state.user);
+  const token = user.currentUser.token;
   console.log(`User Name: ${user.name}, User ID: ${user.id}`);
   console.log("User State:", user);
   const [showAddTreatments, setShowAddTreatments] = useState(false);
@@ -160,11 +161,11 @@ const TreatmentSetting = () => {
   const getTreatmentDataViaId = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-superadmin.vimubds5.a2hosted.com/api/v1/super-admin/getTreatmentViaId/${trID}`,
+        `http://localhost:8888/api/v1/super-admin/getTreatmentViaId/${trID}`,
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${user.token}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
@@ -183,11 +184,11 @@ const TreatmentSetting = () => {
   const getProcedure = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-superadmin.vimubds5.a2hosted.com/api/v1/super-admin/getProcedureList`,
+        `http://localhost:8888/api/v1/super-admin/getProcedureList`,
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${user.token}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
@@ -203,12 +204,12 @@ const TreatmentSetting = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "https://dentalguru-superadmin.vimubds5.a2hosted.com/api/v1/super-admin/addTreatment",
+        "http://localhost:8888/api/v1/super-admin/addTreatment",
         treatData,
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${user.token}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
@@ -232,11 +233,11 @@ const TreatmentSetting = () => {
     setLoading(true);
     try {
       const { data } = await axios.get(
-        "https://dentalguru-superadmin.vimubds5.a2hosted.com/api/v1/super-admin/getTreatmentList",
+        "http://localhost:8888/api/v1/super-admin/getTreatmentList",
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${user.token}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
@@ -253,12 +254,12 @@ const TreatmentSetting = () => {
     e.preventDefault();
     try {
       const response = await axios.put(
-        `https://dentalguru-superadmin.vimubds5.a2hosted.com/api/v1/super-admin/updateTreatmentDetails/${id}`,
+        `http://localhost:8888/api/v1/super-admin/updateTreatmentDetails/${id}`,
         updateTreatVal,
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${user.token}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
@@ -280,11 +281,11 @@ const TreatmentSetting = () => {
 
       if (isConfirmed) {
         const response = await axios.delete(
-          `https://dentalguru-superadmin.vimubds5.a2hosted.com/api/v1/super-admin/deleteTreatment/${id}`,
+          `http://localhost:8888/api/v1/super-admin/deleteTreatment/${id}`,
           {
             headers: {
               "Content-Type": "application/json",
-              Authorization: `Bearer ${user.token}`,
+              Authorization: `Bearer ${token}`,
             },
           }
         );
@@ -361,7 +362,7 @@ const TreatmentSetting = () => {
             </div>
             <div className="col-lg-11 col-11 ps-0">
               <div className="container-fluid mt-3">
-                {/* <BranchSelector /> */}
+                <BranchSelector />
               </div>
               <div className="container-fluid mt-3">
                 <button className="btn btn-success" onClick={goBack}>
