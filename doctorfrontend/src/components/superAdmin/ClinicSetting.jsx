@@ -12,7 +12,7 @@ const ClinicSetting = () => {
         <div className="main">
           <div className="container-fluid">
             <div className="row flex-nowrap ">
-              <div className="col-lg-1 col-1 p-0">
+              <div className="col-lg-1 col-1 p-0" id="sider">
                 <Sider />
               </div>
               <div className="col-lg-11 col-11 ps-0">
@@ -32,7 +32,6 @@ const ClinicSetting = () => {
                         {/* <div className="col-1"></div> */}
                         <div className="col-12">
                           <div class="row g-5">
-                         
                             <div class="col-xl-3 col-lg-3 col-md-5 col-sm-12">
                               <Link to="/clinic-config-setting">
                                 <div className="card">
@@ -87,10 +86,11 @@ const Container = styled.div`
     /* background-color: #004aad; */
   }
   .card {
-    background-color: #004aad;
+    // background-color: #004aad;
+    background-color: #008080;
     height: 8rem;
     &:hover {
-      background-color: #000;
+      background-color: #0f737b;
     }
   }
 

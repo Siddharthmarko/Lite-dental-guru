@@ -1,4 +1,4 @@
-import "./App.css";
+// import "./App.css";
 
 import { Route, Routes, useNavigate } from "react-router-dom";
 import DoctorDashboard from "./pages/DoctorPage/DoctorDashboard";
@@ -328,9 +328,9 @@ function App() {
                   style={{ background: "transparent" }}
                 ></Lottie>
               </>
-            ) : todayAttendance.length === 0 ? (
-              <AttendanceLeave />
             ) : (
+              // ) : todayAttendance.length === 0 ? (
+              //   <AttendanceLeave />
               <TreatSuggestDashs />
             )
           }
@@ -394,9 +394,9 @@ function App() {
                   style={{ background: "transparent" }}
                 ></Lottie>
               </>
-            ) : todayAttendance.length === 0 ? (
-              <AttendanceLeave />
             ) : (
+              // ) : todayAttendance.length === 0 ? (
+              //   <AttendanceLeave />
               <TreatmentDashBoard />
             )
           }
@@ -460,9 +460,9 @@ function App() {
                   style={{ background: "transparent" }}
                 ></Lottie>
               </>
-            ) : todayAttendance.length === 0 ? (
-              <AttendanceLeave />
             ) : (
+              // ) : todayAttendance.length === 0 ? (
+              //   <AttendanceLeave />
               <TreatmentDashTwo />
             )
           }
@@ -844,9 +844,9 @@ function App() {
                   style={{ background: "transparent" }}
                 ></Lottie>
               </>
-            ) : todayAttendance.length === 0 ? (
-              <AttendanceLeave />
             ) : (
+              // ) : todayAttendance.length === 0 ? (
+              //   <AttendanceLeave />
               <SittingBill />
             )
           }

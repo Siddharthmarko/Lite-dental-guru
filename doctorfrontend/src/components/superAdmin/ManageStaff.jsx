@@ -1525,7 +1525,7 @@ const Container = styled.div`
   }
 
   th {
-    background-color: #004aad;
+    background-color: #008080;
     color: white;
     position: sticky;
   }
@@ -1533,7 +1533,7 @@ const Container = styled.div`
   .sticky {
     position: sticky;
     top: 0;
-    background-color: #004aad;
+    background-color: #008080;
     color: white;
     z-index: 1;
   }
