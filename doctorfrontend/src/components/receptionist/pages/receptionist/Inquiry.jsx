@@ -37,7 +37,7 @@ function Inquiry() {
   const getDoctors = async () => {
     try {
       const response = await axios.get(
-        `https://dentalguru-receptionist.vimubds5.a2hosted.com/api/v1/receptionist/get-doctors/${branch}`,
+        `http://localhost:8888/api/v1/receptionist/get-doctors/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -54,7 +54,7 @@ function Inquiry() {
     setLoadingEffect(true);
     try {
       const response = await axios.get(
-        `https://dentalguru-receptionist.vimubds5.a2hosted.com/api/v1/receptionist/get-inquiries/${branch}`,
+        `http://localhost:8888/api/v1/receptionist/get-inquiries/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -221,7 +221,7 @@ function Inquiry() {
     try {
       setLoading(true);
       const response = await axios.post(
-        "https://dentalguru-receptionist.vimubds5.a2hosted.com/api/v1/receptionist/add-inquiry",
+        "http://localhost:8888/api/v1/receptionist/add-inquiry",
         newData,
         {
           headers: {
@@ -272,7 +272,7 @@ function Inquiry() {
 
     try {
       const response = await axios.delete(
-        `https://dentalguru-receptionist.vimubds5.a2hosted.com/api/v1/receptionist/delete-inquiry/${id}`,
+        `http://localhost:8888/api/v1/receptionist/delete-inquiry/${id}`,
         {
           headers: {
             "Content-Type": "application/json",

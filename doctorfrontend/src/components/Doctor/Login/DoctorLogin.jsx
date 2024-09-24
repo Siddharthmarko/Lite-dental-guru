@@ -26,7 +26,7 @@ const DoctorLogin = () => {
   const getBranches = async () => {
     try {
       const response = await axios.get(
-        "https://dentalguru-doctor.vimubds5.a2hosted.com/api/doctor/get-branches"
+        "http://localhost:8888/api/doctor/get-branches"
       );
       console.log(response);
       setBranches(response.data.data);
@@ -58,7 +58,7 @@ const DoctorLogin = () => {
     setLoading(true);
     try {
       const response = await axios.post(
-        "https://dentalguru-doctor.vimubds5.a2hosted.com/api/doctor/doctor-login",
+        "http://localhost:8888/api/doctor/doctor-login",
         {
           email,
           password,

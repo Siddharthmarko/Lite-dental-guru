@@ -127,7 +127,7 @@ function App() {
   //   try {
   //     setLoading(true);
   //     const response = await axios.get(
-  //       `https://dentalguru-doctor.vimubds5.a2hosted.com/api/doctor/getTodayAttendance/${user.branch_name}/${user.employee_ID}/${date}`,
+  //       `http://localhost:8888/api/doctor/getTodayAttendance/${user.branch_name}/${user.employee_ID}/${date}`,
   //       {
   //         headers: {
   //           "Content-Type": "application/json",
@@ -169,7 +169,7 @@ function App() {
     try {
       setLoading(true);
       const response = await axios.get(
-        `https://dentalguru-doctor.vimubds5.a2hosted.com/api/doctor/getTodayAttendance/${user.branch_name}/${user.employee_ID}/${date}`,
+        `http://localhost:8888/api/doctor/getTodayAttendance/${user.branch_name}/${user.employee_ID}/${date}`,
         {
           headers: {
             "Content-Type": "application/json",

@@ -49,7 +49,7 @@ const AppointTable = () => {
     setLoading(true);
     try {
       const { data } = await axios.get(
-        `https://dentalguru-doctor.vimubds5.a2hosted.com/api/doctor/getAppointmentsWithPatientDetailsTreatSugg/${doctorId}`,
+        `http://localhost:8888/api/doctor/getAppointmentsWithPatientDetailsTreatSugg/${doctorId}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -118,7 +118,7 @@ const AppointTable = () => {
   const timelineForStartTreat = async (uhid) => {
     try {
       const response = await axios.post(
-        "https://dentalguru-doctor.vimubds5.a2hosted.com/api/doctor/insertTimelineEvent",
+        "http://localhost:8888/api/doctor/insertTimelineEvent",
         {
           type: "Examination",
           description: "Start Examintion",
@@ -141,7 +141,7 @@ const AppointTable = () => {
   const timelineForCancelTreat = async (uhid) => {
     try {
       const response = await axios.post(
-        "https://dentalguru-doctor.vimubds5.a2hosted.com/api/doctor/insertTimelineEvent",
+        "http://localhost:8888/api/doctor/insertTimelineEvent",
         {
           type: "Examination",
           description: "Cancel Treatment",
@@ -164,7 +164,7 @@ const AppointTable = () => {
   const getTreatPackageData = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-doctor.vimubds5.a2hosted.com/api/doctor/getTreatPackageViaTpidUhid/${branch}`,
+        `http://localhost:8888/api/doctor/getTreatPackageViaTpidUhid/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -201,7 +201,7 @@ const AppointTable = () => {
       };
 
       await axios.put(
-        `https://dentalguru-doctor.vimubds5.a2hosted.com/api/doctor/upDateAppointmentStatus`,
+        `http://localhost:8888/api/doctor/upDateAppointmentStatus`,
         requestBody,
         {
           headers: {
@@ -271,7 +271,7 @@ const AppointTable = () => {
         }
       }
       const res = await axios.get(
-        `https://dentalguru-doctor.vimubds5.a2hosted.com/api/doctor/appointtreatSitting?date=${selectedDate}`,
+        `http://localhost:8888/api/doctor/appointtreatSitting?date=${selectedDate}`,
         {
           headers: {
             "Content-Type": "application/json",

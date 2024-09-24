@@ -123,7 +123,7 @@ function SecurityAmount() {
     setLoadingEffect(true);
     try {
       const { data } = await axios.get(
-        `https://dentalguru-receptionist.vimubds5.a2hosted.com/api/v1/receptionist/getSecurityAmountDataByBranch/${branch}`,
+        `http://localhost:8888/api/v1/receptionist/getSecurityAmountDataByBranch/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -195,7 +195,7 @@ function SecurityAmount() {
     try {
       setLoading(true);
       const response = await axios.put(
-        `https://dentalguru-receptionist.vimubds5.a2hosted.com/api/v1/receptionist/updateRefundAmount/${selected}`,
+        `http://localhost:8888/api/v1/receptionist/updateRefundAmount/${selected}`,
         {
           refund_by: currentUser.employee_name,
           payment_status: "Refunded",
@@ -238,7 +238,7 @@ function SecurityAmount() {
     try {
       setLoading(true);
       const response = await axios.put(
-        `https://dentalguru-receptionist.vimubds5.a2hosted.com/api/v1/receptionist/updatePatientSecurityAmt/${selected}`,
+        `http://localhost:8888/api/v1/receptionist/updatePatientSecurityAmt/${selected}`,
         updatedData,
         {
           headers: {
@@ -293,7 +293,7 @@ function SecurityAmount() {
   //     e.preventDefault();
   //     try {
   //       const response = await axios.put(
-  //         `https://dentalguru-receptionist.vimubds5.a2hosted.com/api/v1/receptionist/updateRefundAmount/${selected}`,
+  //         `http://localhost:8888/api/v1/receptionist/updateRefundAmount/${selected}`,
   //         {
   //           refund_date: date,
   //           refund_by: currentUser.employee_name,
@@ -324,7 +324,7 @@ function SecurityAmount() {
   //     console.log(id);
   //     try {
   //       const { data } = await axios.get(
-  //         `https://dentalguru-receptionist.vimubds5.a2hosted.com/api/v1/receptionist/getSecurityAmountDataBySID/${id}`
+  //         `http://localhost:8888/api/v1/receptionist/getSecurityAmountDataBySID/${id}`
   //       );
   //       console.log(data);
   //       setOutStanding(data);
@@ -369,7 +369,7 @@ function SecurityAmount() {
 
   //   const getPatient = async () =>{
   //     try{
-  //       const response = await axios.get(`https://dentalguru-receptionist.vimubds5.a2hosted.com/api/v1/receptionist/patient-securityAmt/${branch}`);
+  //       const response = await axios.get(`http://localhost:8888/api/v1/receptionist/patient-securityAmt/${branch}`);
   //       console.log(response);
   //       setPatients(response?.data?.data)
   //      }
@@ -519,7 +519,7 @@ function SecurityAmount() {
   const billDetailsSms = async () => {
     try {
       const { data } = await axios.post(
-        "https://dentalguru-receptionist.vimubds5.a2hosted.com/api/v1/receptionist/sendSMS",
+        "http://localhost:8888/api/v1/receptionist/sendSMS",
         formDetails,
         {
           headers: {
@@ -538,7 +538,7 @@ function SecurityAmount() {
     try {
 
       const res = await axios.post(
-        "https://dentalguru-receptionist.vimubds5.a2hosted.com/api/v1/receptionist/sendWhatsapptextonly",
+        "http://localhost:8888/api/v1/receptionist/sendWhatsapptextonly",
         formDetails,
         {
           headers: {
@@ -570,7 +570,7 @@ function SecurityAmount() {
   const refundBillDetailsSms = async () => {
     try {
       const { data } = await axios.post(
-        "https://dentalguru-receptionist.vimubds5.a2hosted.com/api/v1/receptionist/sendSMS",
+        "http://localhost:8888/api/v1/receptionist/sendSMS",
         refundformDetails,
         {
           headers: {
@@ -589,7 +589,7 @@ function SecurityAmount() {
     try {
 
       const res = await axios.post(
-        "https://dentalguru-receptionist.vimubds5.a2hosted.com/api/v1/receptionist/sendWhatsapptextonly",
+        "http://localhost:8888/api/v1/receptionist/sendWhatsapptextonly",
         refundformDetails,
         {
           headers: {
