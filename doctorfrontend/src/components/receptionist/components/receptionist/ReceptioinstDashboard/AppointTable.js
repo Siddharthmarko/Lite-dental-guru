@@ -110,11 +110,11 @@ const AppointTable = () => {
 
   // console.log(appointmentsData);
   // useEffect(() => {
-    // const intervalId = setInterval(() => {
-    //   dispatch(toggleTableRefresh());
-    // }, 5000);
+  // const intervalId = setInterval(() => {
+  //   dispatch(toggleTableRefresh());
+  // }, 5000);
 
-    // return () => clearInterval(intervalId);
+  // return () => clearInterval(intervalId);
   // }, [dispatch]);
 
   // previous code 1
@@ -219,7 +219,7 @@ const AppointTable = () => {
       } else {
         console.log("An error occurred:", error.message);
       }
-    } 
+    }
   };
 
   console.log(appointmentsData);
@@ -326,18 +326,20 @@ const AppointTable = () => {
     }
   };
 
-
-  const handleAction = async (
-    action,
-    appointId,
-    uhid,
-    appointment_status,
-  ) => {
+  const handleAction = async (action, appointId, uhid, appointment_status) => {
     // alert(appointId, uhid, appointment_status, treatment_provided, tpid);
-    let tpid = appointmentsData.tp_id;
     console.log(tp_id);
-    console.log(tp_id.tp_id);
-    return;
+    console.log(uhid);
+    
+    const foundItem = tp_id.find((item) => item.appoint_id === appointId);
+    console.log(foundItem);
+    // let tpid = appointmentsData.tp_id;
+    let tpid = foundItem.tp_id;
+    if(!tpid) {
+      navigate(`/examination-Dashboard/${appointId}/${uhid}`)  
+      return;
+    }
+    
     try {
       let requestBody = {
         action,
@@ -784,8 +786,10 @@ const AppointTable = () => {
                             <div className="dropdown">
                               {!(
                                 // patient.appointment_status == "in treatment" ||
-                                patient.appointment_status == "Complete" ||
-                                patient.appointment_status == "Cancel"
+                                (
+                                  patient.appointment_status == "Complete" ||
+                                  patient.appointment_status == "Cancel"
+                                )
                               ) ? (
                                 <button
                                   className="btn btn-primary dropdown-toggle"
@@ -867,7 +871,7 @@ const AppointTable = () => {
                                         >
                                           Change Status to "Appoint"
                                         </a>
-                                      </button> 
+                                      </button>
                                     </li>
                                   )}
                                 {patient.appointment_status === "Check-In" &&
@@ -876,17 +880,26 @@ const AppointTable = () => {
                                     <li className="text-center">
                                       {" "}
                                       <button
+                                        onClick={() =>
+                                          handleAction(
+                                            "in treatment",
+                                            patient.appoint_id,
+                                            patient.uhid,
+                                            patient.appointment_status,
+                                            patient.treatment_provided
+                                          )
+                                        }
                                         className={`btn btn-warning mx-2 my-1 ${
                                           loading ? "disabled" : ""
                                         }`}
                                       >
-<Link to={`/examination-Dashboard/${patient.appoint_id}/${patient.uhid}`}  >
-                                          Start Treatment
-                                        </Link>
+                                        {/* <Link to={`/examination-Dashboard/${patient.appoint_id}/${patient.uhid}`}  > */}
+                                        <Link>Start Treatment</Link>
                                       </button>
                                     </li>
                                   )}
-                                     {patient.appointment_status !== "Check-In" && patient.appointment_status !== "Complete" &&
+                                {/* {patient.appointment_status !== "Check-In" &&
+                                  patient.appointment_status !== "Complete" &&
                                   patient.appointment_status !== "Check Out" &&
                                   patient.appointment_status !== "Appoint" && (
                                     <>
@@ -897,7 +910,7 @@ const AppointTable = () => {
                                             handleAction(
                                               "in treatment",
                                               patient.appoint_id,
-                                              patient.patient_uhid,
+                                              patient.uhid,
                                               patient.appointment_status,
                                               patient.treatment_provided
                                             )
@@ -907,7 +920,7 @@ const AppointTable = () => {
                                         </button>
                                       </li>
                                     </>
-                                  )}
+                                  )} */}
                                 {patient.appointment_status === "Check-In" &&
                                   patient.appointment_status !== "Cancel" &&
                                   appointmentDate <= todayDate && (
@@ -918,7 +931,9 @@ const AppointTable = () => {
                                           loading ? "disabled" : ""
                                         }`}
                                       >
-<Link to={`/Quick-Prescription/${patient.appoint_id}/${patient.uhid}`}  >
+                                        <Link
+                                          to={`/Quick-Prescription/${patient.appoint_id}/${patient.uhid}`}
+                                        >
                                           Quick Prescription
                                         </Link>
                                       </button>
