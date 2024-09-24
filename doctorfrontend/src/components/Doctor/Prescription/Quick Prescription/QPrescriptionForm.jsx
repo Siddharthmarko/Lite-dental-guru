@@ -65,8 +65,7 @@ const QPrescriptionForm = () => {
           },
         }
       );
-      setAppointments(data.data);
-      console.log(data);
+      setAppointments(data[0]);
     } catch (error) {
       console.log(error);
     }

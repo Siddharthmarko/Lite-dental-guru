@@ -26,6 +26,7 @@ const {
   editEmployeeDetails,
   getTreatmentViaId,
   EnrollEmployee,
+  getEmployeeDataByBranchAndId,
 } = require("../controller/superAdminController");
 
 const authenticate = require("../middleware/authMiddleware.js");
@@ -111,6 +112,7 @@ router.post(
 );
 
 router.post("/addBlockDays", authenticate, addBlockDays);
+router.get("/getEmployeeDetails/:branch/:empId", getEmployeeDataByBranchAndId);
 
 const superRoute = router;
 

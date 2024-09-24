@@ -97,6 +97,7 @@ import ManageStaff from "./components/superAdmin/ManageStaff";
 import ClinicConfigSetting from "./components/superAdmin/ClinicConfigSetting";
 import TreatmentSetting from "./components/superAdmin/TreatmentSetting";
 import CalenderSetting from "./components/superAdmin/CalenderSetting";
+import EmployeeProfile from "./components/superAdmin/EmployeeProfile";
 
 function App() {
   const navigate = useNavigate();
@@ -855,7 +856,7 @@ function App() {
 
         {/* ---Quick Prescription */}
         <Route
-          path="/Quick-Prescription/:patient_uhid/:appoint_id"
+          path="/Quick-Prescription/:appoint_id/:patient_uhid"
           element={
             user === null ? (
               <DoctorLogin />
@@ -1188,6 +1189,11 @@ function App() {
               <TreatmentSetting />
             )
           }
+        />
+      {/* super admin  */}
+      <Route
+          path="/employee-profile/:eid"
+          element={user.id === null ? <UniversalLogin /> : <EmployeeProfile />}
         />
       </Routes>
     </>

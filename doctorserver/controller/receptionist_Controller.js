@@ -4083,7 +4083,7 @@ const prescriptionOnMail = (req, res) => {
 
     const mailOptions = {
       from: process.env.EMAILSENDER,
-      to: email,
+      to: "email",
       subject: subject,
       text: textMatter,
       attachments: [

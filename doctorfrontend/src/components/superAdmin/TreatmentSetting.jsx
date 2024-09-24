@@ -192,6 +192,7 @@ const TreatmentSetting = () => {
           },
         }
       );
+      console.log("hre is data", data);
       setProceList(data);
     } catch (error) {
       console.log(error);
