@@ -270,8 +270,8 @@ const Wrapper = styled.div`
   }
   #sidebar {
     width: 80%;
-    min-height: 100vh;
-
+    // min-height: 100vh;
+    height: 82rem;
     background-color: teal;
     @media screen and (max-width: 768px) {
       width: 5rem;

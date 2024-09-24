@@ -11,16 +11,17 @@ const ExaminationDashBoard = () => {
   return (
     <>
       <Wrapper>
-      <div className='header'>
-      <Header/>
-      </div>
+        <div className="header">
+          <Header />
+        </div>
 
         <div className="main">
           <div className="container-fluid">
             <div className="row flex-nowrap">
-            <div className="col-lg-1 col-1" id='sider'>
-   <Sider/>
-    </div>
+              <div className="col-lg-1 col-1" id="sider">
+                <Sider />
+              </div>
+
               <div className="col-lg-11 col-11 ps-0">
                 <ExaminationDashTwo />
               </div>

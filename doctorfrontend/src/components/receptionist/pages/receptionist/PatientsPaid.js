@@ -43,7 +43,7 @@ function PatientsPaid() {
 
   console.log(paidList);
   const filterForPaidBills = paidList?.filter((item) => {
-    return item.payment_status === "paid" || item.payment_status === "Paid" ;
+    return item.payment_status === "paid" || item.payment_status === "Paid";
   });
 
   console.log(filterForPaidBills);
@@ -274,7 +274,7 @@ function PatientsPaid() {
                           <th className="sticky">Doctor Name</th>
                           <th className="sticky">Total Amount</th>
                           <th className="sticky">Paid By Direct Amount</th>
-                          <th className="sticky">Paid By Secuirty Amt</th>
+                          {/* <th className="sticky">Paid By Secuirty Amt</th> */}
                           <th className="sticky">Payment Date</th>
                           <th className="sticky">Action</th>
                         </tr>
@@ -313,7 +313,7 @@ function PatientsPaid() {
                                 </td>
                                 <td>{item.total_amount}</td>
                                 <td>{item.paid_amount}</td>
-                                <td>{item.pay_by_sec_amt}</td>
+                                {/* <td>{item.pay_by_sec_amt}</td> */}
                                 <td>
                                   {item?.payment_date_time
                                     ? moment(

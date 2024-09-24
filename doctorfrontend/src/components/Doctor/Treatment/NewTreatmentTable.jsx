@@ -7,6 +7,8 @@ import { MdEdit } from "react-icons/md";
 import { FaLocationArrow } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
 import cogoToast from "cogo-toast";
+// import Receptioinstdash from "./components/receptionist/pages/receptionist/Receptioinstdash";
+import Receptioinstdash from "../../receptionist/pages/receptionist/Receptioinstdash";
 
 const NewTreatmentTable = () => {
   const { appoint_id, tpid } = useParams();
@@ -374,6 +376,41 @@ const NewTreatmentTable = () => {
               <button className="btn btn-info fs-5 text-light" disabled>
                 Complete Treatment <FaLocationArrow size={25} />
               </button>
+
+              //   <>
+              //     <button
+              //       className="btn btn-info fs-5 text-light"
+              //       onClick={generateFinalBill}
+              //       disabled={loading}
+              //     >
+              //       {loading ? "Complete Treatment..." : "Complete Treatment"}{" "}
+              //       <FaLocationArrow size={25} />
+              //     </button>
+
+              //     {/* New Complete Button */}
+              //     <button
+              //       className="btn btn-success fs-5 text-light ms-3"
+              //       // Replace with your function
+              //       disabled={loading}
+              //     >
+              //       {loading ? "Completing..." : "Complete"}{" "}
+              //       <FaLocationArrow size={25} />
+              //     </button>
+              //   </>
+              // ) : (
+              //   <>
+              //     <button className="btn btn-info fs-5 text-light" disabled>
+              //       Complete Treatment <FaLocationArrow size={25} />
+              //     </button>
+
+              //     {/* Disabled Complete Button */}
+              //     <button
+              //       className="btn btn-success fs-5 text-light ms-3"
+              //       onClick={Receptioinstdash}
+              //     >
+              //       Dashboard <FaLocationArrow size={25} />
+              //     </button>
+              //   </>
             )}
           </div>
         </div>

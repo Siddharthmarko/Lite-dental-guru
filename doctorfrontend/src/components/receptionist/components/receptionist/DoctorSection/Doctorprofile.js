@@ -17,7 +17,7 @@ function Doctorprofile() {
               <h2 className="mt-3">Dr.Mohit Pawar</h2>
 
               <img
-                src={doctor}
+                // src={doctor}
                 alt=""
                 height="160rem"
                 className="  rounded-5 mx-4 "
