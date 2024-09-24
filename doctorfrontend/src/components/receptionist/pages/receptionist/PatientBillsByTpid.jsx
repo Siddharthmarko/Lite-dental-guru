@@ -38,7 +38,7 @@ const PatientBillsByTpid = () => {
   const getBranchDetails = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-receptionist.vimubds5.a2hosted.com/api/v1/receptionist/getBranchDetailsByBranch/${branch}`
+        `http://localhost:8888/api/v1/receptionist/getBranchDetailsByBranch/${branch}`
       );
       console.log(data);
       setGetBranch(data);
@@ -52,7 +52,7 @@ const PatientBillsByTpid = () => {
   const getPatientDetail = async () => {
     try {
       const res = await axios.get(
-        `https://dentalguru-receptionist.vimubds5.a2hosted.com/api/v1/receptionist/getAppointmentsWithPatientDetailsById/${tpid}`,
+        `http://localhost:8888/api/v1/receptionist/getAppointmentsWithPatientDetailsById/${tpid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -81,7 +81,7 @@ const PatientBillsByTpid = () => {
   const getExaminDetail = async () => {
     try {
       const res = await axios.get(
-        `https://dentalguru-receptionist.vimubds5.a2hosted.com/api/v1/receptionist/getDentalDataByTpid/${tpid}/${branch}`,
+        `http://localhost:8888/api/v1/receptionist/getDentalDataByTpid/${tpid}/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -124,7 +124,7 @@ const PatientBillsByTpid = () => {
   const getTreatDetail = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-receptionist.vimubds5.a2hosted.com/api/v1/receptionist/getTreatmentDetailsViaTpid/${tpid}/${branch}`,
+        `http://localhost:8888/api/v1/receptionist/getTreatmentDetailsViaTpid/${tpid}/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -149,7 +149,7 @@ const PatientBillsByTpid = () => {
   const getTreatPrescriptionByAppointId = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-receptionist.vimubds5.a2hosted.com/api/v1/receptionist/getTreatPrescriptionByTpid/${tpid}/${branch}`,
+        `http://localhost:8888/api/v1/receptionist/getTreatPrescriptionByTpid/${tpid}/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -173,7 +173,7 @@ const PatientBillsByTpid = () => {
   const getTreatmentSuggestAppointId = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-receptionist.vimubds5.a2hosted.com/api/v1/receptionist/getTreatSuggestViaTpid/${tpid}/${branch}`,
+        `http://localhost:8888/api/v1/receptionist/getTreatSuggestViaTpid/${tpid}/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -215,7 +215,7 @@ const PatientBillsByTpid = () => {
   const getBillDetails = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-receptionist.vimubds5.a2hosted.com/api/v1/receptionist/billDetailsViaTpid/${tpid}`,
+        `http://localhost:8888/api/v1/receptionist/billDetailsViaTpid/${tpid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -322,7 +322,7 @@ const PatientBillsByTpid = () => {
       }
       cogoToast.success("Treatment bill sending to email");
       const response = await axios.post(
-        "https://dentalguru-receptionist.vimubds5.a2hosted.com/api/v1/receptionist/prescriptionOnMail",
+        "http://localhost:8888/api/v1/receptionist/prescriptionOnMail",
         formData,
         {
           headers: {
@@ -365,7 +365,7 @@ const PatientBillsByTpid = () => {
       }
 
       const res = await axios.post(
-        "https://dentalguru-receptionist.vimubds5.a2hosted.com/api/v1/receptionist/sendWhatsapp",
+        "http://localhost:8888/api/v1/receptionist/sendWhatsapp",
         formData,
         {
           headers: {
@@ -387,7 +387,7 @@ const PatientBillsByTpid = () => {
   const billDetailsSms = async () => {
     try {
       const { data } = await axios.post(
-        "https://dentalguru-receptionist.vimubds5.a2hosted.com/api/v1/receptionist/sendSMS",
+        "http://localhost:8888/api/v1/receptionist/sendSMS",
         formDetails,
         {
           headers: {

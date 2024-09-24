@@ -21,7 +21,7 @@ function Refund({ onClose, patientInfo }) {
   const timelineData = async (id) => {
     try {
       const response = await axios.post(
-        "https://dentalguru-receptionist.vimubds5.a2hosted.com/api/v1/receptionist/insertTimelineEvent",
+        "http://localhost:8888/api/v1/receptionist/insertTimelineEvent",
         {
           type: "Security Amount",
           description: "Security Amount Received",
@@ -69,7 +69,7 @@ function Refund({ onClose, patientInfo }) {
 
     try {
       const response = await axios.put(
-        "https://dentalguru-receptionist.vimubds5.a2hosted.com/api/v1/receptionist/updatePatientSecurityAmt",
+        "http://localhost:8888/api/v1/receptionist/updatePatientSecurityAmt",
         data,
         {
           headers: {

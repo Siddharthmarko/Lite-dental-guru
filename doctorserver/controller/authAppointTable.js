@@ -60,6 +60,7 @@ const getAppointmentsWithPatientDetails = (req, res) => {
   });
 };
 
+
 const getAppointmentsWithPatientDetailsById = (req, res) => {
   const tpid = req.params.tpid;
 

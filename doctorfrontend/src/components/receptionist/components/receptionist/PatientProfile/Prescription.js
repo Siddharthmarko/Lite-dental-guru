@@ -74,7 +74,7 @@ const Prescription = () => {
   const getPrescriptionDetails = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-receptionist.vimubds5.a2hosted.com/api/v1/receptionist/getPrescriptionViaUhid/${branch}/${pid}`,
+        `http://localhost:8888/api/v1/receptionist/getPrescriptionViaUhid/${branch}/${pid}`,
         {
           headers: {
             "Content-Type": "application/json",

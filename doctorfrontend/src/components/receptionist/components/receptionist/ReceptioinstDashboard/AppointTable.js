@@ -18,12 +18,14 @@ const AppointTable = () => {
   const [searchInput, setSearchInput] = useState("");
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
+  const [treatData, setTreatData] = useState([]);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const { refreshTable, currentUser } = useSelector((state) => state.user);
   const token = currentUser?.token;
+  const doctorId = currentUser?.employee_ID;
   const [showEditPopup, setShowEditPopup] = useState(false);
   const [showCancelPopup, setShowCancelPopup] = useState(false);
-  const [selectedAppointment, setSelectedAppointment] = useState("");
+  const [selectedAppointment, setSelectedAppointment] = useState([]);
   const [selectedDate, setSelectedDate] = useState(
     new Date().toISOString()?.split("T")[0]
   ); // Initialize with today's date
@@ -39,13 +41,14 @@ const AppointTable = () => {
 
   const [selectedDateAppData, setSelectedDateAppData] = useState([]);
   const [doctors, setDoctors] = useState([]);
+  const [tp_id, setTp_id] = useState();
   const [selectedDoctor, setSelectedDoctor] = useState(null); // State to store the selected Doctor
   const navigate = useNavigate();
 
   const getDoctors = async () => {
     try {
       const response = await axios.get(
-        `https://dentalguru-receptionist.vimubds5.a2hosted.com/api/v1/receptionist/get-doctors/${branch}`,
+        `http://localhost:8888/api/v1/receptionist/get-doctors/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -62,7 +65,7 @@ const AppointTable = () => {
   const timelineData = async (id) => {
     try {
       const response = await axios.post(
-        "https://dentalguru-receptionist.vimubds5.a2hosted.com/api/v1/receptionist/insertTimelineEvent",
+        "http://localhost:8888/api/v1/receptionist/insertTimelineEvent",
         {
           type: "Appointment",
           description: "Appointment Cancel",
@@ -85,7 +88,7 @@ const AppointTable = () => {
   const timelineDataForCheckIn = async (id) => {
     try {
       const response = await axios.post(
-        "https://dentalguru-receptionist.vimubds5.a2hosted.com/api/v1/receptionist/insertTimelineEvent",
+        "http://localhost:8888/api/v1/receptionist/insertTimelineEvent",
         {
           type: "Appointment",
           description: "Patient Check-In",
@@ -106,13 +109,13 @@ const AppointTable = () => {
   };
 
   // console.log(appointmentsData);
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      dispatch(toggleTableRefresh());
-    }, 5000);
+  // useEffect(() => {
+    // const intervalId = setInterval(() => {
+    //   dispatch(toggleTableRefresh());
+    // }, 5000);
 
-    return () => clearInterval(intervalId);
-  }, [dispatch]);
+    // return () => clearInterval(intervalId);
+  // }, [dispatch]);
 
   // previous code 1
 
@@ -123,7 +126,7 @@ const AppointTable = () => {
 
   //   const filteredResults = sortedAppointments.filter((row) =>
 
-  //     row.appointment_dateTime.includes(selectedDate)
+  //     row.appointment_dateTime?.includes(selectedDate)
   //   );
   //   setSelectedDateAppData(filteredResults)
   //   handleSearch({ target: { value: searchTerm } });
@@ -134,7 +137,7 @@ const AppointTable = () => {
   // useEffect(() => {
   //   const sortedAppointments = appointmentsData.sort((a, b) => a.appointment_dateTime.localeCompare(b.appointment_dateTime));
   //   const filteredResults = sortedAppointments.filter((row) =>
-  //     row.appointment_dateTime.includes(selectedDate) &&
+  //     row.appointment_dateTime?.includes(selectedDate) &&
   //     (!selectedDoctor || row.assigned_doctor_id === selectedDoctor)
   //   );
   //   setSelectedDateAppData(filteredResults)
@@ -146,7 +149,7 @@ const AppointTable = () => {
     );
     const filteredResults = sortedAppointments.filter(
       (row) =>
-        row.appointment_dateTime.includes(selectedDate) &&
+        row.appointment_dateTime?.includes(selectedDate) &&
         (!selectedDoctor || row.assigned_doctor_id === selectedDoctor)
     );
     setSelectedDateAppData(filteredResults);
@@ -159,18 +162,18 @@ const AppointTable = () => {
     );
     const filteredResults = sortedAppointments.filter(
       (row) =>
-        row.appointment_dateTime.includes(selectedDate) &&
+        row.appointment_dateTime?.includes(selectedDate) &&
         (!selectedDoctor || row.assigned_doctor_id === selectedDoctor)
     );
     setSelectedDateAppData(filteredResults);
 
     const filteredResult = appointmentsData.filter(
       (row) =>
-        (row.patient_name.toLowerCase().includes(searchTerm.trim()) ||
-          row.mobileno.includes(searchTerm.trim()) ||
-          row.uhid.toLowerCase().includes(searchTerm.trim()) ||
-          row.appointment_status.toLowerCase().includes(searchTerm.trim())) &&
-        row.appointment_dateTime.includes(selectedDate) &&
+        (row.patient_name?.toLowerCase()?.includes(searchTerm.trim()) ||
+          row.mobileno?.includes(searchTerm.trim()) ||
+          row.uhid?.toLowerCase()?.includes(searchTerm.trim()) ||
+          row.appointment_status?.toLowerCase()?.includes(searchTerm.trim())) &&
+        row.appointment_dateTime?.includes(selectedDate) &&
         (!selectedDoctor || row.assigned_doctor_id === selectedDoctor)
     );
 
@@ -180,7 +183,7 @@ const AppointTable = () => {
   const getAppointments = async () => {
     try {
       const response = await axios.get(
-        `https://dentalguru-receptionist.vimubds5.a2hosted.com/api/v1/receptionist/get-appointments/${branch}`,
+        `http://localhost:8888/api/v1/receptionist/get-appointments/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -197,13 +200,38 @@ const AppointTable = () => {
     }
   };
 
+  const fetchAppointments = async () => {
+    try {
+      const { data } = await axios.get(
+        `http://localhost:8888/api/doctor/getAppointmentsWithPatientDetailsTreatSugg/${doctorId}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log(data);
+      setTp_id(data);
+    } catch (error) {
+      if (error.response && error.response.status === 401) {
+        const errorMessage = error.response.data.message;
+      } else {
+        console.log("An error occurred:", error.message);
+      }
+    } 
+  };
+
   console.log(appointmentsData);
 
   useEffect(() => {
     getAppointments();
   }, [refreshTable]);
+
   useEffect(() => {
     getDoctors();
+    fetchAppointments();
+    getTreatPackageData();
   }, []);
 
   const handleEditAppointment = (appointment) => {
@@ -231,7 +259,7 @@ const AppointTable = () => {
       setLoading(true);
       // Send a PUT request to your backend endpoint to update the status
       await axios.put(
-        `https://dentalguru-receptionist.vimubds5.a2hosted.com/api/v1/receptionist/update-appointment-status`,
+        `http://localhost:8888/api/v1/receptionist/update-appointment-status`,
         {
           status: newStatus,
           appointmentId: appointmentId,
@@ -258,6 +286,152 @@ const AppointTable = () => {
       cogoToast.error("Error updating status");
     }
   };
+  const timelineForStartTreat = async (uhid) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:8888/api/doctor/insertTimelineEvent",
+        {
+          type: "Examination",
+          description: "Start Examintion",
+          branch: branch,
+          patientId: uhid,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      // console.log(response);
+    } catch (error) {
+      // console.log(error);
+    }
+  };
+
+  const getTreatPackageData = async () => {
+    try {
+      const { data } = await axios.get(
+        `http://localhost:8888/api/doctor/getTreatPackageViaTpidUhid/${branch}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setTreatData(data);
+    } catch (error) {
+      // console.log(error);
+    }
+  };
+
+
+  const handleAction = async (
+    action,
+    appointId,
+    uhid,
+    appointment_status,
+  ) => {
+    // alert(appointId, uhid, appointment_status, treatment_provided, tpid);
+    let tpid = appointmentsData.tp_id;
+    console.log(tp_id);
+    console.log(tp_id.tp_id);
+    return;
+    try {
+      let requestBody = {
+        action,
+        appointId,
+      };
+
+      await axios.put(
+        `http://localhost:8888/api/doctor/upDateAppointmentStatus`,
+        requestBody,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (action === "in treatment") {
+        timelineForStartTreat(uhid);
+
+        // const filterForPendingTp = treatData?.filter((item) => {
+        //   return item.tp_id === tpid && item.package_status === "ongoing";
+        // });
+
+        const filterForPendingTp = appointmentsData?.filter((item) => {
+          return (
+            item.appoint_id === appointId && item.treatment_provided === "OPD"
+          );
+        });
+
+        console.log(filterForPendingTp);
+        // alert(filterForPendingTp.length);
+
+        const filterForGoingTp = treatData?.filter((item) => {
+          return (
+            item.tp_id === tpid &&
+            (item.package_status !== "started" ||
+              item.package_status !== "completed") &&
+            item.treatment_status === "ongoing" &&
+            item.current_path !== null
+          );
+        });
+
+        console.log(filterForGoingTp);
+        if (
+          filterForPendingTp[0]?.treatment_status !== "pending" &&
+          filterForPendingTp[0]?.treatment_status !== null &&
+          filterForPendingTp[0]?.package_status !== "complete" &&
+          filterForPendingTp[0]?.package_status !== "completed"
+        ) {
+          // alert("filter pending tp");
+          navigate(`/TreatmentDashBoard/${tpid}/${appointId}`);
+        } else if (filterForGoingTp.length > 0) {
+          const appointFilter = appointmentsData?.filter((tad) => {
+            return tad.appoint_id === appointId;
+          });
+          alert("current path");
+          // navigate(appointFilter[0]?.current_path);
+        } else {
+          navigate(`/examination-Dashboard/${appointId}/${uhid}`);
+        }
+        window.scrollTo(0, 0);
+      }
+
+      if (action === "Complete") {
+        const filterForGoingTp = treatData?.filter((item) => {
+          return (
+            (item.tp_id === tpid && item.package_status !== "started") ||
+            item.treatment_status === "ongoing"
+          );
+        });
+
+        if (filterForGoingTp.length === 0) {
+          navigate(`/Quick-Prescription/${uhid}/${appointId}`);
+        }
+      }
+      const res = await axios.get(
+        `http://localhost:8888/api/doctor/appointtreatSitting?date=${selectedDate}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      // setAppointments(res.data.result);
+      // setFilterTableData(res.data.result);
+      // setSelectedActions({ ...selectedActions, [appointId]: action });
+    } catch (error) {
+      // setLoading(false);
+      // console.error("Error updating appointment status:", error.message);
+    }
+  };
 
   const handleStatusCancel = async (appointmentId, patient_uhid, newStatus) => {
     //  // If the action is 'cancel_treatment', add the reason to the request body
@@ -277,7 +451,7 @@ const AppointTable = () => {
     try {
       // Send a PUT request to your backend endpoint to update the status
       await axios.put(
-        `https://dentalguru-receptionist.vimubds5.a2hosted.com/api/v1/receptionist/update-appointment-status-cancel`,
+        `http://localhost:8888/api/v1/receptionist/update-appointment-status-cancel`,
         {
           status: newStatus,
           cancelReason: reason,
@@ -307,35 +481,35 @@ const AppointTable = () => {
   // };
 
   // const filteredTable_data = Table_data.filter((data) => {
-  //   return data.patient.toLowerCase().includes(searchInput.toLowerCase());
+  //   return data.patient?.toLowerCase()?.includes(searchInput?.toLowerCase());
   // });
 
   // Searching function
   // const handleSearch = (event) => {
-  //   const searchTerm = event.target.value.toLowerCase();
+  //   const searchTerm = event.target.value?.toLowerCase();
   //   setSearchTerm(searchTerm);
   //   setCurrentPage(1); // Reset to the first page when searching
 
   //   const filteredResults = appointmentsData.filter((row) =>
-  //     (row.patient_name.toLowerCase().includes(searchTerm.trim()) || row.mobileno.includes(searchTerm.trim()) || row.uhid.toLowerCase().includes(searchTerm.trim()) || row.appointment_status.toLowerCase().includes(searchTerm.trim()) )
-  //     && row.appointment_dateTime.includes(selectedDate)
+  //     (row.patient_name?.toLowerCase()?.includes(searchTerm.trim()) || row.mobileno?.includes(searchTerm.trim()) || row.uhid?.toLowerCase()?.includes(searchTerm.trim()) || row.appointment_status?.toLowerCase()?.includes(searchTerm.trim()) )
+  //     && row.appointment_dateTime?.includes(selectedDate)
   //   );
 
   //   setFilteredData(filteredResults);
   // };
 
   const handleSearch = (event) => {
-    const searchTerm = event.target.value.toLowerCase();
+    const searchTerm = event.target.value?.toLowerCase();
     setSearchTerm(searchTerm);
     setCurrentPage(1);
 
     const filteredResults = appointmentsData.filter(
       (row) =>
-        (row.patient_name.toLowerCase().includes(searchTerm.trim()) ||
-          row.mobileno.includes(searchTerm.trim()) ||
-          row.uhid.toLowerCase().includes(searchTerm.trim()) ||
-          row.appointment_status.toLowerCase().includes(searchTerm.trim())) &&
-        row.appointment_dateTime.includes(selectedDate) &&
+        (row.patient_name?.toLowerCase()?.includes(searchTerm.trim()) ||
+          row.mobileno?.includes(searchTerm.trim()) ||
+          row.uhid?.toLowerCase()?.includes(searchTerm.trim()) ||
+          row.appointment_status?.toLowerCase()?.includes(searchTerm.trim())) &&
+        row.appointment_dateTime?.includes(selectedDate) &&
         (!selectedDoctor || row.assigned_doctor_id === selectedDoctor)
     );
 
@@ -609,7 +783,7 @@ const AppointTable = () => {
                           <td>
                             <div className="dropdown">
                               {!(
-                                patient.appointment_status == "in treatment" ||
+                                // patient.appointment_status == "in treatment" ||
                                 patient.appointment_status == "Complete" ||
                                 patient.appointment_status == "Cancel"
                               ) ? (
@@ -711,6 +885,28 @@ const AppointTable = () => {
                                         </Link>
                                       </button>
                                     </li>
+                                  )}
+                                     {patient.appointment_status !== "Check-In" && patient.appointment_status !== "Complete" &&
+                                  patient.appointment_status !== "Check Out" &&
+                                  patient.appointment_status !== "Appoint" && (
+                                    <>
+                                      <li>
+                                        <button
+                                          className="btn btn-warning mx-2 my-1"
+                                          onClick={() =>
+                                            handleAction(
+                                              "in treatment",
+                                              patient.appoint_id,
+                                              patient.patient_uhid,
+                                              patient.appointment_status,
+                                              patient.treatment_provided
+                                            )
+                                          }
+                                        >
+                                          Again Treatment
+                                        </button>
+                                      </li>
+                                    </>
                                   )}
                                 {patient.appointment_status === "Check-In" &&
                                   patient.appointment_status !== "Cancel" &&
