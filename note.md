@@ -1,3 +1,8 @@
+# 24 sep
+- > to mujhe doctor login ke api mai kaam karna padeg kuki branch le raha hai shuruaat ke samay par
+- > 
+
+
 # 23 sep
 - > TreatmentDashBoard/60/Re isme dirct doctor dashbaord se jo ongoint treatment hona hchaiye waha aaye esa kuch jo 
 - > http://localhost:9999/treatmentDashBoard/60/DH_29 apna ko xhHIYW YW JAB USKO SITTING HOYE 

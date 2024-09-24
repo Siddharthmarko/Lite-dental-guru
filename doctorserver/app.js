@@ -5,6 +5,8 @@ const cors = require("cors");
 const path = require("path");
 const { authRoutes } = require("./router/authRouter");
 const { receptionist_Routes } = require("./router/receptionist_Routes");
+const {superRoute} = require('./router/superAdminRoutes')
+
 // require("./backup");
 const {sendEmails, sendSMS, sendWhatsappTextOnly} = require("./cron/sendAppointmentEmails");
 const cron = require('node-cron');
@@ -37,6 +39,7 @@ app.use("/prescription", express.static(path.join(__dirname, "prescription")));
 // REST API Routes
 app.use("/api/doctor", authRoutes);
 app.use('/api/v1/receptionist',receptionist_Routes);
+app.use('/api/v1/super-admin',superRoute);
 
 // PORT
 const PORT = process.env.PORT || 8888;

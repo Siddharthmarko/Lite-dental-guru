@@ -33,8 +33,9 @@ const PatientProfile = () => {
           },
         }
       );
-      console.log(res.data.data);
-      setPatientData(res?.data?.data);
+      console.log(res, "36 numberr");
+      console.log(res.data);
+      setPatientData(res?.data[0]);
     } catch (error) {
       console.log(error);
     }
