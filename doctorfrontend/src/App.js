@@ -96,6 +96,7 @@ import ClinicSetting from "./components/superAdmin/ClinicSetting";
 import ManageStaff from "./components/superAdmin/ManageStaff";
 import ClinicConfigSetting from "./components/superAdmin/ClinicConfigSetting";
 import TreatmentSetting from "./components/superAdmin/TreatmentSetting";
+import CalenderSetting from "./components/superAdmin/CalenderSetting";
 
 function App() {
   const navigate = useNavigate();
@@ -882,20 +883,8 @@ function App() {
         {/* ---Receptionist */}
 
         {/* ****************** Receptionist Routes End Here ******************* */}
-        <Route
-          path="/"
-          element={
-            user?.currentUser ? <Receptionistdash /> : <UniversalLogin />
-          }
-        />
 
         {/* receptionist routes start */}
-        <Route
-          path="/receptionist_login"
-          element={
-            user?.currentUser ? <Receptionistdash /> : <UniversalLogin />
-          }
-        />
         <Route path="/receptionist_registration" element={<Registration />} />
         <Route
           path="/receptionist-dashboard"
@@ -920,7 +909,7 @@ function App() {
           }
         />
         <Route
-          path="/patient_profile/:pid"
+          path="/patient_profile/:uhid"
           element={
             user?.currentUser === null ? <UniversalLogin /> : <PatientProfile />
           }
@@ -1168,6 +1157,12 @@ function App() {
             user?.currentUser === null ? <UniversalLogin /> : <ClinicSetting />
           }
         />
+
+        <Route
+          path="/calender-setting"
+          element={user.id === null ? <UniversalLogin /> : <CalenderSetting />}
+        />
+
         <Route
           path="/manage-staff"
           element={
