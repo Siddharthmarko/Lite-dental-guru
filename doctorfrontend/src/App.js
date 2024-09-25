@@ -89,6 +89,7 @@ import AllCreditInvoice from "./components/receptionist/pages/receptionist/AllCr
 import FinalInvoices from "./components/receptionist/pages/receptionist/FinalInvoices";
 import CreditPatientBillsByTpid from "./components/receptionist/pages/receptionist/CreditPatientBillsByTpid";
 import CreditSittingBill from "./components/receptionist/pages/receptionist/CreditSittingBill";
+import ReceptionSittingBill from './components/receptionist/pages/receptionist/ReceptionSittingBill'; 
 
 // ************** Super Admin Routes Start Here *******************
 
@@ -1137,7 +1138,7 @@ function App() {
         <Route
           path="/ViewPatientSittingBill/:tpid/:sbid"
           element={
-            user?.currentUser === null ? <UniversalLogin /> : <SittingBill />
+            user?.currentUser === null ? <UniversalLogin /> : <ReceptionSittingBill />
           }
         />
         {/* <Route

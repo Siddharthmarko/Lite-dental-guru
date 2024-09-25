@@ -12,7 +12,7 @@ import { SiGmail, SiGooglemessages } from "react-icons/si";
 import { IoLogoWhatsapp } from "react-icons/io";
 import cogoToast from "cogo-toast";
 
-const SittingBill = () => {
+const ReceptionSittingBill = () => {
   const { tpid, sbid, treatment } = useParams();
   const contentRef = useRef();
   const navigate = useNavigate();
@@ -882,7 +882,7 @@ const SittingBill = () => {
   );
 };
 
-export default SittingBill;
+export default ReceptionSittingBill;
 const Wrapper = styled.div`
 font-size: 12px;
   overflow: hidden;

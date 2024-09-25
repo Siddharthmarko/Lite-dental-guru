@@ -195,6 +195,7 @@ const AppointTable = () => {
       console.log("check this data", response?.data?.data);
       let all = response?.data?.data;
       let currentDoctor = all.filter((item) => item.assigned_doctor_id == currentUser.employee_ID);
+      // console.log("check this data current doctor", currentDoctor);
       setAppointmentData(currentDoctor);
       setLoadingEffect(false);
       // paginate(currentPage)
