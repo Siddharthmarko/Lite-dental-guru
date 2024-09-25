@@ -1,4 +1,4 @@
-import "./App.css";
+// import "./App.css";
 
 import { Route, Routes, useNavigate } from "react-router-dom";
 import DoctorDashboard from "./pages/DoctorPage/DoctorDashboard";
@@ -334,11 +334,17 @@ function App() {
                   style={{ background: "transparent" }}
                 ></Lottie>
               </>
+<<<<<<< HEAD
             ) 
             // : todayAttendance.length === 0 ? (
             //   <AttendanceLeave />
             // )
              : (
+=======
+            ) : (
+              // ) : todayAttendance.length === 0 ? (
+              //   <AttendanceLeave />
+>>>>>>> dab6d70609f5ef4e9ed5930a0c63250a8b64b229
               <TreatSuggestDashs />
             )
           }
@@ -402,9 +408,14 @@ function App() {
                   style={{ background: "transparent" }}
                 ></Lottie>
               </>
+<<<<<<< HEAD
          //    ) : todayAttendance.length === 0 ? (
 //              <AttendanceLeave />
+=======
+>>>>>>> dab6d70609f5ef4e9ed5930a0c63250a8b64b229
             ) : (
+              // ) : todayAttendance.length === 0 ? (
+              //   <AttendanceLeave />
               <TreatmentDashBoard />
             )
           }
@@ -468,9 +479,14 @@ function App() {
                   style={{ background: "transparent" }}
                 ></Lottie>
               </>
+<<<<<<< HEAD
          //    ) : todayAttendance.length === 0 ? (
 //              <AttendanceLeave />
+=======
+>>>>>>> dab6d70609f5ef4e9ed5930a0c63250a8b64b229
             ) : (
+              // ) : todayAttendance.length === 0 ? (
+              //   <AttendanceLeave />
               <TreatmentDashTwo />
             )
           }
@@ -624,9 +640,14 @@ function App() {
                   style={{ background: "transparent" }}
                 ></Lottie>
               </>
+<<<<<<< HEAD
          //    ) : todayAttendance.length === 0 ? (
 //              <AttendanceLeave />
+=======
+>>>>>>> dab6d70609f5ef4e9ed5930a0c63250a8b64b229
             ) : (
+              // ) : todayAttendance.length === 0 ? (
+              //   <AttendanceLeave />
               <PatientBillsByTpid />
             )
           }
@@ -852,9 +873,9 @@ function App() {
                   style={{ background: "transparent" }}
                 ></Lottie>
               </>
-         //    ) : todayAttendance.length === 0 ? (
-//              <AttendanceLeave />
             ) : (
+              // ) : todayAttendance.length === 0 ? (
+              //   <AttendanceLeave />
               <SittingBill />
             )
           }

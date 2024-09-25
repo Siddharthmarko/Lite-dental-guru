@@ -7,21 +7,19 @@ import FinalCreditInvoice from "./FinalCreditInvoice";
 import CreditOPDBill from "./CreditOPDBill";
 import PatientsPaid from "./PatientsPaid";
 import PatientsDue from "./PatientsDue";
-import { useLocation,  useNavigate  } from "react-router-dom"; // Import these hooks
+import { useLocation, useNavigate } from "react-router-dom"; // Import these hooks
 import SittingBillDetails from "./SittingBillDetails";
 import SittingPaidBillDetails from "./SittingPaidBillDetails";
 
-
 function FinalInvoices() {
+  const location = useLocation();
+  const navigate = useNavigate();
 
-    const location = useLocation();
-  const navigate =  useNavigate ();
-
-  const [activeTab, setActiveTab] = useState('dueSittingBill');
+  const [activeTab, setActiveTab] = useState("dueSittingBill");
 
   useEffect(() => {
     const query = new URLSearchParams(location.search);
-    const tab = query.get('tab');
+    const tab = query.get("tab");
     if (tab) {
       setActiveTab(tab);
     }
@@ -31,7 +29,7 @@ function FinalInvoices() {
     setActiveTab(tab);
     navigate(`?tab=${tab}`);
   };
-  
+
   return (
     <Wrapper>
       <div className="header">
@@ -48,112 +46,124 @@ function FinalInvoices() {
           </div> */}
 
           <ul className="nav nav-tabs" id="myTab" role="tablist">
-      
-        <li className="nav-item" role="presentation">
-          <button
-             className={`nav-link nav-link1 ${activeTab === 'dueSittingBill' ? 'active' : ''}`}
-             id="dueSitting-tab"
-             type="button"
-             role="tab"
-             onClick={() => handleTabClick('dueSittingBill')}
-          >
-          Due Sitting Bill
-          </button>
-        </li>
-        <li className="nav-item" role="presentation">
-          <button
-             className={`nav-link nav-link1 ${activeTab === 'paidSittingBill' ? 'active' : ''}`}
-             id="paidSitting-tab"
-             type="button"
-             role="tab"
-             onClick={() => handleTabClick('paidSittingBill')}
-          >
-          Paid Sitting Bill
-          </button>
-        </li>
+            <li className="nav-item" role="presentation">
+              <button
+                className={`nav-link nav-link1 ${
+                  activeTab === "dueSittingBill" ? "active" : ""
+                }`}
+                id="dueSitting-tab"
+                type="button"
+                role="tab"
+                onClick={() => handleTabClick("dueSittingBill")}
+              >
+                Due Sitting Bill
+              </button>
+            </li>
+            <li className="nav-item" role="presentation">
+              <button
+                className={`nav-link nav-link1 ${
+                  activeTab === "paidSittingBill" ? "active" : ""
+                }`}
+                id="paidSitting-tab"
+                type="button"
+                role="tab"
+                onClick={() => handleTabClick("paidSittingBill")}
+              >
+                Paid Sitting Bill
+              </button>
+            </li>
 
-        <li className="nav-item" role="presentation">
-          <button
-           className={`nav-link nav-link1 ${activeTab === 'due' ? 'active' : ''}`}
-           id="due-tab"
-           type="button"
-           role="tab"
-           onClick={() => handleTabClick('due')}
-          >
-            Due Invoices
-          </button>
-        </li>
-        <li className="nav-item" role="presentation">
-          <button
-             className={`nav-link nav-link1 ${activeTab === 'paid' ? 'active' : ''}`}
-             id="paid-tab"
-             type="button"
-             role="tab"
-             onClick={() => handleTabClick('paid')}
-          >
-          Paid Invoices
-          </button>
-        </li>
-       
-        <div className="tab-content" id="myTabContent">
-          
-          <div
-             className={`tab-pane fade ${activeTab === 'dueSittingBill' ? 'show active' : ''}`}
-             id="dueSitting-tab-pane"
-             role="tabpanel"
-             aria-labelledby="dueSitting-tab"
-             tabIndex="0"
-          >
-            <ul className="list-group">
-              <li className="list-group-item" id="app">
-              <SittingBillDetails />
-              </li>
-            </ul>
-          </div>
-          <div
-             className={`tab-pane fade ${activeTab === 'paidSittingBill' ? 'show active' : ''}`}
-             id="paidSitting-tab-pane"
-             role="tabpanel"
-             aria-labelledby="paidSitting-tab"
-             tabIndex="0"
-          >
-            <ul className="list-group">
-              <li className="list-group-item" id="app">
-              <SittingPaidBillDetails />
-              </li>
-            </ul>
-          </div>
+            <li className="nav-item" role="presentation">
+              <button
+                className={`nav-link nav-link1 ${
+                  activeTab === "due" ? "active" : ""
+                }`}
+                id="due-tab"
+                type="button"
+                role="tab"
+                onClick={() => handleTabClick("due")}
+              >
+                Due Invoices
+              </button>
+            </li>
+            <li className="nav-item" role="presentation">
+              <button
+                className={`nav-link nav-link1 ${
+                  activeTab === "paid" ? "active" : ""
+                }`}
+                id="paid-tab"
+                type="button"
+                role="tab"
+                onClick={() => handleTabClick("paid")}
+              >
+                Paid Invoices
+              </button>
+            </li>
 
-          <div
-           className={`tab-pane fade ${activeTab === 'due' ? 'show active' : ''}`}
-           id="due-tab-pane"
-           role="tabpanel"
-           aria-labelledby="due-tab"
-           tabIndex="0"
-          >
-            <ul className="list-group">
-              <li className="list-group-item">
-               <PatientsDue/>
-              </li>
-            </ul>
-          </div>
-          <div
-             className={`tab-pane fade ${activeTab === 'paid' ? 'show active' : ''}`}
-             id="paid-tab-pane"
-             role="tabpanel"
-             aria-labelledby="paid-tab"
-             tabIndex="0"
-          >
-            <ul className="list-group">
-              <li className="list-group-item" id="app">
-               <PatientsPaid/>
-              </li>
-            </ul>
-          </div>
-      
-          </div>
-        </ul>
-       
+            <div className="tab-content" id="myTabContent">
+              <div
+                className={`tab-pane fade ${
+                  activeTab === "dueSittingBill" ? "show active" : ""
+                }`}
+                id="dueSitting-tab-pane"
+                role="tabpanel"
+                aria-labelledby="dueSitting-tab"
+                tabIndex="0"
+              >
+                <ul className="list-group">
+                  <li className="list-group-item" id="app">
+                    <SittingBillDetails />
+                  </li>
+                </ul>
+              </div>
+              <div
+                className={`tab-pane fade ${
+                  activeTab === "paidSittingBill" ? "show active" : ""
+                }`}
+                id="paidSitting-tab-pane"
+                role="tabpanel"
+                aria-labelledby="paidSitting-tab"
+                tabIndex="0"
+              >
+                <ul className="list-group">
+                  <li className="list-group-item" id="app">
+                    <SittingPaidBillDetails />
+                  </li>
+                </ul>
+              </div>
+
+              <div
+                className={`tab-pane fade ${
+                  activeTab === "due" ? "show active" : ""
+                }`}
+                id="due-tab-pane"
+                role="tabpanel"
+                aria-labelledby="due-tab"
+                tabIndex="0"
+              >
+                <ul className="list-group">
+                  <li className="list-group-item">
+                    <PatientsDue />
+                  </li>
+                </ul>
+              </div>
+              <div
+                className={`tab-pane fade ${
+                  activeTab === "paid" ? "show active" : ""
+                }`}
+                id="paid-tab-pane"
+                role="tabpanel"
+                aria-labelledby="paid-tab"
+                tabIndex="0"
+              >
+                <ul className="list-group">
+                  <li className="list-group-item" id="app">
+                    <PatientsPaid />
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </ul>
         </div>
       </div>
     </Wrapper>
@@ -235,14 +245,9 @@ const Wrapper = styled.div`
   #myTabContent {
     @media screen and (max-width: 768px) {
       width: 100%;
-      
     }
     @media screen and (min-width: 768px) and (max-width: 2200px) {
       width: 100%;
-      
     }
   }
- 
-  
-
 `;

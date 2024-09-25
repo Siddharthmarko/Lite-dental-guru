@@ -271,9 +271,7 @@ const ClinicConfigSetting = () => {
                   </button>
                   <div className="banner-mid mt-2">
                     <div>
-                      <h3 className="text-light text-center">
-                        Clinic Settings
-                      </h3>
+                      <h3 className="text-dark text-center">Clinic Settings</h3>
                     </div>
                   </div>
                   <div>
@@ -663,7 +661,7 @@ const ClinicConfigSetting = () => {
 export default ClinicConfigSetting;
 const Container = styled.div`
   .banner-mid {
-    background-color: #004aad;
+    background-color: #fff;
     padding: 1rem;
     display: flex;
     justify-content: space-between;
@@ -711,7 +709,7 @@ const Container = styled.div`
   }
 
   th {
-    background-color: #004aad;
+    background-color: #008080;
     color: white;
     white-space: nowrap;
   }
