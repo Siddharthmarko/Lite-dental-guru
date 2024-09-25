@@ -92,17 +92,17 @@ function Header() {
                   </a>
                   <ul className="dropdown-menu">
                     <li>
-                      <Link
+                      {/* <Link
                         to="/receptionist_profile"
                         className="dropdown-item"
                       >
                         View Profile
-                      </Link>
+                      </Link> */}
                     </li>
                     <li>
-                      <Link to="/attendanceLeave" className="dropdown-item">
+                      {/* <Link to="/attendanceLeave" className="dropdown-item">
                         View Attendance & Leave
-                      </Link>
+                      </Link> */}
                     </li>
                     <li>
                       <Link to="/branch-details" className="dropdown-item">

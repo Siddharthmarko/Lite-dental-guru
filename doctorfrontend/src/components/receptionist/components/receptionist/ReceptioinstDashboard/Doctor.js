@@ -316,7 +316,9 @@ function Doctor() {
       });
       setFilteredDoctor(filteredDoctors);
     } else {
-      setFilteredDoctor(availableDoctorOnDate);
+      let currentDoctor = availableDoctorOnDate.filter((item) => item.employee_ID == currentUser.employee_ID)
+      console.log("Available doctor - : ", currentDoctor)
+      setFilteredDoctor(currentDoctor);
     }
   };
 
@@ -346,13 +348,13 @@ function Doctor() {
             value={selectedDate}
             onChange={(e) => setSelectedDate(e.target.value)}
           />
-          <input
+          {/* <input
             class="form-control mr-sm-2 mt-3 mb-2 w-75 m-auto"
             type="search"
             placeholder="Search Doctor"
             aria-label="Search"
             onChange={handleSearchChange}
-          />
+          /> */}
         </div>
 
         <div className="table-responsive" id="tab">

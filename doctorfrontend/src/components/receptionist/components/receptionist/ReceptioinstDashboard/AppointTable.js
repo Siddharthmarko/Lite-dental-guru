@@ -56,7 +56,8 @@ const AppointTable = () => {
           },
         }
       );
-      setDoctors(response?.data?.data);
+      console.log("all doctors and not used  - ", response?.data?.data);
+      setDoctors([{...currentUser}]);
     } catch (error) {
       console.log(error);
     }
@@ -191,7 +192,10 @@ const AppointTable = () => {
           },
         }
       );
-      setAppointmentData(response?.data?.data);
+      console.log("check this data", response?.data?.data);
+      let all = response?.data?.data;
+      let currentDoctor = all.filter((item) => item.assigned_doctor_id == currentUser.employee_ID);
+      setAppointmentData(currentDoctor);
       setLoadingEffect(false);
       // paginate(currentPage)
     } catch (error) {
@@ -643,7 +647,7 @@ const AppointTable = () => {
               />
             </div>
 
-            <div className="mt-sm-2 mt-lg-0">
+            {/* <div className="mt-sm-2 mt-lg-0">
               <select
                 className="form-select text-capitalize"
                 onChange={(e) => setSelectedDoctor(e.target.value)}
@@ -660,11 +664,8 @@ const AppointTable = () => {
                     {doctor.employee_name}
                   </option>
                 ))}
-                {/* <option value="Dr. Ajay">Dr. Ajay</option>
-      <option value="Dr. Vijay">Dr. Vijay</option>
-      <option value="Dr. Mohit">Dr. Mohit</option> */}
               </select>
-            </div>
+            </div> */}
             <Form.Group
               controlId="rowsPerPageSelect"
               style={{ display: "flex", justifyContent: "center" }}

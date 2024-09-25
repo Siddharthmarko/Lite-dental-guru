@@ -63,7 +63,8 @@ function Calender1() {
           },
         }
       );
-      setDoctors(response?.data?.data);
+      console.log("all doctors and not used  - ", response?.data?.data);
+      setDoctors([{...currentUser}]);
     } catch (error) {
       console.log(error);
     }

@@ -1243,7 +1243,7 @@ function AddPatient() {
                           value={searchDoctor}
                           onChange={handleSearchDoctor}
                           required
-                          placeholder="Search Doctor"
+                          placeholder="Select Doctor"
                           autocomplete="off"
                         />
                         <DoctorList>
