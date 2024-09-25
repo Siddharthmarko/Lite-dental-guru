@@ -35,7 +35,7 @@ const PrescriptionQuick = () => {
   const getBranchDetails = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8888/api/doctor/getBranchDetails/${branch}`,
+        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getBranchDetails/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -57,7 +57,7 @@ const PrescriptionQuick = () => {
   const getPatientDetail = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:8888/api/doctor/getAppointmentsWithPatientDetailsById/${tpid}`,
+        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getAppointmentsWithPatientDetailsById/${tpid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -74,7 +74,7 @@ const PrescriptionQuick = () => {
   const getLabAllData = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:8888/api/doctor/lab-details/${tpid}`,
+        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/lab-details/${tpid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -92,7 +92,7 @@ const PrescriptionQuick = () => {
   const getTreatDetails = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8888/api/doctor/getTreatmentDataList/${tpid}/${branch}`
+        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getTreatmentDataList/${tpid}/${branch}`
       );
       setGetTreatData(data);
     } catch (error) {
@@ -114,7 +114,7 @@ const PrescriptionQuick = () => {
   const getExaminDetail = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:8888/api/doctor/getDentalDataByTpid/${tpid}/${branch}`,
+        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getDentalDataByTpid/${tpid}/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -150,7 +150,7 @@ const PrescriptionQuick = () => {
   const getTreatPrescriptionByAppointId = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8888/api/doctor/getTreatPrescriptionByAppointIdList/${tpid}`,
+        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getTreatPrescriptionByAppointIdList/${tpid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -226,7 +226,7 @@ const PrescriptionQuick = () => {
         console.log(key, value);
       }
       const response = await axios.post(
-        "http://localhost:8888/api/doctor/prescriptionOnMail",
+        "https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/prescriptionOnMail",
         formData,
         {
           headers: {
@@ -281,7 +281,7 @@ const PrescriptionQuick = () => {
         console.log(key, value);
       }
       const res = await axios.post(
-        "http://localhost:8888/api/doctor/sendWhatsapp",
+        "https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/sendWhatsapp",
         formData,
         {
           headers: {

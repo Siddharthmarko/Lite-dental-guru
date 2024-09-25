@@ -31,7 +31,7 @@ function Card() {
   const getAppointments = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/get-appointments/${branch}`,
+        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/get-appointments/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -52,7 +52,7 @@ function Card() {
   const getAppointmentsForOpd = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/get-appointments/${branch}`,
+        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/get-appointments/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -83,7 +83,7 @@ function Card() {
   const getNewPatient = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/get-Patients/${branch}`,
+        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/get-Patients/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -106,7 +106,7 @@ function Card() {
   const getPatient = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/get-Patients/${branch}`,
+        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/get-Patients/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",

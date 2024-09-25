@@ -161,7 +161,7 @@ const TreatmentSetting = () => {
   const getTreatmentDataViaId = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8888/api/v1/super-admin/getTreatmentViaId/${trID}`,
+        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/super-admin/getTreatmentViaId/${trID}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -184,7 +184,7 @@ const TreatmentSetting = () => {
   const getProcedure = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8888/api/v1/super-admin/getProcedureList`,
+        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/super-admin/getProcedureList`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -205,7 +205,7 @@ const TreatmentSetting = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:8888/api/v1/super-admin/addTreatment",
+        "https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/super-admin/addTreatment",
         treatData,
         {
           headers: {
@@ -234,7 +234,7 @@ const TreatmentSetting = () => {
     setLoading(true);
     try {
       const { data } = await axios.get(
-        "http://localhost:8888/api/v1/super-admin/getTreatmentList",
+        "https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/super-admin/getTreatmentList",
         {
           headers: {
             "Content-Type": "application/json",
@@ -255,7 +255,7 @@ const TreatmentSetting = () => {
     e.preventDefault();
     try {
       const response = await axios.put(
-        `http://localhost:8888/api/v1/super-admin/updateTreatmentDetails/${id}`,
+        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/super-admin/updateTreatmentDetails/${id}`,
         updateTreatVal,
         {
           headers: {
@@ -282,7 +282,7 @@ const TreatmentSetting = () => {
 
       if (isConfirmed) {
         const response = await axios.delete(
-          `http://localhost:8888/api/v1/super-admin/deleteTreatment/${id}`,
+          `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/super-admin/deleteTreatment/${id}`,
           {
             headers: {
               "Content-Type": "application/json",

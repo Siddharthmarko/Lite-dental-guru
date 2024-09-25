@@ -48,7 +48,7 @@ const AppointTable = () => {
   const getDoctors = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/get-doctors/${branch}`,
+        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/get-doctors/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -65,7 +65,7 @@ const AppointTable = () => {
   const timelineData = async (id) => {
     try {
       const response = await axios.post(
-        "http://localhost:8888/api/v1/receptionist/insertTimelineEvent",
+        "https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/insertTimelineEvent",
         {
           type: "Appointment",
           description: "Appointment Cancel",
@@ -88,7 +88,7 @@ const AppointTable = () => {
   const timelineDataForCheckIn = async (id) => {
     try {
       const response = await axios.post(
-        "http://localhost:8888/api/v1/receptionist/insertTimelineEvent",
+        "https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/insertTimelineEvent",
         {
           type: "Appointment",
           description: "Patient Check-In",
@@ -183,7 +183,7 @@ const AppointTable = () => {
   const getAppointments = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/get-appointments/${branch}`,
+        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/get-appointments/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -203,7 +203,7 @@ const AppointTable = () => {
   const fetchAppointments = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8888/api/doctor/getAppointmentsWithPatientDetailsTreatSugg/${doctorId}`,
+        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getAppointmentsWithPatientDetailsTreatSugg/${doctorId}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -259,7 +259,7 @@ const AppointTable = () => {
       setLoading(true);
       // Send a PUT request to your backend endpoint to update the status
       await axios.put(
-        `http://localhost:8888/api/v1/receptionist/update-appointment-status`,
+        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/update-appointment-status`,
         {
           status: newStatus,
           appointmentId: appointmentId,
@@ -289,7 +289,7 @@ const AppointTable = () => {
   const timelineForStartTreat = async (uhid) => {
     try {
       const response = await axios.post(
-        "http://localhost:8888/api/doctor/insertTimelineEvent",
+        "https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/insertTimelineEvent",
         {
           type: "Examination",
           description: "Start Examintion",
@@ -312,7 +312,7 @@ const AppointTable = () => {
   const getTreatPackageData = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8888/api/doctor/getTreatPackageViaTpidUhid/${branch}`,
+        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getTreatPackageViaTpidUhid/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -334,7 +334,7 @@ const AppointTable = () => {
     const foundItem = tp_id.find((item) => item.appoint_id === appointId);
     console.log(foundItem);
     // let tpid = appointmentsData.tp_id;
-    let tpid = foundItem.tp_id;
+    let tpid = foundItem?.tp_id;
     if(!tpid) {
       navigate(`/examination-Dashboard/${appointId}/${uhid}`)  
       return;
@@ -347,7 +347,7 @@ const AppointTable = () => {
       };
 
       await axios.put(
-        `http://localhost:8888/api/doctor/upDateAppointmentStatus`,
+        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/upDateAppointmentStatus`,
         requestBody,
         {
           headers: {
@@ -417,7 +417,7 @@ const AppointTable = () => {
         }
       }
       const res = await axios.get(
-        `http://localhost:8888/api/doctor/appointtreatSitting?date=${selectedDate}`,
+        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/appointtreatSitting?date=${selectedDate}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -453,7 +453,7 @@ const AppointTable = () => {
     try {
       // Send a PUT request to your backend endpoint to update the status
       await axios.put(
-        `http://localhost:8888/api/v1/receptionist/update-appointment-status-cancel`,
+        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/update-appointment-status-cancel`,
         {
           status: newStatus,
           cancelReason: reason,

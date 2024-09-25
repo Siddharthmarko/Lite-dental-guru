@@ -129,11 +129,11 @@ function App() {
   //   try {
   //     setLoading(true);
   //     const response = await axios.get(
-  //       `http://localhost:8888/api/doctor/getTodayAttendance/${user.branch_name}/${user.employee_ID}/${date}`,
+  //       `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getTodayAttendance/${user?.branch_name}/${user?.employee_ID}/${date}`,
   //       {
   //         headers: {
   //           "Content-Type": "application/json",
-  //           Authorization: `Bearer ${user.token}`,
+  //           Authorization: `Bearer ${user?.token}`,
   //         },
   //       }
   //     );
@@ -171,11 +171,11 @@ function App() {
     try {
       setLoading(true);
       const response = await axios.get(
-        `http://localhost:8888/api/doctor/getTodayAttendance/${user.branch_name}/${user.employee_ID}/${date}`,
+        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getTodayAttendance/${user?.branch_name}/${user?.employee_ID}/${date}`,
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${user.token}`,
+            Authorization: `Bearer ${user?.token}`,
           },
         }
       );
@@ -1161,7 +1161,7 @@ function App() {
 
         <Route
           path="/calender-setting"
-          element={user.id === null ? <UniversalLogin /> : <CalenderSetting />}
+          element={user?.id === null ? <UniversalLogin /> : <CalenderSetting />}
         />
 
         <Route
@@ -1193,7 +1193,7 @@ function App() {
       {/* super admin  */}
       <Route
           path="/employee-profile/:eid"
-          element={user.id === null ? <UniversalLogin /> : <EmployeeProfile />}
+          element={user?.id === null ? <UniversalLogin /> : <EmployeeProfile />}
         />
       </Routes>
     </>

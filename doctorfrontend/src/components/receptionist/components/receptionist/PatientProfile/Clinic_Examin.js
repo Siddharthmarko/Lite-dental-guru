@@ -77,7 +77,7 @@ const ClinicExamin = () => {
   const getExaminationDetails = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/getExaminationViaUhid/${branch}/${pid}`,
+        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/getExaminationViaUhid/${branch}/${pid}`,
         {
           headers: {
             "Content-Type": "application/json",

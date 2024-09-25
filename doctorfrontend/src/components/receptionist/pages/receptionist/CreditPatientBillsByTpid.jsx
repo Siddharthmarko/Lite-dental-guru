@@ -37,7 +37,7 @@ const CreditPatientBillsByTpid = () => {
   const getBranchDetails = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/getBranchDetailsByBranch/${branch}`
+        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/getBranchDetailsByBranch/${branch}`
       );
       console.log(data);
       setGetBranch(data);
@@ -51,7 +51,7 @@ const CreditPatientBillsByTpid = () => {
   const getPatientDetail = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/getAppointmentsWithPatientDetailsById/${tpid}`,
+        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/getAppointmentsWithPatientDetailsById/${tpid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -80,7 +80,7 @@ const CreditPatientBillsByTpid = () => {
   const getExaminDetail = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/getDentalDataByTpid/${tpid}/${branch}`,
+        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/getDentalDataByTpid/${tpid}/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -104,7 +104,7 @@ const CreditPatientBillsByTpid = () => {
   const getTreatDetail = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/getTreatmentDetailsViaTpid/${tpid}/${branch}`,
+        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/getTreatmentDetailsViaTpid/${tpid}/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -129,7 +129,7 @@ const CreditPatientBillsByTpid = () => {
   const getTreatPrescriptionByAppointId = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/getTreatPrescriptionByTpid/${tpid}/${branch}`,
+        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/getTreatPrescriptionByTpid/${tpid}/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -153,7 +153,7 @@ const CreditPatientBillsByTpid = () => {
   const getTreatmentSuggestAppointId = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/getTreatSuggestViaTpid/${tpid}/${branch}`,
+        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/getTreatSuggestViaTpid/${tpid}/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -195,7 +195,7 @@ const CreditPatientBillsByTpid = () => {
   const getBillDetails = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/billDetailsViaTpid/${tpid}`,
+        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/billDetailsViaTpid/${tpid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -308,7 +308,7 @@ const CreditPatientBillsByTpid = () => {
       }
       cogoToast.success("Treatment bill sending to email");
       const response = await axios.post(
-        "http://localhost:8888/api/v1/receptionist/prescriptionOnMail",
+        "https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/prescriptionOnMail",
         formData,
         {
           headers: {
@@ -360,7 +360,7 @@ const CreditPatientBillsByTpid = () => {
       }
 
       const res = await axios.post(
-        "http://localhost:8888/api/v1/receptionist/sendWhatsapp",
+        "https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/sendWhatsapp",
         formData,
         {
           headers: {
@@ -382,7 +382,7 @@ const CreditPatientBillsByTpid = () => {
   const billDetailsSms = async () => {
     try {
       const { data } = await axios.post(
-        "http://localhost:8888/api/v1/receptionist/sendSMS",
+        "https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/sendSMS",
         formDetails,
         {
           headers: {

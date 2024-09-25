@@ -41,7 +41,7 @@ const QPrescriptionForm = () => {
   const ChiefComplainTOList = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:8888/api/doctor/getChiefComplain",
+        "https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getChiefComplain",
         {
           headers: {
             "Content-Type": "application/json",
@@ -57,7 +57,7 @@ const QPrescriptionForm = () => {
   const fetchAppointments = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8888/api/doctor/get-Patient-by-id/${patient_uhid}`,
+        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/get-Patient-by-id/${patient_uhid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -114,7 +114,7 @@ const QPrescriptionForm = () => {
 
     try {
       const response = await axios.post(
-        `http://localhost:8888/api/doctor/insertPatientPrescription`,
+        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/insertPatientPrescription`,
         formData
         // {
         //   headers: {

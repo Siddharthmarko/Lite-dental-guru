@@ -14,9 +14,9 @@ const uploadImage = (req, res) => {
         const sealImagePath = req.files['seal'][0].filename;
 
         // Construct URL paths for serving images
-        const headerImageUrl = `http://localhost:8888/uploads/${headerImagePath}`;
-        const footerImageUrl = `http://localhost:8888/uploads/${footerImagePath}`;
-        const sealImageUrl = `http://localhost:8888/uploads/${sealImagePath}`;
+        const headerImageUrl = `https://dentalguru-lite.vimubds5.a2hosted.com/uploads/${headerImagePath}`;
+        const footerImageUrl = `https://dentalguru-lite.vimubds5.a2hosted.com/uploads/${footerImagePath}`;
+        const sealImageUrl = `https://dentalguru-lite.vimubds5.a2hosted.com/uploads/${sealImagePath}`;
 
         // Insert image URLs into the database
         const query = 'INSERT INTO dental_prescriptionimg (header, footer, seal) VALUES (?, ?, ?)';

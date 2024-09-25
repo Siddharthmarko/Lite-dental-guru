@@ -1,3 +1,6 @@
+# host mai ye karna h i
+- > email ko smtp karna hai 
+
 # pahle se bug
 - > add treatemtn nahi ho raha hai 
 - > 

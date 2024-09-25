@@ -4142,7 +4142,7 @@ const sendWhatsapp = async (req, res) => {
       .json({ success: false, message: "All fields required" });
   }
   console.log("1019", mediaFile, phoneNumber, message);
-  const fileUrl = `http://localhost:8888/prescription/${mediaFile.filename}`;
+  const fileUrl = `https://dentalguru-lite.vimubds5.a2hosted.com/prescription/${mediaFile.filename}`;
   console.log("1027", fileUrl.toString());
   try {
     const response = await client.messages.create({
