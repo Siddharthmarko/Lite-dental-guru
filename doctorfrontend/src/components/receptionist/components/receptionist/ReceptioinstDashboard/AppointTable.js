@@ -57,7 +57,7 @@ const AppointTable = () => {
         }
       );
       console.log("all doctors and not used  - ", response?.data?.data);
-      setDoctors([{...currentUser}]);
+      setDoctors([{ ...currentUser }]);
     } catch (error) {
       console.log(error);
     }
@@ -194,8 +194,9 @@ const AppointTable = () => {
       );
       console.log("check this data", response?.data?.data);
       let all = response?.data?.data;
-      let currentDoctor = all.filter((item) => item.assigned_doctor_id == currentUser.employee_ID);
-      // console.log("check this data current doctor", currentDoctor);
+      let currentDoctor = all.filter(
+        (item) => item.assigned_doctor_id == currentUser.employee_ID
+      );
       setAppointmentData(currentDoctor);
       setLoadingEffect(false);
       // paginate(currentPage)
@@ -226,6 +227,8 @@ const AppointTable = () => {
       }
     }
   };
+
+  console.log(tp_id);
 
   console.log(appointmentsData);
 
@@ -369,7 +372,7 @@ const AppointTable = () => {
         //   return item.tp_id === tpid && item.package_status === "ongoing";
         // });
 
-        const filterForPendingTp = appointmentsData?.filter((item) => {
+        const filterForPendingTp = tp_id?.filter((item) => {
           return (
             item.appoint_id === appointId && item.treatment_provided === "OPD"
           );
@@ -378,12 +381,10 @@ const AppointTable = () => {
         console.log(filterForPendingTp);
         // alert(filterForPendingTp.length);
 
-        const filterForGoingTp = treatData?.filter((item) => {
+        const filterForGoingTp = tp_id?.filter((item) => {
           return (
-            item.tp_id === tpid &&
-            (item.package_status !== "started" ||
-              item.package_status !== "completed") &&
-            item.treatment_status === "ongoing" &&
+            item.appoint_id === appointId &&
+            item.package_status === "started" &&
             item.current_path !== null
           );
         });
@@ -398,12 +399,13 @@ const AppointTable = () => {
           // alert("filter pending tp");
           navigate(`/TreatmentDashBoard/${tpid}/${appointId}`);
         } else if (filterForGoingTp.length > 0) {
-          const appointFilter = appointmentsData?.filter((tad) => {
+          const appointFilter = tp_id?.filter((tad) => {
             return tad.appoint_id === appointId;
           });
-          alert("current path");
-          // navigate(appointFilter[0]?.current_path);
+          // alert("current path");
+          navigate(appointFilter[0]?.current_path);
         } else {
+          // alert("initial");
           navigate(`/examination-Dashboard/${appointId}/${uhid}`);
         }
         window.scrollTo(0, 0);
