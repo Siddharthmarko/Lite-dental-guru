@@ -15,9 +15,13 @@ const CalenderSetting = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const token = user.currentUser.token;
-  console.log(`User Name: ${user.currentUser.name}, User ID: ${user.currentUser.id}`);
+  console.log(
+    `User Name: ${user.currentUser.name}, User ID: ${user.currentUser.id}`
+  );
   console.log("User State:", user);
-  const branch_name = useSelector((state) => state.user.currentUser.branch_name);
+  const branch_name = useSelector(
+    (state) => state.user.currentUser.branch_name
+  );
   console.log(`User Name: ${branch_name}`);
   const location = useLocation();
   const [showAddBlockDays, setShowAddBlockDays] = useState(false);
@@ -404,11 +408,9 @@ const CalenderSetting = () => {
                   <button className="btn btn-success" onClick={goBack}>
                     <IoMdArrowRoundBack /> Back
                   </button>
-                  <div className="banner-mid mt-2">
+                  <div className="banner-mid bg-light mt-2">
                     <div>
-                      <h3 className="text-light text-center">
-                        Clinic Settings
-                      </h3>
+                      <h3 className="text-dark text-center">Clinic Settings</h3>
                     </div>
                   </div>
                   <div>
@@ -812,11 +814,12 @@ const CalenderSetting = () => {
 export default CalenderSetting;
 const Container = styled.div`
   .banner-mid {
-    background-color: #004aad;
+    background-color: #fff;
     padding: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    // color: #fff;
   }
 
   .calender-time {
@@ -860,7 +863,7 @@ const Container = styled.div`
   }
 
   th {
-    background-color: #004aad;
+    background-color: #008080;
     color: white;
     white-space: nowrap;
   }

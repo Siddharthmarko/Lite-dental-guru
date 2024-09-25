@@ -18,7 +18,7 @@ const ExaminationDashBoard = () => {
         <div className="main">
           <div className="container-fluid">
             <div className="row flex-nowrap">
-              <div className="col-lg-1 col-1" id="sider">
+              <div className="col-lg-1 col-1 p-0" id="sider">
                 <Sider />
               </div>
 

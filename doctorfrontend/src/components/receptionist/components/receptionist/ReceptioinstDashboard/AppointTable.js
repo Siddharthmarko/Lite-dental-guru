@@ -330,16 +330,16 @@ const AppointTable = () => {
     // alert(appointId, uhid, appointment_status, treatment_provided, tpid);
     console.log(tp_id);
     console.log(uhid);
-    
+
     const foundItem = tp_id.find((item) => item.appoint_id === appointId);
     console.log(foundItem);
     // let tpid = appointmentsData.tp_id;
     let tpid = foundItem?.tp_id;
-    if(!tpid) {
-      navigate(`/examination-Dashboard/${appointId}/${uhid}`)  
+    if (!tpid) {
+      navigate(`/examination-Dashboard/${appointId}/${uhid}`);
       return;
     }
-    
+
     try {
       let requestBody = {
         action,
@@ -889,12 +889,14 @@ const AppointTable = () => {
                                             patient.treatment_provided
                                           )
                                         }
-                                        className={`btn btn-warning mx-2 my-1 ${
+                                        className={`btn btn-success mx-2 my-1 remove ${
                                           loading ? "disabled" : ""
                                         }`}
                                       >
                                         {/* <Link to={`/examination-Dashboard/${patient.appoint_id}/${patient.uhid}`}  > */}
-                                        <Link>Start Treatment</Link>
+                                        <Link className="text-decoration-none text-light">
+                                          Start Treatment
+                                        </Link>
                                       </button>
                                     </li>
                                   )}
@@ -927,11 +929,12 @@ const AppointTable = () => {
                                     <li className="text-center">
                                       {" "}
                                       <button
-                                        className={`btn btn-warning mx-2 my-1 ${
+                                        className={`btn btn-primary mx-2 my-1 remove ${
                                           loading ? "disabled" : ""
                                         }`}
                                       >
                                         <Link
+                                          className="text-decoration-none text-light"
                                           to={`/Quick-Prescription/${patient.appoint_id}/${patient.uhid}`}
                                         >
                                           Quick Prescription
@@ -1075,6 +1078,10 @@ const AppointTable = () => {
 
 export default AppointTable;
 const Wrapper = styled.div`
+  .remove {
+    text-decoration: none;
+  }
+
   #title {
     white-space: nowrap; /* Prevent text wrapping */
 

@@ -1018,7 +1018,7 @@ const TreatSuggest = () => {
             />
           </div>
 
-          <div className="container-fluid">
+          {/* <div className="container-fluid">
             <div className="row shadow-sm p-3 mb-5 bg-body rounded">
               <div className="text-start">
                 <h3>Suggested Lab Test</h3>
@@ -1131,7 +1131,7 @@ const TreatSuggest = () => {
                 </tbody>
               </table>
             </div>
-          </div>
+          </div> */}
 
           {/* Medicine section starts */}
           <div className="container-fluid">
