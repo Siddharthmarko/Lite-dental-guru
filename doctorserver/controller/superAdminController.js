@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 const nodemailer = require("nodemailer");
 const JWT = require("jsonwebtoken");
 const  db  = require("../connect.js");
+const { registrationLogger } = require("./logger");
 const fs = require("fs");
 const path = require("path");
 const { log } = require("console");
@@ -526,7 +527,7 @@ const getBranchDetailsByBranch = (req, res) => {
         empAddress,
       ];
       if (requiredFields.some((field) => !field)) {
-        logger.registrationLogger.log("error", "All fields are required");
+        // registrationLogger.log("error", "All fields are required");
         return res.status(400).json({ error: "All fields are required" });
       }
   
@@ -562,7 +563,7 @@ const getBranchDetailsByBranch = (req, res) => {
             } else {
               // Check if there are any rows in the result
               if (result.length > 0) {
-                logger.registrationLogger.log("error", "User already exists.");
+                registrationLogger.log("error", "User already exists.");
                 return res.status(400).json({
                   error: "User already exists.",
                 });
@@ -607,7 +608,7 @@ const getBranchDetailsByBranch = (req, res) => {
                       res.status(500).json({ error: "Internal server error" });
                     } else {
                       console.log("User registered successfully");
-                      logger.registrationLogger.log(
+                      registrationLogger.log(
                         "info",
                         "Registrations successfully registered"
                       );
@@ -625,7 +626,7 @@ const getBranchDetailsByBranch = (req, res) => {
       });
     } catch (error) {
       console.log(error);
-      // logger.registrationLogger.log("error", "registration failed");
+      // registrationLogger.log("error", "registration failed");
       res.status(500).json({
         success: false,
         message: "Error in registration",
@@ -872,11 +873,19 @@ const addSuperAdminNotify = (req, res) => {
         treat_procedure_name,
         treatment_name,
         treatment_cost,
+        treatment_discount,
         value,
         label,
       ];
+      console.log( treat_procedure_id,
+        treat_procedure_name,
+        treatment_name,
+        treatment_cost,
+        treatment_discount,
+        value,
+        label,)
       if (requiredFields.some((field) => !field)) {
-        logger.registrationLogger.log("error", "All fields are required");
+        // registrationLogger.log("error", "All fields are required");
         return res.status(400).json({ error: "All fields are required" });
       }
   
@@ -884,11 +893,11 @@ const addSuperAdminNotify = (req, res) => {
         "SELECT * FROM treatment_list_copy WHERE treatment_name = ?";
       db.query(selectQuery, [treatment_name], (err, result) => {
         if (err) {
-          // logger.registrationLogger.log("error", "treatment name not found");
+          // registrationLogger.log("error", "treatment name not found");
           return res.status(500).json({ success: false, error: err.message });
         }
         if (result.length > 0) {
-          // logger.registrationLogger.log("error", "treatment already exist");
+          // registrationLogger.log("error", "treatment already exist");
           return res.status(400).send("Treatment already exists");
         }
   
@@ -905,7 +914,7 @@ const addSuperAdminNotify = (req, res) => {
   
         db.query(insertQuery, insertUserParams, (errInsert, resultInsert) => {
           if (errInsert) {
-            // logger.registrationLogger.log(
+            // registrationLogger.log(
             //   "error",
             //   "Error while inserting treatment"
             // );
@@ -915,14 +924,14 @@ const addSuperAdminNotify = (req, res) => {
               error: errInsert.message,
             });
           }
-          // logger.registrationLogger.log("info", "Treatment added successfully");
+          // registrationLogger.log("info", "Treatment added successfully");
           res
             .status(200)
             .json({ success: true, message: "Treatment added successfully" });
         });
       });
     } catch (error) {
-      // logger.registrationLogger.log("error", "internal server error");
+      // registrationLogger.log("error", "internal server error");
       console.error(error);
       res.status(500).json({ success: false, message: "Internal server error" });
     }
@@ -1048,6 +1057,27 @@ const addSuperAdminNotify = (req, res) => {
       return res.status(500).json({ success: false, message: error.message });
     }
   };
+  const getEmployeeDataByBranchAndId = (req, res) => {
+    try {
+      const branch = req.params.branch;
+      const empId = req.params.empId;
+      const getQuery = `SELECT * FROM employee_register WHERE branch_name = ? AND employee_ID = ?`;
+      db.query(getQuery, [branch, empId], (err, result) => {
+        if (err) {
+          res.status(400).send({ message: "error in fetching employee" });
+        }
+        res.json(result);
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({
+        success: false,
+        message: "Internal server error",
+      });
+    }
+  };
+
+  
 
   module.exports = {
     getBranchDetailsByBranch,
@@ -1071,6 +1101,7 @@ const addSuperAdminNotify = (req, res) => {
     getEmployeeDataByBranch,
     editEmployeeDetails,
     getTreatmentViaId,
-    EnrollEmployee
+    EnrollEmployee,
+    getEmployeeDataByBranchAndId
 };
   

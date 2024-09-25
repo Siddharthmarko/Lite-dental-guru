@@ -37,7 +37,7 @@ const SittingBill = () => {
   const getBranchDetails = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8888/api/doctor/getBranchDetails/${branch}`,
+        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getBranchDetails/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -58,7 +58,7 @@ const SittingBill = () => {
   const getPatientDetail = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:8888/api/doctor/getAppointmentsWithPatientDetailsById/${tpid}`,
+        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getAppointmentsWithPatientDetailsById/${tpid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -77,7 +77,7 @@ const SittingBill = () => {
   const getLabAllData = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:8888/api/doctor/lab-details/${tpid}`,
+        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/lab-details/${tpid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -95,7 +95,7 @@ const SittingBill = () => {
   const getSittingBillbyId = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8888/api/doctor/getSittingBillbyId/${branch}/${sitting}/${tpid}/${appoint_id}`,
+        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getSittingBillbyId/${branch}/${sitting}/${tpid}/${appoint_id}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -116,7 +116,7 @@ const SittingBill = () => {
   const getDoctorDetails = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8888/api/doctor/getEmployeeDetailsbyId/${branch}/${eid}`,
+        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getEmployeeDetailsbyId/${branch}/${eid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -135,7 +135,7 @@ const SittingBill = () => {
   const getExamineDetails = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:8888/api/doctor/getDentalDataByTpid/${tpid}/${branch}`,
+        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getDentalDataByTpid/${tpid}/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -235,7 +235,7 @@ const SittingBill = () => {
         console.log(key, value);
       }
       const response = await axios.post(
-        "http://localhost:8888/api/doctor/prescriptionOnMail",
+        "https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/prescriptionOnMail",
         formData,
         {
           headers: {
@@ -278,7 +278,7 @@ const SittingBill = () => {
       }
 
       const res = await axios.post(
-        "http://localhost:8888/api/doctor/sendWhatsapp",
+        "https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/sendWhatsapp",
         formData,
         {
           headers: {
@@ -299,7 +299,7 @@ const SittingBill = () => {
   const billDetailsSms = async () => {
     try {
       const { data } = await axios.post(
-        "http://localhost:8888/api/doctor/sendSMS",
+        "https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/sendSMS",
         formDetails,
         {
           headers: {

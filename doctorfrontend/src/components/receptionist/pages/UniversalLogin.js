@@ -149,7 +149,7 @@ const UniversalLogin = () => {
   const getBranches = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8888/api/v1/receptionist/get-branches"
+        "https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/get-branches"
       );
       console.log(response);
       setBranches(response.data.data);
@@ -188,7 +188,7 @@ const UniversalLogin = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8888/api/v1/receptionist/receptionist-login",
+        "https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/receptionist-login",
         {
           email,
           password,

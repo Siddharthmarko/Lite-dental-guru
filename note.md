@@ -1,5 +1,19 @@
+# host mai ye karna h i
+- > email ko smtp karna hai 
+
+# pahle se bug
+- > add treatemtn nahi ho raha hai 
+- > 
+
 # 24 sep
 - > to mujhe doctor login ke api mai kaam karna padeg kuki branch le raha hai shuruaat ke samay par
+<!-- - > addtreatment nahi hua superadin ki jagah se -->
+<!-- - > quick prescriition mai data aa jaye -->
+- > emoploy emanagment work kare 
+    - iska to backend se code utha lunga kuki main wala work kar raha hai 
+<!-- - > email send nahi ho raha i -->
+<!-- - > prescription mai desease bhi dikhani hai
+- > treatmentSuggestion kok medical detail table mai deseasd bhi -->
 - > 
 
 

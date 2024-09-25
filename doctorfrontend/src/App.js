@@ -97,6 +97,7 @@ import ManageStaff from "./components/superAdmin/ManageStaff";
 import ClinicConfigSetting from "./components/superAdmin/ClinicConfigSetting";
 import TreatmentSetting from "./components/superAdmin/TreatmentSetting";
 import CalenderSetting from "./components/superAdmin/CalenderSetting";
+import EmployeeProfile from "./components/superAdmin/EmployeeProfile";
 
 function App() {
   const navigate = useNavigate();
@@ -128,11 +129,11 @@ function App() {
   //   try {
   //     setLoading(true);
   //     const response = await axios.get(
-  //       `http://localhost:8888/api/doctor/getTodayAttendance/${user.branch_name}/${user.employee_ID}/${date}`,
+  //       `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getTodayAttendance/${user?.branch_name}/${user?.employee_ID}/${date}`,
   //       {
   //         headers: {
   //           "Content-Type": "application/json",
-  //           Authorization: `Bearer ${user.token}`,
+  //           Authorization: `Bearer ${user?.token}`,
   //         },
   //       }
   //     );
@@ -170,11 +171,11 @@ function App() {
     try {
       setLoading(true);
       const response = await axios.get(
-        `http://localhost:8888/api/doctor/getTodayAttendance/${user.branch_name}/${user.employee_ID}/${date}`,
+        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getTodayAttendance/${user?.branch_name}/${user?.employee_ID}/${date}`,
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${user.token}`,
+            Authorization: `Bearer ${user?.token}`,
           },
         }
       );
@@ -855,7 +856,7 @@ function App() {
 
         {/* ---Quick Prescription */}
         <Route
-          path="/Quick-Prescription/:patient_uhid/:appoint_id"
+          path="/Quick-Prescription/:appoint_id/:patient_uhid"
           element={
             user === null ? (
               <DoctorLogin />
@@ -1160,7 +1161,7 @@ function App() {
 
         <Route
           path="/calender-setting"
-          element={user.id === null ? <UniversalLogin /> : <CalenderSetting />}
+          element={user?.id === null ? <UniversalLogin /> : <CalenderSetting />}
         />
 
         <Route
@@ -1188,6 +1189,11 @@ function App() {
               <TreatmentSetting />
             )
           }
+        />
+      {/* super admin  */}
+      <Route
+          path="/employee-profile/:eid"
+          element={user?.id === null ? <UniversalLogin /> : <EmployeeProfile />}
         />
       </Routes>
     </>
