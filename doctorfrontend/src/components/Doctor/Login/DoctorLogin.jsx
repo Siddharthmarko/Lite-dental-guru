@@ -139,7 +139,7 @@ const DoctorLogin = () => {
                           </select>
                         </div>
                         <p className="text-center h4 fw-bold mb-5 mx-1 mx-md-4 mt-4">
-                          Doctor's Login
+                          Login
                         </p>
 
                         <form
