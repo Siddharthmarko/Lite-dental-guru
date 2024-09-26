@@ -1730,7 +1730,7 @@ const ExaminationPatientTest = ({ tpid }) => {
               <div className="text-center">
                 <button
                   onClick={handleClick}
-                  className=" btn btn-info text-light mx-2"
+                  className=" btn btn-color text-light mx-2"
                 >
                   {selectAllTeeth ? "Unselect All" : "Select All"}
                 </button>
@@ -1795,7 +1795,7 @@ const ExaminationPatientTest = ({ tpid }) => {
                       <div data-mdb-input-init class="form-outline">
                         <label className="lable">Cheif Complaint</label>
                         <button
-                          className="btn btn-info text-light mx-3 mb-1"
+                          className="btn btn-color text-light mx-3 mb-1"
                           onClick={handleChiefListChange}
                           type="button"
                         >
@@ -1900,7 +1900,7 @@ const ExaminationPatientTest = ({ tpid }) => {
                   <div className="text-center m-3">
                     <button
                       type="submit"
-                      className="btn btn-info text-light mx-3"
+                      className="btn btn-color text-light mx-3"
                       disabled={loading}
                     >
                       {loading ? "Save..." : "Save"}
@@ -2008,6 +2008,9 @@ const ExaminationPatientTest = ({ tpid }) => {
 
 export default ExaminationPatientTest;
 const Wrapper = styled.div`
+  .btn-color {
+    background-color: rgb(8 145 178);
+  }
   .buttons {
     width: 150px;
     cursor: pointer;

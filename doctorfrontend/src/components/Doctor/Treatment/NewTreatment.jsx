@@ -479,7 +479,8 @@ const Wrapper = styled.div`
     font-size: 10px;
   }
   th {
-    background: #0dcaf0;
+    // background: #0dcaf0;
+    background: #008080;
     white-space: nowrap;
     color: white;
   }

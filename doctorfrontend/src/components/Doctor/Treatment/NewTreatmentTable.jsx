@@ -373,7 +373,7 @@ const NewTreatmentTable = () => {
                 <FaLocationArrow size={25} />
               </button>
             ) : (
-              <button className="btn btn-info fs-5 text-light" disabled>
+              <button className="btn btn-color fs-5 text-light" disabled>
                 Complete Treatment <FaLocationArrow size={25} />
               </button>
 
@@ -420,4 +420,8 @@ const NewTreatmentTable = () => {
 };
 
 export default NewTreatmentTable;
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  .btn-color {
+    background-color: rgb(8 145 178);
+  }
+`;

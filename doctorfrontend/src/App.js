@@ -89,7 +89,7 @@ import AllCreditInvoice from "./components/receptionist/pages/receptionist/AllCr
 import FinalInvoices from "./components/receptionist/pages/receptionist/FinalInvoices";
 import CreditPatientBillsByTpid from "./components/receptionist/pages/receptionist/CreditPatientBillsByTpid";
 import CreditSittingBill from "./components/receptionist/pages/receptionist/CreditSittingBill";
-import ReceptionSittingBill from './components/receptionist/pages/receptionist/ReceptionSittingBill'; 
+import ReceptionSittingBill from "./components/receptionist/pages/receptionist/ReceptionSittingBill";
 
 // ************** Super Admin Routes Start Here *******************
 
@@ -220,11 +220,10 @@ function App() {
           element={
             user === null ? (
               <DoctorLogin />
-            )
-            //  : todayAttendance.length === 0 ? (
-            //   <AttendanceLeave />
-            // )
-             : (
+            ) : (
+              //  : todayAttendance.length === 0 ? (
+              //   <AttendanceLeave />
+              // )
               <DoctorDashboard />
             )
           }
@@ -311,11 +310,10 @@ function App() {
                   style={{ background: "transparent" }}
                 ></Lottie>
               </>
-            ) 
-            // : todayAttendance.length === 0 ? (
-            //   <AttendanceLeave />
-            // )
-             : (
+            ) : (
+              // : todayAttendance.length === 0 ? (
+              //   <AttendanceLeave />
+              // )
               <ExaminationDashBoardPediatric />
             )
           }
@@ -357,9 +355,9 @@ function App() {
                   style={{ background: "transparent" }}
                 ></Lottie>
               </>
-         //    ) : todayAttendance.length === 0 ? (
-//              <AttendanceLeave />
             ) : (
+              //    ) : todayAttendance.length === 0 ? (
+              //              <AttendanceLeave />
               <SecurityAmount />
             )
           }
@@ -379,9 +377,9 @@ function App() {
                   style={{ background: "transparent" }}
                 ></Lottie>
               </>
-         //    ) : todayAttendance.length === 0 ? (
-//              <AttendanceLeave />
             ) : (
+              //    ) : todayAttendance.length === 0 ? (
+              //              <AttendanceLeave />
               <PrintSecurityAmt />
             )
           }
@@ -423,9 +421,9 @@ function App() {
                   style={{ background: "transparent" }}
                 ></Lottie>
               </>
-         //    ) : todayAttendance.length === 0 ? (
-//              <AttendanceLeave />
             ) : (
+              //    ) : todayAttendance.length === 0 ? (
+              //              <AttendanceLeave />
               <NewTreatment />
             )
           }
@@ -445,9 +443,9 @@ function App() {
                   style={{ background: "transparent" }}
                 ></Lottie>
               </>
-         //    ) : todayAttendance.length === 0 ? (
-//              <AttendanceLeave />
             ) : (
+              //    ) : todayAttendance.length === 0 ? (
+              //              <AttendanceLeave />
               <TreatmentForm />
             )
           }
@@ -489,9 +487,9 @@ function App() {
                   style={{ background: "transparent" }}
                 ></Lottie>
               </>
-         //    ) : todayAttendance.length === 0 ? (
-//              <AttendanceLeave />
             ) : (
+              //    ) : todayAttendance.length === 0 ? (
+              //              <AttendanceLeave />
               <NewTreatPrescription />
             )
           }
@@ -511,9 +509,9 @@ function App() {
                   style={{ background: "transparent" }}
                 ></Lottie>
               </>
-         //    ) : todayAttendance.length === 0 ? (
-//              <AttendanceLeave />
             ) : (
+              //    ) : todayAttendance.length === 0 ? (
+              //              <AttendanceLeave />
               <PrescriptionDashBoard />
             )
           }
@@ -533,9 +531,9 @@ function App() {
                   style={{ background: "transparent" }}
                 ></Lottie>
               </>
-         //    ) : todayAttendance.length === 0 ? (
-//              <AttendanceLeave />
             ) : (
+              //    ) : todayAttendance.length === 0 ? (
+              //              <AttendanceLeave />
               <TPrescription />
             )
           }
@@ -555,9 +553,9 @@ function App() {
                   style={{ background: "transparent" }}
                 ></Lottie>
               </>
-         //    ) : todayAttendance.length === 0 ? (
-//              <AttendanceLeave />
             ) : (
+              //    ) : todayAttendance.length === 0 ? (
+              //              <AttendanceLeave />
               <TPrescriptionDash />
             )
           }
@@ -577,9 +575,9 @@ function App() {
                   style={{ background: "transparent" }}
                 ></Lottie>
               </>
-         //    ) : todayAttendance.length === 0 ? (
-//              <AttendanceLeave />
             ) : (
+              //    ) : todayAttendance.length === 0 ? (
+              //              <AttendanceLeave />
               <ViewTreatPrescription />
             )
           }
@@ -600,9 +598,9 @@ function App() {
                   style={{ background: "transparent" }}
                 ></Lottie>
               </>
-         //    ) : todayAttendance.length === 0 ? (
-//              <AttendanceLeave />
             ) : (
+              //    ) : todayAttendance.length === 0 ? (
+              //              <AttendanceLeave />
               <ViewTreatPrescriptionList />
             )
           }
@@ -646,9 +644,9 @@ function App() {
                   style={{ background: "transparent" }}
                 ></Lottie>
               </>
-         //    ) : todayAttendance.length === 0 ? (
-//              <AttendanceLeave />
             ) : (
+              //    ) : todayAttendance.length === 0 ? (
+              //              <AttendanceLeave />
               <ProfileDashboard />
             )
           }
@@ -668,9 +666,9 @@ function App() {
                   style={{ background: "transparent" }}
                 ></Lottie>
               </>
-         //    ) : todayAttendance.length === 0 ? (
-//              <AttendanceLeave />
             ) : (
+              //    ) : todayAttendance.length === 0 ? (
+              //              <AttendanceLeave />
               <PatientProfile />
             )
           }
@@ -690,9 +688,9 @@ function App() {
                   style={{ background: "transparent" }}
                 ></Lottie>
               </>
-         //    ) : todayAttendance.length === 0 ? (
-//              <AttendanceLeave />
             ) : (
+              //    ) : todayAttendance.length === 0 ? (
+              //              <AttendanceLeave />
               <AllPatient />
             )
           }
@@ -713,9 +711,9 @@ function App() {
                   style={{ background: "transparent" }}
                 ></Lottie>
               </>
-         //    ) : todayAttendance.length === 0 ? (
-//              <AttendanceLeave />
             ) : (
+              //    ) : todayAttendance.length === 0 ? (
+              //              <AttendanceLeave />
               <AttendanceLeave />
             )
           }
@@ -736,9 +734,9 @@ function App() {
                   style={{ background: "transparent" }}
                 ></Lottie>
               </>
-         //    ) : todayAttendance.length === 0 ? (
-//              <AttendanceLeave />
             ) : (
+              //    ) : todayAttendance.length === 0 ? (
+              //              <AttendanceLeave />
               <PatintDuePaymentPrint />
             )
           }
@@ -759,9 +757,9 @@ function App() {
                   style={{ background: "transparent" }}
                 ></Lottie>
               </>
-         //    ) : todayAttendance.length === 0 ? (
-//              <AttendanceLeave />
             ) : (
+              //    ) : todayAttendance.length === 0 ? (
+              //              <AttendanceLeave />
               <Print_Oral_Blood />
             )
           }
@@ -782,9 +780,9 @@ function App() {
                   style={{ background: "transparent" }}
                 ></Lottie>
               </>
-         //    ) : todayAttendance.length === 0 ? (
-//              <AttendanceLeave />
             ) : (
+              //    ) : todayAttendance.length === 0 ? (
+              //              <AttendanceLeave />
               <PrescriptionDetails />
             )
           }
@@ -805,9 +803,9 @@ function App() {
                   style={{ background: "transparent" }}
                 ></Lottie>
               </>
-         //    ) : todayAttendance.length === 0 ? (
-//              <AttendanceLeave />
             ) : (
+              //    ) : todayAttendance.length === 0 ? (
+              //              <AttendanceLeave />
               <PrescriptionQuick />
             )
           }
@@ -828,9 +826,9 @@ function App() {
                   style={{ background: "transparent" }}
                 ></Lottie>
               </>
-         //    ) : todayAttendance.length === 0 ? (
-//              <AttendanceLeave />
             ) : (
+              //    ) : todayAttendance.length === 0 ? (
+              //              <AttendanceLeave />
               <ViewQuickPrescription />
             )
           }
@@ -875,9 +873,9 @@ function App() {
                   style={{ background: "transparent" }}
                 ></Lottie>
               </>
-         //    ) : todayAttendance.length === 0 ? (
-//              <AttendanceLeave />
             ) : (
+              //    ) : todayAttendance.length === 0 ? (
+              //              <AttendanceLeave />
               <QPrescriptionForm />
             )
           }
@@ -1138,7 +1136,11 @@ function App() {
         <Route
           path="/ViewPatientSittingBill/:tpid/:sbid"
           element={
-            user?.currentUser === null ? <UniversalLogin /> : <ReceptionSittingBill />
+            user?.currentUser === null ? (
+              <UniversalLogin />
+            ) : (
+              <ReceptionSittingBill />
+            )
           }
         />
         {/* <Route
@@ -1195,8 +1197,8 @@ function App() {
             )
           }
         />
-      {/* super admin  */}
-      <Route
+        {/* super admin  */}
+        <Route
           path="/employee-profile/:eid"
           element={user?.id === null ? <UniversalLogin /> : <EmployeeProfile />}
         />

@@ -98,7 +98,8 @@ const Wrapper = styled.div`
   }
 
   th {
-    background-color: #000;
+    // background-color: #000;
+    background-color: rgb(8 145 178);
     color: white;
     position: sticky;
     white-space: nowrap;
@@ -110,7 +111,7 @@ const Wrapper = styled.div`
   .sticky {
     position: sticky;
     top: 0;
-    background-color: #000;
+    // background-color: #000;
     color: white;
     z-index: 1;
   }

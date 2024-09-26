@@ -688,22 +688,22 @@ const SittingBill = () => {
         <div className="container-fluid">
           <div className="text-center">
             <button
-              className="btn btn-info no-print mx-3 mb-3 mt-2 text-white shadow"
-              style={{
-                backgroundColor: "#0dcaf0",
-                border: "#0dcaf0",
-              }}
+              className="btn btn-color no-print mx-3 mb-3 mt-2 text-white shadow"
+              // style={{
+              //   backgroundColor: "#0dcaf0",
+              //   border: "#0dcaf0",
+              // }}
               onClick={handleDownloadPdf}
             >
               Download Sitting Bill
             </button>
             <button
-              className="btn btn-info no-print text-white mt-2 mb-3 shadow"
+              className="btn btn-color  no-print text-white mt-2 mb-3 shadow"
               onClick={handleTreatNavigate}
-              style={{
-                backgroundColor: "#0dcaf0",
-                border: "#0dcaf0",
-              }}
+              // style={{
+              //   backgroundColor: "#0dcaf0",
+              //   border: "#0dcaf0",
+              // }}
             >
               Treatment Dashboard
             </button>
@@ -797,6 +797,10 @@ const SittingBill = () => {
 
 export default SittingBill;
 const Wrapper = styled.div`
+  .btn-color {
+    background-color: rgb(8 145 178);
+  }
+
   overflow: hidden;
   background-color: white;
   height: 100%;
