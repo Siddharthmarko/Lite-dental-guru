@@ -74,7 +74,7 @@ function Card() {
         // alert("Your token is expired please login again")
         cogoToast.info("Your token is expired please login again");
         dispatch(clearUser());
-        navigate("/receptionist_login");
+        // navigate("/receptionist_login");
       }
     }
   };

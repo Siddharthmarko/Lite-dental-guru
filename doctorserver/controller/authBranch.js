@@ -36,12 +36,12 @@ const getBranch = (req, res) => {
 const LoginDoctor = (req, res) => {
   try {
     const { email, password, branch_name } = req.body;
-    if (!branch_name) {
-      return res.status(404).json({
-        success: false,
-        message: "Please select branch",
-      });
-    }
+    // if (!branch_name) {
+    //   return res.status(404).json({
+    //     success: false,
+    //     message: "Please select branch",
+    //   });
+    // }
     if (!email || !password) {
       return res.status(404).json({
         success: false,
@@ -84,12 +84,12 @@ const LoginDoctor = (req, res) => {
             message: "Please login with doctor email",
           });
         }
-        if (user.branch_name !== branch_name) {
-          return res.status(401).json({
-            success: "false",
-            message: "Please login with your branch",
-          });
-        }
+        // if (user.branch_name !== branch_name) {
+        //   return res.status(401).json({
+        //     success: "false",
+        //     message: "Please login with your branch",
+        //   });
+        // }
 
         if (user.employee_status !== "Approved") {
           return res.status(401).json({
