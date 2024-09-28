@@ -135,8 +135,8 @@ const TreatmentSetting = () => {
   useEffect(() => {
     updateFilterForProcId();
   }, [upTreatData[0]?.treat_procedure_name]);
-
   console.log(treatData);
+
   console.log(treatList);
 
   const openAddTreatmentsPopup = (index, item) => {
@@ -363,7 +363,7 @@ const TreatmentSetting = () => {
             </div>
             <div className="col-lg-11 col-11 ps-0">
               <div className="container-fluid mt-3">
-                <BranchSelector />
+                {/* <BranchSelector /> */}
               </div>
               <div className="container-fluid mt-3">
                 <button className="btn btn-success" onClick={goBack}>

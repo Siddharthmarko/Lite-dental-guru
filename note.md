@@ -1,3 +1,6 @@
+# 28 sep
+- > D capital karna hai aur status ko S during doctor treatment
+
 # host mai ye karna h i
 - > email ko smtp karna hai 
 
@@ -34,6 +37,7 @@
 # urls 
 - >  `https://dentalguru-doctor.vimubds5.a2hosted.com/api/doctor/getDentalDataByTpid/${tpid}/${branch}`,
 - > `https://dentalguru-receptionist.vimubds5.a2hosted.com/api/v1/receptionist/get-Patients/${branch}`,
+- > `https://dentalguru-lite.vimubds5.a2hosted.com`
 
 
 # .env
