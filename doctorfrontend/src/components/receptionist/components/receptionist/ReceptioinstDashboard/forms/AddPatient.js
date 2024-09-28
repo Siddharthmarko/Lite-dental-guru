@@ -15,7 +15,7 @@ function AddPatient() {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
   const { refreshTable } = useSelector((state) => state.user);
-  const {currentBranch} = useSelector((state) => state.branch);
+  const { currentBranch } = useSelector((state) => state.branch);
   const branch = user?.currentUser?.branch_name;
   const token = user?.currentUser?.token;
 
@@ -37,28 +37,25 @@ function AddPatient() {
   const [branchDetail, setBranchDetail] = useState([]);
   const [branchHolidays, setBranchHolidays] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [insuranceCompany , setInsuranceCompany] = useState("");
+  const [insuranceCompany, setInsuranceCompany] = useState("");
 
   // const opdCost = treatments?.filter(
   //   (treatment) => treatment?.treatment_name === "OPD"
   // )[0]?.treatment_cost;
 
-  let opdCost ;
+  let opdCost;
 
   const opdCostfind = treatments?.filter(
     (treatment) => treatment?.treatment_name === "OPD"
-  )
- 
-  if(currentBranch[0]?.hospital_category === "Nabh"){
-    opdCost = opdCostfind[0]?.nabh
-  }
-  else if (currentBranch[0]?.hospital_category === "non-Nabh"){
-    opdCost = opdCostfind[0]?.non_nabh
-  }
-  else{
-    opdCost = opdCostfind[0]?.treatment_cost
-  }
+  );
 
+  if (currentBranch[0]?.hospital_category === "Nabh") {
+    opdCost = opdCostfind[0]?.nabh;
+  } else if (currentBranch[0]?.hospital_category === "non-Nabh") {
+    opdCost = opdCostfind[0]?.non_nabh;
+  } else {
+    opdCost = opdCostfind[0]?.treatment_cost;
+  }
 
   const [opdAmount, setOpdAmount] = useState(opdCost); // State to store the OPD amount, initialized with opdCost
 
@@ -85,16 +82,17 @@ function AddPatient() {
   };
 
   const getInsuranceCompany = async () => {
-           try{
-            const response = await axios.get(`https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/getInsuranceCompany/${branch}`)
-            
-            setInsuranceCompany(response.data.data)
-           }
-           catch(error) {
-            console.log(error);
-           }
-  }
-  console.log(insuranceCompany)
+    try {
+      const response = await axios.get(
+        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/getInsuranceCompany/${branch}`
+      );
+
+      setInsuranceCompany(response.data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  console.log(insuranceCompany);
 
   const getBranchHolidays = async () => {
     try {
@@ -298,7 +296,7 @@ function AddPatient() {
     getDoctorsWithLeave();
     getBranchDetail();
     getBranchHolidays();
-    getInsuranceCompany()
+    getInsuranceCompany();
   }, []);
 
   useEffect(() => {
@@ -346,8 +344,8 @@ function AddPatient() {
     allergy: "",
     disease: "",
     patientType: "",
-    credit_By : "" ,
-    beneficiary_Id : "" ,
+    credit_By: "",
+    beneficiary_Id: "",
     status: "",
     doctorId: "",
     doctor_name: "",
@@ -645,8 +643,8 @@ function AddPatient() {
         status: "Appoint",
         disease: selectedDisease?.map((option) => option.value).toString(),
         patientType: data.patientType,
-        credit_By : data.credit_By ,
-        beneficiary_Id : data.beneficiary_Id ,
+        credit_By: data.credit_By,
+        beneficiary_Id: data.beneficiary_Id,
         doctorId: selectedDoctor.employee_ID,
         doctor_name: selectedDoctor.employee_name,
         doctor_email: selectedDoctor.employee_email,
@@ -660,9 +658,9 @@ function AddPatient() {
         notes: data.notes,
         patient_added_by: user.currentUser.employee_name,
         patient_added_by_emp_id: user.currentUser.employee_ID,
-        sharemail : currentBranch[0].sharemail,
-        sharewhatsapp : currentBranch[0].sharewhatsapp,
-        sharesms : currentBranch[0].sharesms
+        sharemail: currentBranch[0].sharemail,
+        sharewhatsapp: currentBranch[0].sharewhatsapp,
+        sharesms: currentBranch[0].sharesms,
       };
 
       if (!isDoctorAvailable(selectedDateTime)) {
@@ -795,7 +793,7 @@ function AddPatient() {
 
   console.log(filteredDoctor);
   console.log(selectedDoctor);
-  console.log(currentBranch)
+  console.log(currentBranch);
 
   return (
     <Wrapper>
@@ -803,8 +801,7 @@ function AddPatient() {
         <ul className="list-group">
           <li className="list-group-item">
             <div className="row">
-
-            <div className="col-sm-6">
+              <div className="col-sm-6">
                 <div className="form-outline">
                   <label className="form-label mt-2" for="patientType">
                     Patient Type *
@@ -819,64 +816,69 @@ function AddPatient() {
                   >
                     <option value="">Select Patient Type</option>
                     <option value="General">General</option>
-                   {currentBranch[0].allow_insurance == "Yes" && <option value="Credit">Credit</option>} 
+                    {/* {currentBranch[0].allow_insurance == "Yes" && (
+                      <option value="Credit">Credit</option>
+                    )} */}
+
+                    {currentBranch?.[0]?.allow_insurance === "Yes" && (
+                      <option value="Credit">Credit</option>
+                    )}
                     {/* <option value="CGHS(Serving)">CGHS(Serving)</option>
                     <option value="CGHS(Pensioner)">CGHS(Pensioner)</option>
                     <option value="CSMA">CSMA</option> */}
                   </select>
                 </div>
               </div>
-           { data.patientType == "Credit" &&
-           <>
-           <div className="col-sm-6">
-                <div className="form-outline">
-                  <label className="form-label mt-2" for="patientType">
-                    Credit By *
-                  </label>
+              {data.patientType == "Credit" && (
+                <>
+                  <div className="col-sm-6">
+                    <div className="form-outline">
+                      <label className="form-label mt-2" for="patientType">
+                        Credit By *
+                      </label>
 
-                  <select
-                    className="form-select"
-                    id="credit_By"
-                    name="credit_By"
-                    required
-                    onChange={handleChange}
-                  >
-                    <option value="">Select Credit By</option>
-                    {
-                     insuranceCompany.map((item)=> (
-                      <option value={item.companyname}>{item.companyname}</option>
-                     )) 
-                    }
-                    
-                    {/* <option value="CGHS(Pensioner)">CGHS(Pensioner)</option>
+                      <select
+                        className="form-select"
+                        id="credit_By"
+                        name="credit_By"
+                        required
+                        onChange={handleChange}
+                      >
+                        <option value="">Select Credit By</option>
+                        {insuranceCompany.map((item) => (
+                          <option value={item.companyname}>
+                            {item.companyname}
+                          </option>
+                        ))}
+
+                        {/* <option value="CGHS(Pensioner)">CGHS(Pensioner)</option>
                    <option value="CSMA">CSMA</option> */}
-                  </select>
-                </div>
-              </div>
+                      </select>
+                    </div>
+                  </div>
 
-
-              <div className="col-sm-6">
-                <div className="form-outline" id="form1">
-                  <label className="form-label mt-2" for="name">
-                  Beneficiary Id *
-                  </label>
-                  <input
-                    type="text"
-                    id="beneficiary_Id"
-                    className="form-control"
-                    name="beneficiary_Id"
-                    onChange={handleChange}
-                    // pattern="[A-Za-z\s]*"
-                    // title="Text should contain only letters"
-                    placeholder="Enter Beneficiary Id"
-                    required
-                    autocomplete="off"
-                    maxLength={25}
-                  />
-                </div>
-              </div> 
-              </>
-}
+                  <div className="col-sm-6">
+                    <div className="form-outline" id="form1">
+                      <label className="form-label mt-2" for="name">
+                        Beneficiary Id *
+                      </label>
+                      <input
+                        type="text"
+                        id="beneficiary_Id"
+                        className="form-control"
+                        name="beneficiary_Id"
+                        onChange={handleChange}
+                        // pattern="[A-Za-z\s]*"
+                        // title="Text should contain only letters"
+                        placeholder="Enter Beneficiary Id"
+                        required
+                        autocomplete="off"
+                        maxLength={25}
+                      />
+                    </div>
+                  </div>
+                </>
+              )}
 
               <div className="col-sm-6">
                 <div className="form-outline" id="form1">
@@ -1106,7 +1108,6 @@ function AddPatient() {
                     className="form-control"
                     name="weight"
                     onChange={handleChange}
-                    
                     placeholder="Enter weight in kg"
                     pattern="[0-9]*"
                     title="weight should contain only numbers"
@@ -1149,8 +1150,6 @@ function AddPatient() {
                   />
                 </div>
               </div>
-
-             
 
               <p className="mt-4">Fill details for Book Appointment</p>
 
@@ -1267,7 +1266,7 @@ function AddPatient() {
                                     }`} // Add 'active' class if the patient is selected
                                     onClick={() => handleDoctorSelect(doctor)} // Call handlePatientSelect function when the patient is clicked
                                   >
-                                    {"Dr. "} {doctor.employee_name} <br/>  Id:{" "}
+                                    {"Dr. "} {doctor.employee_name} <br /> Id:{" "}
                                     {doctor.employee_ID}
                                     {/* Display other patient details as needed */}
                                   </li>
@@ -1353,15 +1352,17 @@ function AddPatient() {
                             >
                               <option value="">Select</option>
                               <option value="Cash">Cash</option>
-                             {data.patientType == "Credit" && <option value="Credit">Credit</option> }
+                              {data.patientType == "Credit" && (
+                                <option value="Credit">Credit</option>
+                              )}
                               <option value="UPI">UPI</option>
                               <option value="Card">Card</option>
                               {/* <option value="Cheque">Cheque</option> */}
-                              
                             </select>
                           </div>
                         </div>
-                        {(data.payment_Mode === "Card" ||data.payment_Mode === "UPI" )  && (
+                        {(data.payment_Mode === "Card" ||
+                          data.payment_Mode === "UPI") && (
                           <div className="col-sm-6">
                             <div className="form-outline">
                               <label
@@ -1424,8 +1425,12 @@ function AddPatient() {
                               required
                             >
                               <option value="">Select</option>
-                            {( data.payment_Mode == "Credit" ) ||   <option value="paid">Paid</option> }
-                             {( data.payment_Mode == "Credit" ) && <option value="Credit">Credit</option> }
+                              {data.payment_Mode == "Credit" || (
+                                <option value="paid">Paid</option>
+                              )}
+                              {data.payment_Mode == "Credit" && (
+                                <option value="Credit">Credit</option>
+                              )}
                             </select>
                           </div>
                         </div>
