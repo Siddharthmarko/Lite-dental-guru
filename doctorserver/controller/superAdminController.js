@@ -863,8 +863,8 @@ const addSuperAdminNotify = (req, res) => {
         treat_procedure_id,
         treat_procedure_name,
         treatment_name,
-        treatment_cost,
-        treatment_discount,
+        nabh,
+        non_nabh,
         value,
         label,
       } = req.body;
@@ -872,20 +872,13 @@ const addSuperAdminNotify = (req, res) => {
         treat_procedure_id,
         treat_procedure_name,
         treatment_name,
-        treatment_cost,
-        treatment_discount,
+        nabh,
+        non_nabh,
         value,
         label,
       ];
-      console.log( treat_procedure_id,
-        treat_procedure_name,
-        treatment_name,
-        treatment_cost,
-        treatment_discount,
-        value,
-        label,)
       if (requiredFields.some((field) => !field)) {
-        // registrationLogger.log("error", "All fields are required");
+        registrationLogger.log("error", "All fields are required");
         return res.status(400).json({ error: "All fields are required" });
       }
   
@@ -893,45 +886,45 @@ const addSuperAdminNotify = (req, res) => {
         "SELECT * FROM treatment_list_copy WHERE treatment_name = ?";
       db.query(selectQuery, [treatment_name], (err, result) => {
         if (err) {
-          // registrationLogger.log("error", "treatment name not found");
+          registrationLogger.log("error", "treatment name not found");
           return res.status(500).json({ success: false, error: err.message });
         }
         if (result.length > 0) {
-          // registrationLogger.log("error", "treatment already exist");
+          registrationLogger.log("error", "treatment already exist");
           return res.status(400).send("Treatment already exists");
         }
   
-        const insertQuery = `INSERT INTO treatment_list_copy (treat_procedure_id, treat_procedure_name, treatment_name, treatment_cost, treatment_discount, value, label) VALUES (?, ?, ?, ?, ?, ?, ?)`;
+        const insertQuery = `INSERT INTO treatment_list_copy (treat_procedure_id, treat_procedure_name, treatment_name, nabh, non_nabh, value, label) VALUES (?, ?, ?, ?, ?, ?, ?)`;
         const insertUserParams = [
           treat_procedure_id,
           treat_procedure_name,
           treatment_name,
-          treatment_cost,
-          treatment_discount,
+          nabh,
+          non_nabh,
           value,
           label,
         ];
   
         db.query(insertQuery, insertUserParams, (errInsert, resultInsert) => {
           if (errInsert) {
-            // registrationLogger.log(
-            //   "error",
-            //   "Error while inserting treatment"
-            // );
+             registrationLogger.log(
+               "error",
+               "Error while inserting treatment"
+             );
             return res.status(500).json({
               success: false,
               message: "Error while inserting treatment",
               error: errInsert.message,
             });
           }
-          // registrationLogger.log("info", "Treatment added successfully");
+          registrationLogger.log("info", "Treatment added successfully");
           res
             .status(200)
             .json({ success: true, message: "Treatment added successfully" });
         });
       });
     } catch (error) {
-      // registrationLogger.log("error", "internal server error");
+      registrationLogger.log("error", "internal server error");
       console.error(error);
       res.status(500).json({ success: false, message: "Internal server error" });
     }
