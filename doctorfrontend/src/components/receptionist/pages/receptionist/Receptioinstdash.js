@@ -132,6 +132,7 @@ overflow: hidden;
     
   }
 }
+
 .header{
   position: fixed;
   min-width: 100%;
@@ -141,10 +142,6 @@ overflow: hidden;
   padding-top: 60px; /* Height of header */
   min-height: 100vh;
   position: fixed;
-  
-  
- 
-
 }
 `
 

@@ -1,19 +1,20 @@
 # 28 sep
-- > D capital karna hai aur status ko S during doctor treatment
+<!-- - > D capital karna hai aur status ko S during doctor treatment
+    - treatmentdashboard mai table hai  -->
 
 # host mai ye karna h i
-- > email ko smtp karna hai 
+<!-- - > email ko smtp karna hai  -->
 
 # pahle se bug
-- > add treatemtn nahi ho raha hai 
+<!-- - > add treatemtn nahi ho raha hai  -->
 - > 
 
 # 24 sep
-- > to mujhe doctor login ke api mai kaam karna padeg kuki branch le raha hai shuruaat ke samay par
+<!-- - > to mujhe doctor login ke api mai kaam karna padeg kuki branch le raha hai shuruaat ke samay par -->
 <!-- - > addtreatment nahi hua superadin ki jagah se -->
 <!-- - > quick prescriition mai data aa jaye -->
-- > emoploy emanagment work kare 
-    - iska to backend se code utha lunga kuki main wala work kar raha hai 
+<!-- - > emoploy emanagment work kare  -->
+<!-- - iska to backend se code utha lunga kuki main wala work kar raha hai  -->
 <!-- - > email send nahi ho raha i -->
 <!-- - > prescription mai desease bhi dikhani hai
 - > treatmentSuggestion kok medical detail table mai deseasd bhi -->
@@ -21,9 +22,9 @@
 
 
 # 23 sep
-- > TreatmentDashBoard/60/Re isme dirct doctor dashbaord se jo ongoint treatment hona hchaiye waha aaye esa kuch jo 
-- > http://localhost:9999/treatmentDashBoard/60/DH_29 apna ko xhHIYW YW JAB USKO SITTING HOYE 
-- > beech mai tp id hai jo ki esec ond setting ko denote kar raah hai 
+<!-- - > TreatmentDashBoard/60/Re isme dirct doctor dashbaord se jo ongoint treatment hona hchaiye waha aaye esa kuch jo  -->
+<!-- - > http://localhost:9999/treatmentDashBoard/60/DH_29 apna ko xhHIYW YW JAB USKO SITTING HOYE  -->
+<!-- - > beech mai tp id hai jo ki esec ond setting ko denote kar raah hai  -->
 - > 
 
 # App.js

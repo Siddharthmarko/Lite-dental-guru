@@ -277,12 +277,12 @@ const NewTreatment = () => {
                 <tr>
                   <th>Date</th>
                   <th>Treatment</th>
-                  <th>disease</th>
+                  <th>Disease</th>
                   <th>Teeth</th>
                   <th>Chief Complain</th>
                   <th>Advice</th>
                   <th>On Examination</th>
-                  <th>Treatment status</th>
+                  <th>Treatment Status</th>
                   <th className="text-center">Action</th>
                 </tr>
               </thead>
