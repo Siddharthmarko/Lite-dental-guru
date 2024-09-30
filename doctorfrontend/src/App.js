@@ -99,6 +99,8 @@ import ClinicConfigSetting from "./components/superAdmin/ClinicConfigSetting";
 import TreatmentSetting from "./components/superAdmin/TreatmentSetting";
 import CalenderSetting from "./components/superAdmin/CalenderSetting";
 import EmployeeProfile from "./components/superAdmin/EmployeeProfile";
+import Footer from "./components/receptionist/components/receptionist/Footer";
+import styled from "styled-components";
 
 function App() {
   const navigate = useNavigate();
@@ -205,6 +207,7 @@ function App() {
 
   return (
     <>
+    <Styling>
       <ScrollToTop />
       <Routes>
         {/* ************** Doctor Routes Start Here ******************* */}
@@ -1203,8 +1206,13 @@ function App() {
           element={user?.id === null ? <UniversalLogin /> : <EmployeeProfile />}
         />
       </Routes>
+      <Footer/>      
+      </Styling>
     </>
   );
 }
 
 export default App;
+const Styling = styled.div`
+    padding-bottom: 100px; 
+`;
