@@ -174,7 +174,7 @@ function AllPatient() {
       </div>
 
       <div className="row flex-nowrap ">
-        <div className="col-lg-1 col-1" id="hd">
+        <div className="col-lg-1 col-1" id="hd" style={{ paddingTop: "70px" }}>
           <Sider />
         </div>
 

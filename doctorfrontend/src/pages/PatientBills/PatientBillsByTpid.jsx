@@ -792,7 +792,7 @@ const PatientBillsByTpid = () => {
               Print
             </button> */}
             <button
-              className="btn btn-info no-print mx-3 mb-3 mt-2 text-white shadow"
+              className="btn btn-info no-print mx-3 mb-3 mt-3 text-white shadow"
               style={{
                 backgroundColor: "#0dcaf0",
                 border: "#0dcaf0",
@@ -805,7 +805,7 @@ const PatientBillsByTpid = () => {
               <>
                 {" "}
                 <button
-                  className="btn btn-info no-print mx-3 mt-2 mb-2 text-white shadow"
+                  className="btn btn-info no-print mx-3 mb-4 mt-2 text-white shadow"
                   style={{
                     backgroundColor: "#0dcaf0",
                     border: "#0dcaf0",

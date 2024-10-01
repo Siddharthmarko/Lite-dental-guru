@@ -99,6 +99,8 @@ import ClinicConfigSetting from "./components/superAdmin/ClinicConfigSetting";
 import TreatmentSetting from "./components/superAdmin/TreatmentSetting";
 import CalenderSetting from "./components/superAdmin/CalenderSetting";
 import EmployeeProfile from "./components/superAdmin/EmployeeProfile";
+import Header from "./components/receptionist/components/receptionist/Header";
+import Sider from "./components/receptionist/components/receptionist/Sider";
 
 function App() {
   const navigate = useNavigate();
@@ -206,6 +208,7 @@ function App() {
   return (
     <>
       <ScrollToTop />
+
       <Routes>
         {/* ************** Doctor Routes Start Here ******************* */}
 

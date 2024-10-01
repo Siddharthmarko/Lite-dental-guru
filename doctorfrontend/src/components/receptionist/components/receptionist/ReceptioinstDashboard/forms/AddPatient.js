@@ -16,6 +16,10 @@ function AddPatient() {
   const user = useSelector((state) => state.user);
   const { refreshTable } = useSelector((state) => state.user);
   const { currentBranch } = useSelector((state) => state.branch);
+  console.log(
+    currentBranch,
+    "k-----------------------------------------------------------------------------------"
+  );
   const branch = user?.currentUser?.branch_name;
   const token = user?.currentUser?.token;
 

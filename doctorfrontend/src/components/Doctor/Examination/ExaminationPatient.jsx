@@ -1102,7 +1102,7 @@ const ExaminationPatientTest = ({ tpid }) => {
   return (
     <>
       <Wrapper>
-        <div className="container-fluid">
+        <div className="container-fluid ps-5">
           <div className="d-flex justify-content-start align-items-center p-3">
             <button
               className="btn btn-secondary"

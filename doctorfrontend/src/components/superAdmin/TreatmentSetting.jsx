@@ -355,12 +355,17 @@ const TreatmentSetting = () => {
   return (
     <Container>
       <Header />
-      <div className="main">
+      <div className="main" style={{ paddingTop: "70px" }}>
         <div className="container-fluid">
           <div className="row flex-nowrap ">
-            <div className="col-lg-1 col-1 p-0">
+            <div className="col-lg-1 col-1 p-0 position-fixed" id="sidebar">
               <Sider />
             </div>
+
+            {/* for fixed sidebar */}
+            <div className="col-lg-1"></div>
+            {/* for fixed sidebar */}
+
             <div className="col-lg-11 col-11 ps-0">
               <div className="container-fluid mt-3">
                 <BranchSelector />
@@ -889,6 +894,22 @@ const Container = styled.div`
       background: #000;
     }
   }
+  #sidebar {
+    width: 5.04rem;
+    height: 79rem;
+    background-color: #008080;
+    @media screen and (max-width: 768px) {
+      width: 3rem;
+      height: 212rem;
+    }
+    @media screen and (min-width: 768px) and (max-width: 1020px) {
+      width: 5rem;
+      height: 151rem;
+    }
+    @media screen and (min-width: 1020px) and (max-width: 1600px) {
+      height: 62rem;
+    }
+  }
 `;
 const PaginationContainer = styled.div`
   .pagination {
@@ -940,5 +961,8 @@ const PaginationContainer = styled.div`
   hr {
     color: #dbd4d4;
     box-shadow: 0px 4px 3px black;
+  }
+  body {
+    padding: 0;
   }
 `;

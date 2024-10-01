@@ -269,10 +269,11 @@ const Wrapper = styled.div`
     color: white;
   }
   #sidebar {
-    width: 80%;
+    width: 79%;
     // min-height: 100vh;
     height: 82rem;
     background-color: teal;
+    // padding-top: 70px;
     @media screen and (max-width: 768px) {
       width: 5rem;
       height: 212rem;

@@ -27,7 +27,10 @@ function Header() {
 
   return (
     <Wrapper>
-      <div className="container-fluid" style={{ backgroundColor: "teal" }}>
+      <div
+        className="container-fluid fixed-top"
+        style={{ backgroundColor: "teal" }}
+      >
         <nav className="navbar navbar-expand-lg ">
           <div className="container-fluid">
             <Link to="/receptionist-dashboard">

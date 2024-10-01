@@ -15,7 +15,7 @@ const PatientProfile = () => {
   console.log(uhid);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-  const token = user.currentUser.token; 
+  const token = user.currentUser.token;
   const branch = user.currentUser.branch_name;
   console.log(`User Branch: ${branch}`);
 
@@ -78,13 +78,14 @@ const PatientProfile = () => {
     <Wrapper>
       {/* <HeadBar /> */}
       <Header />
-      <div className="row mrgnzero">
+      <div className="row mrgnzero" style={{ paddingTop: "70px" }}>
         <div
-          className="col-xxl-1 col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"
-          id="sider"
+          className="col-xxl-1 col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1 position-fixed"
+          id="sidebar"
         >
           <Sider />
         </div>
+        <div className="col-lg-1"></div>
         <div className="col-xxl-11 col-xl-11 col-lg-11 col-md-11 col-sm-11 col-11 p-0">
           <div className="container-fluid mt-3">
             <div className="d-flex justify-content-between">

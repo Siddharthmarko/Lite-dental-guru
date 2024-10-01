@@ -7,6 +7,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import cogoToast from "cogo-toast";
 import HeadBar from "../../components/Doctor/HeadBar";
+import Header from "../../components/receptionist/components/receptionist/Header";
 
 const PatintDuePaymentPrint = () => {
   const navigate = useNavigate();
@@ -344,7 +345,7 @@ const PatintDuePaymentPrint = () => {
   return (
     <>
       <Container>
-        <HeadBar />
+        <Header />
         <div className="container-fluid">
           <div className="row">
             <div className="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">

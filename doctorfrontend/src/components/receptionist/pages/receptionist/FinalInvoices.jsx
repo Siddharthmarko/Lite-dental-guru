@@ -37,7 +37,11 @@ function FinalInvoices() {
       </div>
 
       <div className="row flex-nowrap ">
-        <div className="col-lg-1 col-1" id="hd">
+        <div
+          className="col-lg-1 col-1 position-fixed"
+          id="hd"
+          style={{ paddingTop: "70px" }}
+        >
           <Sider />
         </div>
         <div className="col-lg-11 mt-2" id="set">

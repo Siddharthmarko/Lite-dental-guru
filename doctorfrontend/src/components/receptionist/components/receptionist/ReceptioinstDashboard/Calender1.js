@@ -30,7 +30,8 @@ function Calender1() {
   // CSS override to change the color of weekend dates
   const StyledCalendar = styled(Calendar)`
     .react-calendar__month-view__days__day--weekend {
-      color: black; // Change this to your desired color: ;
+      color: black;
+      // Change this to your desired color: ;
     }
   `;
 
@@ -64,7 +65,7 @@ function Calender1() {
         }
       );
       console.log("all doctors and not used  - ", response?.data?.data);
-      setDoctors([{...currentUser}]);
+      setDoctors([{ ...currentUser }]);
     } catch (error) {
       console.log(error);
     }
@@ -274,7 +275,7 @@ function Calender1() {
         <div className={isDisplay ? "d-block time-slots" : "d-none"}>
           <div
             className=" mx-auto
-     mt-1 mb-1 d-flex justify-content-around"
+     mt-1 mb-1  d-flex justify-content-around"
           >
             <div className="w-50">
               <span
@@ -464,7 +465,8 @@ const Wrapper = styled.div`
     background: white;
     border: 1px solid #a0a096;
     font-family: Arial, Helvetica, sans-serif;
-    line-height: 2.6rem;
+    // line-height: 2.6rem;
+    line-height: 2.4rem;
     @media screen and (max-width: 768px) {
       width: 90%;
       margin: auto;

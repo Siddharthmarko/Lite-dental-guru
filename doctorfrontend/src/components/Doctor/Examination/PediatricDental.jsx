@@ -1299,7 +1299,7 @@ const PediatricDentalTest = ({ tpid }) => {
               <div className="text-center">
                 <button
                   onClick={handleClick}
-                  className=" btn btn-info text-light mx-2"
+                  className=" btn btn-color text-light mx-2"
                 >
                   {selectAllTeeth ? "Unselect All" : "Select All"}
                 </button>
@@ -1359,7 +1359,7 @@ const PediatricDentalTest = ({ tpid }) => {
                       <div data-mdb-input-init class="form-outline">
                         <label className="lable">Cheif Complaint</label>
                         <button
-                          className="btn btn-info text-light mx-3 mb-1"
+                          className="btn btn-color text-light mx-3 mb-1"
                           onClick={handleChiefListChange}
                           type="button"
                         >
@@ -1423,7 +1423,7 @@ const PediatricDentalTest = ({ tpid }) => {
                           onChange={handleSelecteditem}
                           value={inputItem.advice}
                           required
-                          class="form-control"
+                          class="form-control mt-2"
                           placeholder="Advice"
                         />
                       </div>
@@ -1438,7 +1438,7 @@ const PediatricDentalTest = ({ tpid }) => {
                           onChange={handleSelecteditem}
                           required
                           value={inputItem.onExamination}
-                          class="form-control"
+                          class="form-control mt-2"
                           placeholder="Examination"
                         />
                       </div>
@@ -1448,7 +1448,7 @@ const PediatricDentalTest = ({ tpid }) => {
                     <button
                       type="submit"
                       disabled={loading}
-                      className="btn btn-info text-light mx-3"
+                      className="btn btn-color text-light mx-3"
                       // onClick={handleAddNew}
                     >
                       {loading ? "Save..." : "Save"}
@@ -1650,5 +1650,8 @@ const Wrapper = styled.div`
     @media screen and (min-width: 769px) and (max-width: 914px) {
       width: 100% !important;
     }
+  }
+  .btn-color {
+    background-color: rgb(8 145 178);
   }
 `;
