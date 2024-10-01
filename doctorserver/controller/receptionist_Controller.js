@@ -4186,6 +4186,7 @@ const sendWhatsappTextOnly = async (req, res) => {
   }
 };
 
+
 module.exports = {
   addPatient,
   getDisease,

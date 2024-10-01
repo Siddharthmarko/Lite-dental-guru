@@ -11,6 +11,7 @@ const {superRoute} = require('./router/superAdminRoutes')
 const {sendEmails, sendSMS, sendWhatsappTextOnly} = require("./cron/sendAppointmentEmails");
 const cron = require('node-cron');
 const { zipLogs } = require("./scheduler");
+const { getPatientReminder } = require("./sheduler/reminder");
 
 dotenv.config();
 // Create Express app
@@ -58,6 +59,18 @@ cron.schedule('0 8 * * *', () => {
 cron.schedule("0 0 * * *", () => {
   zipLogs();
 });
+
+cron.schedule('0 10 * * *', () => {
+  console.log('Running getPatientReminder at 10 AM IST');
+  getPatientReminder();
+}, {
+  timezone: "Asia/Kolkata" // Set the timezone to IST
+});
+
+// setInterval(() => {
+//   getPatientReminder();
+// }, 5000); // 2000ms = 2 seconds
+
 
 // Run server
 app.listen(PORT, () => {

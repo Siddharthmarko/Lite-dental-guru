@@ -1,3 +1,18 @@
+
+# 30 se chalu tasks
+<!-- - > reminder  -->
+- > currency in dental guru lite
+- > code removing
+- > database in dental guru
+- > improve ui
+
+
+# 30 
+- > hospital category supreadmin mai change nahi ho raha hai
+- > DOCTOR LOGIN MAI CHANGE K IYA HAI BUG TH AIISLIYE judaag lagaya abhi to
+- > 
+- > 
+
 # 28 sep
 <!-- - > D capital karna hai aur status ko S during doctor treatment
     - treatmentdashboard mai table hai  -->
