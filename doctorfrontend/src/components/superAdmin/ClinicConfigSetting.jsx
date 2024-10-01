@@ -5,7 +5,7 @@ import Sider from "../receptionist/components/receptionist/Sider";
 import Header from "../receptionist/components/receptionist/Header";
 import { FaSearch } from "react-icons/fa";
 import { IoMdArrowRoundBack } from "react-icons/io";
-import BranchSelector from "./BranchSelector";
+// import BranchSelector from "./BranchSelector";
 import axios from "axios";
 import cogoToast from "cogo-toast";
 import { useDispatch, useSelector } from "react-redux";
@@ -262,7 +262,7 @@ const ClinicConfigSetting = () => {
               <div className="col-lg-11 col-11 ps-0">
                 <div className="container-fluid mt-3">
                   <div className="d-flex justify-content-between">
-                    <BranchSelector />
+                    {/* <BranchSelector /> */}
                     <div>
                       {/* <Link to="/superadmin-add-branch">
                           <button className="btn btn-success">

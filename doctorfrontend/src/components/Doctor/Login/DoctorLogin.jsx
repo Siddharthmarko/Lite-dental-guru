@@ -43,16 +43,9 @@ const DoctorLogin = () => {
     setSelectedBranch(e.target.value);
   };
 
-  // useEffect(() => {
-  //   const filterdResult = braches.filter((item) => {
-  //     return item.branch_name === selectedBranch;
-  //   });
-  //   console.log(filterdResult);
-  //   setStoreBranch(filterdResult);
-  // }, [selectedBranch]);
-
   console.log(selectedBranch);
   console.log(storeBranch);
+
   const receptionistLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -74,7 +67,9 @@ const DoctorLogin = () => {
         // sendOtp();
         cogoToast.success(response.data.message);
         dispatch(setUser(response.data.user));
-        dispatch(setBranch(response.data.user.branch_name));
+        // dispatch(setBranch(response.data.user.branch_name));
+        console.log(braches[0], "oooooooooooooooooooooooooooo");
+        dispatch(setBranch(braches[0]));
         setLoading(false);
         // navigate("/doctor-dashboard");
         navigate("/dashboard");
@@ -103,6 +98,14 @@ const DoctorLogin = () => {
       }
     }
   };
+
+  //   useEffect(()=>{
+  //     const filterdResult = braches.filter((item) => {
+  //       return item.branch_name === selectedBranch;
+  //     })
+  //   console.log(filterdResult)
+  //    setStoreBranch(filterdResult)
+  // },[selectedBranch])
 
   const closeUpdatePopup = () => {
     setPopupVisible(false);

@@ -15,7 +15,12 @@ const PatientBillsByTpid = () => {
   const contentRef = useRef();
   const navigate = useNavigate();
   const branchData = useSelector((state) => state.branch.currentBranch);
-  console.log(branchData);
+  const test = useSelector((state) => state.branch);
+  console.log(
+    test,
+    "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkj"
+  );
+
   const [getPatientData, setGetPatientData] = useState([]);
   const user = useSelector((state) => state.user);
   const token = user.currentUser.token;

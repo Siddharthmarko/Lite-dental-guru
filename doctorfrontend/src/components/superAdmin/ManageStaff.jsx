@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 import Header from "../receptionist/components/receptionist/Header";
 import Sider from "../receptionist/components/receptionist/Sider";
-import BranchSelector from "./BranchSelector";
+// import BranchSelector from "./BranchSelector";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import cogoToast from "cogo-toast";
@@ -547,7 +547,7 @@ const ManageStaff = () => {
               <div className="col-lg-11 col-11 ps-0">
               <div className="container-fluid mt-3">
                   <div className="d-flex justify-content-between">
-                    <BranchSelector />
+                    {/* <BranchSelector /> */}
                   </div>
                 </div>
                 <button className="btn btn-success" onClick={() => window.history.go(-1) }>

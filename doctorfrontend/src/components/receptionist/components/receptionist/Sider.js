@@ -274,7 +274,7 @@ const Wrapper = styled.div`
     height: 82rem;
     background-color: teal;
     // padding-top: 70px;
-    @media screen and (max-width: 768px) {
+    z-index: 1 @media screen and (max-width: 768px) {
       width: 5rem;
       height: 212rem;
     }

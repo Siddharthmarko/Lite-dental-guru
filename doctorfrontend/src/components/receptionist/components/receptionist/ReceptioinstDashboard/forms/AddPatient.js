@@ -824,7 +824,7 @@ function AddPatient() {
                       <option value="Credit">Credit</option>
                     )} */}
 
-                    {currentBranch?.[0]?.allow_insurance === "Yes" && (
+                    {currentBranch?.allow_insurance === "Yes" && (
                       <option value="Credit">Credit</option>
                     )}
                     {/* <option value="CGHS(Serving)">CGHS(Serving)</option>

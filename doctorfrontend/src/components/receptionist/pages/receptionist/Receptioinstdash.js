@@ -7,6 +7,7 @@ import AppointTable from "../../components/receptionist/ReceptioinstDashboard/Ap
 import Doctor from "../../components/receptionist/ReceptioinstDashboard/Doctor";
 import Calender1 from "../../components/receptionist/ReceptioinstDashboard/Calender1";
 import styled from "styled-components";
+import Footer from "../../components/receptionist/Footer";
 
 function Receptioinstdash() {
   return (
@@ -50,6 +51,15 @@ function Receptioinstdash() {
 
 export default Receptioinstdash;
 const Wrapper = styled.div`
+  .foot {
+    position: sticky; /* Keeps the footer at the bottom */
+    bottom: 0;
+    width: 100%; /* Ensure it spans the full width */
+    background-color: #f8f9fa; /* Example background color */
+
+    text-align: center;
+  }
+
   overflow: hidden;
 
   .cards {
