@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import Select from 'react-select';
-import CreatableSelect from 'react-select/creatable';
-import { Modal, Button } from 'react-bootstrap';
+import Select from "react-select";
+import CreatableSelect from "react-select/creatable";
+import { Modal, Button } from "react-bootstrap";
 import AddPatient from "./forms/AddPatient";
 import BookAppointment from "./forms/BookAppointment";
 
-
 function Form() {
-
-  
   return (
     <Wrapper>
       <div className="">
@@ -52,7 +49,7 @@ function Form() {
                 aria-labelledby="home-tab"
                 tabindex="0"
               >
-               <AddPatient/>
+                <AddPatient />
               </div>
 
               <div
@@ -62,7 +59,7 @@ function Form() {
                 aria-labelledby="profile-tab"
                 tabindex="0"
               >
-               <BookAppointment/>
+                <BookAppointment />
               </div>
             </div>
           </ul>
@@ -75,75 +72,59 @@ function Form() {
 export default Form;
 
 const Wrapper = styled.div`
-
-  
- position: relative;
+  position: relative;
   #section3 {
     @media screen and (max-width: 768px) {
       margin-top: 1rem;
       width: 75%;
-      
+
       margin: 1rem auto;
-      
-    
     }
-    @media screen and (min-width: 770px) and (max-width: 1020px)  {
+    @media screen and (min-width: 770px) and (max-width: 1020px) {
       width: 75%;
-      
+
       margin: 1rem auto;
     }
   }
-    .formbtn {
-      margin-top: 1rem;
-      
-    }
+  .formbtn {
+    margin-top: 1rem;
+  }
 
-    #tab1 {
-      height: 12rem;
-      overflow-y: auto;
-      @media screen and (max-width: 768px) {
-        margin-left: -1.1rem;
-      }
+  #tab1 {
+    height: 12rem;
+    overflow-y: auto;
+    @media screen and (max-width: 768px) {
+      margin-left: -1.1rem;
     }
+  }
 
-    #btn2 {
-      
-
-      @media screen and (max-width: 768px) {
-        font-size: small;
-        margin-left: 5.5rem;
-      }
-      @media screen and (min-width: 768px) and (max-width: 1020px) {
-        font-size: small;
-        margin-left: 1rem;
-      }
-      @media screen and (min-width: 1020px) and (max-width: 1600px) {
-        
-        margin-bottom: 1rem;
-        font-size: small;
-        
-      }
-      @media screen and (min-width: 1600px) and (max-width: 3700px) {
-      
-        margin-bottom: 1rem;
-        font-size: small;
-        
-      }
+  #btn2 {
+    @media screen and (max-width: 768px) {
+      font-size: small;
+      margin-left: 5.5rem;
     }
-    #myTabContent{
-      height: 28.5rem;
-      overflow-y: auto;
-      
+    @media screen and (min-width: 768px) and (max-width: 1020px) {
+      font-size: small;
+      margin-left: 1rem;
     }
-    .nav-link{
-      @media screen and (min-width: 1020px) and (max-width: 1200px) {
-        
-       
-        font-size: small;
-        
-      }
+    @media screen and (min-width: 1020px) and (max-width: 1600px) {
+      margin-bottom: 1rem;
+      font-size: small;
     }
-  
+    @media screen and (min-width: 1600px) and (max-width: 3700px) {
+      margin-bottom: 1rem;
+      font-size: small;
+    }
+  }
+  #myTabContent {
+    height: 28.5rem;
+    overflow-y: auto;
+  }
+  .nav-link {
+    @media screen and (min-width: 1020px) and (max-width: 1200px) {
+      font-size: small;
+    }
+  }
 `;
 
 // const FormContainer = styled.div`
@@ -153,7 +134,7 @@ const Wrapper = styled.div`
 
 const PatientList = styled.div`
   position: absolute;
-  
+
   z-index: 1000;
   width: 100%;
   overflow-y: auto;
@@ -166,7 +147,6 @@ const DoctorList = styled.div`
   width: 100%;
   overflow-y: auto;
   max-height: 400px;
- 
+
   /* Your additional styling for the doctor list */
 `;
-

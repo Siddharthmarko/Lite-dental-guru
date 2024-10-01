@@ -199,7 +199,7 @@ const NewTreatment = () => {
   return (
     <>
       <Wrapper>
-        <div className="container-fluid main">
+        <div className="container-fluid main mt-2 ms-md-2 ms-md-0">
           <div className="">
             {" "}
             {/* Center the content horizontally */}
@@ -268,7 +268,7 @@ const NewTreatment = () => {
           </div>
         </div>
         <div className="box">
-          <div className="table-responsive">
+          <div className="table-responsive m-md-4 m-lg-0">
             <table
               className="table table-bordered table-striped border"
               style={{ overflowX: "scroll" }}
@@ -357,7 +357,7 @@ const NewTreatment = () => {
             </div> */}
           </div>
         </div>
-        <div className="mt-4 mx-3">
+        {/* <div className="mt-4 mx-3">
           <h2 style={{ color: "#213555" }}>List of Tests</h2>
           <div className="mb-3">
             <div className="row"></div>
@@ -446,7 +446,7 @@ const NewTreatment = () => {
               </>
             )}
           </div>
-        </div>
+        </div> */}
 
         {showEditPopup && (
           <SittingProcessModal

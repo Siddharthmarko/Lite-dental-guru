@@ -40,7 +40,7 @@ function FinalInvoices() {
         <div
           className="col-lg-1 col-1 position-fixed"
           id="hd"
-          style={{ paddingTop: "70px" }}
+          style={{ paddingTop: "60px" }}
         >
           <Sider />
         </div>

@@ -1876,7 +1876,7 @@ const ExaminationPatientTest = ({ tpid }) => {
                           required
                           onChange={handleSelecteditem}
                           value={inputItem.advice}
-                          class="form-control"
+                          class="form-control mt-2"
                           placeholder="Advice"
                         />
                       </div>
@@ -1891,7 +1891,7 @@ const ExaminationPatientTest = ({ tpid }) => {
                           onChange={handleSelecteditem}
                           required
                           value={inputItem.onExamination}
-                          class="form-control"
+                          class="form-control mt-2"
                           placeholder="Examination"
                         />
                       </div>

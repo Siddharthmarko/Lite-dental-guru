@@ -78,22 +78,22 @@ const PatientProfile = () => {
     <Wrapper>
       {/* <HeadBar /> */}
       <Header />
-      <div className="row mrgnzero" style={{ paddingTop: "70px" }}>
+      <div className="row mrgnzero" style={{ paddingTop: "60px" }}>
         <div
           className="col-xxl-1 col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1 position-fixed"
           id="sidebar"
         >
           <Sider />
         </div>
-        <div className="col-lg-1"></div>
-        <div className="col-xxl-11 col-xl-11 col-lg-11 col-md-11 col-sm-11 col-11 p-0">
+        <div className="col-md-1"></div>
+        <div className="col-xxl-11 col-xl-11 col-lg-11 col-md-11 col-sm-11 col-11 p-0 mt-3">
           <div className="container-fluid mt-3">
             <div className="d-flex justify-content-between">
               {/* <BranchSelector /> */}
             </div>
           </div>
           <div className="row g-1 px-0">
-            <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+            <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12 ms-md-5 ms-lg-0">
               <button
                 className="btn btn-success shadow"
                 style={{
@@ -388,7 +388,7 @@ const PatientProfile = () => {
                 </div>
               </div>
             </div>
-            <div className="col-xxl-9 col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 col-sm-12">
+            <div className="col-xxl-9 col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 col-sm-12 ms-md-5 ms-lg-0">
               <div className="mrgtop">
                 <Navbar uhid={uhid} />
               </div>

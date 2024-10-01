@@ -9,13 +9,15 @@ const ClinicSetting = () => {
     <>
       <Container>
         <Header />
-        <div className="main" style={{ paddingTop: "70px" }}>
+        <div className="main" style={{ paddingTop: "60px" }}>
           <div className="container-fluid">
             <div className="row flex-nowrap ">
               <div className="col-lg-1 col-1 ps-0 position-fixed" id="sidebar">
                 <Sider />
               </div>
-
+              {/* for fix sider */}
+              <div className="col-md-1"></div>
+              {/* for fix sider */}
               <div className="col-lg-12 col-12 ps-0">
                 <div className="container mt-3">
                   <div className="container-fluid">

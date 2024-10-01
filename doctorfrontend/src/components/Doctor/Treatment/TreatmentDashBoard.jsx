@@ -16,14 +16,14 @@ const TreatmentDashBoard = () => {
 
         <div className="main">
           <div className="container-fluid">
-            <div className="row flex-nowrap" style={{ paddingTop: "70px" }}>
+            <div className="row flex-nowrap" style={{ paddingTop: "60px" }}>
               <div className="col-lg-1 col-1 p-0 position-fixed" id="sidebar">
                 <SideBar />
               </div>
               {/* for fixed sidebar */}
-              <div className="col-lg-1"></div>
+              <div className="col-md-1"></div>
               {/* for fixed sidebar */}
-              <div className="col-lg-11 col-11 ps-0 m-2">
+              <div className="col-lg-11 col-11 ps-0 mt-3 ">
                 <NewTreatment />
               </div>
             </div>
@@ -51,7 +51,7 @@ const Wrapper = styled.div`
       height: 151rem;
     }
     @media screen and (min-width: 1020px) and (max-width: 1600px) {
-      height: 62rem;
+      height: 100vh;
     }
   }
 `;

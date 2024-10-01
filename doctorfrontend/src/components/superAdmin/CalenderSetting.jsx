@@ -385,7 +385,7 @@ const CalenderSetting = () => {
     <>
       <Container>
         <Header />
-        <div className="main" style={{ paddingTop: "70px" }}>
+        <div className="main" style={{ paddingTop: "60px" }}>
           <div className="container-fluid">
             <div className="row flex-nowrap ">
               <div className="col-lg-1 col-1 p-0 position-fixed" id="sidebar">
@@ -393,7 +393,7 @@ const CalenderSetting = () => {
               </div>
 
               {/* for fixed sidebar */}
-              <div className="col-lg-1"></div>
+              <div className="col-md-1"></div>
               {/* for fixed sidebar */}
               <div className="col-lg-11 col-11 ps-0">
                 <div className="container-fluid mt-3">
@@ -409,7 +409,10 @@ const CalenderSetting = () => {
                   </div>
                 </div>
                 <div className="container-fluid mt-3">
-                  <button className="btn btn-success" onClick={goBack}>
+                  <button
+                    className="btn btn-success ms-md-2 ms-lg-0 "
+                    onClick={goBack}
+                  >
                     <IoMdArrowRoundBack /> Back
                   </button>
                   <div className="banner-mid bg-light mt-2">

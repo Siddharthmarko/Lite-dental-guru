@@ -15,11 +15,7 @@ function Receptioinstdash() {
       <Header />
 
       <div className="row flex-nowrap">
-        <div
-          className="col-lg-1 col-1 position-fixed"
-          id="sider"
-          style={{ paddingTop: "70px" }}
-        >
+        <div className="col-lg-1 col-1 position-fixed" id="sider">
           <Sider />
         </div>
 
@@ -51,15 +47,6 @@ function Receptioinstdash() {
 
 export default Receptioinstdash;
 const Wrapper = styled.div`
-  .foot {
-    position: sticky; /* Keeps the footer at the bottom */
-    bottom: 0;
-    width: 100%; /* Ensure it spans the full width */
-    background-color: #f8f9fa; /* Example background color */
-
-    text-align: center;
-  }
-
   overflow: hidden;
 
   .cards {
@@ -133,7 +120,7 @@ const Wrapper = styled.div`
     z-index: 100;
   }
   #sider {
-    // padding-top: 60px; /* Height of header */
+    padding-top: 60px; /* Height of header */
     min-height: 100vh;
     position: fixed;
   }

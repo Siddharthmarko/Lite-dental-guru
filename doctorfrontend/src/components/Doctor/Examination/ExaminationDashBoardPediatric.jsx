@@ -21,7 +21,7 @@ const ExaminationDashBoardPediatric = () => {
                 <Sider />
               </div>
               {/* for fixed sidebar */}
-              <div className="col-lg-1"></div>
+              <div className="col-md-1"></div>
               {/* for fixed sidebar */}
               <div className="col-lg-11 col-11 ps-0 m-2">
                 <PediatricDental tpid={tpid} />

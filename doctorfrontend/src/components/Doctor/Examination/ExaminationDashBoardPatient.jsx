@@ -18,12 +18,12 @@ const ExaminationDashBoardPatient = () => {
 
         <div className="main">
           <div className="container-fluid">
-            <div className="row flex-nowrap" style={{ paddingTop: "70px" }}>
+            <div className="row flex-nowrap" style={{ paddingTop: "60px" }}>
               <div className="col-lg-1 col-1 p-0 position-fixed" id="sidebar">
                 <Sider />
               </div>
 
-              <div className="col-lg-11 col-11 ps-5 ms-5">
+              <div className="col-lg-11 col-11 ps-5 ms-lg-5 ms-md-0 mt-3">
                 <ExaminationPatient tpid={tpid} />
               </div>
             </div>
@@ -49,7 +49,7 @@ const Wrapper = styled.div`
       height: 151rem;
     }
     @media screen and (min-width: 1020px) and (max-width: 1600px) {
-      height: 62rem;
+      height: 100vh;
     }
   }
 `;

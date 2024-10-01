@@ -69,7 +69,7 @@ const DoctorLogin = () => {
         dispatch(setUser(response.data.user));
         // dispatch(setBranch(response.data.user.branch_name));
         console.log(braches[0], "oooooooooooooooooooooooooooo");
-        dispatch(setBranch(braches[0]));
+        dispatch(setBranch(braches));
         setLoading(false);
         // navigate("/doctor-dashboard");
         navigate("/dashboard");

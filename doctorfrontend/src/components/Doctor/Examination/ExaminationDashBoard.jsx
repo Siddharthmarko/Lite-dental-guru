@@ -17,13 +17,13 @@ const ExaminationDashBoard = () => {
 
         <div className="main">
           <div className="container-fluid">
-            <div className="row flex-nowrap" style={{ paddingTop: "70px" }}>
+            <div className="row flex-nowrap" style={{ paddingTop: "60px" }}>
               <div className="col-lg-1 col-1 p-0 position-fixed" id="sidebar">
                 <Sider />
               </div>
 
               {/* for fixed sidebar */}
-              <div className="col-lg-1"></div>
+              <div className="col-md-1"></div>
               {/* for fixed sidebar */}
 
               <div className="col-lg-11 col-11 ps-0">
