@@ -18,9 +18,9 @@ const ClinicSetting = () => {
               {/* for fix sider */}
               <div className="col-md-1"></div>
               {/* for fix sider */}
-              <div className="col-lg-12 col-12 ps-0">
-                <div className="container mt-3">
-                  <div className="container-fluid">
+              <div className="col-lg-10 col-10 ps-0 ">
+                <div className="container mt-5">
+                  <div className="container-fluid ">
                     <div className="row mt-3">
                       {/* <div className="col-1"></div> */}
                       <div className="col-12">
@@ -32,7 +32,7 @@ const ClinicSetting = () => {
                       </div>
                       <div className="row mt-5">
                         <div className="col-12">
-                          <div class="row g-5">
+                          <div class="row d-flex justify-content-around ">
                             <div class="col-xl-3 col-lg-3 col-md-5 col-sm-12 col-12">
                               <Link to="/calender-setting">
                                 <div className="card">
@@ -94,6 +94,7 @@ const ClinicSetting = () => {
 
 export default ClinicSetting;
 const Container = styled.div`
+  overflow: hidden;
   nav {
     /* background-color: #004aad; */
   }
@@ -105,6 +106,10 @@ const Container = styled.div`
       background-color: #0f737b;
     }
   }
+  // .row {
+  //   display: flex;
+  //   justify-content: space-around;
+  // }
 
   .card-body {
     display: flex;

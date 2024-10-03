@@ -1141,7 +1141,7 @@ const TreatSuggest = () => {
                 <div className="row g-3">
                   <div className="col-xxl-2 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6">
                     <div className="form-outline">
-                      <label>disease</label>
+                      <label>Disease</label>
                       <select
                         name="disease"
                         onChange={handleChangeMed}
@@ -1150,7 +1150,7 @@ const TreatSuggest = () => {
                         value={prescriptionData.disease}
                         className="form-select text-start w-100"
                       >
-                        <option value="">-select disease-</option>
+                        <option value="">-select Disease-</option>
                         {uniqueDiseases.map((item, index) => (
                           <option key={index} value={item}>
                             {item}
@@ -1345,6 +1345,7 @@ const TreatSuggest = () => {
                   <tr>
                     <th className="colorth">Date</th>
                     <th className="colorth">Medicine Name</th>
+                    <th className="colorth">Disease</th>
                     <th className="colorth">Dosage</th>
                     <th className="colorth">Frequency</th>
                     <th className="colorth">Duration</th>
@@ -1357,6 +1358,7 @@ const TreatSuggest = () => {
                     <tr key={index}>
                       <td>{item.date?.split(" ")[0]}</td>
                       <td>{item.medicine_name}</td>
+                      <td>{item.Diseases}</td>
                       <td>{item.dosage}</td>
                       <td>{item.frequency}</td>
                       <td>{item.duration}</td>
