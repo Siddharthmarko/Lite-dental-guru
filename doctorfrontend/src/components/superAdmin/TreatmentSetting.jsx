@@ -360,18 +360,26 @@ const TreatmentSetting = () => {
   return (
     <Container>
       <Header />
-      <div className="main">
+      <div className="main" style={{ paddingTop: "60px" }}>
         <div className="container-fluid">
           <div className="row flex-nowrap ">
-            <div className="col-lg-1 col-1 p-0">
+            <div className="col-lg-1 col-1 p-0 position-fixed" id="sidebar">
               <Sider />
             </div>
-            <div className="col-lg-11 col-11 ps-0">
+
+            {/* for fixed sidebar */}
+            <div className="col-md-1"></div>
+            {/* for fixed sidebar */}
+
+            <div className="col-lg-11 col-11 ps-0 mt-3">
               <div className="container-fluid mt-3">
                 {/* <BranchSelector /> */}
               </div>
               <div className="container-fluid mt-3">
-                <button className="btn btn-success" onClick={goBack}>
+                <button
+                  className="btn btn-success ms-md-2 ms-lg-0"
+                  onClick={goBack}
+                >
                   <IoMdArrowRoundBack /> Back
                 </button>
                 <div className="container-fluid">
@@ -399,7 +407,7 @@ const TreatmentSetting = () => {
                         <div className="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12">
                           <div className="d-flex justify-content-center align-items-center">
                             <button
-                              className="btn btn-info btnback p-3"
+                              className="btn btn-info btnback p-lg-3 "
                               onClick={() => openAddTreatmentsPopup()}
                             >
                               <GrAdd size={22} /> Add Treatment
@@ -468,9 +476,9 @@ const TreatmentSetting = () => {
                                     {/* <td className="table-small">
                                       {item.treatment_discount}
                                     </td> */}
-                                    <td>
+                                    <td className="d-flex">
                                       <button
-                                        className="btn btn-warning text-light"
+                                        className="btn btn-warning text-light "
                                         style={{
                                           backgroundColor: "#014cb1",
                                           borderColor: "#014cb1",
@@ -894,6 +902,28 @@ const Container = styled.div`
       background: #000;
     }
   }
+  #sidebar {
+    width: 5.04rem;
+    height: 79rem;
+    background-color: #008080;
+    @media screen and (max-width: 768px) {
+      width: 3rem;
+      height: 212rem;
+    }
+    @media screen and (min-width: 768px) and (max-width: 1020px) {
+      width: 5rem;
+      height: 151rem;
+    }
+    @media screen and (min-width: 1020px) and (max-width: 1600px) {
+      height: 62rem;
+    }
+  }
+  @media (min-width: 768px) and (max-width: 1000px) {
+    .custom-btn {
+      font-size: 12px; /* Adjust font size */
+      padding: 5px 10px; /* Adjust padding */
+    }
+  }
 `;
 const PaginationContainer = styled.div`
   .pagination {
@@ -945,5 +975,8 @@ const PaginationContainer = styled.div`
   hr {
     color: #dbd4d4;
     box-shadow: 0px 4px 3px black;
+  }
+  body {
+    padding: 0;
   }
 `;

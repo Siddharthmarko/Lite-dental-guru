@@ -16,7 +16,10 @@ function AddPatient() {
   const user = useSelector((state) => state.user);
   const { refreshTable } = useSelector((state) => state.user);
   const { currentBranch } = useSelector((state) => state.branch);
-  console.log(currentBranch, "88888888888888888888888888");
+  console.log(
+    currentBranch,
+    "k-----------------------------------------------------------------------------------"
+  );
   const branch = user?.currentUser?.branch_name;
   console.log(branch, "333333333333333333333333");
   const token = user?.currentUser?.token;
@@ -822,7 +825,7 @@ function AddPatient() {
                       <option value="Credit">Credit</option>
                     )} */}
 
-                    {currentBranch?.allow_insurance === "Yes" && (
+                    {currentBranch[0]?.allow_insurance === "Yes" && (
                       <option value="Credit">Credit</option>
                     )}
                     {/* <option value="CGHS(Serving)">CGHS(Serving)</option>

@@ -190,7 +190,7 @@ const ExaminationDashTwo = () => {
 
 export default ExaminationDashTwo;
 const Wrapper = styled.div`
-  overflow: hidden;
+  // overflow: hidden;
   img {
     width: 650px;
     border-radius: 15px;

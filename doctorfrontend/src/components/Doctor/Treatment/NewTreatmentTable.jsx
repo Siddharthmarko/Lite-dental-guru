@@ -282,47 +282,48 @@ const NewTreatmentTable = () => {
               </p>
             </div>
           </div>
-          <table class="table table-bordered table-striped border">
-            <thead>
-              <tr>
-                <th>Date</th>
-                <th>Sitting Number</th>
-                <th>Treatment</th>
-                <th>Teeth No.</th>
-                <th>Qty</th>
-                <th>Treatment Cost</th>
-                <th>Cost * Qty</th>
-                <th>Discount %</th>
+          <div className="table-responsive m-md-3 m-lg-0">
+            <table class="table table-bordered table-striped border">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Sitting Number</th>
+                  <th>Treatment</th>
+                  <th>Teeth No.</th>
+                  <th>Qty</th>
+                  <th>Treatment Cost</th>
+                  <th>Cost * Qty</th>
+                  <th>Discount %</th>
 
-                <th>Final Cost</th>
-                <th>Sitting Amount</th>
-                <th>Note</th>
-              </tr>
-            </thead>
-            <tbody>
-              {treatmentData?.map((item, index) => (
-                <tr key={index}>
-                  <td>{item.date?.split(" ")[0]}</td>
-                  <td>{item.sitting_number}</td>
-                  <td>{item.dental_treatment}</td>
-                  <td>{item.no_teeth}</td>
-                  <td>{item.qty}</td>
-                  <td>{item.total_amt}</td>
-                  <td>{item.cost_amt}</td>
-                  <td>{item.disc_amt}</td>
+                  <th>Final Cost</th>
+                  <th>Sitting Amount</th>
+                  <th>Note</th>
+                </tr>
+              </thead>
+              <tbody>
+                {treatmentData?.map((item, index) => (
+                  <tr key={index}>
+                    <td>{item.date?.split(" ")[0]}</td>
+                    <td>{item.sitting_number}</td>
+                    <td>{item.dental_treatment}</td>
+                    <td>{item.no_teeth}</td>
+                    <td>{item.qty}</td>
+                    <td>{item.total_amt}</td>
+                    <td>{item.cost_amt}</td>
+                    <td>{item.disc_amt}</td>
 
-                  <td>{item.net_amount}</td>
-                  <td>
-                    {" "}
-                    {item.sitting_payment_status === "Pending" ||
-                    item.sitting_payment_status === "pending"
-                      ? item.sec_rec_amt > 0
-                        ? item.sec_rec_amt
-                        : 0
-                      : item.paid_amount}
-                  </td>
-                  <td>{item.note}</td>
-                  {/* <td>
+                    <td>{item.net_amount}</td>
+                    <td>
+                      {" "}
+                      {item.sitting_payment_status === "Pending" ||
+                      item.sitting_payment_status === "pending"
+                        ? item.sec_rec_amt > 0
+                          ? item.sec_rec_amt
+                          : 0
+                        : item.paid_amount}
+                    </td>
+                    <td>{item.note}</td>
+                    {/* <td>
                     <button
                       className="btn btn-primary justify-content-end"
                       data-bs-toggle="modal"
@@ -332,36 +333,37 @@ const NewTreatmentTable = () => {
                       <MdEdit size={25} />
                     </button>
                   </td> */}
-                  <div
-                    className="modal fade"
-                    id={`exampleModal-${index}`}
-                    tabIndex="-1"
-                    aria-labelledby={`exampleModalLabel-${index}`}
-                    aria-hidden="true"
-                  >
-                    <div className="modal-dialog modal-dialog-centered">
-                      <div className="modal-content">
-                        <div className="modal-header">
-                          <h1
-                            className="modal-title fs-5"
-                            id={`exampleModalLabel-${index}`}
-                          >
-                            Update Data
-                          </h1>
-                          <button
-                            type="button"
-                            className="btn-close"
-                            data-bs-dismiss="modal"
-                            aria-label="Close"
-                          ></button>
+                    <div
+                      className="modal fade"
+                      id={`exampleModal-${index}`}
+                      tabIndex="-1"
+                      aria-labelledby={`exampleModalLabel-${index}`}
+                      aria-hidden="true"
+                    >
+                      <div className="modal-dialog modal-dialog-centered">
+                        <div className="modal-content">
+                          <div className="modal-header">
+                            <h1
+                              className="modal-title fs-5"
+                              id={`exampleModalLabel-${index}`}
+                            >
+                              Update Data
+                            </h1>
+                            <button
+                              type="button"
+                              className="btn-close"
+                              data-bs-dismiss="modal"
+                              aria-label="Close"
+                            ></button>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
           <div className="text-center">
             {filterTreatmentStats ? (
               <button

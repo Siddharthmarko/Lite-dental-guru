@@ -16,9 +16,13 @@ const ClinicConfigSetting = () => {
   const user = useSelector((state) => state.user);
   const token = user.currentUser.token;
   console.log(`User Name: ${token}`);
-  console.log(`User Name: ${user.currentUser.name}, User ID: ${user.currentUser.id}`);
+  console.log(
+    `User Name: ${user.currentUser.name}, User ID: ${user.currentUser.id}`
+  );
   console.log("User State:", user);
-  const branch_name = useSelector((state) => state.user.currentUser.branch_name);
+  const branch_name = useSelector(
+    (state) => state.user.currentUser.branch_name
+  );
   console.log(`User Name: ${branch_name}`);
   const [docPayment, setDocPayment] = useState();
   const [allowInsurance, setAllowInsurance] = useState();
@@ -246,12 +250,15 @@ const ClinicConfigSetting = () => {
     <>
       <Container>
         <Header />
-        <div className="main">
+        <div className="main" style={{ paddingTop: "60px" }}>
           <div className="container-fluid">
             <div className="row flex-nowrap ">
-              <div className="col-lg-1 col-1 p-0">
+              <div className="col-lg-1 col-1 p-0 position-fixed" id="sidebar">
                 <Sider />
               </div>
+              {/* for fixed sidebar */}
+              <div className="col-md-1"></div>
+              {/* for fixed sidebar */}
               <div className="col-lg-11 col-11 ps-0">
                 <div className="container-fluid mt-3">
                   <div className="d-flex justify-content-between">
@@ -266,7 +273,10 @@ const ClinicConfigSetting = () => {
                   </div>
                 </div>
                 <div className="container-fluid mt-3">
-                  <button className="btn btn-success" onClick={goBack}>
+                  <button
+                    className="btn btn-success ms-md-2 ms-lg-0"
+                    onClick={goBack}
+                  >
                     <IoMdArrowRoundBack /> Back
                   </button>
                   <div className="banner-mid mt-2">
@@ -721,5 +731,21 @@ const Container = styled.div`
   }
   .table-responsive {
     height: 20rem;
+  }
+  #sidebar {
+    width: 5.04rem;
+    height: 79rem;
+    background-color: #008080;
+    @media screen and (max-width: 768px) {
+      width: 3rem;
+      height: 212rem;
+    }
+    @media screen and (min-width: 768px) and (max-width: 1020px) {
+      width: 5rem;
+      height: 151rem;
+    }
+    @media screen and (min-width: 1020px) and (max-width: 1600px) {
+      height: 62rem;
+    }
   }
 `;

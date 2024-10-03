@@ -43,7 +43,6 @@ const DoctorLogin = () => {
     setSelectedBranch(e.target.value);
   };
 
-
   console.log(selectedBranch);
   console.log(storeBranch);
 
@@ -70,7 +69,7 @@ const DoctorLogin = () => {
         dispatch(setUser(response.data.user));
         // dispatch(setBranch(response.data.user.branch_name));
         console.log(braches[0], "oooooooooooooooooooooooooooo");
-        dispatch(setBranch(braches[0]));
+        dispatch(setBranch(braches));
         setLoading(false);
         // navigate("/doctor-dashboard");
         navigate("/dashboard");
@@ -100,14 +99,13 @@ const DoctorLogin = () => {
     }
   };
 
-  
-//   useEffect(()=>{
-//     const filterdResult = braches.filter((item) => {
-//       return item.branch_name === selectedBranch;
-//     })
-//   console.log(filterdResult)
-//    setStoreBranch(filterdResult)
-// },[selectedBranch])
+  //   useEffect(()=>{
+  //     const filterdResult = braches.filter((item) => {
+  //       return item.branch_name === selectedBranch;
+  //     })
+  //   console.log(filterdResult)
+  //    setStoreBranch(filterdResult)
+  // },[selectedBranch])
 
   const closeUpdatePopup = () => {
     setPopupVisible(false);

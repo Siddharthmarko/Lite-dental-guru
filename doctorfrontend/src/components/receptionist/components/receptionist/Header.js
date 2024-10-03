@@ -27,7 +27,10 @@ function Header() {
 
   return (
     <Wrapper>
-      <div className="container-fluid" style={{ backgroundColor: "teal" }}>
+      <div
+        className="container-fluid fixed-top header"
+        style={{ backgroundColor: "teal" }}
+      >
         <nav className="navbar navbar-expand-lg ">
           <div className="container-fluid">
             <Link to="/receptionist-dashboard">
@@ -132,6 +135,9 @@ function Header() {
 export default Header;
 const Wrapper = styled.div`
   box-shadow: 1px 1px 6px black;
+  .header {
+    z-index: 2;
+  }
 
   #userid {
     margin-left: -5rem;

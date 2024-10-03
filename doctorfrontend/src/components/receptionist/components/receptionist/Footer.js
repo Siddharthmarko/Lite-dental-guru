@@ -1,19 +1,24 @@
+import styled from "styled-components";
+
 const Footer = () => {
-    return (
-        <footer style={{zIndex: "1"}} className="bg-body-tertiary text-center text-lg-start fixed-bottom">
-            {/* Copyright */}
-            <div
-                className="text-center p-3"
-                style={{ backgroundColor: "rgba(0, 0, 0, 0.05)" }}
-            >
-                © 2020 Copyright:
-                <a className="text-body" href="https://mdbootstrap.com/">
-                    MDBootstrap.com
-                </a>
-            </div>
-            {/* Copyright */}
-        </footer>
-    );
+  return (
+    <Wrapper>
+      <footer className=" text-center text-lg-start  ">
+        {/* Copyright */}
+        <div
+          className="text-center p-3"
+          // style={{ backgroundColor: "rgba(0, 0, 0, 0.05)" }}
+        >
+          © 2024 Copyright:
+          <a className="text-body" href="https://doaguru.com/">
+            DoaGuru Infosystems
+          </a>
+        </div>
+        {/* Copyright */}
+      </footer>
+    </Wrapper>
+  );
 };
 
 export default Footer;
+const Wrapper = styled.div``;

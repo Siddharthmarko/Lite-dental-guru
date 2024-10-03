@@ -71,7 +71,11 @@ const BranchInfo = () => {
         </div>
 
         <div className="row mrgnzero">
-          <div className="col-lg-1 col-md-1 col-1" id="sider">
+          <div
+            className="col-lg-1 col-md-1 col-1"
+            id="sider"
+            style={{ paddingTop: "70px" }}
+          >
             <Sider />
           </div>
           <div className="col-lg-11 col-md-11 col-11" id="set">
