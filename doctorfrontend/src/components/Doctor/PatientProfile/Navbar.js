@@ -343,7 +343,7 @@ const Navbar = () => {
           >
             <ul className="list-group">
               <li className="list-group-item">
-                <Timeline uhid={uhid} />
+                <Timeline />
               </li>
             </ul>
           </div>

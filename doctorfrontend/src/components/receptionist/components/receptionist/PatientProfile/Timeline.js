@@ -28,7 +28,7 @@ const Timeline = () => {
           },
         }
       );
-      console.log(data);
+      console.log(data, "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
       setPatTimeline(data?.data);
     } catch (error) {
       console.log(error);

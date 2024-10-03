@@ -26,7 +26,7 @@ const Timeline = () => {
           },
         }
       );
-      console.log(response.data.data);
+      console.log(response.data.data, "runt hius ");
       setPatTimeline(response.data.data);
     } catch (error) {
       console.log(error);
@@ -55,18 +55,22 @@ const Timeline = () => {
                 </tr>
               </thead>
               <tbody>
-                {patTimeline?.map((item) => (
-                  <>
-                    <tr>
-                      <td>{item.event_date}</td>
-                      <td>
-                        {moment(item.event_time, "HH:mm:ss").format("hh:mm A")}
-                      </td>
-                      <td>{item.event_type}</td>
-                      <td>{item.event_description}</td>
+              {patTimeline?.map((item) => { 
+                  let formattedTime = item?.event_time;
+
+                  if (formattedTime && formattedTime.includes(':') && formattedTime.split(":").length === 3) {
+                    formattedTime = moment(formattedTime, "HH:mm:ss").format("hh:mm A");
+                  }
+              
+                  return (
+                    <tr key={item?.event_date + item?.event_time}>
+                      <td>{item?.event_date}</td>
+                      <td>{formattedTime}</td>
+                      <td>{item?.event_type}</td>
+                      <td>{item?.event_description}</td>
                     </tr>
-                  </>
-                ))}
+                  );
+})}
               </tbody>
             </table>
           </div>

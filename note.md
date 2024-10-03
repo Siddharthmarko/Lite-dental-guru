@@ -1,5 +1,6 @@
 
-# 30 se chalu tasks
+# 30 se chalu tasks 
+   - update abhi nai kar rahe hai 1 october
 <!-- - > reminder  -->
 - > currency in dental guru lite
 - > code removing

@@ -290,8 +290,13 @@ const TreatmentSetting = () => {
             },
           }
         );
-        getTreatmentList();
-        cogoToast.success("Treatment deleted successfully");
+        if(response.data.success === true){
+          console.log(response);
+          getTreatmentList();
+          cogoToast.success("Treatment deleted successfully");
+        } else {
+          cogoToast.error("Treatment Not deleted successfully");
+        }
       }
     } catch (error) {
       console.log(error);
