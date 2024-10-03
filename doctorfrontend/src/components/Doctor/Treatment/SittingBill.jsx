@@ -20,6 +20,7 @@ const SittingBill = () => {
   const [getPatientData, setGetPatientData] = useState([]);
   const user = useSelector((state) => state.user);
   const token = user.currentUser.token;
+  console.log(token, "sdfghjksdfghjsdfghjksdfghjk");
   console.log(user);
   const branch = user.currentUser.branch_name;
   console.log(branch);
@@ -234,6 +235,7 @@ const SittingBill = () => {
       for (let [key, value] of formData.entries()) {
         console.log(key, value);
       }
+
       const response = await axios.post(
         "https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/prescriptionOnMail",
         formData,
@@ -244,10 +246,18 @@ const SittingBill = () => {
           },
         }
       );
+      // alert("Done mail");
+      console.log(
+        formData,
+        "!----------------------------------------------------------------!"
+      );
+
       cogoToast.success("Sitting bill sent successfully");
-      console.log("PDF sent successfully:", response.data);
+      console.log("256 PDF sent successfully:", response.data);
     } catch (error) {
       console.error("Error sending PDF:", error);
+      alert("asdfgh");
+      cogoToast.error("Error to send bill");
     }
   };
 

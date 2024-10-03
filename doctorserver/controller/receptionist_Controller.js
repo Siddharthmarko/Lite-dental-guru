@@ -1,4 +1,4 @@
-const  db  = require("../connect.js");
+const db = require("../connect.js");
 const dotenv = require("dotenv");
 const bcrypt = require("bcrypt");
 const JWT = require("jsonwebtoken");
@@ -143,9 +143,9 @@ const transporter = nodemailer.createTransport({
 });
 
 // const transporter = nodemailer.createTransport({
-//   host: "doaguru.com", 
-//   port: 465,  
-//   secure: true, 
+//   host: "doaguru.com",
+//   port: 465,
+//   secure: true,
 //   auth: {
 //     user: "info@doaguru.com",
 //     pass: "dgwebmail@132",
@@ -176,7 +176,7 @@ const addPatient = (req, res) => {
       disease,
       patientType,
       credit_By,
-      beneficiary_Id ,
+      beneficiary_Id,
       status,
       doctorId,
       doctor_name,
@@ -192,7 +192,7 @@ const addPatient = (req, res) => {
       patient_added_by_emp_id,
       sharemail,
       sharewhatsapp,
-      sharesms
+      sharesms,
     } = req.body;
 
     // const created_at = new Date();
@@ -349,35 +349,34 @@ const addPatient = (req, res) => {
 
                         const emailSubject = `Appointment Confirmation - ${clinicName}`;
 
-                          const appointmentDateTime = new Date(appDateTime);
-                          const appointmentTime =
-                            appointmentDateTime.toLocaleTimeString("en-US", {
-                              hour: "numeric",
-                              minute: "2-digit",
-                              hour12: true,
-                            });
+                        const appointmentDateTime = new Date(appDateTime);
+                        const appointmentTime =
+                          appointmentDateTime.toLocaleTimeString("en-US", {
+                            hour: "numeric",
+                            minute: "2-digit",
+                            hour12: true,
+                          });
 
-                          // Formulate email text
-                          const msgText =
-                            `Dear ${patient_Name.toUpperCase()},\n\n` +
-                            `Your appointment at ${clinicName} has been booked successfully.\n\n` +
-                            `Appointment Details:\n` +
-                            `Doctor Name: ${doctor_name.toUpperCase()}\n` +
-                            `Appointment Date and Time: ${appointmentDateTime.toDateString()} ${appointmentTime} \n` +
-                            `Treatment Provided: ${treatment}\n` +
-                            `OPD Amount: ${opd_amount}\n` +
-                            `Payment Mode: ${payment_Mode}\n\n` +
-                            `Clinic Details:\n` +
-                            `Name: ${clinicName}\n` +
-                            `Contact: ${clinicContact}\n` +
-                            `Address: ${clinicAddress}\n` +
-                            `Email: ${clinicEmail}\n\n` +
-                            `Thank you for choosing ${clinicName}.\n\n` +
-                            `Best regards,\n` +
-                            `${clinicName} Team`;
-                        if ((email && sharemail === "Yes")) {
+                        // Formulate email text
+                        const msgText =
+                          `Dear ${patient_Name.toUpperCase()},\n\n` +
+                          `Your appointment at ${clinicName} has been booked successfully.\n\n` +
+                          `Appointment Details:\n` +
+                          `Doctor Name: ${doctor_name.toUpperCase()}\n` +
+                          `Appointment Date and Time: ${appointmentDateTime.toDateString()} ${appointmentTime} \n` +
+                          `Treatment Provided: ${treatment}\n` +
+                          `OPD Amount: ${opd_amount}\n` +
+                          `Payment Mode: ${payment_Mode}\n\n` +
+                          `Clinic Details:\n` +
+                          `Name: ${clinicName}\n` +
+                          `Contact: ${clinicContact}\n` +
+                          `Address: ${clinicAddress}\n` +
+                          `Email: ${clinicEmail}\n\n` +
+                          `Thank you for choosing ${clinicName}.\n\n` +
+                          `Best regards,\n` +
+                          `${clinicName} Team`;
+                        if (email && sharemail === "Yes") {
                           // Formulate email subject
-                          
 
                           const mailOptions = {
                             from: process.env.EMAILSENDER,
@@ -391,11 +390,12 @@ const addPatient = (req, res) => {
                             mailOptions,
                             (emailErr, info) => {
                               if (emailErr) {
-                                registrationLogger.error("Error sending email:");
+                                registrationLogger.error(
+                                  "Error sending email:"
+                                );
                                 console.error("Error sending email:", emailErr);
                                 // Handle email sending error
                               } else {
-                                
                                 console.log("Email sent:", info.response);
                                 // Handle email sent successfully
                               }
@@ -403,30 +403,42 @@ const addPatient = (req, res) => {
                           );
                         }
 
-                        if((mobile && sharesms === "Yes")){
-                          const  phoneNumber = `+91${mobile}`;
+                        if (mobile && sharesms === "Yes") {
+                          const phoneNumber = `+91${mobile}`;
 
-                             client.messages.create({
+                          client.messages
+                            .create({
                               from: process.env.TWILIONUMBER,
                               to: phoneNumber,
-                              body: msgText ,
-                            }).then(message => console.log("SMS sent successfully:", message.sid))
-                            .catch(error => console.log("Error sending SMS:", error));
-                   
+                              body: msgText,
+                            })
+                            .then((message) =>
+                              console.log("SMS sent successfully:", message.sid)
+                            )
+                            .catch((error) =>
+                              console.log("Error sending SMS:", error)
+                            );
                         }
-                        if((mobile && sharewhatsapp === "Yes")){
-                          const  phoneNumber = `+91${mobile}`;
-              
-                             client.messages.create({
+                        if (mobile && sharewhatsapp === "Yes") {
+                          const phoneNumber = `+91${mobile}`;
+
+                          client.messages
+                            .create({
                               body: msgText,
                               from: process.env.TWILIONUMBERWHATSAPP,
                               to: `whatsapp:${phoneNumber}`,
-                              
-                            }).then(message => console.log("WhatsApp message sent successfully:", message.sid))
-                            .catch(error => console.log("Error sending SMS:", error));
-                   
+                            })
+                            .then((message) =>
+                              console.log(
+                                "WhatsApp message sent successfully:",
+                                message.sid
+                              )
+                            )
+                            .catch((error) =>
+                              console.log("Error sending SMS:", error)
+                            );
                         }
-                        
+
                         registrationLogger.info(
                           "Patient and appointment added successfully"
                         ); // Log success message
@@ -702,8 +714,7 @@ const bookAppointment = (req, res) => {
       appointment_created_by_emp_id,
       sharemail,
       sharewhatsapp,
-      sharesms
-
+      sharesms,
     } = req.body;
 
     // const created_at = new Date();
@@ -752,34 +763,33 @@ const bookAppointment = (req, res) => {
 
           const emailSubject = `Appointment Confirmation - ${clinicName}`;
 
-            const appointmentDateTime = new Date(appDateTime);
-            const appointmentTime = appointmentDateTime.toLocaleTimeString(
-              "en-US",
-              { hour: "numeric", minute: "2-digit", hour12: true }
-            );
+          const appointmentDateTime = new Date(appDateTime);
+          const appointmentTime = appointmentDateTime.toLocaleTimeString(
+            "en-US",
+            { hour: "numeric", minute: "2-digit", hour12: true }
+          );
 
-            // Formulate email text
-            const msgText =
-              `Dear ${patient_Name.toUpperCase()},\n\n` +
-              `Your appointment at ${clinicName} has been booked successfully.\n\n` +
-              `Appointment Details:\n` +
-              `Doctor Name: ${doctor_name.toUpperCase()}\n` +
-              `Appointment Date and Time: ${appointmentDateTime.toDateString()} ${appointmentTime} \n` +
-              `Treatment Provided: ${treatment}\n` +
-              `OPD Amount: ${opd_amount}\n` +
-              `Payment Mode: ${payment_Mode}\n\n` +
-              `Clinic Details:\n` +
-              `Name: ${clinicName}\n` +
-              `Contact: ${clinicContact}\n` +
-              `Address: ${clinicAddress}\n` +
-              `Email: ${clinicEmail}\n\n` +
-              `Thank you for choosing ${clinicName}.\n\n` +
-              `Best regards,\n` +
-              `${clinicName} Team`;
+          // Formulate email text
+          const msgText =
+            `Dear ${patient_Name.toUpperCase()},\n\n` +
+            `Your appointment at ${clinicName} has been booked successfully.\n\n` +
+            `Appointment Details:\n` +
+            `Doctor Name: ${doctor_name.toUpperCase()}\n` +
+            `Appointment Date and Time: ${appointmentDateTime.toDateString()} ${appointmentTime} \n` +
+            `Treatment Provided: ${treatment}\n` +
+            `OPD Amount: ${opd_amount}\n` +
+            `Payment Mode: ${payment_Mode}\n\n` +
+            `Clinic Details:\n` +
+            `Name: ${clinicName}\n` +
+            `Contact: ${clinicContact}\n` +
+            `Address: ${clinicAddress}\n` +
+            `Email: ${clinicEmail}\n\n` +
+            `Thank you for choosing ${clinicName}.\n\n` +
+            `Best regards,\n` +
+            `${clinicName} Team`;
 
-          if ((patient_Email && sharemail === "Yes")) {
+          if (patient_Email && sharemail === "Yes") {
             // Formulate email subject
-            
 
             const mailOptions = {
               from: process.env.EMAILSENDER,
@@ -795,35 +805,39 @@ const bookAppointment = (req, res) => {
                 console.error("Error sending email:", emailErr);
                 // Handle email sending error
               } else {
-                
                 console.log("Email sent:", info.response);
                 // Handle email sent successfully
               }
             });
           }
 
-          if((mobileno && sharesms === "Yes")){
-            const  phoneNumber = `+91${mobileno}`;
+          if (mobileno && sharesms === "Yes") {
+            const phoneNumber = `+91${mobileno}`;
 
-               client.messages.create({
+            client.messages
+              .create({
                 from: process.env.TWILIONUMBER,
                 to: phoneNumber,
-                body: msgText ,
-              }).then(message => console.log("SMS sent successfully:", message.sid))
-              .catch(error => console.log("Error sending SMS:", error));
-     
+                body: msgText,
+              })
+              .then((message) =>
+                console.log("SMS sent successfully:", message.sid)
+              )
+              .catch((error) => console.log("Error sending SMS:", error));
           }
-          if((mobileno && sharewhatsapp === "Yes")){
-            const  phoneNumber = `+91${mobileno}`;
+          if (mobileno && sharewhatsapp === "Yes") {
+            const phoneNumber = `+91${mobileno}`;
 
-               client.messages.create({
+            client.messages
+              .create({
                 body: msgText,
                 from: process.env.TWILIONUMBERWHATSAPP,
                 to: `whatsapp:${phoneNumber}`,
-                
-              }).then(message => console.log("WhatsApp message sent successfully:", message.sid))
-              .catch(error => console.log("Error sending SMS:", error));
-     
+              })
+              .then((message) =>
+                console.log("WhatsApp message sent successfully:", message.sid)
+              )
+              .catch((error) => console.log("Error sending SMS:", error));
           }
 
           return res.status(200).json({
@@ -867,7 +881,7 @@ const updateAppointment = (req, res) => {
       appointment_updated_by_emp_id,
       sharemail,
       sharewhatsapp,
-      sharesms
+      sharesms,
     } = req.body;
 
     const updated_at = new Date();
@@ -941,9 +955,8 @@ const updateAppointment = (req, res) => {
             `Best regards,\n` +
             `${clinicName} Team`;
 
-          if ((patient_Email && sharemail === "Yes")) {
+          if (patient_Email && sharemail === "Yes") {
             // Formulate email subject
-           
 
             const mailOptions = {
               from: process.env.EMAILSENDER,
@@ -959,37 +972,40 @@ const updateAppointment = (req, res) => {
                 console.error("Error sending email:", emailErr);
                 // Handle email sending error
               } else {
-                
                 console.log("Email sent:", info.response);
                 // Handle email sent successfully
               }
             });
           }
 
-          if((mobileno && sharesms === "Yes")){
-            const  phoneNumber = `+91${mobileno}`;
+          if (mobileno && sharesms === "Yes") {
+            const phoneNumber = `+91${mobileno}`;
 
-            
-               client.messages.create({
+            client.messages
+              .create({
                 from: process.env.TWILIONUMBER,
                 to: phoneNumber,
-                body: msgText ,
-              }).then(message => console.log("SMS sent successfully:", message.sid))
-              .catch(error => console.log("Error sending SMS:", error));
-     
+                body: msgText,
+              })
+              .then((message) =>
+                console.log("SMS sent successfully:", message.sid)
+              )
+              .catch((error) => console.log("Error sending SMS:", error));
           }
 
-          if((mobileno && sharewhatsapp === "Yes")){
-            const  phoneNumber = `+91${mobileno}`;
+          if (mobileno && sharewhatsapp === "Yes") {
+            const phoneNumber = `+91${mobileno}`;
 
-               client.messages.create({
+            client.messages
+              .create({
                 body: msgText,
                 from: process.env.TWILIONUMBERWHATSAPP,
                 to: `whatsapp:${phoneNumber}`,
-                
-              }).then(message => console.log("WhatsApp message sent successfully:", message.sid))
-              .catch(error => console.log("Error sending SMS:", error));
-     
+              })
+              .then((message) =>
+                console.log("WhatsApp message sent successfully:", message.sid)
+              )
+              .catch((error) => console.log("Error sending SMS:", error));
           }
 
           return res.status(200).json({
@@ -1147,7 +1163,7 @@ const updateAppointmentStatusCancelOpd = (req, res) => {
       appointment_updated_by_emp_id,
       sharemail,
       sharewhatsapp,
-      sharesms
+      sharesms,
     } = req.body;
 
     const updated_at = new Date();
@@ -1211,9 +1227,8 @@ const updateAppointmentStatusCancelOpd = (req, res) => {
             `Best regards,\n` +
             `${clinicName} Team`;
 
-          if ((patient_Email && sharemail === "Yes")) {
+          if (patient_Email && sharemail === "Yes") {
             // Formulate email subject
-           
 
             const mailOptions = {
               from: process.env.EMAILSENDER,
@@ -1230,35 +1245,39 @@ const updateAppointmentStatusCancelOpd = (req, res) => {
                 console.error("Error sending email:", emailErr);
                 // Handle email sending error
               } else {
-                
                 console.log("Email sent:", info.response);
                 // Handle email sent successfully
               }
             });
           }
-          if((mobileno && sharesms === "Yes")){
-            const  phoneNumber = `+91${mobileno}`;
+          if (mobileno && sharesms === "Yes") {
+            const phoneNumber = `+91${mobileno}`;
 
-               client.messages.create({
+            client.messages
+              .create({
                 from: process.env.TWILIONUMBER,
                 to: phoneNumber,
-                body: msgText ,
-              }).then(message => console.log("SMS sent successfully:", message.sid))
-              .catch(error => console.log("Error sending SMS:", error));
-     
+                body: msgText,
+              })
+              .then((message) =>
+                console.log("SMS sent successfully:", message.sid)
+              )
+              .catch((error) => console.log("Error sending SMS:", error));
           }
 
-          if((mobileno && sharewhatsapp === "Yes")){
-            const  phoneNumber = `+91${mobileno}`;
+          if (mobileno && sharewhatsapp === "Yes") {
+            const phoneNumber = `+91${mobileno}`;
 
-               client.messages.create({
+            client.messages
+              .create({
                 body: msgText,
                 from: process.env.TWILIONUMBERWHATSAPP,
                 to: `whatsapp:${phoneNumber}`,
-                
-              }).then(message => console.log("WhatsApp message sent successfully:", message.sid))
-              .catch(error => console.log("Error sending SMS:", error));
-     
+              })
+              .then((message) =>
+                console.log("WhatsApp message sent successfully:", message.sid)
+              )
+              .catch((error) => console.log("Error sending SMS:", error));
           }
           return res.status(200).json({
             success: true,
@@ -2210,7 +2229,9 @@ const getDoctorDataByBranchWithLeave = (req, res) => {
     `;
     db.query(sql, [branch], (err, result) => {
       if (err) {
-        registrationLogger.error("Error getting doctor data by branch with leave:");
+        registrationLogger.error(
+          "Error getting doctor data by branch with leave:"
+        );
         res
           .status(400)
           .send({ status: false, message: "error in fetching doctor" });
@@ -2260,7 +2281,9 @@ const getSecurityAmountDataByBranch = (req, res) => {
       "SELECT * FROM security_amount WHERE branch_name = ? ORDER BY sa_id DESC";
     db.query(selectQuery, branch, (err, result) => {
       if (err) {
-        registrationLogger.error("Error getting security amount data by branch");
+        registrationLogger.error(
+          "Error getting security amount data by branch"
+        );
         res.status(400).json({ success: false, message: err.message });
       }
 
@@ -2353,7 +2376,9 @@ const getSinglePatientSecurityAmt = (req, res) => {
     } else if (result.length === 0) {
       return res.status(404).json({ success: false, error: "Not Found Data" });
     } else {
-      registrationLogger.info("Successfully get single patient security amount");
+      registrationLogger.info(
+        "Successfully get single patient security amount"
+      );
       return res.status(200).json({
         success: true,
         message: "Access data Successfully",
@@ -2373,7 +2398,9 @@ const getSecurityAmountDataBySID = (req, res) => {
         registrationLogger.error("Error get security amount data by sid");
         res.status(400).json({ success: false, message: err.message });
       }
-      registrationLogger.info("getting security amount data successfully by sid");
+      registrationLogger.info(
+        "getting security amount data successfully by sid"
+      );
       res.status(200).send(result);
     });
   } catch (error) {
@@ -2449,7 +2476,9 @@ const updatePatientSecurityAmt = (req, res) => {
             .status(500)
             .json({ success: false, message: "Internal server error" });
         } else {
-          registrationLogger.info("Successfully update patient security amount");
+          registrationLogger.info(
+            "Successfully update patient security amount"
+          );
           console.log("Payment added successfully");
           return res.status(200).json({
             success: true,
@@ -2798,7 +2827,9 @@ const getPatientBillsAndSecurityAmountByBranch = (req, res) => {
       "SELECT * FROM patient_bills WHERE branch_name = ? AND bill_id = ?";
     db.query(selectQuery, [branch, bid], (err, result) => {
       if (err) {
-        registrationLogger.error("Error getting patient bills and security amount");
+        registrationLogger.error(
+          "Error getting patient bills and security amount"
+        );
         res.status(400).json({ success: false, message: err.message });
       }
 
@@ -2839,7 +2870,9 @@ const updateRemainingSecurityAmount = (req, res) => {
               message: "Failed to update details",
             });
           } else {
-            registrationLogger.info("Successfully update Remaining Security Amount");
+            registrationLogger.info(
+              "Successfully update Remaining Security Amount"
+            );
             return res.status(200).json({
               success: true,
               message: "remaining amount update Successfully",
@@ -2940,7 +2973,9 @@ const makeBillPayment = (req, res) => {
               message: "Failed to update details",
             });
           } else {
-            registrationLogger.info("Patient bill details updated successfully");
+            registrationLogger.info(
+              "Patient bill details updated successfully"
+            );
             return res.status(200).json({
               success: true,
               message: "Payment updated successfully",
@@ -3103,11 +3138,15 @@ const getAppointmentsWithPatientDetailsById = (req, res) => {
 
   db.query(sql, [tpid], (err, result) => {
     if (err) {
-      registrationLogger.error("Failed to get get Appointments With Patient Details By Id");
+      registrationLogger.error(
+        "Failed to get get Appointments With Patient Details By Id"
+      );
       console.error("Error executing query:", err.message);
       return res.status(500).json({ error: "Internal server error" });
     } else if (result.length === 0) {
-      registrationLogger.error("Failed to get get Appointments With Patient Details By Id");
+      registrationLogger.error(
+        "Failed to get get Appointments With Patient Details By Id"
+      );
       return res.status(404).json({ error: "TPID not found" });
     } else {
       return res.status(200).json({ message: "Get data by TPID", result });
@@ -3662,11 +3701,7 @@ const updateSittingBillToPaid = (req, res) => {
   try {
     const sbid = req.params.sbid;
     const branch = req.params.branch;
-    const {
-      
-      payment_status,
-     
-    } = req.body;
+    const { payment_status } = req.body;
 
     const selectQuery =
       "SELECT * FROM sitting_bill WHERE sb_id = ? AND branch_name = ?";
@@ -3683,7 +3718,6 @@ const updateSittingBillToPaid = (req, res) => {
           updateValues.push(payment_status);
         }
 
-      
         const updateQuery = `UPDATE sitting_bill SET ${updateFields.join(
           ", "
         )} WHERE sb_id = ? AND branch_name = ?`;
@@ -3825,13 +3859,17 @@ const updateBillforSitting = (req, res) => {
           [...updateValues, branch, tpid],
           (err, result) => {
             if (err) {
-              registrationLogger.error("Failed to update patient bill details ");
+              registrationLogger.error(
+                "Failed to update patient bill details "
+              );
               return res.status(500).json({
                 success: false,
                 message: "Failed to update details",
               });
             } else {
-              registrationLogger.info("Patient bill details updated successfully");
+              registrationLogger.info(
+                "Patient bill details updated successfully"
+              );
               return res.status(200).json({
                 success: true,
                 message: "Payment updated successfully",
@@ -3853,8 +3891,6 @@ const updateBillforSitting = (req, res) => {
     res.status(500).json({ success: false, message: "Internal server error" });
   }
 };
-
-
 
 const getPaidSittingBillbyTpid = (req, res) => {
   try {
@@ -3910,12 +3946,16 @@ const ChangeStatusToPaidPatientBill = (req, res) => {
       if (result && result.length > 0) {
         const updateQuery =
           "UPDATE patient_bills SET payment_status = ? WHERE bill_id = ? AND branch_name = ?";
-        db.query(updateQuery, [paymentStatus, bill_id, branch], (err, result) => {
-          if (err) {
-            res.status(400).json({ success: false, message: err.message });
+        db.query(
+          updateQuery,
+          [paymentStatus, bill_id, branch],
+          (err, result) => {
+            if (err) {
+              res.status(400).json({ success: false, message: err.message });
+            }
+            res.status(200).json({ success: true, message: "" });
           }
-          res.status(200).json({ success: true, message: "" });
-        });
+        );
       }
     });
   } catch (error) {
@@ -3935,12 +3975,16 @@ const ChangeStatusToPaidOPDBill = (req, res) => {
       if (result && result.length > 0) {
         const updateQuery =
           "UPDATE appointments SET payment_Status = ? WHERE appoint_id = ? AND branch_name = ?";
-        db.query(updateQuery, [paymentStatus, appoint_id, branch], (err, result) => {
-          if (err) {
-            res.status(400).json({ success: false, message: err.message });
+        db.query(
+          updateQuery,
+          [paymentStatus, appoint_id, branch],
+          (err, result) => {
+            if (err) {
+              res.status(400).json({ success: false, message: err.message });
+            }
+            res.status(200).json({ success: true, message: "" });
           }
-          res.status(200).json({ success: true, message: "" });
-        });
+        );
       }
     });
   } catch (error) {
@@ -3951,17 +3995,23 @@ const ChangeStatusToPaidOPDBill = (req, res) => {
 const getInsuranceCompany = (req, res) => {
   const { branch } = req.params;
   try {
-    const sql = "SELECT * FROM insurance_company WHERE branch_name = ? AND status = 'Active' ";
+    const sql =
+      "SELECT * FROM insurance_company WHERE branch_name = ? AND status = 'Active' ";
 
-    db.query(sql,[branch], (err, results) => {
+    db.query(sql, [branch], (err, results) => {
       if (err) {
-        registrationLogger.error("Error fetching Insurance Company from MySql:");
+        registrationLogger.error(
+          "Error fetching Insurance Company from MySql:"
+        );
         console.error("Error fetching Insurance Company from MySql:", err);
         res.status(500).json({ error: "Error fetching Insurance Company" });
       } else {
         res
           .status(200)
-          .json({ data: results, message: "Insurance Company fetched successfully" });
+          .json({
+            data: results,
+            message: "Insurance Company fetched successfully",
+          });
       }
     });
   } catch (error) {
@@ -4046,7 +4096,7 @@ const getPatientDetailsForBill = (req, res) => {
             b.branch_name = ? and b.uhid = ? and bill_id = ?
     `;
 
-    db.query(sql, [branch,uhid,billId], (err, results) => {
+    db.query(sql, [branch, uhid, billId], (err, results) => {
       if (err) {
         registrationLogger.error("Error fetching patient details");
         console.error("Error fetching patient details from MySql:", err);
@@ -4103,9 +4153,7 @@ const prescriptionOnMail = (req, res) => {
           .json("An error occurred while sending the email.");
       } else {
         console.log("OTP sent:", info.response);
-        return res
-        .status(200)
-        .json("Email sent successfully");
+        return res.status(200).json("Email sent successfully");
       }
     });
   } catch (error) {
@@ -4163,15 +4211,13 @@ const sendWhatsapp = async (req, res) => {
 };
 const sendWhatsappTextOnly = async (req, res) => {
   const { phoneNumber, message } = req.body;
- 
-  
 
-  if (!phoneNumber || !message  ) {
+  if (!phoneNumber || !message) {
     return res
       .status(400)
       .json({ success: false, message: "All fields required" });
   }
-  
+
   try {
     const response = await client.messages.create({
       body: message,
@@ -4264,5 +4310,5 @@ module.exports = {
   sendWhatsapp,
   sendSMS,
   sendWhatsappTextOnly,
-  getPatientDeatilsByUhidFromSecurityAmt
+  getPatientDeatilsByUhidFromSecurityAmt,
 };

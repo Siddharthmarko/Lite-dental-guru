@@ -1,6 +1,6 @@
 import axios from "axios";
 import { numToWords } from "num-to-words";
-import React, { useEffect,useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
@@ -18,7 +18,9 @@ const ReceptionSittingBill = () => {
   const navigate = useNavigate();
   const [getPatientData, setGetPatientData] = useState([]);
   const { refreshTable, currentUser } = useSelector((state) => state.user);
-  const {currentBranch} = useSelector((state) => state.branch);
+  const { currentBranch } = useSelector((state) => state.branch);
+  console.log(currentBranch);
+
   const token = currentUser?.token;
   const branch = currentUser.branch_name;
   const [getExaminData, setGetExaminData] = useState([]);
@@ -180,9 +182,9 @@ const ReceptionSittingBill = () => {
     };
   }, []);
 
-  useEffect(()=>{
+  useEffect(() => {
     getDoctorDetails();
-  },[getPatientData])
+  }, [getPatientData]);
 
   console.log(sittingBill);
 
@@ -198,54 +200,60 @@ const ReceptionSittingBill = () => {
     const imgWidth = 210; // A4 width in mm
     const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
-    pdf.addImage(imgData, "JPEG", 0, 0, imgWidth, imgHeight, undefined, 'FAST'); // Use 'FAST' for compression
+    pdf.addImage(imgData, "JPEG", 0, 0, imgWidth, imgHeight, undefined, "FAST"); // Use 'FAST' for compression
     pdf.save("sitting bill.pdf");
   };
 
-//   const handleDownloadPdf = async () => {
-//     const element = contentRef.current;
-//     const canvas = await html2canvas(element, { scale: 2 }); // Increase the scale for better quality
-//     const imgData = canvas.toDataURL("image/jpeg", 0.75); // Use JPEG with 75% quality
+  //   const handleDownloadPdf = async () => {
+  //     const element = contentRef.current;
+  //     const canvas = await html2canvas(element, { scale: 2 }); // Increase the scale for better quality
+  //     const imgData = canvas.toDataURL("image/jpeg", 0.75); // Use JPEG with 75% quality
 
-//     const pdf = new jsPDF({
-//         orientation: "portrait",
-//         unit: "mm",
-//         format: "a4"
-//     });
+  //     const pdf = new jsPDF({
+  //         orientation: "portrait",
+  //         unit: "mm",
+  //         format: "a4"
+  //     });
 
-//     const pageWidth = pdf.internal.pageSize.getWidth();
-//     const pageHeight = pdf.internal.pageSize.getHeight();
+  //     const pageWidth = pdf.internal.pageSize.getWidth();
+  //     const pageHeight = pdf.internal.pageSize.getHeight();
 
-//     const imgWidth = pageWidth;
-//     const imgHeight = (canvas.height * imgWidth) / canvas.width;
+  //     const imgWidth = pageWidth;
+  //     const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
-//     // Check if the image height is greater than the page height
-//     if (imgHeight > pageHeight) {
-//         pdf.addImage(imgData, "JPEG", 0, 0, imgWidth, pageHeight);
-//     } else {
-//         pdf.addImage(imgData, "JPEG", 0, 0, imgWidth, imgHeight);
-//     }
+  //     // Check if the image height is greater than the page height
+  //     if (imgHeight > pageHeight) {
+  //         pdf.addImage(imgData, "JPEG", 0, 0, imgWidth, pageHeight);
+  //     } else {
+  //         pdf.addImage(imgData, "JPEG", 0, 0, imgWidth, imgHeight);
+  //     }
 
-//     pdf.save("sitting_bill.pdf");
-// };
-
-
-
+  //     pdf.save("sitting_bill.pdf");
+  // };
 
   const sendPrescriptionMail = async () => {
-    if(!getPatientData[0]?.emailid){
-      alert("Email id not available")
-      return
+    if (!getPatientData[0]?.emailid) {
+      alert("Email id not available");
+      return;
     }
     try {
       const element = contentRef.current;
       const canvas = await html2canvas(element, { scale: 2 }); // Increase the scale for better quality
-    const imgData = canvas.toDataURL("image/jpeg", 0.75); // Use JPEG with 75% quality
+      const imgData = canvas.toDataURL("image/jpeg", 0.75); // Use JPEG with 75% quality
       const pdf = new jsPDF();
       const imgWidth = 210; // A4 width in mm
       const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
-      pdf.addImage(imgData, "JPEG", 0, 0, imgWidth, imgHeight, undefined, 'FAST'); // Use 'FAST' for compression
+      pdf.addImage(
+        imgData,
+        "JPEG",
+        0,
+        0,
+        imgWidth,
+        imgHeight,
+        undefined,
+        "FAST"
+      ); // Use 'FAST' for compression
       const pdfData = pdf.output("blob");
       console.log(pdfData);
 
@@ -259,14 +267,14 @@ const ReceptionSittingBill = () => {
       formData.append(
         "textMatter",
         `Dear ${getPatientData[0]?.patient_name}, Please find the attached sitting bill file.\n` +
-        `Clinic Details:\n` +
-        `Name: ${currentBranch[0]?.hospital_name}\n` +
-        `Contact: ${currentBranch[0]?.branch_contact}\n` +
-        `Address: ${currentBranch[0]?.branch_address}\n` +
-        `Email: ${currentBranch[0]?.branch_email}\n\n` +
-        `Thank you for choosing ${currentBranch[0]?.hospital_name}.\n\n` +
-        `Best regards,\n` +
-        `${currentBranch[0]?.hospital_name} Team`
+          `Clinic Details:\n` +
+          `Name: ${currentBranch[0]?.hospital_name}\n` +
+          `Contact: ${currentBranch[0]?.branch_contact}\n` +
+          `Address: ${currentBranch[0]?.branch_address}\n` +
+          `Email: ${currentBranch[0]?.branch_email}\n\n` +
+          `Thank you for choosing ${currentBranch[0]?.hospital_name}.\n\n` +
+          `Best regards,\n` +
+          `${currentBranch[0]?.hospital_name} Team`
       );
       formData.append("file", pdfData, "prescription.pdf");
       for (let [key, value] of formData.entries()) {
@@ -284,7 +292,7 @@ const ReceptionSittingBill = () => {
         }
       );
       cogoToast.success("Sitting bill sent successfully");
-      console.log(response)
+      console.log(response);
       console.log("PDF sent successfully:", response.data);
     } catch (error) {
       console.error("Error sending PDF:", error);
@@ -296,12 +304,21 @@ const ReceptionSittingBill = () => {
     try {
       const element = contentRef.current;
       const canvas = await html2canvas(element, { scale: 2 }); // Increase the scale for better quality
-    const imgData = canvas.toDataURL("image/jpeg", 0.75); // Use JPEG with 75% quality
+      const imgData = canvas.toDataURL("image/jpeg", 0.75); // Use JPEG with 75% quality
       const pdf = new jsPDF();
       const imgWidth = 210; // A4 width in mm
       const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
-      pdf.addImage(imgData, "JPEG", 0, 0, imgWidth, imgHeight, undefined, 'FAST'); // Use 'FAST' for compression
+      pdf.addImage(
+        imgData,
+        "JPEG",
+        0,
+        0,
+        imgWidth,
+        imgHeight,
+        undefined,
+        "FAST"
+      ); // Use 'FAST' for compression
       const pdfData = pdf.output("blob");
       console.log(pdfData);
 
@@ -429,198 +446,198 @@ const ReceptionSittingBill = () => {
           <hr />
         </div> */}
         <div className="container-fluid">
-        <div className="d-flex justify-content-between align-items-center my-2 px-3 gap-2">
+          <div className="d-flex justify-content-between align-items-center my-2 px-3 gap-2">
             <button
               className="btn btn-info no-print btn-lg shadow"
               // onClick={() => window.history.go(-1)}
               onClick={goBack}
             >
-            <IoMdArrowRoundBack />  Back
+              <IoMdArrowRoundBack /> Back
             </button>
             <button
               className="btn btn-info no-print btn-lg shadow"
               onClick={handleButton}
             >
-             <FaPrint /> Print
+              <FaPrint /> Print
             </button>
           </div>
           <div ref={contentRef}>
-          <div className="row">
-            <div className="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-              <div className="clinic-logo">
-                <img
-                  src={getBranch[0]?.head_img}
-                  alt="header"
-                  className="img-fluid"
-                />
+            <div className="row">
+              <div className="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div className="clinic-logo">
+                  <img
+                    src={getBranch[0]?.head_img}
+                    alt="header"
+                    className="img-fluid"
+                  />
+                </div>
               </div>
             </div>
-          </div>
-          <hr />
-        
-        {/* patient details */}
-        <div className="text-center">
-          <h3>Invoice</h3>
-        </div>
-        <div className="container-fluid">
-          <div className="heading-title">
-            <h6>Patient Details :</h6>
-          </div>
-          <h6 className="">
-            Patient Type : {getPatientData[0]?.patient_type}
-          </h6>
-          <table className="table table-bordered border">
-            <tbody>
-              {getPatientData?.map((item, index) => (
-                <React.Fragment key={index}>
-                {
-                  item?.patient_type === "Credit" &&
-                  <tr>
-                    <th scope="row">Credit By</th>
-                    <td>{item?.credit_By}</td>
-                    <th scope="row">Beneficiary Id</th>
-                    <td>{item?.beneficiary_Id}</td>
-                  </tr>
-                }  
-                  <tr>
-                    <th scope="row">UHID</th>
-                    <td>{item.uhid}</td>
-                    <th scope="row">Gender</th>
-                    <td>{item.gender}</td>
-                  </tr>
+            <hr />
 
-                  <tr>
-                    <th scope="row">Name</th>
-                    <td>{item.patient_name}</td>
-                    <th scope="row">Age</th>
-                    <td>{item.age}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Address</th>
-                    <td>{item.address}</td>
-                    <th scope="row">Sitting Invoice No.</th>
-                    <td>{sbid}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Mobile No.</th>
-                    <td>{item.mobileno}</td>
-                    <th scope="row">Date</th>
-                    <td>{sittingBill[0]?.date.split(" ")[0]}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Email</th>
-                    <td>{item.emailid}</td>
-                    <th scope="row">Treatment Package ID</th>
-                    <td>{tpid}</td>
-                  </tr>
-                </React.Fragment>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        {/* doctor details */}
-        <div className="container-fluid">
-          <div className="heading-title">
-            <h6>Doctor Details :</h6>
-          </div>
-          <div className="d-flex justify-content-between">
-            <div className="text-start docDetails">
-              <p>
-                <strong>Doctor Name :</strong> Dr.{" "}
-                {getDocDetails[0]?.employee_name}
-              </p>
-              <p>
-                <strong>Mobile :</strong> {getDocDetails[0]?.employee_mobile}
-              </p>
-              <p>
-                <strong>Email :</strong> {getDocDetails[0]?.employee_email}
-              </p>
+            {/* patient details */}
+            <div className="text-center">
+              <h3>Invoice</h3>
             </div>
-          </div>
-        </div>
+            <div className="container-fluid">
+              <div className="heading-title">
+                <h6>Patient Details :</h6>
+              </div>
+              <h6 className="">
+                Patient Type : {getPatientData[0]?.patient_type}
+              </h6>
+              <table className="table table-bordered border">
+                <tbody>
+                  {getPatientData?.map((item, index) => (
+                    <React.Fragment key={index}>
+                      {item?.patient_type === "Credit" && (
+                        <tr>
+                          <th scope="row">Credit By</th>
+                          <td>{item?.credit_By}</td>
+                          <th scope="row">Beneficiary Id</th>
+                          <td>{item?.beneficiary_Id}</td>
+                        </tr>
+                      )}
+                      <tr>
+                        <th scope="row">UHID</th>
+                        <td>{item.uhid}</td>
+                        <th scope="row">Gender</th>
+                        <td>{item.gender}</td>
+                      </tr>
 
-        {/* patient observation */}
-        <div className="container-fluid">
-          <div className="heading-title">
-            <h6>Patient Observation :</h6>
-          </div>
-          <table className="table table-bordered border">
-            <thead>
-              <tr>
-                <th>Seleted Teeth</th>
-                <th>Disease</th>
-                <th>Chief Complain</th>
-                <th>On Exmination</th>
-                <th>Advice</th>
-              </tr>
-            </thead>
-            <tbody>
-              {getExaminData?.map((item) => (
-                <>
+                      <tr>
+                        <th scope="row">Name</th>
+                        <td>{item.patient_name}</td>
+                        <th scope="row">Age</th>
+                        <td>{item.age}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Address</th>
+                        <td>{item.address}</td>
+                        <th scope="row">Sitting Invoice No.</th>
+                        <td>{sbid}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Mobile No.</th>
+                        <td>{item.mobileno}</td>
+                        <th scope="row">Date</th>
+                        <td>{sittingBill[0]?.date.split(" ")[0]}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Email</th>
+                        <td>{item.emailid}</td>
+                        <th scope="row">Treatment Package ID</th>
+                        <td>{tpid}</td>
+                      </tr>
+                    </React.Fragment>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            {/* doctor details */}
+            <div className="container-fluid">
+              <div className="heading-title">
+                <h6>Doctor Details :</h6>
+              </div>
+              <div className="d-flex justify-content-between">
+                <div className="text-start docDetails">
+                  <p>
+                    <strong>Doctor Name :</strong> Dr.{" "}
+                    {getDocDetails[0]?.employee_name}
+                  </p>
+                  <p>
+                    <strong>Mobile :</strong>{" "}
+                    {getDocDetails[0]?.employee_mobile}
+                  </p>
+                  <p>
+                    <strong>Email :</strong> {getDocDetails[0]?.employee_email}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* patient observation */}
+            <div className="container-fluid">
+              <div className="heading-title">
+                <h6>Patient Observation :</h6>
+              </div>
+              <table className="table table-bordered border">
+                <thead>
                   <tr>
-                    <td>{item.selected_teeth}</td>
-                    <td>{item.disease}</td>
-                    <td>{item.chief_complain}</td>
-                    <td>{item.on_examination}</td>
-                    <td>{item.advice}</td>
+                    <th>Seleted Teeth</th>
+                    <th>Disease</th>
+                    <th>Chief Complain</th>
+                    <th>On Exmination</th>
+                    <th>Advice</th>
                   </tr>
-                </>
-              ))}
-            </tbody>
-          </table>
-        </div>
+                </thead>
+                <tbody>
+                  {getExaminData?.map((item) => (
+                    <>
+                      <tr>
+                        <td>{item.selected_teeth}</td>
+                        <td>{item.disease}</td>
+                        <td>{item.chief_complain}</td>
+                        <td>{item.on_examination}</td>
+                        <td>{item.advice}</td>
+                      </tr>
+                    </>
+                  ))}
+                </tbody>
+              </table>
+            </div>
 
-        {/* treatment provided */}
-        <div className="container-fluid">
-          <div className="heading-title">
-            <h6>Treatment Procedure :</h6>
-          </div>
-          <div className="Treatment">
-            {/* <p className="text-start fs-4 fw-bold">Treatment Procedure</p> */}
-            <table className="table table-bordered border">
-              <thead>
-                <tr>
-                  <th>S. No.</th>
-                  <th>Treatment</th>
-                  <th>Teeth</th>
-                  <th>Qty</th>
-                  <th>Cost</th>
-                  <th>Cst * Qty</th>
-                  <th>Disc %</th>
-                  <th>Net Treatment Amount</th>
-                  <th>Sitting Amount</th>
-                  <th>Paid Amount</th>
-                  {/* <th>Payment Mode</th>
+            {/* treatment provided */}
+            <div className="container-fluid">
+              <div className="heading-title">
+                <h6>Treatment Procedure :</h6>
+              </div>
+              <div className="Treatment">
+                {/* <p className="text-start fs-4 fw-bold">Treatment Procedure</p> */}
+                <table className="table table-bordered border">
+                  <thead>
+                    <tr>
+                      <th>S. No.</th>
+                      <th>Treatment</th>
+                      <th>Teeth</th>
+                      <th>Qty</th>
+                      <th>Cost</th>
+                      <th>Cst * Qty</th>
+                      <th>Disc %</th>
+                      <th>Net Treatment Amount</th>
+                      <th>Sitting Amount</th>
+                      <th>Paid Amount</th>
+                      {/* <th>Payment Mode</th>
                   <th>Payment Date</th> */}
-                  {/* <th>Note</th> */}
-                </tr>
-              </thead>
-              <tbody>
-                {sittingBill?.map((item, index) => (
-                  <>
-                    <tr
-                      className={
-                        index % 2 === 0 ? "table-primary" : "table-info"
-                      }
-                    >
-                      <td>{item.sitting_number}</td>
-                      <td>{item.treatment}</td>
-                      <td>{item.teeth_number}</td>
-                      <td>{item.teeth_qty}</td>
-                      <td>{item.treatment_cost}</td>
-                      <td>{item.treatment_cost * item.teeth_qty}</td>
-                      <td>{item.discount}</td>
-                      <td>{item.final_cost}</td>
-                      <td>{item.sitting_amount}</td>
-                      <td>{item.paid_amount}</td>
-                      {/* <td>{item.payment_mode}</td>
-                      <td>{item.date?.split(" ")[0]}</td> */}
-                      {/* <td>{item.note}</td> */}
+                      {/* <th>Note</th> */}
                     </tr>
-                  </>
-                ))}
-              </tbody>
-              {/* <tfoot>
+                  </thead>
+                  <tbody>
+                    {sittingBill?.map((item, index) => (
+                      <>
+                        <tr
+                          className={
+                            index % 2 === 0 ? "table-primary" : "table-info"
+                          }
+                        >
+                          <td>{item.sitting_number}</td>
+                          <td>{item.treatment}</td>
+                          <td>{item.teeth_number}</td>
+                          <td>{item.teeth_qty}</td>
+                          <td>{item.treatment_cost}</td>
+                          <td>{item.treatment_cost * item.teeth_qty}</td>
+                          <td>{item.discount}</td>
+                          <td>{item.final_cost}</td>
+                          <td>{item.sitting_amount}</td>
+                          <td>{item.paid_amount}</td>
+                          {/* <td>{item.payment_mode}</td>
+                      <td>{item.date?.split(" ")[0]}</td> */}
+                          {/* <td>{item.note}</td> */}
+                        </tr>
+                      </>
+                    ))}
+                  </tbody>
+                  {/* <tfoot>
                 <tr>
                   <td
                     colSpan="8"
@@ -634,7 +651,7 @@ const ReceptionSittingBill = () => {
                   </td>
                 </tr>
               </tfoot> */}
-              {/* <tfoot>
+                  {/* <tfoot>
                 <tr>
                   <td
                     colSpan="7"
@@ -665,70 +682,73 @@ const ReceptionSittingBill = () => {
                   </td>
                 </tr>
               </tfoot> */}
-            </table>
-          </div>
-        </div>
-        {/* terms and condition */}
-        <div className="container-fluid">
-          <div className="row gutter">
-            <div className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8">
-              <div className="border">
-                <div className="heading-title mt-0">
-                  <h6>Total Amount In Words :</h6>
-                </div>
-                <div className="text-word">
-                  <p className="m-0 fw-bold">
-                    {" "}
-                    {numToWords(sittingBill[0]?.paid_amount).toUpperCase()} RUPEES ONLY
-                  </p>
-                </div>
-              </div>
-              <div className="">
-                <div className="heading-title mt-0">
-                  <h6>Payment Info :</h6>
-                </div>
-                <div className="">
-                  <table className="table table-bordered mb-0">
-                    <tbody>
-                      <tr>
-                        <td className="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 border p-1">
-                          Account No.:
-                        </td>
-                        <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1"></td>
-                      </tr>
-                      <tr>
-                        <td className="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 border p-1">
-                          Account Name:
-                        </td>
-                        <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1"></td>
-                      </tr>
-                      <tr>
-                        <td className="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 border p-1">
-                          Bank Name:
-                        </td>
-                        <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1"></td>
-                      </tr>
-                      <tr>
-                        <td className="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 border p-1">
-                          IFSC/Bank Code:
-                        </td>
-                        <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1"></td>
-                      </tr>
-                      <tr>
-                        <td className="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 border p-1">
-                          UPI ID:
-                        </td>
-                        <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1"></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+                </table>
               </div>
             </div>
-            <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4">
-              <div className="">
-                <table className="table table-bordered mb-0">
-                  {/* <tbody>
+            {/* terms and condition */}
+            <div className="container-fluid">
+              <div className="row gutter">
+                <div className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8">
+                  <div className="border">
+                    <div className="heading-title mt-0">
+                      <h6>Total Amount In Words :</h6>
+                    </div>
+                    <div className="text-word">
+                      <p className="m-0 fw-bold">
+                        {" "}
+                        {numToWords(
+                          sittingBill[0]?.paid_amount
+                        ).toUpperCase()}{" "}
+                        RUPEES ONLY
+                      </p>
+                    </div>
+                  </div>
+                  <div className="">
+                    <div className="heading-title mt-0">
+                      <h6>Payment Info :</h6>
+                    </div>
+                    <div className="">
+                      <table className="table table-bordered mb-0">
+                        <tbody>
+                          <tr>
+                            <td className="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 border p-1">
+                              Account No.:
+                            </td>
+                            <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1"></td>
+                          </tr>
+                          <tr>
+                            <td className="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 border p-1">
+                              Account Name:
+                            </td>
+                            <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1"></td>
+                          </tr>
+                          <tr>
+                            <td className="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 border p-1">
+                              Bank Name:
+                            </td>
+                            <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1"></td>
+                          </tr>
+                          <tr>
+                            <td className="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 border p-1">
+                              IFSC/Bank Code:
+                            </td>
+                            <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1"></td>
+                          </tr>
+                          <tr>
+                            <td className="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 border p-1">
+                              UPI ID:
+                            </td>
+                            <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1"></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4">
+                  <div className="">
+                    <table className="table table-bordered mb-0">
+                      {/* <tbody>
                     <tr>
                       <td className="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 border p-1 text-end total-tr">
                         Amount Received After Treatment:
@@ -738,34 +758,34 @@ const ReceptionSittingBill = () => {
                       </td>
                     </tr>
                   </tbody> */}
-                  <tbody>
-                    <tr>
-                      <td className="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 border p-1 text-end total-tr">
-                        Total Amount Received:
-                      </td>
-                      <td className="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 border fw-bold p-1 text-center total-tr fs-6">
-                        {sittingBill[0]?.paid_amount}
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div className="border">
-                <div className="text-terms"></div>
-                <div className="heading-title mt-0">
-                  <h6 className="text-center">Clinic Seal & Signature</h6>
+                      <tbody>
+                        <tr>
+                          <td className="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 border p-1 text-end total-tr">
+                            Total Amount Received:
+                          </td>
+                          <td className="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 border fw-bold p-1 text-center total-tr fs-6">
+                            {sittingBill[0]?.paid_amount}
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div className="border">
+                    <div className="text-terms"></div>
+                    <div className="heading-title mt-0">
+                      <h6 className="text-center">Clinic Seal & Signature</h6>
+                    </div>
+                  </div>
                 </div>
               </div>
+              <div className="border">
+                <div className="heading-title mt-0">
+                  <h6>Terms and Conditions :</h6>
+                </div>
+                <div className="text-termslong"></div>
+              </div>
             </div>
           </div>
-          <div className="border">
-            <div className="heading-title mt-0">
-              <h6>Terms and Conditions :</h6>
-            </div>
-            <div className="text-termslong"></div>
-          </div>
-        </div>
-        </div>
         </div>
         {/* print button */}
         <div className="container-fluid">
@@ -813,19 +833,19 @@ const ReceptionSittingBill = () => {
             >
               Appointment Dashboard
             </button> */}
-              <div className="container-fluid">
-          <div className="text-center">
-            <button
-              className="btn btn-info no-print mx-3 mb-3 mt-2 text-white shadow"
-              style={{
-                backgroundColor: "#0dcaf0",
-                border: "#0dcaf0",
-              }}
-              onClick={handleDownloadPdf}
-            >
-              Download Sitting Bill
-            </button>
-            {/* <button
+            <div className="container-fluid">
+              <div className="text-center">
+                <button
+                  className="btn btn-info no-print mx-3 mb-3 mt-2 text-white shadow"
+                  style={{
+                    backgroundColor: "#0dcaf0",
+                    border: "#0dcaf0",
+                  }}
+                  onClick={handleDownloadPdf}
+                >
+                  Download Sitting Bill
+                </button>
+                {/* <button
               className="btn btn-info no-print text-white mt-2 mb-2"
               onClick={handleTreatNavigate}
               style={{
@@ -835,46 +855,49 @@ const ReceptionSittingBill = () => {
             >
               Treatment Dashboard
             </button> */}
-            <br />
-            <span className="fs-5 fw-bold no-print"> Share on : </span>
-            {currentBranch[0]?.sharemail === "Yes" && (
-              <button
-                className="btn btn-info no-print mx-3 mb-3 mt-2 text-white shadow"
-                style={{
-                  backgroundColor: "#0dcaf0",
-                  border: "#0dcaf0",
-                }}
-                onClick={sendPrescriptionMail}
-              >
-                <SiGmail />
-              </button>
-            )}
-            {currentBranch[0]?.sharewhatsapp === "Yes" && (
-              <button
-                className="btn btn-info no-print mx-3 mb-3 mt-2 text-white shadow"
-                style={{
-                  backgroundColor: "#0dcaf0",
-                  border: "#0dcaf0",
-                }}
-                onClick={sendPrescriptionWhatsapp}
-              >
-                <IoLogoWhatsapp />
-              </button>
-            )}
-            {currentBranch[0]?.sharesms === "Yes" && (
-              <button
-                className="btn btn-info no-print mx-3 mb-3 mt-2 text-white shadow"
-                style={{
-                  backgroundColor: "#0dcaf0",
-                  border: "#0dcaf0",
-                }}
-                onClick={billDetailsSms}
-              >
-                <SiGooglemessages />
-              </button>
-            )}
-          </div>
-          </div>
+                <br />
+                ``
+                <span className="fs-5 fw-bold no-print d-print-none">
+                  Share on:
+                </span>
+                {currentBranch[0]?.sharemail === "Yes" && (
+                  <button
+                    className="btn btn-info no-print mx-3 mb-3 mt-2 text-white shadow"
+                    style={{
+                      backgroundColor: "#0dcaf0",
+                      border: "#0dcaf0",
+                    }}
+                    onClick={sendPrescriptionMail}
+                  >
+                    <SiGmail />
+                  </button>
+                )}
+                {currentBranch[0]?.sharewhatsapp === "Yes" && (
+                  <button
+                    className="btn btn-info no-print mx-3 mb-3 mt-2 text-white shadow"
+                    style={{
+                      backgroundColor: "#0dcaf0",
+                      border: "#0dcaf0",
+                    }}
+                    onClick={sendPrescriptionWhatsapp}
+                  >
+                    <IoLogoWhatsapp />
+                  </button>
+                )}
+                {currentBranch[0]?.sharesms === "Yes" && (
+                  <button
+                    className="btn btn-info no-print mx-3 mb-3 mt-2 text-white shadow"
+                    style={{
+                      backgroundColor: "#0dcaf0",
+                      border: "#0dcaf0",
+                    }}
+                    onClick={billDetailsSms}
+                  >
+                    <SiGooglemessages />
+                  </button>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </Wrapper>
@@ -884,7 +907,7 @@ const ReceptionSittingBill = () => {
 
 export default ReceptionSittingBill;
 const Wrapper = styled.div`
-font-size: 12px;
+  font-size: 12px;
   overflow: hidden;
   background-color: white;
   height: 100%;
@@ -914,6 +937,10 @@ font-size: 12px;
     .no-print {
       display: none !important;
     }
+  }
+
+  .no-print {
+    display: none !important;
   }
 
   .headerimg {
@@ -999,7 +1026,6 @@ font-size: 12px;
   } */
 
   //th {
-   // white-space: nowrap;
+  // white-space: nowrap;
   // }
- 
 `;
