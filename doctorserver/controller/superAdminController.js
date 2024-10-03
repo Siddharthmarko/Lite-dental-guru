@@ -1036,16 +1036,19 @@ const addSuperAdminNotify = (req, res) => {
   const deleteTreatment = (req, res) => {
     try {
       const tid = req.params.tid;
-      const deleteQuery = "DELETE FROM treatment_list WHERE treatment_id = ?";
+      const deleteQuery = "DELETE FROM treatment_list_copy WHERE treatment_id = ?";
       db.query(deleteQuery, tid, (err, result) => {
         if (err) {
+            registrationLogger.log("error", "invalid treatment ID");
           return res.status(400).json({ success: false, message: err.message });
         }
+        registrationLogger.log("info", "treatment fetched successfully");
         return res
           .status(200)
           .json({ success: true, message: "Treatment deleted successfully" });
       });
     } catch (error) {
+        registrationLogger.log("error", "internal server error");
       console.log(error);
       return res.status(500).json({ success: false, message: error.message });
     }
