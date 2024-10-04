@@ -9,6 +9,7 @@ import cogoToast from "cogo-toast";
 import { useDispatch, useSelector } from "react-redux";
 import Lottie from "react-lottie";
 // import animationData from "../animation/loading-effect.json";
+import { setBranch } from '../../redux/user/branchSlice'
 import animationData from '../animationData.json'
 
 
