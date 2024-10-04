@@ -10,8 +10,8 @@ const Timeline = () => {
   const { uhid } = useParams();
   const { currentUser } = useSelector((state) => state.user);
   const user = useSelector((state) => state.user);
-  const token = user.currentuser?.token;
-  const branch = currentuser?.branch_name;
+  const token = user.currentUser?.token;
+  const branch = currentUser?.branch_name;
 
   const [patTimeline, setPatTimeline] = useState([]);
 

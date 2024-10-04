@@ -8,8 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearUser } from "../../redux/user/userSlice";
 function Header() {
   const { currentUser } = useSelector((state) => state.user);
-  const userName = currentuser?.employee_name;
-  const userId = currentuser?.employee_ID;
+  const userName = currentUser?.employee_name;
+  const userId = currentUser?.employee_ID;
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

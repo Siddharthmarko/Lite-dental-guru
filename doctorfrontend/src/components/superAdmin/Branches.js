@@ -26,7 +26,7 @@ const Branches = () => {
   const currentUser = useSelector(
     (state) => state.user.currentUser
   );
-  const token = currentuser?.token;
+  const token = currentUser?.token;
   console.log(currentUser);
   const [selectedItem, setSelectedItem] = useState({...currentUser});
   const [branchList, setBranchList] = useState();

@@ -10,10 +10,10 @@ const SecurityAmtUpdateModal = ({ onClose, selectedData, grandTotal }) => {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.user.currentUser);
   const { refreshTable } = useSelector((state) => state.user);
-  const branch = currentuser?.branch_name;
+  const branch = currentUser?.branch_name;
   const user = useSelector((state) => state.user);
   const [loading, setLoading] = useState(false);
-  const token = user.currentuser?.token;
+  const token = user.currentUser?.token;
   console.log(selectedData);
   console.log(branch);
   const [formData, setFormData] = useState({

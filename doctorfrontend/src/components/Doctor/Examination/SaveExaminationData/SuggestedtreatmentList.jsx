@@ -11,8 +11,8 @@ const SuggestedtreatmentList = ({ tpid, getPatientData }) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const { refreshTable, currentUser } = useSelector((state) => state.user);
-  const branch = user.currentuser?.branch_name;
-  const token = user.currentuser?.token;
+  const branch = user.currentUser?.branch_name;
+  const token = user.currentUser?.token;
   console.log(branch);
   const [treatList, setTreatList] = useState([]);
   const [showEditPopup, setShowEditPopup] = useState(false);
@@ -113,7 +113,7 @@ const SuggestedtreatmentList = ({ tpid, getPatientData }) => {
             >
               <thead className="">
                 <tr>
-                  <th className="word-wrap">disease</th>
+                  <th className="word-wrap">Disease</th>
                   <th className="word-wrap">Treatment</th>
                   {/* <th className="word-wrap">Treatment Cost</th> */}
                   <th className="word-wrap">Total Req. Sitting</th>

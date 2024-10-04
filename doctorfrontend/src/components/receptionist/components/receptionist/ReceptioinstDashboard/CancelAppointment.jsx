@@ -27,7 +27,7 @@ function CancleAppointment({ onClose, appointmentInfo, allAppointmentData }) {
   ]);
   const [treatments, setTreatment] = useState([]);
   const [doctors, setDoctors] = useState([]);
-  const branch = currentuser?.branch_name;
+  const branch = currentUser?.branch_name;
   const [branchHolidays, setBranchHolidays] = useState([]);
 
   // Remove current appointment data from allAppointmentData
@@ -235,8 +235,8 @@ function CancleAppointment({ onClose, appointmentInfo, allAppointmentData }) {
     payment_Status: appointmentInfo.payment_Status,
     cancelReason: appointmentInfo.cancel_reason,
     appointment_status: appointmentInfo.appointment_status,
-    appointment_updated_by: currentuser?.employee_name,
-    appointment_updated_by_emp_id: currentuser?.employee_ID,
+    appointment_updated_by: currentUser?.employee_name,
+    appointment_updated_by_emp_id: currentUser?.employee_ID,
   });
 
   const handleChange = (e) => {
@@ -326,8 +326,8 @@ function CancleAppointment({ onClose, appointmentInfo, allAppointmentData }) {
       status: "Cancel",
       payment_Status: (data.payment_Status == "paid" ?  "Refund" :  data.payment_Status),
       cancelReason: data.cancelReason,
-      appointment_updated_by: currentuser?.employee_name,
-      appointment_updated_by_emp_id: currentuser?.employee_ID,
+      appointment_updated_by: currentUser?.employee_name,
+      appointment_updated_by_emp_id: currentUser?.employee_ID,
       sharemail : currentBranch[0].sharemail,
         sharewhatsapp : currentBranch[0].sharewhatsapp,
         sharesms : currentBranch[0].sharesms

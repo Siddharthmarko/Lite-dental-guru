@@ -19,10 +19,10 @@ const SittingBill = () => {
   const navigate = useNavigate();
   const [getPatientData, setGetPatientData] = useState([]);
   const user = useSelector((state) => state.user);
-  const token = user.currentuser?.token;
+  const token = user.currentUser?.token;
   console.log(token, "sdfghjksdfghjsdfghjksdfghjk");
   console.log(user);
-  const branch = user.currentuser?.branch_name;
+  const branch = user.currentUser?.branch_name;
   console.log(branch);
   const branchData = useSelector((state) => state.branch.currentBranch);
   console.log(branchData);
@@ -104,6 +104,7 @@ const SittingBill = () => {
           },
         }
       );
+      console.log(data, "lkdsjflksdjflksdjlkfjsdok");
       setSittingBill(data);
     } catch (error) {
       console.log(error);
@@ -599,7 +600,7 @@ const SittingBill = () => {
                       style={{ fontSize: "12px" }}
                     >
                       {sittingBill[0]?.paid_amount === null
-                        ? numWords(sittingBill[0]?.sitting_amount).toUpperCase()
+                        ? numWords(sittingBill[0]?.paid_amount).toUpperCase()
                         : numWords(
                             sittingBill[0]?.paid_amount
                           ).toUpperCase()}{" "}
@@ -671,7 +672,7 @@ const SittingBill = () => {
                           {sittingBill[0]?.payment_status === "pending" ||
                           sittingBill[0]?.payment_status === "Pending"
                             ? 0
-                            : sittingBill[0]?.paid_amount}
+                            : sittingBill[0]?.paid_amount ? sittingBill[0]?.paid_amount : 0}
                         </td>
                       </tr>
                     </tbody>

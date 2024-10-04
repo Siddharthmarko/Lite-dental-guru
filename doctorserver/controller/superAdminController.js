@@ -32,16 +32,21 @@ const getBranchDetailsByBranch = (req, res) => {
   const updateBranchCalenderSetting = (req, res) => {
     try {
       const branch = req.params.branch;
-      const { open_time, close_time, appoint_slot_duration } = req.body;
+      const { open_time, close_time, appoint_slot_duration, week_off } = req.body;
+  
+      // Step 1: Check if the branch exists
       const selectQuery = "SELECT * FROM branches WHERE branch_name = ?";
       db.query(selectQuery, branch, (err, result) => {
         if (err) {
+          registrationLogger.log("error", "Invalid branch");
           return res.status(400).json({ success: false, message: err.message });
         }
+  
         if (result && result.length > 0) {
           const updateFields = [];
           const updateValues = [];
   
+          // Step 2: Prepare fields for updating
           if (open_time) {
             updateFields.push("open_time = ?");
             updateValues.push(open_time);
@@ -57,24 +62,39 @@ const getBranchDetailsByBranch = (req, res) => {
             updateValues.push(appoint_slot_duration);
           }
   
-          const updateQuery = `UPDATE branches SET ${updateFields.join(
-            ", "
-          )} WHERE branch_name = ?`;
+          if (week_off) {
+            updateFields.push("week_off = ?");
+            updateValues.push(week_off);
+          }
   
+          // Check if there are fields to update
+          if (updateFields.length === 0) {
+            return res.status(400).json({
+              success: false,
+              message: "No fields provided for update",
+            });
+          }
+  
+          // Step 3: Construct and execute the update query
+          const updateQuery = `UPDATE branches SET ${updateFields.join(", ")} WHERE branch_name = ?`;
           db.query(updateQuery, [...updateValues, branch], (err, result) => {
             if (err) {
+              registrationLogger.log("error", "Failed to update details");
               return res.status(500).json({
                 success: false,
                 message: "Failed to update details",
+                error: err,
               });
             } else {
+              registrationLogger.log("info", "Branch details updated successfully");
               return res.status(200).json({
                 success: true,
-                message: "Branch Details updated successfully",
+                message: "Branch details updated successfully",
               });
             }
           });
         } else {
+          registrationLogger.log("error", "Branch not found");
           return res.status(404).json({
             success: false,
             message: "Branch not found",
@@ -82,10 +102,13 @@ const getBranchDetailsByBranch = (req, res) => {
         }
       });
     } catch (error) {
+      registrationLogger.log("error", "Internal server error");
       console.log(error);
-      res.status(400).json({ success: false, message: error.message });
+      res.status(500).json({ success: false, message: "Internal server error" });
     }
   };
+  
+
   const getHolidays = (req, res) => {
     try {
       const branch = req.params.branch;

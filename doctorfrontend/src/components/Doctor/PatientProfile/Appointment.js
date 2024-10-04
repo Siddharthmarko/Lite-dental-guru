@@ -9,10 +9,10 @@ const Appointment = () => {
   const dispatch = useDispatch();
   const { uhid } = useParams();
   const user = useSelector((state) => state.user);
-  const token = user.currentuser?.token;
+  const token = user.currentUser?.token;
   console.log(`User Name: ${user.name}, User ID: ${user.id}`);
   console.log("User State:", user);
-  const branch = user.currentuser?.branch_name;
+  const branch = user.currentUser?.branch_name;
   console.log(uhid, branch);
   const [patAppointDetails, setPatAppointDetails] = useState([]);
 

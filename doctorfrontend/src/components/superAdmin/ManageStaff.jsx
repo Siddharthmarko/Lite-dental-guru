@@ -20,10 +20,10 @@ const ManageStaff = () => {
   const dispatch = useDispatch();
   const fileinput = useRef(null);
   const user = useSelector((state) => state.user);
-  const token = user.currentuser?.token;
-  console.log(`User Name: ${user.currentuser?.name}, User ID: ${user.currentuser?.id}`)
+  const token = user.currentUser?.token;
+  console.log(`User Name: ${user.currentUser?.name}, User ID: ${user.currentUser?.id}`)
   console.log("User State:", user);
-  const branch_name = useSelector((state) => state.user.currentuser?.branch_name);
+  const branch_name = useSelector((state) => state.user.currentUser?.branch_name);
   console.log(`User Name: ${branch_name}`);
   const [doctorList, setDoctorList] = useState([]);
   const [keyword, setkeyword] = useState("");

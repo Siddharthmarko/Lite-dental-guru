@@ -17,7 +17,7 @@ function PatintDuePaymentPrint() {
   const { refreshTable, currentUser } = useSelector((state) => state.user);
   const token = currentUser?.token;
   const {currentBranch} = useSelector((state) => state.branch);
-  const branch = currentuser?.branch_name;
+  const branch = currentUser?.branch_name;
   const [branchData, setBranchData] = useState([]);
   const [billAmount, setBillAmount] = useState([]);
   const [saAmt, setSaAmt] = useState([]);
@@ -220,8 +220,8 @@ function PatintDuePaymentPrint() {
           payment_mode: data.payment_mode,
           transaction_Id: data.transaction_Id,
           note: data.note,
-          receiver_name: currentuser?.employee_name,
-          receiver_emp_id: currentuser?.employee_ID,
+          receiver_name: currentUser?.employee_name,
+          receiver_emp_id: currentUser?.employee_ID,
           pay_by_sec_amt: updatedPay_by_sec_amt,
         },
         {

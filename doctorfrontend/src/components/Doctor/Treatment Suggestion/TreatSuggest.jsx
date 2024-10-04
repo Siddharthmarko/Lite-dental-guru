@@ -20,10 +20,10 @@ const TreatSuggest = () => {
   const user = useSelector((state) => state.user);
   const branchData = useSelector((state) => state.branch.currentBranch);
   console.log(branchData);
-  const branch = user.currentuser?.branch_name;
-  const employeeName = user.currentuser?.employee_name;
+  const branch = user.currentUser?.branch_name;
+  const employeeName = user.currentUser?.employee_name;
   const [otherMed, setOtherMed] = useState("");
-  const token = user.currentuser?.token;
+  const token = user.currentUser?.token;
   console.log(branch);
   const { id, tpid } = useParams();
   console.log(id, tpid);
@@ -1358,7 +1358,7 @@ const TreatSuggest = () => {
                     <tr key={index}>
                       <td>{item.date?.split(" ")[0]}</td>
                       <td>{item.medicine_name}</td>
-                      <td>{item.Diseases}</td>
+                      <td>{item.desease}</td>
                       <td>{item.dosage}</td>
                       <td>{item.frequency}</td>
                       <td>{item.duration}</td>

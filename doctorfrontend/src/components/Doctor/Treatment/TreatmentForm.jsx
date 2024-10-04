@@ -19,9 +19,9 @@ const TreatmentForm = () => {
   const [getPatientData, setGetPatientData] = useState([]);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-  const token = user.currentuser?.token;
-  console.log(user.currentuser?.employee_ID);
-  const branch = user.currentuser?.branch_name;
+  const token = user.currentUser?.token;
+  console.log(user.currentUser?.employee_ID);
+  const branch = user.currentUser?.branch_name;
   console.log(branch);
   const [treatments, setTreatments] = useState([]);
   const [showBookingPopup, setShowBookingPopup] = useState(false);
@@ -427,7 +427,7 @@ const TreatmentForm = () => {
         ? payableAmountafterSecAmount
         : 0,
     sec_rec_amt: secRecValue,
-    dir_rec_doctor_id: user.currentuser?.employee_ID,
+    dir_rec_doctor_id: user.currentUser?.employee_ID,
     sitting_payment_status: formData.sitting_payment_status,
     note: formData.note,
   };

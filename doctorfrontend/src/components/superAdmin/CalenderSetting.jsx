@@ -14,13 +14,13 @@ import moment from "moment";
 const CalenderSetting = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-  const token = user.currentuser?.token;
+  const token = user.currentUser?.token;
   console.log(
-    `User Name: ${user.currentuser?.name}, User ID: ${user.currentuser?.id}`
+    `User Name: ${user.currentUser?.name}, User ID: ${user.currentUser?.id}`
   );
   console.log("User State:", user);
   const branch_name = useSelector(
-    (state) => state.user.currentuser?.branch_name
+    (state) => state.user.currentUser?.branch_name
   );
   console.log(`User Name: ${branch_name}`);
   const location = useLocation();
@@ -197,6 +197,7 @@ const CalenderSetting = () => {
 
   const updateBranchDetails = async (e) => {
     e.preventDefault();
+    console.log(upData, branch_name, "ttttttttttttttttttttttttttttt");
     try {
       const response = await axios.put(
         `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/super-admin/updateBranchCalenderSetting/${branch_name}`,

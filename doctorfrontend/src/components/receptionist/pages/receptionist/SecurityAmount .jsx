@@ -16,7 +16,7 @@ import animationData from "../../images/animation/loading-effect.json";
 function SecurityAmount() {
   const { refreshTable, currentUser } = useSelector((state) => state.user);
   const { currentBranch } = useSelector((state) => state.branch);
-  const branch = currentuser?.branch_name;
+  const branch = currentUser?.branch_name;
   const [patients, setPatients] = useState([]);
   const token = currentUser?.token;
   const [loading, setLoading] = useState(false);
@@ -186,7 +186,7 @@ function SecurityAmount() {
     transaction_Id: "",
     // cheque_number : "",
     notes: "",
-    received_by: currentuser?.employee_name,
+    received_by: currentUser?.employee_name,
   });
   console.log(data);
 
@@ -197,7 +197,7 @@ function SecurityAmount() {
       const response = await axios.put(
         `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/updateRefundAmount/${selected}`,
         {
-          refund_by: currentuser?.employee_name,
+          refund_by: currentUser?.employee_name,
           payment_status: "Refunded",
           refund_amount: filterForSecAmountDef[0]?.remaining_amount,
           remaining_amount: 0,
@@ -296,7 +296,7 @@ function SecurityAmount() {
   //         `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/updateRefundAmount/${selected}`,
   //         {
   //           refund_date: date,
-  //           refund_by: currentuser?.employee_name,
+  //           refund_by: currentUser?.employee_name,
   //           payment_status: "Refunded",
   //           refund_amount: refAmount,
   //         }

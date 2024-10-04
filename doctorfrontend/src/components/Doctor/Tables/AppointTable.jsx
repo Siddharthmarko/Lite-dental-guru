@@ -25,11 +25,11 @@ const AppointTable = () => {
   const dispatch = useDispatch();
   const { refreshTable } = useSelector((state) => state.user);
   const user = useSelector((state) => state.user);
-  console.log(user.currentuser?.token);
-  const doctor = user.currentuser?.employee_name;
-  const doctorId = user.currentuser?.employee_ID;
-  const branch = user.currentuser?.branch_name;
-  const token = user.currentuser?.token;
+  console.log(user.currentUser?.token);
+  const doctor = user.currentUser?.employee_name;
+  const doctorId = user.currentUser?.employee_ID;
+  const branch = user.currentUser?.branch_name;
+  const token = user.currentUser?.token;
   // console.log(branch);
   // const [selectedActions, setSelectedActions] = useState({});
 

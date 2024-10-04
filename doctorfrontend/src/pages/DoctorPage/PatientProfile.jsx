@@ -15,8 +15,8 @@ const PatientProfile = () => {
   console.log(uhid);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-  const token = user.currentuser?.token;
-  const branch = user.currentuser?.branch_name;
+  const token = user.currentUser?.token;
+  const branch = user.currentUser?.branch_name;
   console.log(`User Branch: ${branch}`);
 
   const [patientData, setPatientData] = useState([]);

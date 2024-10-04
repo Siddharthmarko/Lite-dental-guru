@@ -34,7 +34,7 @@ const AppointTable = () => {
 
   const [filteredData, setFilteredData] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const branch = currentuser?.branch_name;
+  const branch = currentUser?.branch_name;
   const [appointmentsData, setAppointmentData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [loadingEffect, setLoadingEffect] = useState(true);
@@ -195,7 +195,7 @@ const AppointTable = () => {
       console.log("check this data", response?.data?.data);
       let all = response?.data?.data;
       let currentDoctor = all.filter(
-        (item) => item.assigned_doctor_id == currentuser?.employee_ID
+        (item) => item.assigned_doctor_id == currentUser?.employee_ID
       );
       setAppointmentData(currentDoctor);
       setLoadingEffect(false);
@@ -271,8 +271,8 @@ const AppointTable = () => {
         {
           status: newStatus,
           appointmentId: appointmentId,
-          appointment_updated_by: currentuser?.employee_name,
-          appointment_updated_by_emp_id: currentuser?.employee_ID,
+          appointment_updated_by: currentUser?.employee_name,
+          appointment_updated_by_emp_id: currentUser?.employee_ID,
         },
         {
           headers: {
@@ -465,8 +465,8 @@ const AppointTable = () => {
           status: newStatus,
           cancelReason: reason,
           appointmentId: appointmentId,
-          appointment_updated_by: currentuser?.employee_name,
-          appointment_updated_by_emp_id: currentuser?.employee_ID,
+          appointment_updated_by: currentUser?.employee_name,
+          appointment_updated_by_emp_id: currentUser?.employee_ID,
         },
         {
           headers: {

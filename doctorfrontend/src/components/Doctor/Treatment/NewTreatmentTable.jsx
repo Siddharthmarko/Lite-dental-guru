@@ -25,9 +25,9 @@ const NewTreatmentTable = () => {
 
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-  const branch = user.currentuser?.branch_name;
-  const doctor = user.currentuser?.employee_name;
-  const token = user.currentuser?.token;
+  const branch = user.currentUser?.branch_name;
+  const doctor = user.currentUser?.employee_name;
+  const token = user.currentUser?.token;
   console.log(branch);
   console.log(doctor);
 

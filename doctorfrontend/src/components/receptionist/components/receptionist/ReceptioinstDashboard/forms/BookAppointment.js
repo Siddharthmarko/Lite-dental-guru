@@ -14,7 +14,7 @@ function BookAppointment() {
   const { refreshTable, currentUser } = useSelector((state) => state.user);
   const {currentBranch} = useSelector((state) => state.branch);
   const token = currentUser?.token;
-  const branch = currentuser?.branch_name;
+  const branch = currentUser?.branch_name;
   const [searchQuery, setSearchQuery] = useState("");
   const [searchDoctor, setSearchDoctor] = useState("");
   const [showDoctorList, setShowDoctorList] = useState(false);
@@ -789,8 +789,8 @@ function BookAppointment() {
         transaction_Id: bookData.transaction_Id,
         // cheque_number : bookData.cheque_number,
         payment_Status: bookData.payment_Status,
-        appointment_created_by: currentuser?.employee_name,
-        appointment_created_by_emp_id: currentuser?.employee_ID,
+        appointment_created_by: currentUser?.employee_name,
+        appointment_created_by_emp_id: currentUser?.employee_ID,
         sharemail : currentBranch[0].sharemail,
         sharewhatsapp : currentBranch[0].sharewhatsapp,
         sharesms : currentBranch[0].sharesms

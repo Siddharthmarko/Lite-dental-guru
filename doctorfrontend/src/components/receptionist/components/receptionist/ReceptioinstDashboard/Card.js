@@ -13,7 +13,7 @@ function Card() {
   const [patients, setPatients] = useState([]);
   const [newpatients, setNewPatients] = useState([]);
   const { refreshTable, currentUser } = useSelector((state) => state.user);
-  const branch = currentuser?.branch_name;
+  const branch = currentUser?.branch_name;
   const [opdData, setOpdData] = useState([]);
   const [selectedDate, setSelectedDate] = useState(
     new Date().toISOString()?.split("T")[0]

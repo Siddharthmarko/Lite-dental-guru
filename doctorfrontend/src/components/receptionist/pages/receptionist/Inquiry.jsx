@@ -19,7 +19,7 @@ function Inquiry() {
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  const branch = user.currentuser?.branch_name;
+  const branch = user.currentUser?.branch_name;
   const token = user.currentUser?.token;
   const [inquiries, setInquiries] = useState([]);
   const [filteredData, setFilteredData] = useState([]);

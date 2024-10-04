@@ -15,7 +15,7 @@ import animationData from "../../images/animation/loading-effect.json";
 
 function FinalCreditInvoice() {
   const { refreshTable, currentUser } = useSelector((state) => state.user);
-  const branch = currentuser?.branch_name;
+  const branch = currentUser?.branch_name;
   const token = currentUser?.token;
   const [loadingEffect, setLoadingEffect] = useState(false);
 

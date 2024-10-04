@@ -22,7 +22,7 @@ const CreditPatientBillsByTpid = () => {
   const [getPatientData, setGetPatientData] = useState([]);
   const { refreshTable, currentUser } = useSelector((state) => state.user);
   const { currentBranch } = useSelector((state) => state.branch);
-  const branch = currentuser?.branch_name;
+  const branch = currentUser?.branch_name;
   const token = currentUser?.token;
 
   console.log(tpid);

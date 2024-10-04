@@ -14,14 +14,14 @@ import moment from "moment";
 const ClinicConfigSetting = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-  const token = user.currentuser?.token;
+  const token = user.currentUser?.token;
   console.log(`User Name: ${token}`);
   console.log(
-    `User Name: ${user.currentuser?.name}, User ID: ${user.currentuser?.id}`
+    `User Name: ${user.currentUser?.name}, User ID: ${user.currentUser?.id}`
   );
   console.log("User State:", user);
   const branch_name = useSelector(
-    (state) => state.user.currentuser?.branch_name
+    (state) => state.user.currentUser?.branch_name
   );
   console.log(`User Name: ${branch_name}`);
   const [docPayment, setDocPayment] = useState();

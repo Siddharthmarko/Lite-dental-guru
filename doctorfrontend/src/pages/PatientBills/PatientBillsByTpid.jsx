@@ -23,8 +23,8 @@ const PatientBillsByTpid = () => {
 
   const [getPatientData, setGetPatientData] = useState([]);
   const user = useSelector((state) => state.user);
-  const token = user.currentuser?.token;
-  const branch = user.currentuser?.branch_name;
+  const token = user.currentUser?.token;
+  const branch = user.currentUser?.branch_name;
   console.log(branch);
   const [getExaminData, setGetExaminData] = useState([]);
   const [getTreatData, setGetTreatData] = useState([]);
@@ -193,6 +193,7 @@ const PatientBillsByTpid = () => {
           },
         }
       );
+      console.log(data, "fjsadlkjflksdajflksdajflksdfj");
       setBillDetails(data);
     } catch (error) {
       console.log(error);
@@ -542,13 +543,13 @@ const PatientBillsByTpid = () => {
               <div className="text-start docDetails">
                 <p>
                   <strong>Doctor Name :</strong> Dr.{" "}
-                  {user.currentuser?.employee_name}
+                  {user.currentUser?.employee_name}
                 </p>
                 <p>
-                  <strong>Mobile :</strong> {user.currentuser?.employee_mobile}
+                  <strong>Mobile :</strong> {user.currentUser?.employee_mobile}
                 </p>
                 <p>
-                  <strong>Email :</strong> {user.currentuser?.email}
+                  <strong>Email :</strong> {user.currentUser?.email}
                 </p>
               </div>
             </div>
@@ -697,7 +698,7 @@ const PatientBillsByTpid = () => {
                   </div>
                   <div className="text-word">
                     <p className="m-0 px-1">
-                      {numWords(billDetails[0]?.paid_amount)}
+                      {numWords(billDetails[0]?.paid_amount).toUpperCase()} ONLY
                     </p>
                   </div>
                 </div>

@@ -19,7 +19,7 @@ const PasswordReset = () => {
     try {
       setLoading(true);
       const response = await axios.post(
-        "https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/sendOtp",
+        "https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/sendOtp",
         {
           email,
         }

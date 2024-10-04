@@ -15,9 +15,9 @@ const PrescriptionQuick = () => {
   const contentRef = useRef();
   // console.log(useParams());
   const user = useSelector((state) => state.user);
-  const token = user.currentuser?.token;
+  const token = user.currentUser?.token;
   console.log(user);
-  const branch = user.currentuser?.branch_name;
+  const branch = user.currentUser?.branch_name;
   console.log(branch);
   const branchData = useSelector((state) => state.branch.currentBranch);
   console.log(branchData);
@@ -343,17 +343,17 @@ const PrescriptionQuick = () => {
               <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4">
                 <div className="header-left">
                   <h3 className="text-start">
-                    Dr. {user.currentuser?.employee_name}
+                    Dr. {user.currentUser?.employee_name}
                   </h3>
                   <h6
                     className="fw-bold text-capitalize text-start "
                     style={{ color: "#00b894" }}
                   >
-                    {user.currentuser?.doctor_expertise}
+                    {user.currentUser?.doctor_expertise}
                   </h6>
 
                   <h6 className="fw-bold text-capitalize text-start ">
-                    {user.currentuser?.doctor_education_details}
+                    {user.currentUser?.doctor_education_details}
                   </h6>
 
                   {/* <h6 className="fw-bold text-capitalize text-start">

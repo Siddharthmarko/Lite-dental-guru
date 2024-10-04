@@ -10,7 +10,7 @@ const DoctorProfile = ({ refresh }) => {
   const token = user.currenttoken;
   console.log(`User Name: ${user.name}, User ID: ${user.id}`);
   console.log("User State:", user);
-  const branch_name = useSelector((state) => state.user.currentuser?.branch_name);
+  const branch_name = useSelector((state) => state.user.currentUser?.branch_name);
   console.log(`User Name: ${branch_name}`);
   const { eid } = useParams();
   console.log(eid);

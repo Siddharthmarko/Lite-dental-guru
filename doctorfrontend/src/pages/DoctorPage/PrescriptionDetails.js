@@ -15,10 +15,10 @@ const PrescriptionDetails = () => {
   const [loading, setLoading] = useState(false);
   const { refreshTable } = useSelector((state) => state.user);
   const user = useSelector((state) => state.user);
-  console.log(user.currentuser?.token);
-  const branch = user.currentuser?.branch_name;
-  const token = user.currentuser?.token;
-  const doctorId = user.currentuser?.employee_ID;
+  console.log(user.currentUser?.token);
+  const branch = user.currentUser?.branch_name;
+  const token = user.currentUser?.token;
+  const doctorId = user.currentUser?.employee_ID;
   const [presData, setPresData] = useState([]);
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");

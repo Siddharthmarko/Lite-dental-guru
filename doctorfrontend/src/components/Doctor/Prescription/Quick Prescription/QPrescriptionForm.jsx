@@ -16,12 +16,12 @@ const QPrescriptionForm = () => {
   const user = useSelector((state) => state.user);
   console.log(user);
 
-  const token = user.currentuser?.token;
+  const token = user.currentUser?.token;
   const [appointments, setAppointments] = useState({});
   const [chiefList, setChiefList] = useState([]);
   const [formData, setFormData] = useState({
     name: appointments?.patient_name,
-    branch_name: user.currentuser?.branch_name,
+    branch_name: user.currentUser?.branch_name,
     uhid: appointments?.uhid,
     appoint_id: appoint_id,
     age: appointments?.age,

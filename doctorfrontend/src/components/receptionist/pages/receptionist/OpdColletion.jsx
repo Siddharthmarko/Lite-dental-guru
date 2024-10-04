@@ -15,7 +15,7 @@ import Lottie from "react-lottie";
 import animationData from "../../images/animation/loading-effect.json";
 function OpdCollection() {
   const { refreshTable, currentUser } = useSelector((state) => state.user);
-  const branch = currentuser?.branch_name;
+  const branch = currentUser?.branch_name;
   const token = currentUser?.token;
   const [selectedDate, setSelectedDate] = useState(
     new Date().toISOString()?.split("T")[0]

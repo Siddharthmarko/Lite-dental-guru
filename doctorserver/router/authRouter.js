@@ -496,9 +496,9 @@ router.put(
 );
 
 router.put("/makeBillPayment/:tpid/:branch", authenticate, makeBillPayment);
-router.post("/sendOtp", authenticate, sendOtp);
-router.post("/verifyOtp", authenticate, verifyOtp);
-router.put("/resetPassword", authenticate, resetPassword);
+router.post("/sendOtp", sendOtp);
+router.post("/verifyOtp", verifyOtp);
+router.put("/resetPassword", resetPassword);
 router.get(
   "/getTreatmentViaUhid/:branch/:uhid",
   authenticate,
