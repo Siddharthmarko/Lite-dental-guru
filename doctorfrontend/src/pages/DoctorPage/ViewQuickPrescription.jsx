@@ -12,9 +12,9 @@ const ViewQuickPrescription = () => {
   console.log(useParams());
 
   const user = useSelector((state) => state.user);
-  const token = user.currentUser.token;
+  const token = user.currentuser?.token;
   console.log(user);
-  const branch = user.currentUser.branch_name;
+  const branch = user.currentuser?.branch_name;
   console.log(branch);
   const [getExaminData, setGetExaminData] = useState([]);
   const [getTreatData, setGetTreatData] = useState([]);
@@ -149,17 +149,17 @@ const ViewQuickPrescription = () => {
             <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4">
               <div className="header-left">
                 <h3 className="text-start">
-                  Dr. {user.currentUser.employee_name}
+                  Dr. {user.currentuser?.employee_name}
                 </h3>
                 <h6
                   className="fw-bold text-capitalize text-start"
                   style={{ color: "#00b894" }}
                 >
-                  PH: {user.currentUser.employee_mobile}
+                  PH: {user.currentuser?.employee_mobile}
                 </h6>
 
                 <h6 className="fw-bold text-capitalize text-start">
-                  Email: {user.currentUser.email}
+                  Email: {user.currentuser?.email}
                 </h6>
 
                 {/* <h6 className="fw-bold text-capitalize text-start">

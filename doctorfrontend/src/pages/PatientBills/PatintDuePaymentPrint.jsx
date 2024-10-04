@@ -16,7 +16,7 @@ const PatintDuePaymentPrint = () => {
   const branch = useSelector((state) => state.branch.currentBranch);
   console.log(branch);
   const userToken = useSelector((state) => state.user);
-  const token = userToken.currentUser.token;
+  const token = userToken.currentuser?.token;
   console.log(token);
   console.log(user);
   const [branchData, setBranchData] = useState([]);

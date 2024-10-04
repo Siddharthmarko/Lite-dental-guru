@@ -15,7 +15,7 @@ import animationData from "../../images/animation/loading-effect.json";
 
 function SittingCreditBill() {
   const { refreshTable, currentUser } = useSelector((state) => state.user);
-  const branch = currentUser.branch_name;
+  const branch = currentuser?.branch_name;
   const token = currentUser?.token;
   const [loadingEffect, setLoadingEffect] = useState(false);
   const [showChangeStatus, setShowChangeStatus] = useState(false);

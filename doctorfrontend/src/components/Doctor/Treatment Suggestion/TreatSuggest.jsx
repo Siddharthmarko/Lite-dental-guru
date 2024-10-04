@@ -20,10 +20,10 @@ const TreatSuggest = () => {
   const user = useSelector((state) => state.user);
   const branchData = useSelector((state) => state.branch.currentBranch);
   console.log(branchData);
-  const branch = user.currentUser.branch_name;
-  const employeeName = user.currentUser.employee_name;
+  const branch = user.currentuser?.branch_name;
+  const employeeName = user.currentuser?.employee_name;
   const [otherMed, setOtherMed] = useState("");
-  const token = user.currentUser.token;
+  const token = user.currentuser?.token;
   console.log(branch);
   const { id, tpid } = useParams();
   console.log(id, tpid);

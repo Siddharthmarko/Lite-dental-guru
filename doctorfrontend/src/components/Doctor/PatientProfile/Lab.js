@@ -10,7 +10,7 @@ const Lab = () => {
   console.log(uhid);
   const [testData, setTestData] = useState([]);
   const user = useSelector((state) => state.user);
-  const token = user.currentUser.token;
+  const token = user.currentuser?.token;
   const getLabTest = async () => {
     try {
       const { data } = await axios.get(

@@ -11,8 +11,8 @@ const SuggestedtreatmentList = ({ tpid, getPatientData }) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const { refreshTable, currentUser } = useSelector((state) => state.user);
-  const branch = user.currentUser.branch_name;
-  const token = user.currentUser.token;
+  const branch = user.currentuser?.branch_name;
+  const token = user.currentuser?.token;
   console.log(branch);
   const [treatList, setTreatList] = useState([]);
   const [showEditPopup, setShowEditPopup] = useState(false);

@@ -14,7 +14,7 @@ function Doctor() {
   const dispatch = useDispatch();
   const { refreshTable, currentUser } = useSelector((state) => state.user);
   const token = currentUser?.token;
-  const branch = currentUser.branch_name;
+  const branch = currentuser?.branch_name;
   const [patients, setPatients] = useState([]);
   const [doctors, setDoctors] = useState([]);
   const [appointmentsData, setAppointmentsData] = useState([]);
@@ -316,7 +316,7 @@ function Doctor() {
       });
       setFilteredDoctor(filteredDoctors);
     } else {
-      let currentDoctor = availableDoctorOnDate.filter((item) => item.employee_ID == currentUser.employee_ID)
+      let currentDoctor = availableDoctorOnDate.filter((item) => item.employee_ID == currentuser?.employee_ID)
       console.log("Available doctor - : ", currentDoctor)
       setFilteredDoctor(currentDoctor);
     }

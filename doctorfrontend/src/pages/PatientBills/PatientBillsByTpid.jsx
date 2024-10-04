@@ -23,8 +23,8 @@ const PatientBillsByTpid = () => {
 
   const [getPatientData, setGetPatientData] = useState([]);
   const user = useSelector((state) => state.user);
-  const token = user.currentUser.token;
-  const branch = user.currentUser.branch_name;
+  const token = user.currentuser?.token;
+  const branch = user.currentuser?.branch_name;
   console.log(branch);
   const [getExaminData, setGetExaminData] = useState([]);
   const [getTreatData, setGetTreatData] = useState([]);
@@ -542,13 +542,13 @@ const PatientBillsByTpid = () => {
               <div className="text-start docDetails">
                 <p>
                   <strong>Doctor Name :</strong> Dr.{" "}
-                  {user.currentUser.employee_name}
+                  {user.currentuser?.employee_name}
                 </p>
                 <p>
-                  <strong>Mobile :</strong> {user.currentUser.employee_mobile}
+                  <strong>Mobile :</strong> {user.currentuser?.employee_mobile}
                 </p>
                 <p>
-                  <strong>Email :</strong> {user.currentUser.email}
+                  <strong>Email :</strong> {user.currentuser?.email}
                 </p>
               </div>
             </div>

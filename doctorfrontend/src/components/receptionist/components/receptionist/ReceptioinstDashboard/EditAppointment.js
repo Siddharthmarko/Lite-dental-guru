@@ -27,7 +27,7 @@ function EditAppointment({ onClose, appointmentInfo, allAppointmentData }) {
   ]);
   const [treatments, setTreatment] = useState([]);
   const [doctors, setDoctors] = useState([]);
-  const branch = currentUser.branch_name;
+  const branch = currentuser?.branch_name;
   const [branchHolidays, setBranchHolidays] = useState([]);
 
   // Remove current appointment data from allAppointmentData
@@ -229,8 +229,8 @@ function EditAppointment({ onClose, appointmentInfo, allAppointmentData }) {
     treatment_provided: appointmentInfo.treatment_provided,
     notes: appointmentInfo.notes,
     appointment_status: appointmentInfo.appointment_status,
-    appointment_updated_by: currentUser.employee_name,
-    appointment_updated_by_emp_id: currentUser.employee_ID,
+    appointment_updated_by: currentuser?.employee_name,
+    appointment_updated_by_emp_id: currentuser?.employee_ID,
   });
 
   const [appointment_data, setAppointmentData] = useState([

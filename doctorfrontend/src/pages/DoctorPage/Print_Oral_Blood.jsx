@@ -19,7 +19,7 @@ const Print_Oral_Blood = () => {
   const [notes, setNotes] = useState([]);
   const navigate = useNavigate();
   const user = useSelector((state) => state.user.currentUser);
-  const token = user.currentUser.token;
+  const token = user.currentuser?.token;
   console.log(user);
   const branchData = useSelector((state) => state.branch.currentBranch);
   console.log(branchData);

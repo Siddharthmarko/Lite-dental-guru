@@ -20,7 +20,7 @@ const CreditSittingBill = () => {
   const { refreshTable, currentUser } = useSelector((state) => state.user);
   const { currentBranch } = useSelector((state) => state.branch);
   const token = currentUser?.token;
-  const branch = currentUser.branch_name;
+  const branch = currentuser?.branch_name;
   const [getExaminData, setGetExaminData] = useState([]);
   const [getTreatData, setGetTreatData] = useState([]);
   const [getTreatMedicine, setGetTreatMedicine] = useState([]);

@@ -15,9 +15,9 @@ function ApplyLeave() {
   const [loading, setLoading] = useState(false);
   const token = currentUser?.token;
   const dispatch = useDispatch();
-  const branch = currentUser.branch_name;
-  const employeeName = currentUser.employee_name;
-  const employeeId = currentUser.employee_ID;
+  const branch = currentuser?.branch_name;
+  const employeeName = currentuser?.employee_name;
+  const employeeId = currentuser?.employee_ID;
   const [show, setShow] = useState(false);
   const [leavesData, setLeaveData] = useState([]);
   const [selectedDates, setSelectedDates] = useState([]);

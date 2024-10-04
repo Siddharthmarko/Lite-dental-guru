@@ -14,13 +14,13 @@ import moment from "moment";
 const CalenderSetting = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-  const token = user.currentUser.token;
+  const token = user.currentuser?.token;
   console.log(
-    `User Name: ${user.currentUser.name}, User ID: ${user.currentUser.id}`
+    `User Name: ${user.currentuser?.name}, User ID: ${user.currentuser?.id}`
   );
   console.log("User State:", user);
   const branch_name = useSelector(
-    (state) => state.user.currentUser.branch_name
+    (state) => state.user.currentuser?.branch_name
   );
   console.log(`User Name: ${branch_name}`);
   const location = useLocation();

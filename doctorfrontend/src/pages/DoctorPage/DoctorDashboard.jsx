@@ -11,7 +11,7 @@ const DoctorDashboard = () => {
   const user = useSelector((state) => state.user);
 
   // console.log(user);
-  const branch = user.currentUser.branch_name;
+  const branch = user.currentuser?.branch_name;
   // console.log(`User Branch: ${branch}`);
   return (
     <Wrapper>

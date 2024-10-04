@@ -13,19 +13,19 @@ const ExaminationDashTwo = () => {
   const { id, uhid } = useParams();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-  const branch = user.currentUser.branch_name;
-  const token = user.currentUser.token;
+  const branch = user.currentuser?.branch_name;
+  const token = user.currentuser?.token;
   const [getPatient, setGetPatient] = useState([]);
   console.log(branch);
-  console.log(user.currentUser.branch_name);
+  console.log(user.currentuser?.branch_name);
   const [dcat, setDcat] = useState("");
   const [treatData, setTreatData] = useState({
     uhid: uhid,
-    branch_name: user.currentUser.branch_name,
+    branch_name: user.currentuser?.branch_name,
     appointment_id: id,
     examination_id: "",
-    doctor_id: user.currentUser.employee_ID,
-    doctor_name: user.currentUser.employee_name,
+    doctor_id: user.currentuser?.employee_ID,
+    doctor_name: user.currentuser?.employee_name,
     diagnosis_category: dcat,
     package_status: "started",
   });

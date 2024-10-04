@@ -12,7 +12,7 @@ import Lottie from "react-lottie";
 import animationData from "../../images/animation/loading-effect.json";
 function AllPatient() {
   const { refreshTable, currentUser } = useSelector((state) => state.user);
-  const branch = currentUser.branch_name;
+  const branch = currentuser?.branch_name;
   const token = currentUser?.token;
   const [patients, setPatients] = useState([]);
 

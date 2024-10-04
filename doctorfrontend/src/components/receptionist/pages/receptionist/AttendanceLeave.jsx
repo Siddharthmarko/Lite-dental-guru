@@ -23,11 +23,11 @@ import MarkAttendance from "../../components/receptionist/MarkAttendance";
 const AttendanceLeave = () => {
   const navigate = useNavigate();
   const { refreshTable, currentUser } = useSelector((state) => state.user);
-  const branch = currentUser.branch_name;
+  const branch = currentuser?.branch_name;
   const token = currentUser?.token;
 
-  const employeeName = currentUser.employee_name;
-  const employeeId = currentUser.employee_ID;
+  const employeeName = currentuser?.employee_name;
+  const employeeId = currentuser?.employee_ID;
   const [attendRepo, setAttendRepo] = useState([]);
   const [currentDate, setCurrentDate] = useState(new Date());
   const [daysInMonth, setDaysInMonth] = useState([]);

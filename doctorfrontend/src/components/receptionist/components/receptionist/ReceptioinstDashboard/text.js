@@ -13,7 +13,7 @@ function BookAppointment() {
   const dispatch = useDispatch();
   const { refreshTable, currentUser } = useSelector((state) => state.user);
   const token = currentUser?.token;
-  const branch = currentUser.branch_name;
+  const branch = currentuser?.branch_name;
   const [searchQuery, setSearchQuery] = useState("");
   const [searchDoctor, setSearchDoctor] = useState("");
   const [showDoctorList, setShowDoctorList] = useState(false);
@@ -764,8 +764,8 @@ function BookAppointment() {
         payment_Mode: bookData.payment_Mode,
         transaction_Id: bookData.transaction_Id,
         payment_Status: bookData.payment_Status,
-        appointment_created_by: currentUser.employee_name,
-        appointment_created_by_emp_id: currentUser.employee_ID,
+        appointment_created_by: currentuser?.employee_name,
+        appointment_created_by_emp_id: currentuser?.employee_ID,
       };
 
       if (!isDoctorAvailable(selectedDateTime)) {

@@ -21,7 +21,7 @@ const PrintOpdBill = () => {
   const {currentBranch} = useSelector((state) => state.branch);
 
   const { refreshTable, currentUser } = useSelector((state) => state.user);
-  const branch = currentUser.branch_name;
+  const branch = currentuser?.branch_name;
   const token = currentUser?.token;
 
   const [data, setData] = useState("");

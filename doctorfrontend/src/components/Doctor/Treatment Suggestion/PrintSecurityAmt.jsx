@@ -13,8 +13,8 @@ const PrintSecurityAmt = () => {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.user);
-  const token = user.currentUser.token;
-  const branch = currentUser.branch_name;
+  const token = user.currentuser?.token;
+  const branch = currentuser?.branch_name;
   const [data, setData] = useState("");
   const [hospitalDoc, setHospitalDoc] = useState([]);
   const [showData, setShowData] = useState([]);

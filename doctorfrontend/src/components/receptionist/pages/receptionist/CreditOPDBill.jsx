@@ -16,7 +16,7 @@ import animationData from "../../images/animation/loading-effect.json";
 import cogoToast from "cogo-toast";
 function CreditOPDBill() {
   const { refreshTable, currentUser } = useSelector((state) => state.user);
-  const branch = currentUser.branch_name;
+  const branch = currentuser?.branch_name;
   const token = currentUser?.token;
 
 //  // Initialize with today's date

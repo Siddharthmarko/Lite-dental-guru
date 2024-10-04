@@ -18,7 +18,7 @@ function SittingBillPayment() {
   console.log(currentUser);
   const token = currentUser?.token;
   const {currentBranch} = useSelector((state) => state.branch);
-  const branch = currentUser.branch_name;
+  const branch = currentuser?.branch_name;
   const [branchData, setBranchData] = useState([]);
   const [allSitting, setAllSitting] = useState([]);
   const [billAmount, setBillAmount] = useState([]);
@@ -251,8 +251,8 @@ function SittingBillPayment() {
     payment_mode: "",
     transaction_Id: "",
     note: "",
-    receiver_name: currentUser.employee_name,
-    receiver_emp_id: currentUser.employee_ID,
+    receiver_name: currentuser?.employee_name,
+    receiver_emp_id: currentuser?.employee_ID,
     pay_by_sec_amt:
       data.payment_option === "security"
         ? totalSecPaidValue + billAmount[0]?.sitting_amount

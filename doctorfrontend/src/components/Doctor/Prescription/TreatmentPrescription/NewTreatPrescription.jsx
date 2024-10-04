@@ -16,10 +16,10 @@ const NewTreatPrescription = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const user = useSelector((state) => state.user);
-  const token = user.currentUser.token;
+  const token = user.currentuser?.token;
   console.log(user);
-  const branch = user.currentUser.branch_name;
-  const employeeName = user.currentUser.employee_name;
+  const branch = user.currentuser?.branch_name;
+  const employeeName = user.currentuser?.employee_name;
   console.log(branch);
   const [getPatientData, setGetPatientData] = useState([]);
   const [getExaminData, setGetExaminData] = useState([]);

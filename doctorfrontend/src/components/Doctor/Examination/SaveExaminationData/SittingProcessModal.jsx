@@ -13,8 +13,8 @@ const SittingProcessModal = ({ onClose, selectedData, uhid, appoint_id }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-  const branch = user.currentUser.branch_name;
-  const token = user.currentUser.token;
+  const branch = user.currentuser?.branch_name;
+  const token = user.currentuser?.token;
   console.log(branch);
   console.log(selectedData);
   const [show, setShow] = useState(true);

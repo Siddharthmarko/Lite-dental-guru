@@ -19,10 +19,10 @@ const SittingBill = () => {
   const navigate = useNavigate();
   const [getPatientData, setGetPatientData] = useState([]);
   const user = useSelector((state) => state.user);
-  const token = user.currentUser.token;
+  const token = user.currentuser?.token;
   console.log(token, "sdfghjksdfghjsdfghjksdfghjk");
   console.log(user);
-  const branch = user.currentUser.branch_name;
+  const branch = user.currentuser?.branch_name;
   console.log(branch);
   const branchData = useSelector((state) => state.branch.currentBranch);
   console.log(branchData);

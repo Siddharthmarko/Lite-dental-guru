@@ -17,7 +17,7 @@ function Calender1() {
   const [showPopup, setShowPopup] = useState(false);
   const [selectedAppointment, setSelectedAppointment] = useState("");
   const { refreshTable, currentUser } = useSelector((state) => state.user);
-  const branch = currentUser.branch_name;
+  const branch = currentuser?.branch_name;
   const token = currentUser?.token;
   const [branchDetail, setBranchDetail] = useState([]);
   const [doctors, setDoctors] = useState([]);

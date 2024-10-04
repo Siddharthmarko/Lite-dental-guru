@@ -24,7 +24,7 @@ const SaveData = ({ id, tpid }) => {
   const dispatch = useDispatch();
   const { refreshTable, currentUser } = useSelector((state) => state.user);
   const user = useSelector((state) => state.user);
-  const token = user.currentUser.token;
+  const token = user.currentuser?.token;
 
   const getData = async () => {
     try {

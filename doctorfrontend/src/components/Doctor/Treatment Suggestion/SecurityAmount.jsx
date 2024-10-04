@@ -24,25 +24,25 @@ const SecurityAmount = () => {
   const [treatList, setTreatList] = useState([]);
   const currentUser = useSelector((state) => state.user.currentUser);
   const { refreshTable } = useSelector((state) => state.user);
-  const branch = currentUser.branch_name;
+  const branch = currentuser?.branch_name;
   const user = useSelector((state) => state.user);
-  const token = user.currentUser.token;
+  const token = user.currentuser?.token;
   console.log(branch);
   const [formData, setFormData] = useState({
     tp_id: tpid,
-    branch_name: currentUser ? currentUser.branch_name : "",
+    branch_name: currentUser ? currentuser?.branch_name : "",
     appointment_id: id,
     uhid: "",
     patient_name: "",
     patient_number: "",
     treatment: "",
-    assigned_doctor: currentUser ? currentUser.employee_name : "",
+    assigned_doctor: currentUser ? currentuser?.employee_name : "",
     amount: "",
     payment_status: "",
     payment_Mode: "",
     transaction_Id: "",
     payment_date: "",
-    received_by: currentUser ? currentUser.employee_name : "",
+    received_by: currentUser ? currentuser?.employee_name : "",
   });
 
   console.log(formData);
@@ -173,12 +173,12 @@ const SecurityAmount = () => {
         // uhid: '',
         // patient_name: '',
         // patient_number: '',
-        assigned_doctor: currentUser ? currentUser.employee_name : "",
+        assigned_doctor: currentUser ? currentuser?.employee_name : "",
         // amount: "",
         payment_status: "",
         payment_Mode: "",
         transaction_Id: "",
-        received_by: currentUser ? currentUser.employee_name : "",
+        received_by: currentUser ? currentuser?.employee_name : "",
       });
     } catch (error) {
       setLoading(false);
@@ -194,7 +194,7 @@ const SecurityAmount = () => {
         {
           type: "Secuirty Amount",
           description: `${formData.amount} Secuirty Amount Added`,
-          branch: currentUser ? currentUser.branch_name : "",
+          branch: currentUser ? currentuser?.branch_name : "",
           patientId: formData.uhid,
         },
         {
@@ -280,7 +280,7 @@ const SecurityAmount = () => {
   //   const { refundDate, refundAmount } = updateRefund;
 
   //   const updatedata = {
-  //     refund_by: currentUser ? currentUser.employee_name : "",
+  //     refund_by: currentUser ? currentuser?.employee_name : "",
   //     refund_date: refundDate,
   //     refund_amount: refundAmount
   //   };

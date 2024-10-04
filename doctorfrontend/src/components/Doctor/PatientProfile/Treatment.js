@@ -10,10 +10,10 @@ const Treatment = () => {
   const { uhid } = useParams();
   console.log(uhid);
   const user = useSelector((state) => state.user);
-  const token = user.currentUser.token;
+  const token = user.currentuser?.token;
   console.log(`User Name: ${user.name}, User ID: ${user.id}`);
   console.log("User State:", user);
-  const branch = user.currentUser.branch_name;
+  const branch = user.currentuser?.branch_name;
 
   const [treatDetails, setTreatDetails] = useState([]);
 
