@@ -1,5 +1,4 @@
-<<<<<<< Updated upstream
-=======
+
 
 # 30 se chalu tasks 
    - update abhi nai kar rahe hai 1 october
@@ -18,13 +17,16 @@
 - > 
 - > 
 
->>>>>>> Stashed changes
 # 28 sep
 
 <!-- - > D capital karna hai aur status ko S during doctor treatment
     - treatmentdashboard mai table hai  -->
 # 30 se chalu tasks 
    - update abhi nai kar rahe hai 1 october
+
+# 30 se chalu tasks
+
+- update abhi nai kar rahe hai 1 october
 <!-- - > reminder  -->
 - > currency in dental guru lite
 - > code removing

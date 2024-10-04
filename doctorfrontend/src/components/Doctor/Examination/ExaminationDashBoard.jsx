@@ -40,6 +40,11 @@ const ExaminationDashBoard = () => {
 export default ExaminationDashBoard;
 const Wrapper = styled.div`
   background-color: #f0f8ff;
+  overflow: hidden;
+  .main {
+    height: 100vh;
+    background-color: #f0f8ff;
+  }
   #sidebar {
     width: 5.04rem;
     height: 79rem;

@@ -1258,5 +1258,5 @@ function App() {
 
 export default App;
 const Styling = styled.div`
-  padding-bottom: 100px;
+  // padding-bottom: 100px;
 `;

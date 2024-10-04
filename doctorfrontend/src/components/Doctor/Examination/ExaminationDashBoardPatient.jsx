@@ -16,7 +16,7 @@ const ExaminationDashBoardPatient = () => {
           <Header />
         </div>
 
-        <div className="main">
+        <div className="main mb-5">
           <div className="container-fluid">
             <div className="row flex-nowrap" style={{ paddingTop: "60px" }}>
               <div className="col-lg-1 col-1 p-0 position-fixed" id="sidebar">
