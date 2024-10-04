@@ -8,7 +8,7 @@ import cogoToast from "cogo-toast";
 import axios from "axios";
 import moment from "moment";
 import { useSelector } from "react-redux";
-// import MarkAttendance from "./MarkAttendance";
+// import MarkAttendance from ".  ";
 import ApplyLeave from "../../components/Attendance/ApplyLeave";
 import MarkAttendance from "../../components/Attendance/MarkAttendance";
 import HeadBar from "../../components/Doctor/HeadBar";

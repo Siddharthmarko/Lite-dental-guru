@@ -6,7 +6,7 @@ import { IoArrowBackSharp } from "react-icons/io5";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import cogoToast from "cogo-toast";
-import HeadBar from "../../components/Doctor/HeadBar";
+// import HeadBar from "../../components/Doctor/HeadBar";
 import Header from "../../components/receptionist/components/receptionist/Header";
 
 const PatintDuePaymentPrint = () => {

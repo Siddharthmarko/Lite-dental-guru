@@ -111,13 +111,12 @@ function App() {
   const user = useSelector((state) => state?.user?.currentUser);
   const [attend, setAttend] = useState(true);
   const [todayAttendance, setTodayAttendance] = useState([]);
-  console.log(user);
+  // console.log(user);
   const { refreshTable } = useSelector((state) => state.user);
   const date = new Date().toISOString().slice(0, 10);
   const [loading, setLoading] = useState(false);
 
   const logoutHandleByToken = () => {
-    // alert("Token Expired! You have been logged out");
     dispatch(clearUser());
     navigate("/");
   };
@@ -130,48 +129,6 @@ function App() {
       preserveAspectRatio: "xMidYMid slice",
     },
   };
-
-  // const getTodayAttendance = async () => {
-  //   try {
-  //     setLoading(true);
-  //     const response = await axios.get(
-  //       `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getTodayAttendance/${user?.branch_name}/${user?.employee_ID}/${date}`,
-  //       {
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //           Authorization: `Bearer ${user?.token}`,
-  //         },
-  //       }
-  //     );
-  //     setLoading(false);
-  //     setTodayAttendance(response?.data?.data);
-  //   } catch (error) {
-  //     setLoading(false);
-  //     if (error.response && error.response.status === 401) {
-  //       const errorMessage = error.response.data.message;
-  //       if (errorMessage === "Unauthorized - Token expired") {
-  //         logoutHandleByToken();
-  //       } else {
-  //         console.log("Unauthorized access:", errorMessage);
-  //       }
-  //     } else {
-  //       setLoading(false);
-  //       console.log("An error occurred:", error.message);
-  //     }
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   getTodayAttendance();
-  //   const interval = setInterval(() => {
-  //     dispatch(toggleTableRefresh());
-  //   }, 2000);
-
-  //   return () => {
-  //     clearInterval(interval);
-  //     // console.log("Interval cleared.");
-  //   };
-  // }, [refreshTable]);
 
   const getTodayAttendance = async () => {
     try {
@@ -222,19 +179,16 @@ function App() {
           />
 
           <Route path="/AllPatient" element={<AllPatient />} />
-          <Route
+          {/* <Route
             path="/doctor-dashboard"
             element={
               user === null ? (
                 <DoctorLogin />
               ) : (
-                //  : todayAttendance.length === 0 ? (
-                //   <AttendanceLeave />
-                // )
                 <DoctorDashboard />
               )
             }
-          />
+          /> */}
 
           <Route
             path="/dashboard"
@@ -243,7 +197,6 @@ function App() {
                 <DoctorLogin />
               ) : loading ? (
                 <>
-                  {" "}
                   <Lottie
                     options={defaultOptions}
                     height={300}
@@ -252,8 +205,6 @@ function App() {
                   ></Lottie>
                 </>
               ) : (
-                // ) : todayAttendance.length === 0 ? (
-                //   <AttendanceLeave />
                 <Receptioinstdash />
               )
             }
@@ -265,7 +216,6 @@ function App() {
                 <DoctorLogin />
               ) : loading ? (
                 <>
-                  {" "}
                   <Lottie
                     options={defaultOptions}
                     height={300}
@@ -274,8 +224,6 @@ function App() {
                   ></Lottie>
                 </>
               ) : (
-                // ) : todayAttendance.length === 0 ? (
-                //   <AttendanceLeave />
                 <ExaminationDashBoard />
               )
             }
@@ -287,7 +235,6 @@ function App() {
                 <DoctorLogin />
               ) : loading ? (
                 <>
-                  {" "}
                   <Lottie
                     options={defaultOptions}
                     height={300}
@@ -296,8 +243,6 @@ function App() {
                   ></Lottie>
                 </>
               ) : (
-                // ) : todayAttendance.length === 0 ? (
-                //   <AttendanceLeave />
                 <ExaminationDashBoardPatient />
               )
             }
@@ -309,7 +254,6 @@ function App() {
                 <DoctorLogin />
               ) : loading ? (
                 <>
-                  {" "}
                   <Lottie
                     options={defaultOptions}
                     height={300}
@@ -319,7 +263,6 @@ function App() {
                 </>
               ) : (
                 // : todayAttendance.length === 0 ? (
-                //   <AttendanceLeave />
                 // )
                 <ExaminationDashBoardPediatric />
               )
@@ -332,7 +275,6 @@ function App() {
                 <DoctorLogin />
               ) : loading ? (
                 <>
-                  {" "}
                   <Lottie
                     options={defaultOptions}
                     height={300}
@@ -341,8 +283,6 @@ function App() {
                   ></Lottie>
                 </>
               ) : (
-                // ) : todayAttendance.length === 0 ? (
-                //   <AttendanceLeave />
                 <TreatSuggestDashs />
               )
             }
@@ -354,7 +294,6 @@ function App() {
                 <DoctorLogin />
               ) : loading ? (
                 <>
-                  {" "}
                   <Lottie
                     options={defaultOptions}
                     height={300}
@@ -363,8 +302,6 @@ function App() {
                   ></Lottie>
                 </>
               ) : (
-                //    ) : todayAttendance.length === 0 ? (
-                //              <AttendanceLeave />
                 <SecurityAmount />
               )
             }
@@ -376,7 +313,6 @@ function App() {
                 <DoctorLogin />
               ) : loading ? (
                 <>
-                  {" "}
                   <Lottie
                     options={defaultOptions}
                     height={300}
@@ -385,8 +321,6 @@ function App() {
                   ></Lottie>
                 </>
               ) : (
-                //    ) : todayAttendance.length === 0 ? (
-                //              <AttendanceLeave />
                 <PrintSecurityAmt />
               )
             }
@@ -398,7 +332,6 @@ function App() {
                 <DoctorLogin />
               ) : loading ? (
                 <>
-                  {" "}
                   <Lottie
                     options={defaultOptions}
                     height={300}
@@ -407,8 +340,6 @@ function App() {
                   ></Lottie>
                 </>
               ) : (
-                // ) : todayAttendance.length === 0 ? (
-                //   <AttendanceLeave />
                 <TreatmentDashBoard />
               )
             }
@@ -420,7 +351,6 @@ function App() {
                 <DoctorLogin />
               ) : loading ? (
                 <>
-                  {" "}
                   <Lottie
                     options={defaultOptions}
                     height={300}
@@ -429,8 +359,6 @@ function App() {
                   ></Lottie>
                 </>
               ) : (
-                //    ) : todayAttendance.length === 0 ? (
-                //              <AttendanceLeave />
                 <NewTreatment />
               )
             }
@@ -442,7 +370,6 @@ function App() {
                 <DoctorLogin />
               ) : loading ? (
                 <>
-                  {" "}
                   <Lottie
                     options={defaultOptions}
                     height={300}
@@ -451,8 +378,6 @@ function App() {
                   ></Lottie>
                 </>
               ) : (
-                //    ) : todayAttendance.length === 0 ? (
-                //              <AttendanceLeave />
                 <TreatmentForm />
               )
             }
@@ -464,7 +389,6 @@ function App() {
                 <DoctorLogin />
               ) : loading ? (
                 <>
-                  {" "}
                   <Lottie
                     options={defaultOptions}
                     height={300}
@@ -473,8 +397,6 @@ function App() {
                   ></Lottie>
                 </>
               ) : (
-                // ) : todayAttendance.length === 0 ? (
-                //   <AttendanceLeave />
                 <TreatmentDashTwo />
               )
             }
@@ -486,7 +408,6 @@ function App() {
                 <DoctorLogin />
               ) : loading ? (
                 <>
-                  {" "}
                   <Lottie
                     options={defaultOptions}
                     height={300}
@@ -495,8 +416,6 @@ function App() {
                   ></Lottie>
                 </>
               ) : (
-                //    ) : todayAttendance.length === 0 ? (
-                //              <AttendanceLeave />
                 <NewTreatPrescription />
               )
             }
@@ -508,7 +427,6 @@ function App() {
                 <DoctorLogin />
               ) : loading ? (
                 <>
-                  {" "}
                   <Lottie
                     options={defaultOptions}
                     height={300}
@@ -517,8 +435,6 @@ function App() {
                   ></Lottie>
                 </>
               ) : (
-                //    ) : todayAttendance.length === 0 ? (
-                //              <AttendanceLeave />
                 <PrescriptionDashBoard />
               )
             }
@@ -530,7 +446,6 @@ function App() {
                 <DoctorLogin />
               ) : loading ? (
                 <>
-                  {" "}
                   <Lottie
                     options={defaultOptions}
                     height={300}
@@ -539,8 +454,6 @@ function App() {
                   ></Lottie>
                 </>
               ) : (
-                //    ) : todayAttendance.length === 0 ? (
-                //              <AttendanceLeave />
                 <TPrescription />
               )
             }
@@ -552,7 +465,6 @@ function App() {
                 <DoctorLogin />
               ) : loading ? (
                 <>
-                  {" "}
                   <Lottie
                     options={defaultOptions}
                     height={300}
@@ -561,8 +473,6 @@ function App() {
                   ></Lottie>
                 </>
               ) : (
-                //    ) : todayAttendance.length === 0 ? (
-                //              <AttendanceLeave />
                 <TPrescriptionDash />
               )
             }
@@ -574,7 +484,6 @@ function App() {
                 <DoctorLogin />
               ) : loading ? (
                 <>
-                  {" "}
                   <Lottie
                     options={defaultOptions}
                     height={300}
@@ -583,8 +492,6 @@ function App() {
                   ></Lottie>
                 </>
               ) : (
-                //    ) : todayAttendance.length === 0 ? (
-                //              <AttendanceLeave />
                 <ViewTreatPrescription />
               )
             }
@@ -597,7 +504,6 @@ function App() {
                 <DoctorLogin />
               ) : loading ? (
                 <>
-                  {" "}
                   <Lottie
                     options={defaultOptions}
                     height={300}
@@ -606,8 +512,6 @@ function App() {
                   ></Lottie>
                 </>
               ) : (
-                //    ) : todayAttendance.length === 0 ? (
-                //              <AttendanceLeave />
                 <ViewTreatPrescriptionList />
               )
             }
@@ -620,7 +524,6 @@ function App() {
                 <DoctorLogin />
               ) : loading ? (
                 <>
-                  {" "}
                   <Lottie
                     options={defaultOptions}
                     height={300}
@@ -629,8 +532,6 @@ function App() {
                   ></Lottie>
                 </>
               ) : (
-                // ) : todayAttendance.length === 0 ? (
-                //   <AttendanceLeave />
                 <PatientBillsByTpid />
               )
             }
@@ -643,7 +544,6 @@ function App() {
                 <DoctorLogin />
               ) : loading ? (
                 <>
-                  {" "}
                   <Lottie
                     options={defaultOptions}
                     height={300}
@@ -652,8 +552,6 @@ function App() {
                   ></Lottie>
                 </>
               ) : (
-                //    ) : todayAttendance.length === 0 ? (
-                //              <AttendanceLeave />
                 <ProfileDashboard />
               )
             }
@@ -665,7 +563,6 @@ function App() {
                 <DoctorLogin />
               ) : loading ? (
                 <>
-                  {" "}
                   <Lottie
                     options={defaultOptions}
                     height={300}
@@ -674,8 +571,6 @@ function App() {
                   ></Lottie>
                 </>
               ) : (
-                //    ) : todayAttendance.length === 0 ? (
-                //              <AttendanceLeave />
                 <PatientProfile />
               )
             }
@@ -687,7 +582,6 @@ function App() {
                 <DoctorLogin />
               ) : loading ? (
                 <>
-                  {" "}
                   <Lottie
                     options={defaultOptions}
                     height={300}
@@ -696,8 +590,6 @@ function App() {
                   ></Lottie>
                 </>
               ) : (
-                //    ) : todayAttendance.length === 0 ? (
-                //              <AttendanceLeave />
                 <AllPatient />
               )
             }
@@ -710,7 +602,6 @@ function App() {
                 <DoctorLogin />
               ) : loading ? (
                 <>
-                  {" "}
                   <Lottie
                     options={defaultOptions}
                     height={300}
@@ -719,8 +610,6 @@ function App() {
                   ></Lottie>
                 </>
               ) : (
-                //    ) : todayAttendance.length === 0 ? (
-                //              <AttendanceLeave />
                 <AttendanceLeave />
               )
             }
@@ -733,7 +622,6 @@ function App() {
                 <DoctorLogin />
               ) : loading ? (
                 <>
-                  {" "}
                   <Lottie
                     options={defaultOptions}
                     height={300}
@@ -742,8 +630,6 @@ function App() {
                   ></Lottie>
                 </>
               ) : (
-                //    ) : todayAttendance.length === 0 ? (
-                //              <AttendanceLeave />
                 <PatintDuePaymentPrint />
               )
             }
@@ -756,7 +642,6 @@ function App() {
                 <DoctorLogin />
               ) : loading ? (
                 <>
-                  {" "}
                   <Lottie
                     options={defaultOptions}
                     height={300}
@@ -765,8 +650,6 @@ function App() {
                   ></Lottie>
                 </>
               ) : (
-                //    ) : todayAttendance.length === 0 ? (
-                //              <AttendanceLeave />
                 <Print_Oral_Blood />
               )
             }
@@ -779,7 +662,6 @@ function App() {
                 <DoctorLogin />
               ) : loading ? (
                 <>
-                  {" "}
                   <Lottie
                     options={defaultOptions}
                     height={300}
@@ -788,8 +670,6 @@ function App() {
                   ></Lottie>
                 </>
               ) : (
-                //    ) : todayAttendance.length === 0 ? (
-                //              <AttendanceLeave />
                 <PrescriptionDetails />
               )
             }
@@ -802,7 +682,6 @@ function App() {
                 <DoctorLogin />
               ) : loading ? (
                 <>
-                  {" "}
                   <Lottie
                     options={defaultOptions}
                     height={300}
@@ -811,8 +690,6 @@ function App() {
                   ></Lottie>
                 </>
               ) : (
-                //    ) : todayAttendance.length === 0 ? (
-                //              <AttendanceLeave />
                 <PrescriptionQuick />
               )
             }
@@ -825,7 +702,6 @@ function App() {
                 <DoctorLogin />
               ) : loading ? (
                 <>
-                  {" "}
                   <Lottie
                     options={defaultOptions}
                     height={300}
@@ -834,8 +710,6 @@ function App() {
                   ></Lottie>
                 </>
               ) : (
-                //    ) : todayAttendance.length === 0 ? (
-                //              <AttendanceLeave />
                 <ViewQuickPrescription />
               )
             }
@@ -848,7 +722,6 @@ function App() {
                 <DoctorLogin />
               ) : loading ? (
                 <>
-                  {" "}
                   <Lottie
                     options={defaultOptions}
                     height={300}
@@ -857,8 +730,6 @@ function App() {
                   ></Lottie>
                 </>
               ) : (
-                // ) : todayAttendance.length === 0 ? (
-                //   <AttendanceLeave />
                 <SittingBill />
               )
             }
@@ -872,7 +743,6 @@ function App() {
                 <DoctorLogin />
               ) : loading ? (
                 <>
-                  {" "}
                   <Lottie
                     options={defaultOptions}
                     height={300}
@@ -881,8 +751,6 @@ function App() {
                   ></Lottie>
                 </>
               ) : (
-                //    ) : todayAttendance.length === 0 ? (
-                //              <AttendanceLeave />
                 <QPrescriptionForm />
               )
             }
@@ -1053,12 +921,6 @@ function App() {
               )
             }
           />
-          {/* <Route
-        path="/due_amount"
-        element={
-          user?.currentUser === null ? <UniversalLogin /> : <PatientsDue />
-        }
-      /> */}
           <Route
             path="/invoices"
             element={
@@ -1069,32 +931,6 @@ function App() {
               )
             }
           />
-          {/* <Route
-        path="/sitting-due-amount"
-        element={
-          user?.currentUser === null ? (
-            <UniversalLogin />
-          ) : (
-            <SittingBillDetails />
-          )
-        }
-      /> */}
-          {/* <Route
-        path="/sitting-paid-amount"
-        element={
-          user?.currentUser === null ? (
-            <UniversalLogin />
-          ) : (
-            <SittingPaidBillDetails />
-          )
-        }
-      /> */}
-          {/* <Route
-        path="/paid_amount"
-        element={
-          user?.currentUser === null ? <UniversalLogin /> : <PatientsPaid />
-        }
-      /> */}
           <Route
             path="/all_credit_invoice"
             element={
@@ -1178,17 +1014,6 @@ function App() {
               )
             }
           />
-          {/* <Route
-          path="/attendanceLeave"
-          element={
-            user?.currentUser === null ? (
-              <UniversalLogin />
-            ) : (
-              <AttendanceLeave />
-            )
-          }
-        /> */}
-
           <Route path="/password-reset" element={<PasswordReset />} />
           <Route path="*" element={<F404page />} />
 

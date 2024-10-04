@@ -7,6 +7,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import Sider from "../../receptionist/components/receptionist/Sider";
 import Header from "../../receptionist/components/receptionist/Header";
 
+
 const ExaminationDashBoardPediatric = () => {
   const { tpid } = useParams();
   return (
