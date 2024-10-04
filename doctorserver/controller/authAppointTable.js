@@ -983,8 +983,9 @@ const prescriptionOnMail = (req, res) => {
         console.error(error);
         return res
           .status(500)
-          .json("An error occurred while sending the email.");
+          .json({message:"An error occurred while sending the email.", err: error});
       } else {
+        res.status(200).json("Successful");
         console.log("OTP sent:", info.response);
       }
     });

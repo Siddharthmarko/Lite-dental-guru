@@ -1,9 +1,6 @@
-# 28 sep
-
 <<<<<<< Updated upstream
-<!-- - > D capital karna hai aur status ko S during doctor treatment
-    - treatmentdashboard mai table hai  -->
 =======
+
 # 30 se chalu tasks 
    - update abhi nai kar rahe hai 1 october
 <!-- - > reminder  -->
@@ -11,7 +8,28 @@
 - > code removing
 - > database in dental guru
 - > improve ui
+- > animation should work every where 
+- > 
+
+
+# 30 
+- > hospital category supreadmin mai change nahi ho raha hai
+- > DOCTOR LOGIN MAI CHANGE K IYA HAI BUG TH AIISLIYE judaag lagaya abhi to
+- > 
+- > 
+
 >>>>>>> Stashed changes
+# 28 sep
+
+<!-- - > D capital karna hai aur status ko S during doctor treatment
+    - treatmentdashboard mai table hai  -->
+# 30 se chalu tasks 
+   - update abhi nai kar rahe hai 1 october
+<!-- - > reminder  -->
+- > currency in dental guru lite
+- > code removing
+- > database in dental guru
+- > improve ui
 
 # 01 oct
 
