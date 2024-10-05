@@ -1242,13 +1242,19 @@ function App() {
           <Route
             path="/employee-profile/:eid"
             element={
-              user?.currentUser === null ? <UniversalLogin /> : <EmployeeProfile />
+              user?.currentUser === null ? (
+                <UniversalLogin />
+              ) : (
+                <EmployeeProfile />
+              )
             }
           />
-           <Route
-          path="/superadmin-branch"
-          element={user?.currentUser === null ? <UniversalLogin /> : <Branches />}
-        />
+          <Route
+            path="/branch"
+            element={
+              user?.currentUser === null ? <UniversalLogin /> : <Branches />
+            }
+          />
         </Routes>
         {/* <Footer /> */}
       </Styling>
