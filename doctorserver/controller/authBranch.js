@@ -35,7 +35,7 @@ const getBranch = (req, res) => {
 
 const LoginDoctor = (req, res) => {
   try {
-    const { email, password, branch_name } = req.body;
+    const { email, password} = req.body;
     // if (!branch_name) {
     //   return res.status(404).json({
     //     success: false,

@@ -1103,38 +1103,42 @@ const addSuperAdminNotify = (req, res) => {
         open_time,
         close_time,
         appoint_slot_duration,
+        account_number, 
+        bank_name,      
+        upi_id,         
+        ifsc_code       
       } = req.body;
-      
+  
       const files = req.files;
-        
-        // Define additional directories
-        const additionalDirectories = "/home/vimubdsa/dentalguru-lite.vimubds5.a2hosted.com/branchHeadFootImg/";
-
-        if (!fs.existsSync(additionalDirectories)) {
-          fs.mkdirSync(additionalDirectories, { recursive: true });
+  
+      // Define additional directories
+      const additionalDirectories = "/home/vimubdsa/dentalguru-lite.vimubds5.a2hosted.com/branchHeadFootImg/";
+  
+      if (!fs.existsSync(additionalDirectories)) {
+        fs.mkdirSync(additionalDirectories, { recursive: true });
+      }
+  
+      for (const fieldname in files) {
+        for (const file of files[fieldname]) {
+          const originalFilePath = path.join("/home/vimubdsa/dentalguru-lite.vimubds5.a2hosted.com/branchHeadFootImg/", file.filename);
+          const newFilePath = path.join(additionalDirectories, file.filename);
+          fs.copyFileSync(originalFilePath, newFilePath);
         }
-        
-        for (const fieldname in files) {
-          for (const file of files[fieldname]) {
-            const originalFilePath = path.join("/home/vimubdsa/dentalguru-lite.vimubds5.a2hosted.com/branchHeadFootImg/", file.filename);
-            const newFilePath = path.join(additionalDirectories, file.filename);
-            fs.copyFileSync(originalFilePath, newFilePath);
-          }
-        }
-      //   res.status(200).send('Files uploaded and copied successfully.');
-    
-        const urlAdd = "https://dentalguru-lite.vimubds5.a2hosted.com/branchHeadFootImg";
-      
+      }
+  
+      const urlAdd = "https://dentalguru-lite.vimubds5.a2hosted.com/branchHeadFootImg";
+  
       const head_img = req.files["head_img"]
         ? `${urlAdd}/${req.files["head_img"][0].filename}`
         : null;
       const foot_img = req.files["foot_img"]
         ? `${urlAdd}/${req.files["foot_img"][0].filename}`
         : null;
+  
       const selectQuery = "SELECT * FROM branches WHERE branch_id = ?";
       db.query(selectQuery, bid, (err, result) => {
         if (err) {
-            registrationLogger.log("error", "internal server error");
+          registrationLogger.log("error", "internal server error");
           return res.status(400).json({ success: false, message: err.message });
         }
         if (result && result.length > 0) {
@@ -1171,6 +1175,27 @@ const addSuperAdminNotify = (req, res) => {
             updateValues.push(appoint_slot_duration);
           }
   
+          // Update bank-related fields
+          if (account_number) {
+            updateFields.push("account_number = ?");
+            updateValues.push(account_number);
+          }
+  
+          if (bank_name) {
+            updateFields.push("bank_name = ?");
+            updateValues.push(bank_name);
+          }
+  
+          if (upi_id) {
+            updateFields.push("upi_id = ?");
+            updateValues.push(upi_id);
+          }
+  
+          if (ifsc_code) {
+            updateFields.push("ifsc_code = ?");
+            updateValues.push(ifsc_code);
+          }
+  
           if (head_img) {
             updateFields.push("head_img = ?");
             updateValues.push(head_img);
@@ -1181,19 +1206,17 @@ const addSuperAdminNotify = (req, res) => {
             updateValues.push(foot_img);
           }
   
-          const updateQuery = `UPDATE branches SET ${updateFields.join(
-            ", "
-          )} WHERE branch_id = ?`;
+          const updateQuery = `UPDATE branches SET ${updateFields.join(", ")} WHERE branch_id = ?`;
   
           db.query(updateQuery, [...updateValues, bid], (err, result) => {
             if (err) {
-                registrationLogger.log("error", "Failed to updated details");
+              registrationLogger.log("error", "Failed to update details");
               return res.status(500).json({
                 success: false,
                 message: "Failed to update details",
               });
             } else {
-                registrationLogger.log("info", "Branch Details updated successfully");
+              registrationLogger.log("info", "Branch Details updated successfully");
               return res.status(200).json({
                 success: true,
                 message: "Branch Details updated successfully",
@@ -1201,7 +1224,7 @@ const addSuperAdminNotify = (req, res) => {
             }
           });
         } else {
-            registrationLogger.log("error", "Branch not found");
+          registrationLogger.log("error", "Branch not found");
           return res.status(404).json({
             success: false,
             message: "Branch not found",
@@ -1214,6 +1237,7 @@ const addSuperAdminNotify = (req, res) => {
       res.status(500).json({ success: false, message: error.message });
     }
   };
+  
 
   
 

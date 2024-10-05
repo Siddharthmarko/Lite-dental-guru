@@ -1,4 +1,6 @@
-
+# 05 oct 
+- > share on hatana hai 
+- > drop down mia doctor ka mname
 
 # 30 se chalu tasks 
    - update abhi nai kar rahe hai 1 october
@@ -12,8 +14,8 @@
 
 
 # 30 
-- > hospital category supreadmin mai change nahi ho raha hai
-- > DOCTOR LOGIN MAI CHANGE K IYA HAI BUG TH AIISLIYE judaag lagaya abhi to
+<!-- - > hospital category supreadmin mai change nahi ho raha hai -->
+<!-- - > DOCTOR LOGIN MAI CHANGE K IYA HAI BUG TH AIISLIYE judaag lagaya abhi to -->
 - > 
 - > 
 
@@ -21,8 +23,6 @@
 
 <!-- - > D capital karna hai aur status ko S during doctor treatment
     - treatmentdashboard mai table hai  -->
-# 30 se chalu tasks 
-   - update abhi nai kar rahe hai 1 october
 
 # 30 se chalu tasks
 
@@ -35,9 +35,9 @@
 
 # 01 oct
 
-add payment info
-delete treatment not work
-patient profile me timeline me date or time ni aa rha h jo doctorend se aana chahiye
+<!-- add payment info -->
+<!-- delete treatment not work -->
+<!-- patient profile me timeline me date or time ni aa rha h jo doctorend se aana chahiye -->
 
 # host mai ye karna h i
 

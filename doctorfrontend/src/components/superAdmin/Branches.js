@@ -33,6 +33,10 @@ const Branches = () => {
     name: selectedItem.branch_name,
     address: selectedItem.branch_address,
     contact: selectedItem.branch_contact,
+    account_number: selectedItem.account_number,
+    bank_name: selectedItem.bank_name,
+    upi_id: selectedItem.upi_id,
+    ifsc_code: selectedItem.ifsc_code,
   });
 
   // Create references for file input fields
@@ -43,6 +47,10 @@ const Branches = () => {
       name: selectedItem.branch_name,
       address: selectedItem.branch_address,
       contact: selectedItem.branch_contact,
+      account_number: selectedItem.account_number,
+      bank_name: selectedItem.bank_name,
+      upi_id: selectedItem.upi_id,
+      ifsc_code: selectedItem.ifsc_code,
     });
   }, [selectedItem]);
 
@@ -100,6 +108,7 @@ const Branches = () => {
       formData.append("foot_img", branchFootImg?.file);
 
       console.log(upData, branchHeadImg, branchFootImg, formData, id);
+
       const response = await axios.put(
         `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/super-admin/updateBranchDetails/${id}`,
         formData,
@@ -301,6 +310,72 @@ const Branches = () => {
                               name="contact"
                               value={upData.contact}
                               maxLength={10}
+                              onChange={handleChange}
+                              required
+                            />
+                          </div>
+                          <div className="mb-3">
+                            <label
+                              htmlFor="accountNumber"
+                              className="form-label"
+                            >
+                              Account Number
+                            </label>
+                            <input
+                              type="number"
+                              id="accountNumber"
+                              className="form-control"
+                              placeholder={selectedItem.account_number}
+                              name="account_number"
+                              value={upData.account_number}
+                              onChange={handleChange}
+                              required
+                            />
+                          </div>
+
+                          <div className="mb-3">
+                            <label htmlFor="bankName" className="form-label">
+                              Bank Name
+                            </label>
+                            <input
+                              type="text"
+                              id="bankName"
+                              className="form-control"
+                              placeholder={selectedItem.bank_name}
+                              name="bank_name"
+                              value={upData.bank_name}
+                              onChange={handleChange}
+                              required
+                            />
+                          </div>
+
+                          <div className="mb-3">
+                            <label htmlFor="upiId" className="form-label">
+                              UPI ID
+                            </label>
+                            <input
+                              type="text"
+                              id="upiId"
+                              className="form-control"
+                              placeholder={selectedItem.upi_id}
+                              name="upi_id" 
+                              value={upData.upi_id}
+                              onChange={handleChange}
+                              required
+                            />
+                          </div>
+
+                          <div className="mb-3">
+                            <label htmlFor="ifscCode" className="form-label">
+                              IFSC Code
+                            </label>
+                            <input
+                              type="text"
+                              id="ifscCode"
+                              className="form-control"
+                              placeholder={selectedItem.ifsc_code}
+                              name="ifsc_code"
+                              value={upData.ifsc_code}
                               onChange={handleChange}
                               required
                             />
