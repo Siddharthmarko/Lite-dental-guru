@@ -15,7 +15,7 @@ import animationData from "../../images/animation/loading-effect.json";
 
 function SittingPaidBillDetails() {
   const { refreshTable, currentUser } = useSelector((state) => state.user);
-  const branch = currentUser.branch_name;
+  const branch = currentUser?.branch_name;
   const token = currentUser?.token;
   const [loadingEffect, setLoadingEffect] = useState(false);
 

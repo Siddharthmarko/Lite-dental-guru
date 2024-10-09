@@ -25,7 +25,7 @@ const Profile = () => {
             <div className="row">
               <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
                 <img
-                  src={currentUser.employee_picture}
+                  src={currentUser?.employee_picture}
                   alt="doctor-profile"
                   className="img-fluid rounded"
                 />
@@ -35,48 +35,48 @@ const Profile = () => {
                   <div className="col-xxl-4 col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
                     <label className="text-info">UserID</label>
                     <div className="shadow-none p-1 bg-light rounded">
-                      <p className="m-0">{currentUser.employee_ID}</p>
+                      <p className="m-0">{currentUser?.employee_ID}</p>
                     </div>
                   </div>
                   <div className="col-xxl-4 col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
                     <label className="text-info">User Name</label>
                     <div className="shadow-none p-1 bg-light rounded">
-                      <p className="m-0">Dr. {currentUser.employee_name}</p>
+                      <p className="m-0">Dr. {currentUser?.employee_name}</p>
                     </div>
                   </div>
                   <div className="col-xxl-4 col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
                     <label className="text-info">Email</label>
                     <div className="shadow-none p-1 bg-light rounded">
-                      <p className="m-0">{currentUser.email}</p>
+                      <p className="m-0">{currentUser?.email}</p>
                     </div>
                   </div>
                   <div className="col-xxl-4 col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
                     <label className="text-info">Mobile No.</label>
                     <div className="shadow-none p-1 bg-light rounded">
-                      <p className="m-0">{currentUser.employee_mobile}</p>
+                      <p className="m-0">{currentUser?.employee_mobile}</p>
                     </div>
                   </div>
 
                   <div className="col-xxl-4 col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
                     <label className="text-info">Designation</label>
                     <div className="shadow-none p-1 bg-light rounded">
-                      <p className="m-0">{currentUser.employee_designation}</p>
+                      <p className="m-0">{currentUser?.employee_designation}</p>
                     </div>
                   </div>
                   <div className="col-xxl-4 col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
                     <label className="text-info">Address</label>
                     <div className="shadow-none p-1 bg-light rounded">
-                      <p className="m-0">{currentUser.address}</p>
+                      <p className="m-0">{currentUser?.address}</p>
                     </div>
                   </div>
                   <div className="col-xxl-4 col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
                     <label className="text-info">Working Days</label>
                     <div className="shadow-none p-1 bg-light rounded">
                       <p className="m-0">
-                        {currentUser.working_days === null ||
-                        currentUser.working_days === "null"
+                        {currentUser?.working_days === null ||
+                        currentUser?.working_days === "null"
                           ? "--"
-                          : currentUser.working_days}
+                          : currentUser?.working_days}
                       </p>
                     </div>
                   </div>
@@ -85,12 +85,12 @@ const Profile = () => {
                     <div className="shadow-none p-1 bg-light rounded">
                       <p className="m-0">
                         {moment(
-                          currentUser.morning_shift_start_time,
+                          currentUser?.morning_shift_start_time,
                           "HH:mm:ss.SSSSSS"
                         ).format("h:mm A")}{" "}
                         -{" "}
                         {moment(
-                          currentUser.morning_shift_end_time,
+                          currentUser?.morning_shift_end_time,
                           "HH:mm:ss.SSSSSS"
                         ).format("h:mm A")}{" "}
                       </p>
@@ -102,12 +102,12 @@ const Profile = () => {
                     <div className="shadow-none p-1 bg-light rounded">
                       <p className="m-0">
                         {moment(
-                          currentUser.evening_shift_start_time,
+                          currentUser?.evening_shift_start_time,
                           "HH:mm:ss.SSSSSS"
                         ).format("h:mm A")}{" "}
                         -{" "}
                         {moment(
-                          currentUser.evening_shift_end_time,
+                          currentUser?.evening_shift_end_time,
                           "HH:mm:ss.SSSSSS"
                         ).format("h:mm A")}{" "}
                       </p>

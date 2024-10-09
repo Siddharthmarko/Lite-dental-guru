@@ -15,7 +15,7 @@ function MakePayment({ onClose, patientInfo }) {
   const dispatch = useDispatch();
   const { currentUser, refreshTable } = useSelector((state) => state.user);
   const token = currentUser?.token;
-  const branch = currentUser.branch_name;
+  const branch = currentUser?.branch_name;
   const [show, setShow] = useState(false);
 
   const timelineData = async (id) => {
@@ -52,7 +52,7 @@ function MakePayment({ onClose, patientInfo }) {
     transaction_Id: "",
     notes: "",
 
-    received_by: currentUser.employee_name,
+    received_by: currentUser?.employee_name,
   });
   console.log(data);
 

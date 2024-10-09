@@ -13,9 +13,9 @@ const ViewTreatPrescriptionList = () => {
   const navigate = useNavigate();
   const [getPatientData, setGetPatientData] = useState([]);
   const user = useSelector((state) => state.user);
-  const token = user.currentUser.token;
+  const token = user.currentUser?.token;
   console.log(user);
-  const branch = user.currentUser.branch_name;
+  const branch = user.currentUser?.branch_name;
   console.log(branch);
   const [getExaminData, setGetExaminData] = useState([]);
   const [getTreatData, setGetTreatData] = useState([]);
@@ -246,24 +246,24 @@ const ViewTreatPrescriptionList = () => {
             <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4">
               <div className="header-left">
                 <h3 className="text-start">
-                  Dr. {user.currentUser.employee_name}
+                  Dr. {user.currentUser?.employee_name}
                 </h3>
                 <h6
                   className="fw-bold text-capitalize text-start"
                   style={{ color: "#00b894" }}
                 >
-                  {user.currentUser.doctor_expertise}
+                  {user.currentUser?.doctor_expertise}
                 </h6>
 
                 <h6 className="fw-bold text-capitalize text-start">
-                  {user.currentUser.doctor_education_details}
+                  {user.currentUser?.doctor_education_details}
                 </h6>
 
                 <h6 className="fw-bold text-capitalize text-start">
                   {getBranch[0]?.hospital_name}
                 </h6>
                 <h6 className="fw-bold text-capitalize text-start">
-                  {user.currentUser.employee_mobile}
+                  {user.currentUser?.employee_mobile}
                 </h6>
                 <h6 className="fw-bold text-capitalize text-start">
                   Date : {getTreatData[0]?.date?.split(" ")[0]}

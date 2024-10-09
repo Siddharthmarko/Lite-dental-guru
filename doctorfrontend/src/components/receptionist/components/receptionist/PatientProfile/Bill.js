@@ -182,7 +182,7 @@ const Bill = () => {
   const { pid } = useParams();
   const user = useSelector((state) => state.user);
 
-  const branch = user.currentUser.branch_name;
+  const branch = user.currentUser?.branch_name;
   const token = user.currentUser?.token;
 
   const [bills, setBills] = useState([]);

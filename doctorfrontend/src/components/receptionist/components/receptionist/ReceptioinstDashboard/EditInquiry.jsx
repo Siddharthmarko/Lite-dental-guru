@@ -22,7 +22,7 @@ function EditInquiry({ onClose, inquiryInfo }) {
   }); // State to store the selected Doctor
 
   const [doctors, setDoctors] = useState([]);
-  const branch = currentUser.branch_name;
+  const branch = currentUser?.branch_name;
   const [data, setData] = useState({
     id: inquiryInfo.id,
     patientName: inquiryInfo.patient_name,

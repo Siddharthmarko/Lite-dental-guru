@@ -13,8 +13,8 @@ const Overview = () => {
   const user = useSelector((state) => state.user);
   console.log(`User Name: ${user.name}, User ID: ${user.id}`);
   console.log("User State:", user);
-  const branch = user.currentUser.branch_name;
-  const token = user.currentUser.token;
+  const branch = user.currentUser?.branch_name;
+  const token = user.currentUser?.token;
   const [patPendingBill, setPatPendingBill] = useState([]);
   const [patAppointDetails, setPatAppointDetails] = useState([]);
   const [presData, setPresData] = useState([]);

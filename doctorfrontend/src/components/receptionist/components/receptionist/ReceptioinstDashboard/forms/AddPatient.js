@@ -240,7 +240,13 @@ function AddPatient() {
           },
         }
       );
-      setDoctors(response?.data?.data);
+      
+      let data = response?.data?.data;
+      setDoctors(data);
+      let currentDoctor = data.find((item) => item?.employee_name === user?.currentUser?.employee_name)
+      console.log(currentDoctor, user, "rjlewjlksdjflksdj"); 
+      setSelectedDoctor(currentDoctor)
+
     } catch (error) {
       console.log(error);
     }
@@ -291,6 +297,7 @@ function AddPatient() {
   };
 
   console.log(doctorWithLeave);
+
 
   useEffect(() => {
     getPatient();
@@ -384,7 +391,7 @@ function AddPatient() {
   const [availableDoctorOnDate, setAvailableDoctorOnDate] = useState([]);
   useEffect(() => {
     setSearchDoctor("");
-    setSelectedDoctor(null);
+    // setSelectedDoctor(null);
     if (!selectedDate) {
       return;
     }
@@ -487,6 +494,7 @@ function AddPatient() {
     e.preventDefault();
 
     // Check if the selected doctor is null
+    
     if (!selectedDoctor) {
       cogoToast.error("Please select doctor from the list");
       console.log("Please select a doctor");
@@ -661,8 +669,8 @@ function AddPatient() {
         // cheque_number : data.cheque_number,
         payment_Status: data.payment_Status,
         notes: data.notes,
-        patient_added_by: user.currentUser.employee_name,
-        patient_added_by_emp_id: user.currentUser.employee_ID,
+        patient_added_by: user.currentUser?.employee_name,
+        patient_added_by_emp_id: user.currentUser?.employee_ID,
         sharemail: currentBranch[0].sharemail,
         sharewhatsapp: currentBranch[0].sharewhatsapp,
         sharesms: currentBranch[0].sharesms,
@@ -698,7 +706,7 @@ function AddPatient() {
           dispatch(toggleTableRefresh());
           timelineData(response?.data?.user?.patientId);
           formRef.current.reset();
-          setSelectedDoctor(null);
+          // setSelectedDoctor(null);
           setSelectedDisease([]);
           setSelectedTreatment([]);
           setSearchDoctor("");
@@ -791,7 +799,7 @@ function AddPatient() {
   };
 
   const handleDoctorSelect = (doctor) => {
-    setSelectedDoctor(doctor); // Set the selected patient when it's clicked
+    // setSelectedDoctor(doctor); // Set the selected patient when it's clicked
     setShowDoctorList(false);
     setSearchDoctor(doctor.employee_name); // Reset the search query to close the search list
   };
@@ -1233,7 +1241,7 @@ function AddPatient() {
                       </div>
                     </div>
 
-                    <div className="col-sm-6">
+                    {/* <div className="col-sm-6">
                       <div className="form-outline">
                         <label className="form-label mt-2" for="doctor">
                           Doctor *
@@ -1247,7 +1255,7 @@ function AddPatient() {
                           value={searchDoctor}
                           onChange={handleSearchDoctor}
                           required
-                          placeholder="Select Doctor"
+                          placeholder="Select Doctor" 
                           autocomplete="off"
                         />
                         <DoctorList>
@@ -1268,12 +1276,11 @@ function AddPatient() {
                                         doctor.employee_ID
                                         ? "active"
                                         : ""
-                                    }`} // Add 'active' class if the patient is selected
-                                    onClick={() => handleDoctorSelect(doctor)} // Call handlePatientSelect function when the patient is clicked
+                                    }`} 
+                                    onClick={() => handleDoctorSelect(doctor)}
                                   >
                                     {"Dr. "} {doctor.employee_name} <br /> Id:{" "}
                                     {doctor.employee_ID}
-                                    {/* Display other patient details as needed */}
                                   </li>
                                 ))
                               )}
@@ -1281,7 +1288,7 @@ function AddPatient() {
                           </div>
                         </DoctorList>
                       </div>
-                    </div>
+                    </div> */}
                     {/* <div className="col-sm-6 ">
                        <div className="form-outline">
                        <label className="form-label" for="form6Example2">

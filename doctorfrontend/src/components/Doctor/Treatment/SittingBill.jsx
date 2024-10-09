@@ -19,12 +19,13 @@ const SittingBill = () => {
   const navigate = useNavigate();
   const [getPatientData, setGetPatientData] = useState([]);
   const user = useSelector((state) => state.user);
-  const token = user.currentUser.token;
+  const token = user.currentUser?.token;
+  console.log(token, "sdfghjksdfghjsdfghjksdfghjk");
   console.log(user);
-  const branch = user.currentUser.branch_name;
+  const branch = user.currentUser?.branch_name;
   console.log(branch);
-  const branchData = useSelector((state) => state.branch.currentBranch);
-  console.log(branchData);
+  const { currentBranch } = useSelector((state) => state.branch);
+  console.log(currentBranch);
   const [getExaminData, setGetExaminData] = useState([]);
   const [getTreatData, setGetTreatData] = useState([]);
   const [getTreatMedicine, setGetTreatMedicine] = useState([]);
@@ -103,6 +104,7 @@ const SittingBill = () => {
           },
         }
       );
+      console.log(data, "lkdsjflksdjflksdjlkfjsdok");
       setSittingBill(data);
     } catch (error) {
       console.log(error);
@@ -234,6 +236,7 @@ const SittingBill = () => {
       for (let [key, value] of formData.entries()) {
         console.log(key, value);
       }
+
       const response = await axios.post(
         "https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/prescriptionOnMail",
         formData,
@@ -244,10 +247,18 @@ const SittingBill = () => {
           },
         }
       );
+      // alert("Done mail");
+      console.log(
+        formData,
+        "!----------------------------------------------------------------!"
+      );
+
       cogoToast.success("Sitting bill sent successfully");
-      console.log("PDF sent successfully:", response.data);
+      console.log("256 PDF sent successfully:", response.data);
     } catch (error) {
       console.error("Error sending PDF:", error);
+      alert("asdfgh");
+      cogoToast.error("Error to send bill");
     }
   };
 
@@ -589,7 +600,7 @@ const SittingBill = () => {
                       style={{ fontSize: "12px" }}
                     >
                       {sittingBill[0]?.paid_amount === null
-                        ? numWords(sittingBill[0]?.sitting_amount).toUpperCase()
+                        ? numWords(sittingBill[0]?.paid_amount).toUpperCase()
                         : numWords(
                             sittingBill[0]?.paid_amount
                           ).toUpperCase()}{" "}
@@ -608,31 +619,42 @@ const SittingBill = () => {
                           <td className="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 border p-1">
                             Account No.:
                           </td>
-                          <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1"></td>
+                          <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1">
+                            {currentBranch[0].account_number}
+                          </td>
                         </tr>
                         <tr>
                           <td className="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 border p-1">
                             Account Name:
                           </td>
-                          <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1"></td>
+                          <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1">
+                            {/* Assuming you want to put a placeholder or value here */}
+                            {currentBranch[0].branch_name}
+                          </td>
                         </tr>
                         <tr>
                           <td className="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 border p-1">
                             Bank Name:
                           </td>
-                          <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1"></td>
+                          <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1">
+                            {currentBranch[0].bank_name}
+                          </td>
                         </tr>
                         <tr>
                           <td className="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 border p-1">
                             IFSC/Bank Code:
                           </td>
-                          <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1"></td>
+                          <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1">
+                            {currentBranch[0].ifsc_code}
+                          </td>
                         </tr>
                         <tr>
                           <td className="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 border p-1">
                             UPI ID:
                           </td>
-                          <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1"></td>
+                          <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1">
+                            {currentBranch[0].upi_id}
+                          </td>
                         </tr>
                       </tbody>
                     </table>
@@ -661,7 +683,7 @@ const SittingBill = () => {
                           {sittingBill[0]?.payment_status === "pending" ||
                           sittingBill[0]?.payment_status === "Pending"
                             ? 0
-                            : sittingBill[0]?.paid_amount}
+                            : sittingBill[0]?.paid_amount ? sittingBill[0]?.paid_amount : 0}
                         </td>
                       </tr>
                     </tbody>
@@ -709,7 +731,7 @@ const SittingBill = () => {
             </button>
             <br />
             Share on :
-            {branchData[0]?.sharemail === "Yes" && (
+            {currentBranch[0]?.sharemail === "Yes" && (
               <button
                 className="btn btn-info no-print mx-3 mb-3 mt-2 text-white shadow"
                 style={{
@@ -721,7 +743,7 @@ const SittingBill = () => {
                 <SiGmail />
               </button>
             )}
-            {branchData[0]?.sharewhatsapp === "Yes" && (
+            {currentBranch[0]?.sharewhatsapp === "Yes" && (
               <button
                 className="btn btn-info no-print mx-3 mb-3 mt-2 text-white shadow"
                 style={{
@@ -733,7 +755,7 @@ const SittingBill = () => {
                 <IoLogoWhatsapp />
               </button>
             )}
-            {branchData[0]?.sharesms === "Yes" && (
+            {currentBranch[0]?.sharesms === "Yes" && (
               <button
                 className="btn btn-info no-print mx-3 mb-3 mt-2 text-white shadow"
                 style={{

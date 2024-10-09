@@ -27,6 +27,7 @@ const {
   getTreatmentViaId,
   EnrollEmployee,
   getEmployeeDataByBranchAndId,
+  updateBranchDetails,
 } = require("../controller/superAdminController");
 
 const authenticate = require("../middleware/authMiddleware.js");
@@ -113,6 +114,34 @@ router.post(
 
 router.post("/addBlockDays", authenticate, addBlockDays);
 router.get("/getEmployeeDetails/:branch/:empId", getEmployeeDataByBranchAndId);
+
+const uploadDir = path.join(__dirname, "branchHeadFootImg");
+
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir, { recursive: true });
+}
+
+const storagebranchHeadFootImg = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "branchHeadFootImg/");
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now();
+    cb(null, uniqueSuffix + file.originalname);
+  },
+});
+
+
+const uploadbranchImg = multer({ storage: storagebranchHeadFootImg });
+router.put(
+  "/updateBranchDetails/:bid",
+  uploadbranchImg.fields([
+    { name: "head_img", maxCount: 1 },
+    { name: "foot_img", maxCount: 1 },
+  ]),
+  authenticate,
+  updateBranchDetails
+);
 
 const superRoute = router;
 

@@ -11,7 +11,7 @@ const Prescription = () => {
   console.log(uhid);
   const user = useSelector((state) => state.user);
   const branch = useSelector((state) => state.branch);
-  const token = user.currentUser.token;
+  const token = user.currentUser?.token;
   const [presData, setPresData] = useState([]);
 
   const getPresDetails = async () => {

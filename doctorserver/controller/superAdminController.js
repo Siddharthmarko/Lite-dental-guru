@@ -32,16 +32,21 @@ const getBranchDetailsByBranch = (req, res) => {
   const updateBranchCalenderSetting = (req, res) => {
     try {
       const branch = req.params.branch;
-      const { open_time, close_time, appoint_slot_duration } = req.body;
+      const { open_time, close_time, appoint_slot_duration, week_off } = req.body;
+  
+      // Step 1: Check if the branch exists
       const selectQuery = "SELECT * FROM branches WHERE branch_name = ?";
       db.query(selectQuery, branch, (err, result) => {
         if (err) {
+          registrationLogger.log("error", "Invalid branch");
           return res.status(400).json({ success: false, message: err.message });
         }
+  
         if (result && result.length > 0) {
           const updateFields = [];
           const updateValues = [];
   
+          // Step 2: Prepare fields for updating
           if (open_time) {
             updateFields.push("open_time = ?");
             updateValues.push(open_time);
@@ -57,24 +62,39 @@ const getBranchDetailsByBranch = (req, res) => {
             updateValues.push(appoint_slot_duration);
           }
   
-          const updateQuery = `UPDATE branches SET ${updateFields.join(
-            ", "
-          )} WHERE branch_name = ?`;
+          if (week_off) {
+            updateFields.push("week_off = ?");
+            updateValues.push(week_off);
+          }
   
+          // Check if there are fields to update
+          if (updateFields.length === 0) {
+            return res.status(400).json({
+              success: false,
+              message: "No fields provided for update",
+            });
+          }
+  
+          // Step 3: Construct and execute the update query
+          const updateQuery = `UPDATE branches SET ${updateFields.join(", ")} WHERE branch_name = ?`;
           db.query(updateQuery, [...updateValues, branch], (err, result) => {
             if (err) {
+              registrationLogger.log("error", "Failed to update details");
               return res.status(500).json({
                 success: false,
                 message: "Failed to update details",
+                error: err,
               });
             } else {
+              registrationLogger.log("info", "Branch details updated successfully");
               return res.status(200).json({
                 success: true,
-                message: "Branch Details updated successfully",
+                message: "Branch details updated successfully",
               });
             }
           });
         } else {
+          registrationLogger.log("error", "Branch not found");
           return res.status(404).json({
             success: false,
             message: "Branch not found",
@@ -82,10 +102,13 @@ const getBranchDetailsByBranch = (req, res) => {
         }
       });
     } catch (error) {
+      registrationLogger.log("error", "Internal server error");
       console.log(error);
-      res.status(400).json({ success: false, message: error.message });
+      res.status(500).json({ success: false, message: "Internal server error" });
     }
   };
+  
+
   const getHolidays = (req, res) => {
     try {
       const branch = req.params.branch;
@@ -237,6 +260,7 @@ const getBranchDetailsByBranch = (req, res) => {
       return res.status(500).json({ success: false, message: error.message });
     }
   };
+
   const updateDoctorPaymentAllowSetting = (req, res) => {
     try {
       const branch = req.params.branch;
@@ -246,10 +270,12 @@ const getBranchDetailsByBranch = (req, res) => {
         sharewhatsapp,
         sharemail,
         sharesms,
+        branchCategory
       } = req.body;
       const selectQuery = "SELECT * FROM branches WHERE branch_name = ?";
       db.query(selectQuery, branch, (err, result) => {
         if (err) {
+            registrationLogger.log("error", err.message);
           return res.status(400).json({ success: false, message: err.message });
         }
         if (result && result.length > 0) {
@@ -280,6 +306,11 @@ const getBranchDetailsByBranch = (req, res) => {
             updateFields.push("sharesms = ?");
             updateValues.push(sharesms);
           }
+          
+           if (branchCategory) {
+            updateFields.push("hospital_category = ?");
+            updateValues.push(branchCategory);
+          }
   
           const updateQuery = `UPDATE branches SET ${updateFields.join(
             ", "
@@ -287,11 +318,13 @@ const getBranchDetailsByBranch = (req, res) => {
   
           db.query(updateQuery, [...updateValues, branch], (err, result) => {
             if (err) {
+                registrationLogger.log("error", "Failed ton update details");
               return res.status(500).json({
                 success: false,
                 message: "Failed to update details",
               });
             } else {
+                registrationLogger.log("info", "Branch details updated successfully");
               return res.status(200).json({
                 success: true,
                 message: "Branch Details updated successfully",
@@ -299,6 +332,7 @@ const getBranchDetailsByBranch = (req, res) => {
             }
           });
         } else {
+            registrationLogger.log("error", "Branch not found");
           return res.status(404).json({
             success: false,
             message: "Branch not found",
@@ -306,6 +340,7 @@ const getBranchDetailsByBranch = (req, res) => {
         }
       });
     } catch (error) {
+        registrationLogger.log("error", "internal server error");
       console.log(error);
       res.status(400).json({ success: false, message: error.message });
     }
@@ -952,8 +987,8 @@ const addSuperAdminNotify = (req, res) => {
         treat_procedure_id,
         treat_procedure_name,
         treatment_name,
-        treatment_cost,
-        treatment_discount,
+        nabh,
+        non_nabh,
         value,
         label,
       } = req.body;
@@ -962,6 +997,7 @@ const addSuperAdminNotify = (req, res) => {
         "SELECT * FROM treatment_list_copy WHERE treatment_id = ?";
       db.query(selectQuery, [treatID], (err, result) => {
         if (err) {
+            registrationLogger.log("error", err.message);
           res.status(400).json({ success: false, message: err.message });
         } else {
           if (result && result.length > 0) {
@@ -985,14 +1021,14 @@ const addSuperAdminNotify = (req, res) => {
               updateValues.push(treatment_name);
             }
   
-            if (treatment_cost) {
-              updateFields.push("treatment_cost = ?");
-              updateValues.push(treatment_cost);
+            if (nabh) {
+              updateFields.push("nabh = ?");
+              updateValues.push(nabh);
             }
   
-            if (treatment_discount) {
-              updateFields.push("treatment_discount = ?");
-              updateValues.push(treatment_discount);
+            if (non_nabh) {
+              updateFields.push("non_nabh = ?");
+              updateValues.push(non_nabh);
             }
   
             if (value) {
@@ -1011,10 +1047,12 @@ const addSuperAdminNotify = (req, res) => {
   
             db.query(updateQuery, [...updateValues, treatID], (err, result) => {
               if (err) {
+                  registrationLogger.log("error", "failed to update details");
                 return res
                   .status(500)
                   .json({ success: false, message: "failed to update details" });
               } else {
+                  registrationLogger.log("info", "Details updated successfully");
                 return res.status(200).json({
                   success: true,
                   message: "Details updated successfully",
@@ -1022,6 +1060,7 @@ const addSuperAdminNotify = (req, res) => {
               }
             });
           } else {
+              registrationLogger.log("error", "treatment not found");
             return res
               .status(404)
               .json({ success: false, message: "treatment not found" });
@@ -1029,6 +1068,7 @@ const addSuperAdminNotify = (req, res) => {
         }
       });
     } catch (error) {
+        registrationLogger.log("error", "internal server error");
       console.log(error);
       res.status(500).json({ success: false, message: "Internal server error" });
     }
@@ -1073,6 +1113,152 @@ const addSuperAdminNotify = (req, res) => {
     }
   };
 
+  const updateBranchDetails = (req, res) => {
+    try {
+      const bid = req.params.bid;
+      const {
+        name,
+        address,
+        contact,
+        open_time,
+        close_time,
+        appoint_slot_duration,
+        account_number, 
+        bank_name,      
+        upi_id,         
+        ifsc_code       
+      } = req.body;
+  
+      const files = req.files;
+  
+      // Define additional directories
+      const additionalDirectories = "/home/vimubdsa/dentalguru-lite.vimubds5.a2hosted.com/branchHeadFootImg/";
+  
+      if (!fs.existsSync(additionalDirectories)) {
+        fs.mkdirSync(additionalDirectories, { recursive: true });
+      }
+  
+      for (const fieldname in files) {
+        for (const file of files[fieldname]) {
+          const originalFilePath = path.join("/home/vimubdsa/dentalguru-lite.vimubds5.a2hosted.com/branchHeadFootImg/", file.filename);
+          const newFilePath = path.join(additionalDirectories, file.filename);
+          fs.copyFileSync(originalFilePath, newFilePath);
+        }
+      }
+  
+      const urlAdd = "https://dentalguru-lite.vimubds5.a2hosted.com/branchHeadFootImg";
+  
+      const head_img = req.files["head_img"]
+        ? `${urlAdd}/${req.files["head_img"][0].filename}`
+        : null;
+      const foot_img = req.files["foot_img"]
+        ? `${urlAdd}/${req.files["foot_img"][0].filename}`
+        : null;
+  
+      const selectQuery = "SELECT * FROM branches WHERE branch_id = ?";
+      db.query(selectQuery, bid, (err, result) => {
+        if (err) {
+          registrationLogger.log("error", "internal server error");
+          return res.status(400).json({ success: false, message: err.message });
+        }
+        if (result && result.length > 0) {
+          const updateFields = [];
+          const updateValues = [];
+  
+          if (name) {
+            updateFields.push("branch_name = ?");
+            updateValues.push(name);
+          }
+  
+          if (address) {
+            updateFields.push("branch_address = ?");
+            updateValues.push(address);
+          }
+  
+          if (contact) {
+            updateFields.push("branch_contact = ?");
+            updateValues.push(contact);
+          }
+  
+          if (open_time) {
+            updateFields.push("open_time = ?");
+            updateValues.push(open_time);
+          }
+  
+          if (close_time) {
+            updateFields.push("close_time = ?");
+            updateValues.push(close_time);
+          }
+  
+          if (appoint_slot_duration) {
+            updateFields.push("appoint_slot_duration = ?");
+            updateValues.push(appoint_slot_duration);
+          }
+  
+          // Update bank-related fields
+          if (account_number) {
+            updateFields.push("account_number = ?");
+            updateValues.push(account_number);
+          }
+  
+          if (bank_name) {
+            updateFields.push("bank_name = ?");
+            updateValues.push(bank_name);
+          }
+  
+          if (upi_id) {
+            updateFields.push("upi_id = ?");
+            updateValues.push(upi_id);
+          }
+  
+          if (ifsc_code) {
+            updateFields.push("ifsc_code = ?");
+            updateValues.push(ifsc_code);
+          }
+  
+          if (head_img) {
+            updateFields.push("head_img = ?");
+            updateValues.push(head_img);
+          }
+  
+          if (foot_img) {
+            updateFields.push("foot_img = ?");
+            updateValues.push(foot_img);
+          }
+  
+          const updateQuery = `UPDATE branches SET ${updateFields.join(", ")} WHERE branch_id = ?`;
+  
+          db.query(updateQuery, [...updateValues, bid], (err, result) => {
+            if (err) {
+              registrationLogger.log("error", "Failed to update details");
+              return res.status(500).json({
+                success: false,
+                message: "Failed to update details",
+              });
+            } else {
+              registrationLogger.log("info", "Branch Details updated successfully");
+              return res.status(200).json({
+                success: true,
+                message: "Branch Details updated successfully",
+              });
+            }
+          });
+        } else {
+          registrationLogger.log("error", "Branch not found");
+          return res.status(404).json({
+            success: false,
+            message: "Branch not found",
+          });
+        }
+      });
+    } catch (error) {
+      registrationLogger.log("error", "internal server error");
+      console.log(error);
+      res.status(500).json({ success: false, message: error.message });
+    }
+  };
+  
+
   
 
   module.exports = {
@@ -1098,6 +1284,7 @@ const addSuperAdminNotify = (req, res) => {
     editEmployeeDetails,
     getTreatmentViaId,
     EnrollEmployee,
-    getEmployeeDataByBranchAndId
+    getEmployeeDataByBranchAndId,
+    updateBranchDetails
 };
   

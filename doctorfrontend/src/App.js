@@ -99,6 +99,7 @@ import ClinicConfigSetting from "./components/superAdmin/ClinicConfigSetting";
 import TreatmentSetting from "./components/superAdmin/TreatmentSetting";
 import CalenderSetting from "./components/superAdmin/CalenderSetting";
 import EmployeeProfile from "./components/superAdmin/EmployeeProfile";
+import Branches from "./components/superAdmin/Branches";
 import Header from "./components/receptionist/components/receptionist/Header";
 import Sider from "./components/receptionist/components/receptionist/Sider";
 import Footer from "./components/receptionist/components/receptionist/Footer";
@@ -1241,7 +1242,17 @@ function App() {
           <Route
             path="/employee-profile/:eid"
             element={
-              user?.id === null ? <UniversalLogin /> : <EmployeeProfile />
+              user?.currentUser === null ? (
+                <UniversalLogin />
+              ) : (
+                <EmployeeProfile />
+              )
+            }
+          />
+          <Route
+            path="/branch"
+            element={
+              user?.currentUser === null ? <UniversalLogin /> : <Branches />
             }
           />
         </Routes>
@@ -1253,5 +1264,5 @@ function App() {
 
 export default App;
 const Styling = styled.div`
-  padding-bottom: 100px;
+  // padding-bottom: 100px;
 `;
