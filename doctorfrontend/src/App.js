@@ -216,10 +216,7 @@ function App() {
         <Routes>
           {/* ************** Doctor Routes Start Here ******************* */}
 
-          <Route
-            path="/"
-            element={user === null ? <DoctorLogin /> : <Receptioinstdash />}
-          />
+          <Route path="/" element={user === null ? <DoctorLogin /> : <Receptioinstdash />} />
 
           <Route path="/AllPatient" element={<AllPatient />} />
           <Route
