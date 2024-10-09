@@ -264,7 +264,7 @@ console.log(insuranceCompany)
                   >
                     <option value="">Select Patient Type</option>
                     <option value="General">General</option>
-                    {currentBranch[0].allow_insurance == "Yes" && <option value="Credit">Credit</option>}
+                    {currentBranch[0]?.allow_insurance == "Yes" && <option value="Credit">Credit</option>}
                   
                   </select>
                 </div>

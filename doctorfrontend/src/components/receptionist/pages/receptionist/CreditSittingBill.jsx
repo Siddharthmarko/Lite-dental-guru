@@ -695,7 +695,7 @@ const CreditSittingBill = () => {
                             Account No.:
                           </td>
                           <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1">
-                            {currentBranch[0].account_number}
+                            {currentBranch[0]?.account_number}
                           </td>
                         </tr>
                         <tr>
@@ -704,7 +704,7 @@ const CreditSittingBill = () => {
                           </td>
                           <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1">
                             {/* Assuming you want to put a placeholder or value here */}
-                            {currentBranch[0].branch_name}
+                            {currentBranch[0]?.branch_name}
                           </td>
                         </tr>
                         <tr>
@@ -712,7 +712,7 @@ const CreditSittingBill = () => {
                             Bank Name:
                           </td>
                           <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1">
-                            {currentBranch[0].bank_name}
+                            {currentBranch[0]?.bank_name}
                           </td>
                         </tr>
                         <tr>
@@ -720,7 +720,7 @@ const CreditSittingBill = () => {
                             IFSC/Bank Code:
                           </td>
                           <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1">
-                            {currentBranch[0].ifsc_code}
+                            {currentBranch[0]?.ifsc_code}
                           </td>
                         </tr>
                         <tr>
@@ -728,7 +728,7 @@ const CreditSittingBill = () => {
                             UPI ID:
                           </td>
                           <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1">
-                            {currentBranch[0].upi_id}
+                            {currentBranch[0]?.upi_id}
                           </td>
                         </tr>
                       </tbody>
@@ -776,7 +776,19 @@ const CreditSittingBill = () => {
                 <div className="text-termslong"></div>
               </div>
             </div>
+            <div className="row d-none d-print-block fixed-bottom">
+              <div className="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div className="clinic-logo">
+                  <img
+                    src={getBranch[0]?.foot_img}
+                    alt="header"
+                    className="img-fluid"
+                  />
+                </div>
+              </div>
+            </div>
           </div>
+
         </div>
         {/* print button */}
         <div className="container-fluid">

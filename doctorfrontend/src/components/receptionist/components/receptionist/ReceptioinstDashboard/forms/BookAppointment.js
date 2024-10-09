@@ -797,9 +797,9 @@ function BookAppointment() {
         payment_Status: bookData.payment_Status,
         appointment_created_by: currentUser?.employee_name,
         appointment_created_by_emp_id: currentUser?.employee_ID,
-        sharemail : currentBranch[0].sharemail,
-        sharewhatsapp : currentBranch[0].sharewhatsapp,
-        sharesms : currentBranch[0].sharesms
+        sharemail : currentBranch[0]?.sharemail,
+        sharewhatsapp : currentBranch[0]?.sharewhatsapp,
+        sharesms : currentBranch[0]?.sharesms
       };
 
       if (!isDoctorAvailable(selectedDateTime)) {
@@ -1251,7 +1251,7 @@ function BookAppointment() {
                       >
                         <option value="">Select</option>
                         <option value="Cash">Cash</option>
-                             {(selectedPatient?.patient_type == "Credit" && currentBranch[0].allow_insurance == "Yes") && <option value="Credit">Credit</option> }
+                             {(selectedPatient?.patient_type == "Credit" && currentBranch[0]?.allow_insurance == "Yes") && <option value="Credit">Credit</option> }
                               <option value="UPI">UPI</option>
                               <option value="Card">Card</option>
                               {/* <option value="Cheque">Cheque</option> */}

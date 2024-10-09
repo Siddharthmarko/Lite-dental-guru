@@ -616,7 +616,7 @@ function SittingBillPayment() {
                           >
                             <option value="">-select-</option>
                             <option value="Cash">Cash</option>
-                            {(patientData?.patient_type == "Credit" && currentBranch[0].allow_insurance == "Yes") && <option value="Credit">Credit</option> }
+                            {(patientData?.patient_type == "Credit" && currentBranch[0]?.allow_insurance == "Yes") && <option value="Credit">Credit</option> }
                             <option value="UPI">UPI</option>
                             <option value="Card">Card</option>
                           </select>

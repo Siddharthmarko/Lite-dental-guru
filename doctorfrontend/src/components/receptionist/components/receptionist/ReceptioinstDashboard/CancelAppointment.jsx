@@ -328,9 +328,9 @@ function CancleAppointment({ onClose, appointmentInfo, allAppointmentData }) {
       cancelReason: data.cancelReason,
       appointment_updated_by: currentUser?.employee_name,
       appointment_updated_by_emp_id: currentUser?.employee_ID,
-      sharemail : currentBranch[0].sharemail,
-        sharewhatsapp : currentBranch[0].sharewhatsapp,
-        sharesms : currentBranch[0].sharesms
+      sharemail : currentBranch[0]?.sharemail,
+        sharewhatsapp : currentBranch[0]?.sharewhatsapp,
+        sharesms : currentBranch[0]?.sharesms
     };
 
     //   try {

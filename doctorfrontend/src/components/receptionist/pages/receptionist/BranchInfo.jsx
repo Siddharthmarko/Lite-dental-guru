@@ -19,6 +19,7 @@ const BranchInfo = () => {
   const [loadingEffect, setLoadingEffect] = useState(false);
   const getBranchDetail = async () => {
     try {
+      console.log(branch);
       const response = await axios.get(
         `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/get-branch-detail/${branch}`
       );

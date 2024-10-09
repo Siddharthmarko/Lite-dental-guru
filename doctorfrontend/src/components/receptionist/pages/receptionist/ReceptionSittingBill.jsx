@@ -20,7 +20,6 @@ const ReceptionSittingBill = () => {
   const { refreshTable, currentUser } = useSelector((state) => state.user);
   const { currentBranch } = useSelector((state) => state.branch);
   console.log(currentBranch);
-
   const token = currentUser?.token;
   const branch = currentUser?.branch_name;
   const [getExaminData, setGetExaminData] = useState([]);
@@ -629,7 +628,7 @@ const ReceptionSittingBill = () => {
                           <td>{item.discount}</td>
                           <td>{item.final_cost}</td>
                           <td>{item.sitting_amount}</td>
-                          <td>{item.paid_amount}</td>
+                          <td>{item.paid_amount ? item.paid_amount : 0}</td>
                           {/* <td>{item.payment_mode}</td>
                       <td>{item.date?.split(" ")[0]}</td> */}
                           {/* <td>{item.note}</td> */}
@@ -696,9 +695,9 @@ const ReceptionSittingBill = () => {
                     <div className="text-word">
                       <p className="m-0 fw-bold">
                         {" "}
-                        {numToWords(
+                        {sittingBill[0]?.paid_amount ? numToWords(
                           sittingBill[0]?.paid_amount
-                        ).toUpperCase()}{" "}
+                        ).toUpperCase() : 0}{" "}
                         RUPEES ONLY
                       </p>
                     </div>
@@ -715,7 +714,7 @@ const ReceptionSittingBill = () => {
                             Account No.:
                           </td>
                           <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1">
-                            {currentBranch[0].account_number}
+                            {currentBranch[0]?.account_number}
                           </td>
                         </tr>
                         <tr>
@@ -724,7 +723,7 @@ const ReceptionSittingBill = () => {
                           </td>
                           <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1">
                             {/* Assuming you want to put a placeholder or value here */}
-                            {currentBranch[0].branch_name}
+                            {currentBranch[0]?.branch_name}
                           </td>
                         </tr>
                         <tr>
@@ -732,7 +731,7 @@ const ReceptionSittingBill = () => {
                             Bank Name:
                           </td>
                           <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1">
-                            {currentBranch[0].bank_name}
+                            {currentBranch[0]?.bank_name}
                           </td>
                         </tr>
                         <tr>
@@ -740,7 +739,7 @@ const ReceptionSittingBill = () => {
                             IFSC/Bank Code:
                           </td>
                           <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1">
-                            {currentBranch[0].ifsc_code}
+                            {currentBranch[0]?.ifsc_code}
                           </td>
                         </tr>
                         <tr>
@@ -748,7 +747,7 @@ const ReceptionSittingBill = () => {
                             UPI ID:
                           </td>
                           <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1">
-                            {currentBranch[0].upi_id}
+                            {currentBranch[0]?.upi_id}
                           </td>
                         </tr>
                       </tbody>
@@ -794,6 +793,17 @@ const ReceptionSittingBill = () => {
                   <h6>Terms and Conditions :</h6>
                 </div>
                 <div className="text-termslong"></div>
+              </div>
+            </div>
+            <div className="row d-none d-print-block fixed-bottom">
+              <div className="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div className="clinic-logo">
+                  <img
+                    src={getBranch[0]?.foot_img}
+                    alt="header"
+                    className="img-fluid"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -950,9 +960,7 @@ const Wrapper = styled.div`
     }
   }
 
-  .no-print {
-    display: none !important;
-  }
+
 
   .headerimg {
     img {

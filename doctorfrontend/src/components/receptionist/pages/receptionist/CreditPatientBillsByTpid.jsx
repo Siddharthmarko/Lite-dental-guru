@@ -733,7 +733,7 @@ const CreditPatientBillsByTpid = () => {
                             Account No.:
                           </td>
                           <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1">
-                            {currentBranch[0].account_number}
+                            {currentBranch[0]?.account_number}
                           </td>
                         </tr>
                         <tr>
@@ -742,7 +742,7 @@ const CreditPatientBillsByTpid = () => {
                           </td>
                           <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1">
                             {/* Assuming you want to put a placeholder or value here */}
-                            {currentBranch[0].branch_name}
+                            {currentBranch[0]?.branch_name}
                           </td>
                         </tr>
                         <tr>
@@ -750,7 +750,7 @@ const CreditPatientBillsByTpid = () => {
                             Bank Name:
                           </td>
                           <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1">
-                            {currentBranch[0].bank_name}
+                            {currentBranch[0]?.bank_name}
                           </td>
                         </tr>
                         <tr>
@@ -758,7 +758,7 @@ const CreditPatientBillsByTpid = () => {
                             IFSC/Bank Code:
                           </td>
                           <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1">
-                            {currentBranch[0].ifsc_code}
+                            {currentBranch[0]?.ifsc_code}
                           </td>
                         </tr>
                         <tr>
@@ -766,7 +766,7 @@ const CreditPatientBillsByTpid = () => {
                             UPI ID:
                           </td>
                           <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1">
-                            {currentBranch[0].upi_id}
+                            {currentBranch[0]?.upi_id}
                           </td>
                         </tr>
                       </tbody>

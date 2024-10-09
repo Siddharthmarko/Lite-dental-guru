@@ -546,9 +546,9 @@ function EditAppointment({ onClose, appointmentInfo, allAppointmentData }) {
         notes: data.notes,
         appointment_updated_by: data.appointment_updated_by,
         appointment_updated_by_emp_id: data.appointment_updated_by_emp_id,
-        sharemail : currentBranch[0].sharemail,
-        sharewhatsapp : currentBranch[0].sharewhatsapp,
-        sharesms : currentBranch[0].sharesms
+        sharemail : currentBranch[0]?.sharemail,
+        sharewhatsapp : currentBranch[0]?.sharewhatsapp,
+        sharesms : currentBranch[0]?.sharesms
       };
 
       if (!isDoctorAvailable(selectedDateTime)) {
