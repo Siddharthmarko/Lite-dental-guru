@@ -260,6 +260,7 @@ const getBranchDetailsByBranch = (req, res) => {
       return res.status(500).json({ success: false, message: error.message });
     }
   };
+
   const updateDoctorPaymentAllowSetting = (req, res) => {
     try {
       const branch = req.params.branch;
@@ -269,10 +270,12 @@ const getBranchDetailsByBranch = (req, res) => {
         sharewhatsapp,
         sharemail,
         sharesms,
+        branchCategory
       } = req.body;
       const selectQuery = "SELECT * FROM branches WHERE branch_name = ?";
       db.query(selectQuery, branch, (err, result) => {
         if (err) {
+            registrationLogger.log("error", err.message);
           return res.status(400).json({ success: false, message: err.message });
         }
         if (result && result.length > 0) {
@@ -303,6 +306,11 @@ const getBranchDetailsByBranch = (req, res) => {
             updateFields.push("sharesms = ?");
             updateValues.push(sharesms);
           }
+          
+           if (branchCategory) {
+            updateFields.push("hospital_category = ?");
+            updateValues.push(branchCategory);
+          }
   
           const updateQuery = `UPDATE branches SET ${updateFields.join(
             ", "
@@ -310,11 +318,13 @@ const getBranchDetailsByBranch = (req, res) => {
   
           db.query(updateQuery, [...updateValues, branch], (err, result) => {
             if (err) {
+                registrationLogger.log("error", "Failed ton update details");
               return res.status(500).json({
                 success: false,
                 message: "Failed to update details",
               });
             } else {
+                registrationLogger.log("info", "Branch details updated successfully");
               return res.status(200).json({
                 success: true,
                 message: "Branch Details updated successfully",
@@ -322,6 +332,7 @@ const getBranchDetailsByBranch = (req, res) => {
             }
           });
         } else {
+            registrationLogger.log("error", "Branch not found");
           return res.status(404).json({
             success: false,
             message: "Branch not found",
@@ -329,6 +340,7 @@ const getBranchDetailsByBranch = (req, res) => {
         }
       });
     } catch (error) {
+        registrationLogger.log("error", "internal server error");
       console.log(error);
       res.status(400).json({ success: false, message: error.message });
     }
@@ -975,8 +987,8 @@ const addSuperAdminNotify = (req, res) => {
         treat_procedure_id,
         treat_procedure_name,
         treatment_name,
-        treatment_cost,
-        treatment_discount,
+        nabh,
+        non_nabh,
         value,
         label,
       } = req.body;
@@ -985,6 +997,7 @@ const addSuperAdminNotify = (req, res) => {
         "SELECT * FROM treatment_list_copy WHERE treatment_id = ?";
       db.query(selectQuery, [treatID], (err, result) => {
         if (err) {
+            registrationLogger.log("error", err.message);
           res.status(400).json({ success: false, message: err.message });
         } else {
           if (result && result.length > 0) {
@@ -1008,14 +1021,14 @@ const addSuperAdminNotify = (req, res) => {
               updateValues.push(treatment_name);
             }
   
-            if (treatment_cost) {
-              updateFields.push("treatment_cost = ?");
-              updateValues.push(treatment_cost);
+            if (nabh) {
+              updateFields.push("nabh = ?");
+              updateValues.push(nabh);
             }
   
-            if (treatment_discount) {
-              updateFields.push("treatment_discount = ?");
-              updateValues.push(treatment_discount);
+            if (non_nabh) {
+              updateFields.push("non_nabh = ?");
+              updateValues.push(non_nabh);
             }
   
             if (value) {
@@ -1034,10 +1047,12 @@ const addSuperAdminNotify = (req, res) => {
   
             db.query(updateQuery, [...updateValues, treatID], (err, result) => {
               if (err) {
+                  registrationLogger.log("error", "failed to update details");
                 return res
                   .status(500)
                   .json({ success: false, message: "failed to update details" });
               } else {
+                  registrationLogger.log("info", "Details updated successfully");
                 return res.status(200).json({
                   success: true,
                   message: "Details updated successfully",
@@ -1045,6 +1060,7 @@ const addSuperAdminNotify = (req, res) => {
               }
             });
           } else {
+              registrationLogger.log("error", "treatment not found");
             return res
               .status(404)
               .json({ success: false, message: "treatment not found" });
@@ -1052,6 +1068,7 @@ const addSuperAdminNotify = (req, res) => {
         }
       });
     } catch (error) {
+        registrationLogger.log("error", "internal server error");
       console.log(error);
       res.status(500).json({ success: false, message: "Internal server error" });
     }
