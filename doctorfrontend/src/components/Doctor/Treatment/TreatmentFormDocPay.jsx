@@ -619,6 +619,7 @@ const TreatmentFormDocPay = () => {
     handleSubmit();
   };
 
+
   const handleTreatSubmit = (e) => {
     e.preventDefault();
     setLoading(true);

@@ -9,9 +9,8 @@ import cogoToast from "cogo-toast";
 import { useDispatch, useSelector } from "react-redux";
 import Lottie from "react-lottie";
 // import animationData from "../animation/loading-effect.json";
-import { setBranch } from '../../redux/user/branchSlice'
-import animationData from '../animationData.json'
-
+import { setBranch } from "../../redux/user/branchSlice";
+import animationData from "../animationData.json";
 
 const Branches = () => {
   const dispatch = useDispatch();
@@ -23,12 +22,10 @@ const Branches = () => {
   const user = useSelector((state) => state.user);
   const currentBranch = useSelector((state) => state.branch.currentBranch);
   console.log(currentBranch);
-  const currentUser = useSelector(
-    (state) => state.user.currentUser
-  );
+  const currentUser = useSelector((state) => state.user.currentUser);
   const token = currentUser?.token;
   console.log(currentUser);
-  const [selectedItem, setSelectedItem] = useState({...currentUser});
+  const [selectedItem, setSelectedItem] = useState({ ...currentUser });
   const [branchList, setBranchList] = useState();
   const [headError, setHeadError] = useState("");
   const [footError, setFootError] = useState("");
@@ -36,6 +33,10 @@ const Branches = () => {
     name: selectedItem.branch_name,
     address: selectedItem.branch_address,
     contact: selectedItem.branch_contact,
+    account_number: selectedItem.account_number,
+    bank_name: selectedItem.bank_name,
+    upi_id: selectedItem.upi_id,
+    ifsc_code: selectedItem.ifsc_code,
   });
 
   // Create references for file input fields
@@ -46,6 +47,10 @@ const Branches = () => {
       name: selectedItem.branch_name,
       address: selectedItem.branch_address,
       contact: selectedItem.branch_contact,
+      account_number: selectedItem.account_number,
+      bank_name: selectedItem.bank_name,
+      upi_id: selectedItem.upi_id,
+      ifsc_code: selectedItem.ifsc_code,
     });
   }, [selectedItem]);
 
@@ -103,6 +108,7 @@ const Branches = () => {
       formData.append("foot_img", branchFootImg?.file);
 
       console.log(upData, branchHeadImg, branchFootImg, formData, id);
+
       const response = await axios.put(
         `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/super-admin/updateBranchDetails/${id}`,
         formData,
@@ -128,6 +134,7 @@ const Branches = () => {
       // Clear the file input fields
       if (branchHeadImgRef.current) branchHeadImgRef.current.value = "";
       if (branchFootImgRef.current) branchFootImgRef.current.value = "";
+      getBranchList();
     } catch (error) {
       console.log(error);
     }
@@ -227,13 +234,16 @@ const Branches = () => {
     <>
       <Container>
         <Header />
-        <div className="main">
+        <div className="main" style={{ paddingTop: "60px" }}>
           <div className="container-fluid">
             <div className="row flex-nowrap ">
-              <div className="col-lg-1 col-1 p-0">
+              <div className="col-lg-1 col-1 ps-0 position-fixed" id="sidebar">
                 <Sider />
               </div>
-              <div className="col-lg-11 col-11 ps-0">
+              {/* for fix sider */}
+              <div className="col-md-1"></div>
+              {/* for fix sider */}
+              <div className="col-lg-11 col-11 ps-0 branch">
                 <div className="row d-flex justify-content-between mx-3">
                   <div className="col-12 col-md-12 mt-4">
                     <div className="d-flex justify-content-between">
@@ -241,8 +251,10 @@ const Branches = () => {
                     </div>
 
                     {/* pop-up for creating notice */}
+
                     <div
                       className={`popup-container${showPopup ? " active" : ""}`}
+                      style={{ paddingTop: "60px" }}
                     >
                       <div className="popup">
                         <h2>Update Branch Details</h2>
@@ -253,11 +265,12 @@ const Branches = () => {
                           }
                         >
                           <div className="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">
+                            <label for="branchName" class="form-label">
                               Branch Name
                             </label>
                             <input
                               type="text"
+                              id="branchName"
                               name="name"
                               class="form-control"
                               placeholder={selectedItem.branch_name}
@@ -266,12 +279,14 @@ const Branches = () => {
                               required
                             />
                           </div>
+
                           <div className="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">
+                            <label for="branchAddress" class="form-label">
                               Branch Address
                             </label>
                             <input
                               placeholder={selectedItem.branch_address}
+                              id="branchAddress"
                               class="form-control"
                               name="address"
                               value={upData.address}
@@ -279,8 +294,9 @@ const Branches = () => {
                               required
                             />
                           </div>
+
                           <div className="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">
+                            <label for="branchContact" class="form-label">
                               Branch Contact
                             </label>
                             <small className="mx-1">
@@ -288,6 +304,7 @@ const Branches = () => {
                             </small>
                             <input
                               type="text"
+                              id="branchContact"
                               className="form-control"
                               placeholder={selectedItem.branch_contact}
                               name="contact"
@@ -297,100 +314,141 @@ const Branches = () => {
                               required
                             />
                           </div>
-                          <div className="d-flex">
-                            <div>
-                              <label
-                                for="exampleFormControlInput1"
-                                class="form-label"
-                              >
-                                Upload Header Picture{" "}
-                              </label>
-                              <small className="fw-bold mx-1">
-                                (Please select an image with resolution
-                                5900×1844 or 1920×601)
-                              </small>
-                              <input
-                                type="file"
-                                class="p-1 w-100 rounded"
-                                placeholder="available stock"
-                                accept=".pdf, .jpg, .jpeg, .png"
-                                name="branchHeadImg"
-                                ref={branchHeadImgRef} // Attach ref to file input
-                                onChange={handleBranchHeadPicture}
-                              />
+                          <div className="mb-3">
+                            <label
+                              htmlFor="accountNumber"
+                              className="form-label"
+                            >
+                              Account Number
+                            </label>
+                            <input
+                              type="number"
+                              id="accountNumber"
+                              className="form-control"
+                              placeholder={selectedItem.account_number}
+                              name="account_number"
+                              value={upData.account_number}
+                              onChange={handleChange}
+                              required
+                            />
+                          </div>
 
-                              {headError && (
-                                <p style={{ color: "red" }}>{headError}</p>
-                              )}
-                            </div>
-                            <div className="mx-2">
-                              {branchHeadImg ? (
-                                <img
-                                  src={branchHeadImg.imageUrl}
-                                  alt="Header"
-                                  className="imgData"
-                                />
-                              ) : (
-                                <img
-                                  src={selectedItem.head_img}
-                                  alt="Header"
-                                  className="imgData"
-                                />
-                              )}
-                            </div>
+                          <div className="mb-3">
+                            <label htmlFor="bankName" className="form-label">
+                              Bank Name
+                            </label>
+                            <input
+                              type="text"
+                              id="bankName"
+                              className="form-control"
+                              placeholder={selectedItem.bank_name}
+                              name="bank_name"
+                              value={upData.bank_name}
+                              onChange={handleChange}
+                              required
+                            />
                           </div>
-                          <hr />
-                          <div className="d-flex">
-                            <div>
-                              <label
-                                for="exampleFormControlInput1"
-                                class="form-label"
-                              >
-                                Upload Footer Picture
-                              </label>
-                              <small className="fw-bold mx-1">
-                                (Please select an image with resolution
-                                5900×1000 or 1920×400)
-                              </small>
-                              <input
-                                type="file"
-                                class="p-1 w-100 rounded"
-                                placeholder="available stock"
-                                accept=".pdf, .jpg, .jpeg, .png"
-                                name="branchFootImg"
-                                onChange={handleBranchFootPicture}
-                                ref={branchFootImgRef} // Attach ref to file input
-                              />
-                              {footError && (
-                                <p style={{ color: "red" }}>{footError}</p>
-                              )}
-                            </div>
-                            <div className="mx-2">
-                              {branchFootImg ? (
-                                <img
-                                  src={branchFootImg.imageUrl}
-                                  alt="Footer"
-                                  className="imgData"
-                                />
-                              ) : (
-                                <img
-                                  src={selectedItem.foot_img}
-                                  alt="Header"
-                                  className="imgData"
-                                />
-                              )}
-                            </div>
+
+                          <div className="mb-3">
+                            <label htmlFor="upiId" className="form-label">
+                              UPI ID
+                            </label>
+                            <input
+                              type="text"
+                              id="upiId"
+                              className="form-control"
+                              placeholder={selectedItem.upi_id}
+                              name="upi_id" 
+                              value={upData.upi_id}
+                              onChange={handleChange}
+                              required
+                            />
                           </div>
+
+                          <div className="mb-3">
+                            <label htmlFor="ifscCode" className="form-label">
+                              IFSC Code
+                            </label>
+                            <input
+                              type="text"
+                              id="ifscCode"
+                              className="form-control"
+                              placeholder={selectedItem.ifsc_code}
+                              name="ifsc_code"
+                              value={upData.ifsc_code}
+                              onChange={handleChange}
+                              required
+                            />
+                          </div>
+
+                          <div className="input-container">
+                            <label for="headerImage" class="form-label">
+                              Upload Header Picture
+                            </label>
+                            <small className="fw-bold mx-1">
+                              (Please select an image with resolution 5900×1844
+                              or 1920×601)
+                            </small>
+                            <input
+                              type="file"
+                              id="headerImage"
+                              class="p-1 w-100 rounded"
+                              accept=".pdf, .jpg, .jpeg, .png"
+                              name="branchHeadImg"
+                              ref={branchHeadImgRef}
+                              onChange={handleBranchHeadPicture}
+                            />
+                            {headError && (
+                              <p style={{ color: "red" }}>{headError}</p>
+                            )}
+                            <img
+                              src={
+                                branchHeadImg
+                                  ? branchHeadImg.imageUrl
+                                  : selectedItem.head_img
+                              }
+                              alt="Header"
+                              className="imgData"
+                            />
+                          </div>
+
+                          <div className="input-container">
+                            <label for="footerImage" class="form-label">
+                              Upload Footer Picture
+                            </label>
+                            <small className="fw-bold mx-1">
+                              (Please select an image with resolution 5900×1000
+                              or 1920×400)
+                            </small>
+                            <input
+                              type="file"
+                              id="footerImage"
+                              class="p-1 w-100 rounded"
+                              accept=".pdf, .jpg, .jpeg, .png"
+                              name="branchFootImg"
+                              ref={branchFootImgRef}
+                              onChange={handleBranchFootPicture}
+                            />
+                            {footError && (
+                              <p style={{ color: "red" }}>{footError}</p>
+                            )}
+                            <img
+                              src={
+                                branchFootImg
+                                  ? branchFootImg.imageUrl
+                                  : selectedItem.foot_img
+                              }
+                              alt="Footer"
+                              className="imgData"
+                            />
+                          </div>
+
                           <div className="d-flex justify-content-start">
                             <button
                               type="submit"
                               className="btn btn-success mt-2 text-white shadow"
-                              style={{
-                                backgroundColor: "#014cb1",
-                                borderColor: "#014cb1",
-                              }}
                             >
-                              update
+                              Update
                             </button>
                             <button
                               type="button"
@@ -408,19 +466,19 @@ const Branches = () => {
 
                     <h2 className="text-center"> Branch List </h2>
                     {loading ? (
-                        <>
-                          <div className="d-flex justify-content-center w-100">
-                            <Lottie
-                              options={defaultOptions}
-                              height={300}
-                              width={400}
-                              style={{ background: "transparent" }}
-                            ></Lottie>
-                          </div>
-                        </>
-                      ) : (
-                        <>
-                    <div className="container-fluid mt-3">
+                      <>
+                        <div className="d-flex justify-content-center w-100">
+                          <Lottie
+                            options={defaultOptions}
+                            height={300}
+                            width={400}
+                            style={{ background: "transparent" }}
+                          ></Lottie>
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <div className="container-fluid mt-3">
                           <div class="table-responsive rounded">
                             <table class="table table-bordered rounded shadow">
                               <thead className="table-head">
@@ -476,75 +534,83 @@ const Branches = () => {
                                 </tr>
                               </thead>
                               <tbody>
-                                  <tr
-                                    className="table-row"
-                                    key={branchList.branch_id}
+                                <tr
+                                  className="table-row"
+                                  key={branchList.branch_id}
+                                >
+                                  <td
+                                    className="table-sno"
+                                    style={{ width: "10%" }}
                                   >
-                                    <td
-                                      className="table-sno"
-                                      style={{ width: "10%" }}
+                                    {branchList.branch_id}
+                                  </td>
+                                  <td
+                                    className="table-small"
+                                    style={{ width: "20%" }}
+                                  >
+                                    {branchList.branch_name}
+                                  </td>
+                                  <td
+                                    className="table-small"
+                                    style={{ width: "20%" }}
+                                  >
+                                    {branchList.branch_address}
+                                  </td>
+                                  <td
+                                    className="table-small"
+                                    style={{ width: "10%" }}
+                                  >
+                                    {branchList.branch_contact}
+                                  </td>
+                                  <td
+                                    className="table-small"
+                                    style={{ width: "10%" }}
+                                  >
+                                    <div className="smallImg">
+                                      <img
+                                        src={branchList.head_img}
+                                        alt="header"
+                                      />
+                                    </div>
+                                  </td>
+                                  <td
+                                    className="table-small"
+                                    style={{ width: "10%" }}
+                                  >
+                                    <div className="smallImg">
+                                      <img
+                                        src={branchList.foot_img}
+                                        alt="footer"
+                                      />
+                                    </div>
+                                  </td>
+                                  <td
+                                    className="table-small"
+                                    style={{ width: "10%" }}
+                                  >
+                                    <button
+                                      className="btn btn-warning text-white shadow"
+                                      style={{
+                                        backgroundColor: "#014cb1",
+                                        borderColor: "#014cb1",
+                                      }}
+                                      onClick={() =>
+                                        openUpdatePopup(
+                                          branchList.branch_id,
+                                          branchList
+                                        )
+                                      }
                                     >
-                                      {branchList.branch_id}
-                                    </td>
-                                    <td
-                                      className="table-small"
-                                      style={{ width: "20%" }}
-                                    >
-                                      {branchList.branch_name}
-                                    </td>
-                                    <td
-                                      className="table-small"
-                                      style={{ width: "20%" }}
-                                    >
-                                      {branchList.branch_address}
-                                    </td>
-                                    <td
-                                      className="table-small"
-                                      style={{ width: "10%" }}
-                                    >
-                                      {branchList.branch_contact}
-                                    </td>
-                                    <td
-                                      className="table-small"
-                                      style={{ width: "10%" }}
-                                    >
-                                      <div className="smallImg">
-                                        <img src={branchList.head_img} alt="header" />
-                                      </div>
-                                    </td>
-                                    <td
-                                      className="table-small"
-                                      style={{ width: "10%" }}
-                                    >
-                                      <div className="smallImg">
-                                        <img src={branchList.foot_img} alt="footer" />
-                                      </div>
-                                    </td>
-                                    <td
-                                      className="table-small"
-                                      style={{ width: "10%" }}
-                                    >
-                                      <button
-                                        className="btn btn-warning text-white shadow"
-                                        style={{
-                                          backgroundColor: "#014cb1",
-                                          borderColor: "#014cb1",
-                                        }}
-                                        onClick={() =>
-                                          openUpdatePopup(branchList.branch_id, branchList)
-                                        }
-                                      >
-                                        Edit Details
-                                      </button>
-                                    </td>
-                                  </tr>
+                                      Edit Details
+                                    </button>
+                                  </td>
+                                </tr>
                               </tbody>
                             </table>
                           </div>
-                      
-                    </div>
-                    </>
-                      )}
+                        </div>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>
@@ -557,29 +623,47 @@ const Branches = () => {
 };
 
 export default Branches;
+
 const Container = styled.div`
   .popup-container {
     display: none;
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    // height: 80vh;
+    // background-color: rgba(0, 0, 0, 0.5);
     align-items: center;
     justify-content: center;
+    // padding: 1rem;
+    z-index: 9999;
+  }
+
+  /* Media queries for different screen sizes */
+  @media (max-width: 1024px) {
+    .popup-container {
+      width: 90%;
+      height: auto;
+      padding: 1.5rem;
+    }
   }
 
   .popup-container.active {
     display: flex;
-    background-color: #00000075;
   }
 
   .popup {
     background-color: white;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    width: 80%;
+    height: 80vh;
+    top: 50%;
+    left: 50%;
+    overflow-y: scroll;
+    // transform: translate(-50%, -50%);
   }
 
   .select-style {
@@ -596,7 +680,7 @@ const Container = styled.div`
 
   .imgData {
     height: 10rem;
-    width: auto;
+    width: 30rem;
   }
 
   .smallImg {

@@ -37,6 +37,32 @@
 - > /newtreatment.jsx
 - > /treatmentdashboard.jsx
 - > /treatsuggest.jsx
+# 9 oct
+- > whatsapp ke liye bhi cheeze dynamic karna hai path 
+- > 
+
+# 8 oct
+
+1. VIEWSITTINGBILL/D/ D/ MAI AMOunt mai zero to aana chahiye na nad
+2. print mai footernahi aa rhaa hai 
+3 . aur sisi mai footer bhi hona chahiye 
+4. jab hum super admin se email wagera update kartehai to module ko dobara login karna hota haitabhi wo reduct ki cheez update hogi warna to wahi rahega
+
+
+<!-- - > mene abhi db host evn lagya hai to gitbub maibhi dena hai aur server mai bhi baki 
+  - wese ye chal jata hai to chalne do  -->
+<!-- - > treatemnt ediit bhi kar diay  -->
+<!-- - > mene invoid check karte hai .no-print ko theekkiya  -->
+<!-- - > clinick . category not work   -->
+<!-- - > logout clinik profile mai se -->
+<!-- - > treatment edit work ni kar raha hai -->
+<!-- - > invoice se bill dkehne par no print buttons and back share  -->
+
+
+
+# 05 oct 
+- > share on hatana hai 
+- > drop down mia doctor ka mname
 
 # 30 se chalu tasks 
    - update abhi nai kar rahe hai 1 october
@@ -50,8 +76,8 @@
 
 
 # 30 
-- > hospital category supreadmin mai change nahi ho raha hai
-- > DOCTOR LOGIN MAI CHANGE K IYA HAI BUG TH AIISLIYE judaag lagaya abhi to
+<!-- - > hospital category supreadmin mai change nahi ho raha hai -->
+<!-- - > DOCTOR LOGIN MAI CHANGE K IYA HAI BUG TH AIISLIYE judaag lagaya abhi to -->
 - > 
 - > 
 
@@ -59,8 +85,6 @@
 
 <!-- - > D capital karna hai aur status ko S during doctor treatment
     - treatmentdashboard mai table hai  -->
-# 30 se chalu tasks 
-   - update abhi nai kar rahe hai 1 october
 
 # 30 se chalu tasks
 
@@ -73,9 +97,9 @@
 
 # 01 oct
 
-add payment info
-delete treatment not work
-patient profile me timeline me date or time ni aa rha h jo doctorend se aana chahiye
+<!-- add payment info -->
+<!-- delete treatment not work -->
+<!-- patient profile me timeline me date or time ni aa rha h jo doctorend se aana chahiye -->
 
 # host mai ye karna h i
 

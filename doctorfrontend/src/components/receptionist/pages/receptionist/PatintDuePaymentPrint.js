@@ -616,7 +616,7 @@ function PatintDuePaymentPrint() {
                     </option> */}
                     <option value="" selected>Select</option>
                               <option value="Cash">Cash</option>
-                             {(getPatient[0]?.patient_type == "Credit" && currentBranch[0].allow_insurance == "Yes") && <option value="Credit">Credit</option> }
+                             {(getPatient[0]?.patient_type == "Credit" && currentBranch[0]?.allow_insurance == "Yes") && <option value="Credit">Credit</option> }
                               <option value="UPI">UPI</option>
                               <option value="Card">Card</option>
                   </select>

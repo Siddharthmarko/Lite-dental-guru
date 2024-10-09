@@ -478,7 +478,7 @@ const PrintOpdBill = () => {
         </div> */}
         </div>
 
-        <div className="footimage">
+        <div className="footimage d-none d-print-block">
           <img src={getBranch[0]?.foot_img} alt="footer" srcset="" />
         </div>
       </div>
@@ -606,7 +606,7 @@ const Container = styled.div`
       right: 0;
     }
 
-    height: 60px;
+    /* height: 60px; */
     width: auto;
     img {
       height: 100%;

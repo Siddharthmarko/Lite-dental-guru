@@ -24,8 +24,8 @@ const SittingBill = () => {
   console.log(user);
   const branch = user.currentUser?.branch_name;
   console.log(branch);
-  const branchData = useSelector((state) => state.branch.currentBranch);
-  console.log(branchData);
+  const { currentBranch } = useSelector((state) => state.branch);
+  console.log(currentBranch);
   const [getExaminData, setGetExaminData] = useState([]);
   const [getTreatData, setGetTreatData] = useState([]);
   const [getTreatMedicine, setGetTreatMedicine] = useState([]);
@@ -257,7 +257,6 @@ const SittingBill = () => {
       console.log("256 PDF sent successfully:", response.data);
     } catch (error) {
       console.error("Error sending PDF:", error);
-      alert("asdfgh");
       cogoToast.error("Error to send bill");
     }
   };
@@ -619,31 +618,42 @@ const SittingBill = () => {
                           <td className="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 border p-1">
                             Account No.:
                           </td>
-                          <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1"></td>
+                          <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1">
+                            {currentBranch[0]?.account_number}
+                          </td>
                         </tr>
                         <tr>
                           <td className="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 border p-1">
                             Account Name:
                           </td>
-                          <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1"></td>
+                          <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1">
+                            {/* Assuming you want to put a placeholder or value here */}
+                            {currentBranch[0]?.branch_name}
+                          </td>
                         </tr>
                         <tr>
                           <td className="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 border p-1">
                             Bank Name:
                           </td>
-                          <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1"></td>
+                          <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1">
+                            {currentBranch[0]?.bank_name}
+                          </td>
                         </tr>
                         <tr>
                           <td className="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 border p-1">
                             IFSC/Bank Code:
                           </td>
-                          <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1"></td>
+                          <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1">
+                            {currentBranch[0]?.ifsc_code}
+                          </td>
                         </tr>
                         <tr>
                           <td className="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 border p-1">
                             UPI ID:
                           </td>
-                          <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1"></td>
+                          <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1">
+                            {currentBranch[0]?.upi_id}
+                          </td>
                         </tr>
                       </tbody>
                     </table>
@@ -693,7 +703,18 @@ const SittingBill = () => {
               <div className="text-termslong"></div>
             </div>
           </div>
-        </div>
+          <div className="row d-print-block fixed-bottom">
+              <div className="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div className="clinic-logo">
+                  <img
+                    src={getBranch[0]?.foot_img}
+                    alt="header"
+                    className="img-fluid"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
 
         {/* print button */}
         <div className="container-fluid">
@@ -720,7 +741,7 @@ const SittingBill = () => {
             </button>
             <br />
             Share on :
-            {branchData[0]?.sharemail === "Yes" && (
+            {currentBranch[0]?.sharemail === "Yes" && (
               <button
                 className="btn btn-info no-print mx-3 mb-3 mt-2 text-white shadow"
                 style={{
@@ -732,7 +753,7 @@ const SittingBill = () => {
                 <SiGmail />
               </button>
             )}
-            {branchData[0]?.sharewhatsapp === "Yes" && (
+            {currentBranch[0]?.sharewhatsapp === "Yes" && (
               <button
                 className="btn btn-info no-print mx-3 mb-3 mt-2 text-white shadow"
                 style={{
@@ -744,7 +765,7 @@ const SittingBill = () => {
                 <IoLogoWhatsapp />
               </button>
             )}
-            {branchData[0]?.sharesms === "Yes" && (
+            {currentBranch[0]?.sharesms === "Yes" && (
               <button
                 className="btn btn-info no-print mx-3 mb-3 mt-2 text-white shadow"
                 style={{
