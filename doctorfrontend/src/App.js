@@ -216,7 +216,7 @@ function App() {
         <Routes>
           {/* ************** Doctor Routes Start Here ******************* */}
 
-          <Route path="/" element={<DoctorLogin />} />
+          <Route path="/" element={user === null ? <DoctorLogin /> : <Receptioinstdash />} />
           <Route
             path="/dashboard"
             element={user === null ? <DoctorLogin /> : <Receptioinstdash />}
