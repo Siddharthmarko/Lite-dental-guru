@@ -19,7 +19,7 @@ const PasswordReset = () => {
     try {
       setLoading(true);
       const response = await axios.post(
-        "https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/sendOtp",
+        "https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/sendOtp",
         {
           email,
         }
@@ -42,7 +42,7 @@ const PasswordReset = () => {
     try {
       setLoading(true);
       const response = await axios.post(
-        "https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/verifyOtp",
+        "https://laxmibhawanidentalhospital.dentalguru.software/api/v1/receptionist/verifyOtp",
         {
           email,
           otp,
@@ -65,7 +65,7 @@ const PasswordReset = () => {
     try {
       setLoading(true);
       const response = await axios.put(
-        "https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/resetPassword",
+        "https://laxmibhawanidentalhospital.dentalguru.software/api/v1/receptionist/resetPassword",
         {
           email,
           password: newPassword,

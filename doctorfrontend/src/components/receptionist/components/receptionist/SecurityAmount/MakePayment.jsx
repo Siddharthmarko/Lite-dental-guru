@@ -21,7 +21,7 @@ function MakePayment({ onClose, patientInfo }) {
   const timelineData = async (id) => {
     try {
       const response = await axios.post(
-        "https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/insertTimelineEvent",
+        "https://laxmibhawanidentalhospital.dentalguru.software/api/v1/receptionist/insertTimelineEvent",
         {
           type: "Security Amount",
           description: "Security Amount Received",
@@ -69,7 +69,7 @@ function MakePayment({ onClose, patientInfo }) {
 
     try {
       const response = await axios.put(
-        "https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/updatePatientSecurityAmt",
+        "https://laxmibhawanidentalhospital.dentalguru.software/api/v1/receptionist/updatePatientSecurityAmt",
         data
       );
       console.log(response);

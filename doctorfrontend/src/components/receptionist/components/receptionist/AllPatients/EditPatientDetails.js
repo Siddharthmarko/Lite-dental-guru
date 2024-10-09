@@ -29,7 +29,7 @@ function EditPatientDetails({ onClose, patientInfo, allPatientData }) {
 
   const getInsuranceCompany = async () => {
     try{
-     const response = await axios.get(`https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/getInsuranceCompany/${branch}`)
+     const response = await axios.get(`https://laxmibhawanidentalhospital.dentalguru.software/api/v1/receptionist/getInsuranceCompany/${branch}`)
      
      setInsuranceCompany(response.data.data)
     }
@@ -41,7 +41,7 @@ console.log(insuranceCompany)
   const timelineData = async (id) => {
     try {
       const response = await axios.post(
-        "https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/insertTimelineEvent",
+        "https://laxmibhawanidentalhospital.dentalguru.software/api/v1/receptionist/insertTimelineEvent",
         {
           type: "Patient Profile",
           description: "Patient Profile Updated",
@@ -94,7 +94,7 @@ console.log(insuranceCompany)
   const getDisease = async () => {
     try {
       const response = await axios.get(
-        "https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/get-disease"
+        "https://laxmibhawanidentalhospital.dentalguru.software/api/v1/receptionist/get-disease"
       );
       console.log(response);
       setDisease(response?.data?.data);
@@ -197,7 +197,7 @@ console.log(insuranceCompany)
     try {
       setLoading(true);
       const response = await axios.put(
-        "https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/update-patient-details",
+        "https://laxmibhawanidentalhospital.dentalguru.software/api/v1/receptionist/update-patient-details",
         updatedData,
         {
           headers: {
@@ -264,7 +264,7 @@ console.log(insuranceCompany)
                   >
                     <option value="">Select Patient Type</option>
                     <option value="General">General</option>
-                    {currentBranch[0].allow_insurance == "Yes" && <option value="Credit">Credit</option>}
+                    {currentBranch[0]?.allow_insurance == "Yes" && <option value="Credit">Credit</option>}
                   
                   </select>
                 </div>

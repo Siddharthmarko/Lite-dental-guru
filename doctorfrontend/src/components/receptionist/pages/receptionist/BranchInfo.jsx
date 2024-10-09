@@ -19,8 +19,9 @@ const BranchInfo = () => {
   const [loadingEffect, setLoadingEffect] = useState(false);
   const getBranchDetail = async () => {
     try {
+      console.log(branch);
       const response = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/get-branch-detail/${branch}`
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/v1/receptionist/get-branch-detail/${branch}`
       );
       console.log(response);
       setBranchDetail(response.data.data);
@@ -33,7 +34,7 @@ const BranchInfo = () => {
     setLoadingEffect(true);
     try {
       const response = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/get-branch-holidays/${branch}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/v1/receptionist/get-branch-holidays/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",

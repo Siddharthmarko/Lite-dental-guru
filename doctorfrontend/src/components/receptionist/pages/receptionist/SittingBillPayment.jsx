@@ -53,7 +53,7 @@ function SittingBillPayment() {
   const getPatient = async () => {
     try {
       const response = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/get-Patient-by-id/${branch}/${uhid}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/v1/receptionist/get-Patient-by-id/${branch}/${uhid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -71,7 +71,7 @@ function SittingBillPayment() {
   const branchDetails = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/getBranchDetailsByBranch/${branch}`
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/v1/receptionist/getBranchDetailsByBranch/${branch}`
       );
       setBranchData(data);
     } catch (error) {
@@ -82,7 +82,7 @@ function SittingBillPayment() {
   const secuirtyAmtBytpuhid = async () => {
     try {
       const res = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/getSecurityAmountDataByTPUHID/${tpid}/${uhid}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/v1/receptionist/getSecurityAmountDataByTPUHID/${tpid}/${uhid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -101,7 +101,7 @@ function SittingBillPayment() {
   const getBillDetails = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/getSittingBillDueBySittingId/${branch}/${sbid}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/v1/receptionist/getSittingBillDueBySittingId/${branch}/${sbid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -118,7 +118,7 @@ function SittingBillPayment() {
   const getAllSittingBill = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/getPaidSittingBillbyTpid/${tpid}/${branch}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/v1/receptionist/getPaidSittingBillbyTpid/${tpid}/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -205,7 +205,7 @@ function SittingBillPayment() {
     try {
       //   console.log(remainingSecurityAmount);
       const response = await axios.put(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/updateRemainingSecurityAmount/${tpid}/${uhid}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/v1/receptionist/updateRemainingSecurityAmount/${tpid}/${uhid}`,
         {
           remaining_amount: remainingSecurityAmount,
         },
@@ -264,7 +264,7 @@ function SittingBillPayment() {
   const updateBillforSitting = async () => {
     try {
       const res = await axios.put(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/updateBillforSitting/${branch}/${tpid}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/v1/receptionist/updateBillforSitting/${branch}/${tpid}`,
         billUpdateForm,
         {
           headers: {
@@ -303,7 +303,7 @@ function SittingBillPayment() {
     }
     try {
       const res = await axios.put(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/updateSittingBillPayment/${sbid}/${branch}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/v1/receptionist/updateSittingBillPayment/${sbid}/${branch}`,
         formDetails,
         {
           headers: {
@@ -616,7 +616,7 @@ function SittingBillPayment() {
                           >
                             <option value="">-select-</option>
                             <option value="Cash">Cash</option>
-                            {(patientData?.patient_type == "Credit" && currentBranch[0].allow_insurance == "Yes") && <option value="Credit">Credit</option> }
+                            {(patientData?.patient_type == "Credit" && currentBranch[0]?.allow_insurance == "Yes") && <option value="Credit">Credit</option> }
                             <option value="UPI">UPI</option>
                             <option value="Card">Card</option>
                           </select>

@@ -23,7 +23,7 @@ const SuggestedtreatmentList = ({ tpid, getPatientData }) => {
   const getListTreatment = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getTreatList/${branch}/${tpid}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/getTreatList/${branch}/${tpid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -65,7 +65,7 @@ const SuggestedtreatmentList = ({ tpid, getPatientData }) => {
 
       if (confirmed) {
         const res = await axios.delete(
-          `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/deleteTreatSuggestion/${id}/${branch}`,
+          `https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/deleteTreatSuggestion/${id}/${branch}`,
           {
             headers: {
               "Content-Type": "application/json",

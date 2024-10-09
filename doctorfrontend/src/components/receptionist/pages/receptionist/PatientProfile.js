@@ -165,7 +165,7 @@ const PatientProfile = () => {
   const getPatient = async () => {
     try {
       const response = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/get-Patient-by-id/${branch}/${pid}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/v1/receptionist/get-Patient-by-id/${branch}/${pid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -183,7 +183,7 @@ const PatientProfile = () => {
   const getOngoingTreat = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/getTreatmentViaUhid/${branch}/${pid}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/v1/receptionist/getTreatmentViaUhid/${branch}/${pid}`,
         {
           headers: {
             "Content-Type": "application/json",

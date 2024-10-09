@@ -32,7 +32,7 @@ const PrintOpdBill = () => {
   const getBranchDetails = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/getBranchDetailsByBranch/${branch}`
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/v1/receptionist/getBranchDetailsByBranch/${branch}`
       );
       console.log(data);
       setGetBranch(data);
@@ -44,7 +44,7 @@ const PrintOpdBill = () => {
   const getBill = async () => {
     try {
       const response = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/get-appointment-by-id/${branch}/${appointmentId}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/v1/receptionist/get-appointment-by-id/${branch}/${appointmentId}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -142,7 +142,7 @@ const PrintOpdBill = () => {
      
       cogoToast.success("OPD bill Sending to email");
       const response = await axios.post(
-        "https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/prescriptionOnMail",
+        "https://laxmibhawanidentalhospital.dentalguru.software/api/v1/receptionist/prescriptionOnMail",
         formData,
         {
           headers: {
@@ -199,7 +199,7 @@ const PrintOpdBill = () => {
       }
 
       const res = await axios.post(
-        "https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/sendWhatsapp",
+        "https://laxmibhawanidentalhospital.dentalguru.software/api/v1/receptionist/sendWhatsapp",
         formData,
         {
           headers: {
@@ -478,7 +478,7 @@ const PrintOpdBill = () => {
         </div> */}
         </div>
 
-        <div className="footimage">
+        <div className="footimage d-none d-print-block">
           <img src={getBranch[0]?.foot_img} alt="footer" srcset="" />
         </div>
       </div>
@@ -606,7 +606,7 @@ const Container = styled.div`
       right: 0;
     }
 
-    height: 60px;
+    /* height: 60px; */
     width: auto;
     img {
       height: 100%;

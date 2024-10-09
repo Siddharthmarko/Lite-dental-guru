@@ -30,7 +30,7 @@ const ViewQuickPrescription = () => {
   const getBranchDetails = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getBranchDetails/${branch}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/getBranchDetails/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -52,7 +52,7 @@ const ViewQuickPrescription = () => {
   const getPatientDetail = async () => {
     try {
       const res = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getPatientByAppID/${appointId}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/getPatientByAppID/${appointId}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -69,7 +69,7 @@ const ViewQuickPrescription = () => {
   const getTreatPrescriptionByAppointId = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getQuickPrescription/${appointId}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/getQuickPrescription/${appointId}`,
         {
           headers: {
             "Content-Type": "application/json",

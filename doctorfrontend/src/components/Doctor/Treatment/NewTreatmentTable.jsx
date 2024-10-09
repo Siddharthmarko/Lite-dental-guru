@@ -35,7 +35,7 @@ const NewTreatmentTable = () => {
   const getPatientDetail = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getAppointmentsWithPatientDetailsById/${tpid}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/getAppointmentsWithPatientDetailsById/${tpid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -55,7 +55,7 @@ const NewTreatmentTable = () => {
   const fetchTreatmentData = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getTreatmentDataViaBranchAndTpid/${tpid}/${branch}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/getTreatmentDataViaBranchAndTpid/${tpid}/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -166,7 +166,7 @@ const NewTreatmentTable = () => {
   const timelineForFinalBill = async () => {
     try {
       const response = await axios.post(
-        "https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/insertTimelineEvent",
+        "https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/insertTimelineEvent",
         {
           type: "Final Bill Generation",
           description: `Final Bill Generated for TPID : ${tpid}`,
@@ -189,7 +189,7 @@ const NewTreatmentTable = () => {
   const updateAppointmentStat = async () => {
     try {
       const res = await axios.put(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/updateAppointStatus/${appoint_id}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/updateAppointStatus/${appoint_id}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -207,7 +207,7 @@ const NewTreatmentTable = () => {
     setLoading(true);
     try {
       const res = await axios.post(
-        "https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/generateFinalBillwithTpid",
+        "https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/generateFinalBillwithTpid",
         billInputField,
         {
           headers: {
@@ -241,7 +241,7 @@ const NewTreatmentTable = () => {
   const getExamintionTeeth = async () => {
     try {
       const res = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getExaminedataById/${tpid}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/getExaminedataById/${tpid}`,
         {
           headers: {
             "Content-Type": "application/json",

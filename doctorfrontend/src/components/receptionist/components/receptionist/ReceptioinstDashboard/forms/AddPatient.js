@@ -76,7 +76,7 @@ function AddPatient() {
   const getBranchDetail = async () => {
     try {
       const response = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/get-branch-detail/${branch}`
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/v1/receptionist/get-branch-detail/${branch}`
       );
       console.log(response);
       setBranchDetail(response.data.data);
@@ -88,7 +88,7 @@ function AddPatient() {
   const getInsuranceCompany = async () => {
     try {
       const response = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/getInsuranceCompany/${branch}`
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/v1/receptionist/getInsuranceCompany/${branch}`
       );
 
       setInsuranceCompany(response.data.data);
@@ -101,7 +101,7 @@ function AddPatient() {
   const getBranchHolidays = async () => {
     try {
       const response = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/get-branch-holidays/${branch}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/v1/receptionist/get-branch-holidays/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -196,7 +196,7 @@ function AddPatient() {
   const getPatient = async () => {
     try {
       const response = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/get-Patients/${branch}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/v1/receptionist/get-Patients/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -214,7 +214,7 @@ function AddPatient() {
   const getAppointments = async () => {
     try {
       const response = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/get-appointments/${branch}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/v1/receptionist/get-appointments/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -231,7 +231,7 @@ function AddPatient() {
   const getDoctors = async () => {
     try {
       const response = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/get-doctors/${branch}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/v1/receptionist/get-doctors/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -255,7 +255,7 @@ function AddPatient() {
   const getDisease = async () => {
     try {
       const response = await axios.get(
-        "https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/get-disease"
+        "https://laxmibhawanidentalhospital.dentalguru.software/api/v1/receptionist/get-disease"
       );
       console.log(response);
       setDisease(response?.data?.data);
@@ -268,7 +268,7 @@ function AddPatient() {
   const getTreatment = async () => {
     try {
       const response = await axios.get(
-        "https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/get-treatments"
+        "https://laxmibhawanidentalhospital.dentalguru.software/api/v1/receptionist/get-treatments"
       );
       console.log(response);
       setTreatment(response?.data?.data);
@@ -281,7 +281,7 @@ function AddPatient() {
   const getDoctorsWithLeave = async () => {
     try {
       const response = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/get-doctors-with-leave/${branch}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/v1/receptionist/get-doctors-with-leave/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -469,7 +469,7 @@ function AddPatient() {
   const timelineData = async (id) => {
     try {
       const response = await axios.post(
-        "https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/insertTimelineEvent",
+        "https://laxmibhawanidentalhospital.dentalguru.software/api/v1/receptionist/insertTimelineEvent",
         {
           type: "Add Patient",
           description: "Add Patient and Appointment scheduled",
@@ -670,9 +670,9 @@ function AddPatient() {
         notes: data.notes,
         patient_added_by: user.currentUser?.employee_name,
         patient_added_by_emp_id: user.currentUser?.employee_ID,
-        sharemail: currentBranch[0].sharemail,
-        sharewhatsapp: currentBranch[0].sharewhatsapp,
-        sharesms: currentBranch[0].sharesms,
+        sharemail: currentBranch[0]?.sharemail,
+        sharewhatsapp: currentBranch[0]?.sharewhatsapp,
+        sharesms: currentBranch[0]?.sharesms,
       };
 
       if (!isDoctorAvailable(selectedDateTime)) {
@@ -689,7 +689,7 @@ function AddPatient() {
       try {
         setLoading(true);
         const response = await axios.post(
-          "https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/add-patient",
+          "https://laxmibhawanidentalhospital.dentalguru.software/api/v1/receptionist/add-patient",
           newPatient,
           {
             headers: {
@@ -828,7 +828,7 @@ function AddPatient() {
                   >
                     <option value="">Select Patient Type</option>
                     <option value="General">General</option>
-                    {/* {currentBranch[0].allow_insurance == "Yes" && (
+                    {/* {currentBranch[0]?.allow_insurance == "Yes" && (
                       <option value="Credit">Credit</option>
                     )} */}
 

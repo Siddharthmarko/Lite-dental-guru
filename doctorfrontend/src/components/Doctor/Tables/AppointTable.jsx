@@ -49,7 +49,7 @@ const AppointTable = () => {
     setLoading(true);
     try {
       const { data } = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getAppointmentsWithPatientDetailsTreatSugg/${doctorId}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/getAppointmentsWithPatientDetailsTreatSugg/${doctorId}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -118,7 +118,7 @@ const AppointTable = () => {
   const timelineForStartTreat = async (uhid) => {
     try {
       const response = await axios.post(
-        "https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/insertTimelineEvent",
+        "https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/insertTimelineEvent",
         {
           type: "Examination",
           description: "Start Examintion",
@@ -141,7 +141,7 @@ const AppointTable = () => {
   const timelineForCancelTreat = async (uhid) => {
     try {
       const response = await axios.post(
-        "https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/insertTimelineEvent",
+        "https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/insertTimelineEvent",
         {
           type: "Examination",
           description: "Cancel Treatment",
@@ -164,7 +164,7 @@ const AppointTable = () => {
   const getTreatPackageData = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getTreatPackageViaTpidUhid/${branch}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/getTreatPackageViaTpidUhid/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -201,7 +201,7 @@ const AppointTable = () => {
       };
 
       await axios.put(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/upDateAppointmentStatus`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/upDateAppointmentStatus`,
         requestBody,
         {
           headers: {
@@ -271,7 +271,7 @@ const AppointTable = () => {
         }
       }
       const res = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/appointtreatSitting?date=${selectedDate}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/appointtreatSitting?date=${selectedDate}`,
         {
           headers: {
             "Content-Type": "application/json",

@@ -37,7 +37,7 @@ function EditInquiry({ onClose, inquiryInfo }) {
   const getDoctors = async () => {
     try {
       const response = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/get-doctors/${branch}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/v1/receptionist/get-doctors/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -89,7 +89,7 @@ function EditInquiry({ onClose, inquiryInfo }) {
     try {
       setLoading(true);
       const response = await axios.put(
-        "https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/update-inquiry",
+        "https://laxmibhawanidentalhospital.dentalguru.software/api/v1/receptionist/update-inquiry",
         updatedInquiry,
         {
           headers: {

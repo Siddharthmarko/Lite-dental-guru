@@ -41,7 +41,7 @@ const QPrescriptionForm = () => {
   const ChiefComplainTOList = async () => {
     try {
       const { data } = await axios.get(
-        "https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getChiefComplain",
+        "https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/getChiefComplain",
         {
           headers: {
             "Content-Type": "application/json",
@@ -57,7 +57,7 @@ const QPrescriptionForm = () => {
   const fetchAppointments = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/get-Patient-by-id/${patient_uhid}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/get-Patient-by-id/${patient_uhid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -114,7 +114,7 @@ const QPrescriptionForm = () => {
 
     try {
       const response = await axios.post(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/insertPatientPrescription`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/insertPatientPrescription`,
         formData
         // {
         //   headers: {

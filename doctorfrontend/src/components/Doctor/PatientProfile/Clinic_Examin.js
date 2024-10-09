@@ -82,7 +82,7 @@ const ClinicExamin = () => {
       //   `http://localhost:7777/api/v1/super-admin/examinDetailsByPatId/${pid}`
       // );
       const respsData = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getDentalPatientDataByID/${uhid}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/getDentalPatientDataByID/${uhid}`,
         {
           headers: {
             "Content-Type": "application/json",

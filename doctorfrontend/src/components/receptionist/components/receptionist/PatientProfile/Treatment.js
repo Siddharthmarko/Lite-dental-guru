@@ -181,7 +181,7 @@ const Treatment = () => {
   const getTreatmentsDetails = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/getTreatmentViaUhid/${branch}/${pid}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/v1/receptionist/getTreatmentViaUhid/${branch}/${pid}`,
         {
           headers: {
             "Content-Type": "application/json",

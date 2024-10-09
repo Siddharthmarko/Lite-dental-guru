@@ -38,7 +38,7 @@ const PatientBillsByTpid = () => {
   const getBranchDetails = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/getBranchDetailsByBranch/${branch}`
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/v1/receptionist/getBranchDetailsByBranch/${branch}`
       );
       console.log(data);
       setGetBranch(data);
@@ -52,7 +52,7 @@ const PatientBillsByTpid = () => {
   const getPatientDetail = async () => {
     try {
       const res = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/getAppointmentsWithPatientDetailsById/${tpid}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/v1/receptionist/getAppointmentsWithPatientDetailsById/${tpid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -81,7 +81,7 @@ const PatientBillsByTpid = () => {
   const getExaminDetail = async () => {
     try {
       const res = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/getDentalDataByTpid/${tpid}/${branch}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/v1/receptionist/getDentalDataByTpid/${tpid}/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -124,7 +124,7 @@ const PatientBillsByTpid = () => {
   const getTreatDetail = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/getTreatmentDetailsViaTpid/${tpid}/${branch}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/v1/receptionist/getTreatmentDetailsViaTpid/${tpid}/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -149,7 +149,7 @@ const PatientBillsByTpid = () => {
   const getTreatPrescriptionByAppointId = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/getTreatPrescriptionByTpid/${tpid}/${branch}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/v1/receptionist/getTreatPrescriptionByTpid/${tpid}/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -173,7 +173,7 @@ const PatientBillsByTpid = () => {
   const getTreatmentSuggestAppointId = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/getTreatSuggestViaTpid/${tpid}/${branch}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/v1/receptionist/getTreatSuggestViaTpid/${tpid}/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -215,7 +215,7 @@ const PatientBillsByTpid = () => {
   const getBillDetails = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/billDetailsViaTpid/${tpid}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/v1/receptionist/billDetailsViaTpid/${tpid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -322,7 +322,7 @@ const PatientBillsByTpid = () => {
       }
       cogoToast.success("Treatment bill sending to email");
       const response = await axios.post(
-        "https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/prescriptionOnMail",
+        "https://laxmibhawanidentalhospital.dentalguru.software/api/v1/receptionist/prescriptionOnMail",
         formData,
         {
           headers: {
@@ -365,7 +365,7 @@ const PatientBillsByTpid = () => {
       }
 
       const res = await axios.post(
-        "https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/sendWhatsapp",
+        "https://laxmibhawanidentalhospital.dentalguru.software/api/v1/receptionist/sendWhatsapp",
         formData,
         {
           headers: {
@@ -387,7 +387,7 @@ const PatientBillsByTpid = () => {
   const billDetailsSms = async () => {
     try {
       const { data } = await axios.post(
-        "https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/sendSMS",
+        "https://laxmibhawanidentalhospital.dentalguru.software/api/v1/receptionist/sendSMS",
         formDetails,
         {
           headers: {
@@ -738,7 +738,7 @@ const PatientBillsByTpid = () => {
                             Account No.:
                           </td>
                           <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1">
-                            {currentBranch[0].account_number}
+                            {currentBranch[0]?.account_number}
                           </td>
                         </tr>
                         <tr>
@@ -747,7 +747,7 @@ const PatientBillsByTpid = () => {
                           </td>
                           <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1">
                             {/* Assuming you want to put a placeholder or value here */}
-                            {currentBranch[0].branch_name}
+                            {currentBranch[0]?.branch_name}
                           </td>
                         </tr>
                         <tr>
@@ -755,7 +755,7 @@ const PatientBillsByTpid = () => {
                             Bank Name:
                           </td>
                           <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1">
-                            {currentBranch[0].bank_name}
+                            {currentBranch[0]?.bank_name}
                           </td>
                         </tr>
                         <tr>
@@ -763,7 +763,7 @@ const PatientBillsByTpid = () => {
                             IFSC/Bank Code:
                           </td>
                           <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1">
-                            {currentBranch[0].ifsc_code}
+                            {currentBranch[0]?.ifsc_code}
                           </td>
                         </tr>
                         <tr>
@@ -771,7 +771,7 @@ const PatientBillsByTpid = () => {
                             UPI ID:
                           </td>
                           <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1">
-                            {currentBranch[0].upi_id}
+                            {currentBranch[0]?.upi_id}
                           </td>
                         </tr>
                       </tbody>

@@ -36,7 +36,7 @@ const ApplyLeave = () => {
   const getLeaves = async () => {
     try {
       const response = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/get-leaves/${branch}/${employeeId}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/get-leaves/${branch}/${employeeId}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -108,7 +108,7 @@ const ApplyLeave = () => {
       try {
         setLoading(true);
         const response = await axios.post(
-          "https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/apply-leave",
+          "https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/apply-leave",
           updatedFormData,
           {
             headers: {

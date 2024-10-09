@@ -19,7 +19,7 @@ const DoctorProfile = ({ refresh }) => {
   const getEmployeeData = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/super-admin/getEmployeeDetails/${branch_name}/${eid}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/v1/super-admin/getEmployeeDetails/${branch_name}/${eid}`,
         {
           headers: {
             "Content-Type": "application/json",

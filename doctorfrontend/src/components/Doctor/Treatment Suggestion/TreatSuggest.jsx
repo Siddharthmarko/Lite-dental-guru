@@ -103,7 +103,7 @@ const TreatSuggest = () => {
   const updateAppointmentData = async () => {
     try {
       const res = await axios.put(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/updateAppointmentPath/${id}/${branch}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/updateAppointmentPath/${id}/${branch}`,
         {
           currentPath: `/treatmentSuggestion/${id}/${tpid}`,
           tpid: tpid,
@@ -125,7 +125,7 @@ const TreatSuggest = () => {
   const getData = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getDentalDataByID/${id}/${tpid}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/getDentalDataByID/${id}/${tpid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -161,7 +161,7 @@ const TreatSuggest = () => {
   const getTreatmentList = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/treatmentLists`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/treatmentLists`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -181,7 +181,7 @@ const TreatSuggest = () => {
   const getProcedureTreat = async () => {
     try {
       const { data } = await axios.get(
-        "https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getProcedureList",
+        "https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/getProcedureList",
         {
           headers: {
             "Content-Type": "application/json",
@@ -211,7 +211,7 @@ const TreatSuggest = () => {
   const getPatientDetail = async () => {
     try {
       const res = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getAppointmentsWithPatientDetailsById/${tpid}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/getAppointmentsWithPatientDetailsById/${tpid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -237,7 +237,7 @@ const TreatSuggest = () => {
   const getLabAllData = async () => {
     try {
       const res = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/lab-details/${tpid}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/lab-details/${tpid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -262,7 +262,7 @@ const TreatSuggest = () => {
   const timelineForTreatSuggest = async () => {
     try {
       const response = await axios.post(
-        "https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/insertTimelineEvent",
+        "https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/insertTimelineEvent",
         {
           type: "Treatment Suggest",
           description: `Select Treatment : ${formData.treatment_name} for disease : ${formData.disease}`,
@@ -319,7 +319,7 @@ const TreatSuggest = () => {
     setLoading(true);
     try {
       const res = await axios.post(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/insertTreatSuggest`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/insertTreatSuggest`,
         forms,
         {
           headers: {
@@ -398,7 +398,7 @@ const TreatSuggest = () => {
 
     try {
       const response = await axios.post(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/insertLab`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/insertLab`,
         formsData,
         {
           headers: {
@@ -428,7 +428,7 @@ const TreatSuggest = () => {
   const getLabList = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getLab`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/getLab`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -446,7 +446,7 @@ const TreatSuggest = () => {
   const getLabTestList = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getLabTest`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/getLabTest`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -471,7 +471,7 @@ const TreatSuggest = () => {
     if (quest) {
       try {
         const response = await axios.delete(
-          `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/deleteLabTestSuggest/${id}`,
+          `https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/deleteLabTestSuggest/${id}`,
           {
             headers: {
               "Content-Type": "application/json",
@@ -493,7 +493,7 @@ const TreatSuggest = () => {
   const getListTreatment = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getTreatList/${branch}/${tpid}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/getTreatList/${branch}/${tpid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -523,7 +523,7 @@ const TreatSuggest = () => {
   const getTreatDetails = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getTreatmentDataList/${tpid}/${branch}`
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/getTreatmentDataList/${tpid}/${branch}`
       );
       setGetTreatData(data);
     } catch (error) {
@@ -536,7 +536,7 @@ const TreatSuggest = () => {
   const fetchMedicineOptions = async () => {
     try {
       const { data } = await axios.get(
-        "https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getMedicineData",
+        "https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/getMedicineData",
         {
           headers: {
             "Content-Type": "application/json",
@@ -560,7 +560,7 @@ const TreatSuggest = () => {
   const addNewMedicine = async () => {
     try {
       const response = await axios.post(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/purchaseInventory/${branch}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/purchaseInventory/${branch}`,
         {
           item_name: otherMed,
           item_category: "drugs",
@@ -606,7 +606,7 @@ const TreatSuggest = () => {
     setLoading(true);
     try {
       const response = await axios.post(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/insertTreatPrescriptionQuick/${tpid}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/insertTreatPrescriptionQuick/${tpid}`,
         medicineInput,
         {
           headers: {
@@ -641,7 +641,7 @@ const TreatSuggest = () => {
   const getTreatPrescriptionByAppointId = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getTreatPrescriptionByAppointIdList/${tpid}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/getTreatPrescriptionByAppointIdList/${tpid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -670,7 +670,7 @@ const TreatSuggest = () => {
 
       if (confirmed) {
         const res = await axios.delete(
-          `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/deleteTreatPrescriptionById/${id}`,
+          `https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/deleteTreatPrescriptionById/${id}`,
           {
             headers: {
               "Content-Type": "application/json",
@@ -729,7 +729,7 @@ const TreatSuggest = () => {
   const insertCorrectData = async () => {
     try {
       const resp = await axios.post(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/addSecurityAmount`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/addSecurityAmount`,
         formsCorrect,
         {
           headers: {

@@ -135,7 +135,7 @@ function App() {
   //   try {
   //     setLoading(true);
   //     const response = await axios.get(
-  //       `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getTodayAttendance/${user?.branch_name}/${user?.employee_ID}/${date}`,
+  //       `https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/getTodayAttendance/${user?.branch_name}/${user?.employee_ID}/${date}`,
   //       {
   //         headers: {
   //           "Content-Type": "application/json",
@@ -177,7 +177,7 @@ function App() {
     try {
       setLoading(true);
       const response = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getTodayAttendance/${user?.branch_name}/${user?.employee_ID}/${date}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/getTodayAttendance/${user?.branch_name}/${user?.employee_ID}/${date}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -216,12 +216,16 @@ function App() {
         <Routes>
           {/* ************** Doctor Routes Start Here ******************* */}
 
+          <Route path="/" element={<DoctorLogin />} />
           <Route
-            path="/"
+            path="/dashboard"
             element={user === null ? <DoctorLogin /> : <Receptioinstdash />}
           />
 
-          <Route path="/AllPatient" element={<AllPatient />} />
+          <Route
+            path="/AllPatient"
+            element={user === null ? <DoctorLogin /> : <AllPatient />}
+          />
           <Route
             path="/doctor-dashboard"
             element={
@@ -235,7 +239,7 @@ function App() {
               )
             }
           />
-
+          {/* 
           <Route
             path="/dashboard"
             element={
@@ -252,12 +256,10 @@ function App() {
                   ></Lottie>
                 </>
               ) : (
-                // ) : todayAttendance.length === 0 ? (
-                //   <AttendanceLeave />
                 <Receptioinstdash />
               )
             }
-          />
+          /> */}
           <Route
             path="/examination-Dashboard/:id/:uhid"
             element={
@@ -896,184 +898,102 @@ function App() {
           {/* ****************** Receptionist Routes End Here ******************* */}
 
           {/* receptionist routes start */}
-          <Route path="/receptionist_registration" element={<Registration />} />
+          {/* <Route path="/receptionist_registration" element={<Registration />} /> */}
           <Route
             path="/receptionist-dashboard"
-            element={
-              user?.currentUser === null ? (
-                <UniversalLogin />
-              ) : (
-                <Receptionistdash />
-              )
-            }
+            element={user === null ? <DoctorLogin /> : <Receptionistdash />}
           />
           <Route
             path="/all_patient"
-            element={
-              user?.currentUser === null ? <UniversalLogin /> : <AllPatient />
-            }
+            element={user === null ? <DoctorLogin /> : <AllPatient />}
           />
           <Route
             path="/inquiry"
-            element={
-              user?.currentUser === null ? <UniversalLogin /> : <Inquiry />
-            }
+            element={user === null ? <DoctorLogin /> : <Inquiry />}
           />
           <Route
             path="/patient_profile/:uhid"
-            element={
-              user?.currentUser === null ? (
-                <UniversalLogin />
-              ) : (
-                <PatientProfile />
-              )
-            }
+            element={user === null ? <DoctorLogin /> : <PatientProfile />}
           />
           <Route
             path="/print_Opd_Reciept/:appointmentId"
-            element={
-              user?.currentUser === null ? <UniversalLogin /> : <PrintOpdBill />
-            }
+            element={user === null ? <DoctorLogin /> : <PrintOpdBill />}
           />
           <Route
             path="/print_security_amount/:SId"
-            element={
-              user?.currentUser === null ? (
-                <UniversalLogin />
-              ) : (
-                <PrintSecurityAmt />
-              )
-            }
+            element={user === null ? <DoctorLogin /> : <PrintSecurityAmt />}
           />
           <Route
             path="/appointment"
-            element={
-              user?.currentUser === null ? (
-                <UniversalLogin />
-              ) : (
-                <AppointmentSection />
-              )
-            }
+            element={user === null ? <DoctorLogin /> : <AppointmentSection />}
           />
           <Route
             path="/edit_appointment"
-            element={
-              user?.currentUser === null ? <UniversalLogin /> : <EditPopup />
-            }
+            element={user === null ? <DoctorLogin /> : <EditPopup />}
           />
           <Route
             path="/modify_appointment"
-            element={
-              user?.currentUser === null ? <UniversalLogin /> : <ModifyPopup />
-            }
+            element={user === null ? <DoctorLogin /> : <ModifyPopup />}
           />
           <Route
             path="/delete_appointment"
-            element={
-              user?.currentUser === null ? <UniversalLogin /> : <DeletePopup />
-            }
+            element={user === null ? <DoctorLogin /> : <DeletePopup />}
           />
           <Route
             path="/bill_section"
-            element={
-              user?.currentUser === null ? <UniversalLogin /> : <BillSection />
-            }
+            element={user === null ? <DoctorLogin /> : <BillSection />}
           />
           <Route
             path="/DoctorSection"
-            element={
-              user?.currentUser === null ? (
-                <UniversalLogin />
-              ) : (
-                <DoctorSection />
-              )
-            }
+            element={user === null ? <DoctorLogin /> : <DoctorSection />}
           />
           <Route
             path="/doctor_profile"
-            element={
-              user?.currentUser === null ? (
-                <UniversalLogin />
-              ) : (
-                <Doctorprofile />
-              )
-            }
+            element={user === null ? <DoctorLogin /> : <Doctorprofile />}
           />
           <Route
             path="/video"
-            element={
-              user?.currentUser === null ? <UniversalLogin /> : <VideoSection />
-            }
+            element={user === null ? <DoctorLogin /> : <VideoSection />}
           />
           <Route
             path="/lab"
-            element={
-              user?.currentUser === null ? <UniversalLogin /> : <LabSection />
-            }
+            element={user === null ? <DoctorLogin /> : <LabSection />}
           />
           <Route
             path="/report"
-            element={
-              user?.currentUser === null ? (
-                <UniversalLogin />
-              ) : (
-                <ReportSection />
-              )
-            }
+            element={user === null ? <DoctorLogin /> : <ReportSection />}
           />
           <Route
             path="/new_patient"
-            element={
-              user?.currentUser === null ? <UniversalLogin /> : <NewPatient />
-            }
+            element={user === null ? <DoctorLogin /> : <NewPatient />}
           />
           <Route
             path="/opd_collection"
-            element={
-              user?.currentUser === null ? (
-                <UniversalLogin />
-              ) : (
-                <OpdCollection />
-              )
-            }
+            element={user === null ? <DoctorLogin /> : <OpdCollection />}
           />
           <Route
             path="/receptionist_profile"
-            element={
-              user?.currentUser === null ? <UniversalLogin /> : <Profile />
-            }
+            element={user === null ? <DoctorLogin /> : <Profile />}
           />
           <Route
             path="/security_amount"
-            element={
-              user?.currentUser === null ? (
-                <UniversalLogin />
-              ) : (
-                <SecurityAmount />
-              )
-            }
+            element={user === null ? <DoctorLogin /> : <SecurityAmount />}
           />
           {/* <Route
         path="/due_amount"
         element={
-          user?.currentUser === null ? <UniversalLogin /> : <PatientsDue />
+          user === null ? <DoctorLogin /> : <PatientsDue />
         }
       /> */}
           <Route
             path="/invoices"
-            element={
-              user?.currentUser === null ? (
-                <UniversalLogin />
-              ) : (
-                <FinalInvoices />
-              )
-            }
+            element={user === null ? <DoctorLogin /> : <FinalInvoices />}
           />
           {/* <Route
         path="/sitting-due-amount"
         element={
-          user?.currentUser === null ? (
-            <UniversalLogin />
+          user === null ? (
+            <DoctorLogin />
           ) : (
             <SittingBillDetails />
           )
@@ -1082,8 +1002,8 @@ function App() {
           {/* <Route
         path="/sitting-paid-amount"
         element={
-          user?.currentUser === null ? (
-            <UniversalLogin />
+          user === null ? (
+            <DoctorLogin />
           ) : (
             <SittingPaidBillDetails />
           )
@@ -1092,97 +1012,55 @@ function App() {
           {/* <Route
         path="/paid_amount"
         element={
-          user?.currentUser === null ? <UniversalLogin /> : <PatientsPaid />
+          user === null ? <DoctorLogin /> : <PatientsPaid />
         }
       /> */}
           <Route
             path="/all_credit_invoice"
-            element={
-              user?.currentUser === null ? (
-                <UniversalLogin />
-              ) : (
-                <AllCreditInvoice />
-              )
-            }
+            element={user === null ? <DoctorLogin /> : <AllCreditInvoice />}
           />
           <Route
             path="/PatintDuePaymentPrint/:bid/:tpid/:uhid"
             element={
-              user?.currentUser === null ? (
-                <UniversalLogin />
-              ) : (
-                <PatintDuePaymentPrint />
-              )
+              user === null ? <DoctorLogin /> : <PatintDuePaymentPrint />
             }
           />
           <Route
             path="/SittingBillPayment/:sbid/:tpid/:uhid"
-            element={
-              user?.currentUser === null ? (
-                <UniversalLogin />
-              ) : (
-                <SittingBillPayment />
-              )
-            }
+            element={user === null ? <DoctorLogin /> : <SittingBillPayment />}
           />
           <Route
             path="/patient-bill/:billid/:tpid"
-            element={
-              user?.currentUser === null ? (
-                <UniversalLogin />
-              ) : (
-                <PatientBillsByTpid />
-              )
-            }
+            element={user === null ? <DoctorLogin /> : <PatientBillsByTpid />}
           />
           <Route
             path="/credit-patient-bill/:billid/:tpid"
             element={
-              user?.currentUser === null ? (
-                <UniversalLogin />
-              ) : (
-                <CreditPatientBillsByTpid />
-              )
+              user === null ? <DoctorLogin /> : <CreditPatientBillsByTpid />
             }
           />
           <Route
             path="/branch-details"
-            element={
-              user?.currentUser === null ? <UniversalLogin /> : <BranchInfo />
-            }
+            element={user === null ? <DoctorLogin /> : <BranchInfo />}
           />
 
           <Route
             path="/ViewPatientSittingBill/:tpid/:sbid/:treatment"
-            element={
-              user?.currentUser === null ? <UniversalLogin /> : <SittingBill />
-            }
+            element={user === null ? <DoctorLogin /> : <SittingBill />}
           />
           <Route
             path="/ViewCreditPatientSittingBill/:tpid/:sbid"
-            element={
-              user?.currentUser === null ? (
-                <UniversalLogin />
-              ) : (
-                <CreditSittingBill />
-              )
-            }
+            element={user === null ? <DoctorLogin /> : <CreditSittingBill />}
           />
           <Route
             path="/ViewPatientSittingBill/:tpid/:sbid"
-            element={
-              user?.currentUser === null ? (
-                <UniversalLogin />
-              ) : (
-                <ReceptionSittingBill />
-              )
-            }
+            element={user === null ? <DoctorLogin /> : <ReceptionSittingBill />}
           />
           {/* <Route
           path="/attendanceLeave"
           element={
-            user?.currentUser === null ? (
-              <UniversalLogin />
+            user === null ? (
+              <DoctorLogin />
             ) : (
               <AttendanceLeave />
             )
@@ -1196,64 +1074,34 @@ function App() {
 
           <Route
             path="/clinic-setting"
-            element={
-              user?.currentUser === null ? (
-                <UniversalLogin />
-              ) : (
-                <ClinicSetting />
-              )
-            }
+            element={user === null ? <DoctorLogin /> : <ClinicSetting />}
           />
 
           <Route
             path="/calender-setting"
-            element={
-              user?.id === null ? <UniversalLogin /> : <CalenderSetting />
-            }
+            element={user?.id === null ? <DoctorLogin /> : <CalenderSetting />}
           />
 
           <Route
             path="/manage-staff"
-            element={
-              user?.currentUser === null ? <UniversalLogin /> : <ManageStaff />
-            }
+            element={user === null ? <DoctorLogin /> : <ManageStaff />}
           />
           <Route
             path="/clinic-config-setting"
-            element={
-              user?.currentUser === null ? (
-                <UniversalLogin />
-              ) : (
-                <ClinicConfigSetting />
-              )
-            }
+            element={user === null ? <DoctorLogin /> : <ClinicConfigSetting />}
           />
           <Route
             path="/treatment-setting"
-            element={
-              user?.currentUser === null ? (
-                <UniversalLogin />
-              ) : (
-                <TreatmentSetting />
-              )
-            }
+            element={user === null ? <DoctorLogin /> : <TreatmentSetting />}
           />
           {/* super admin  */}
           <Route
             path="/employee-profile/:eid"
-            element={
-              user?.currentUser === null ? (
-                <UniversalLogin />
-              ) : (
-                <EmployeeProfile />
-              )
-            }
+            element={user === null ? <DoctorLogin /> : <EmployeeProfile />}
           />
           <Route
             path="/branch"
-            element={
-              user?.currentUser === null ? <UniversalLogin /> : <Branches />
-            }
+            element={user === null ? <DoctorLogin /> : <Branches />}
           />
         </Routes>
         {/* <Footer /> */}

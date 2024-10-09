@@ -50,7 +50,7 @@ const NewTreatPrescription = () => {
   const getTreatmentList = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getExaminedataByIdandexamine/${tsid}/${tpid}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/getExaminedataByIdandexamine/${tsid}/${tpid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -71,7 +71,7 @@ const NewTreatPrescription = () => {
   const getPatientDetail = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getAppointmentsWithPatientDetailsById/${tpid}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/getAppointmentsWithPatientDetailsById/${tpid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -97,7 +97,7 @@ const NewTreatPrescription = () => {
   const getExaminDetail = async () => {
     try {
       const res = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getDentalDataByTpid/${tpid}/${branch}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/getDentalDataByTpid/${tpid}/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -115,7 +115,7 @@ const NewTreatPrescription = () => {
   const getLabAllData = async () => {
     try {
       const res = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/lab-details/${tpid}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/lab-details/${tpid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -144,7 +144,7 @@ const NewTreatPrescription = () => {
   const getTreatDetail = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getTreatList/${branch}/${tpid}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/getTreatList/${branch}/${tpid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -174,7 +174,7 @@ const NewTreatPrescription = () => {
   const timelineForMedical = async () => {
     try {
       const response = await axios.post(
-        "https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/insertTimelineEvent",
+        "https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/insertTimelineEvent",
         {
           type: "Medical Prescription",
           description: "Medicine Added Successfully",
@@ -214,7 +214,7 @@ const NewTreatPrescription = () => {
   const addNewMedicine = async () => {
     try {
       const response = await axios.post(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/purchaseInventory/${branch}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/purchaseInventory/${branch}`,
         {
           item_name: otherMed,
           item_category: "drugs",
@@ -241,7 +241,7 @@ const NewTreatPrescription = () => {
     setLoading(true);
     try {
       const response = await axios.post(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/insertTreatPrescription/${appoint_id}/${tpid}/${sitting}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/insertTreatPrescription/${appoint_id}/${tpid}/${sitting}`,
         medicineInput,
         {
           headers: {
@@ -289,7 +289,7 @@ const NewTreatPrescription = () => {
   const fetchMedicineOptions = async () => {
     try {
       const { data } = await axios.get(
-        "https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getMedicineData",
+        "https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/getMedicineData",
         {
           headers: {
             "Content-Type": "application/json",
@@ -312,7 +312,7 @@ const NewTreatPrescription = () => {
   const getTreatPrescriptionByAppointId = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getTreatPrescriptionByAppointId/${tpid}/${treatment}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/getTreatPrescriptionByAppointId/${tpid}/${treatment}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -337,7 +337,7 @@ const NewTreatPrescription = () => {
   const getlabByAppointId = async () => {
     try {
       const res = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/lab-data/${id}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/lab-data/${id}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -361,7 +361,7 @@ const NewTreatPrescription = () => {
   const getTreatmentSuggestAppointId = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getTreatmentData/${appoint_id}/${tpid}/${branch}/${sitting}/${treatment}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/getTreatmentData/${appoint_id}/${tpid}/${branch}/${sitting}/${treatment}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -390,7 +390,7 @@ const NewTreatPrescription = () => {
 
       if (confirmed) {
         const res = await axios.delete(
-          `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/deleteTreatPrescriptionById/${id}`
+          `https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/deleteTreatPrescriptionById/${id}`
         );
         console.log(res.data); // Log response data
 
@@ -406,7 +406,7 @@ const NewTreatPrescription = () => {
   const timelineForBill = async () => {
     try {
       const response = await axios.post(
-        "https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/insertTimelineEvent",
+        "https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/insertTimelineEvent",
         {
           type: "Bill Data",
           description: "Bill Generated for the sitting",
@@ -430,7 +430,7 @@ const NewTreatPrescription = () => {
   const updateAppointStatus = async () => {
     try {
       const res = await axios.put(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/updateAppointmentStatusAfterTreat/${appoint_id}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/updateAppointmentStatusAfterTreat/${appoint_id}`,
         {
           status: "Complete",
         },
@@ -452,7 +452,7 @@ const NewTreatPrescription = () => {
     try {
       // Make the API call to fetch bill data
       const billResponse = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/bill-patient-data/${id}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/bill-patient-data/${id}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -479,7 +479,7 @@ const NewTreatPrescription = () => {
   const grandTotal = async (id) => {
     try {
       const res = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getTreatmentDatasum/${id}`,
+        `https://laxmibhawanidentalhospital.dentalguru.software/api/doctor/getTreatmentDatasum/${id}`,
         {
           headers: {
             "Content-Type": "application/json",
