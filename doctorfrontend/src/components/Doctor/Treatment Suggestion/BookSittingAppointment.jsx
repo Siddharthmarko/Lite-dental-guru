@@ -422,9 +422,6 @@ const BookSittingAppointment = ({
         timelineData(getPatientData[0]?.uhid);
         onClose();
         handleSubmit();
-        // navigate(
-        //   `/TPrescriptionDash/${tsid}/${tp_id}/${currentSitting}/${treatment}`
-        // );
       } catch (error) {
         setLoading(false);
         console.log("ssdsdsds", error);

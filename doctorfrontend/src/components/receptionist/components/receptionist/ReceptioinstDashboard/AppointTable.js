@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Table, Input, Button, Form } from "react-bootstrap";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
-import { toggleTableRefresh } from "../../../redux/user/userSlice";
+import { toggleTableRefresh } from "../../../../../redux/user/userSlice";
 import EditAppointment from "./EditAppointment";
 import { FaArrowCircleLeft } from "react-icons/fa";
 import { FaArrowCircleRight } from "react-icons/fa";

@@ -7,7 +7,8 @@ import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 import Select from "react-select";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleTableRefresh } from "../../../redux/user/userSlice";
+// import { toggleTableRefresh } from "../../../redux/user/userSlice";
+import { toggleTableRefresh } from "../../../../../redux/user/userSlice";
 import CreatableSelect from "react-select/creatable";
 import cogoToast from "cogo-toast";
 

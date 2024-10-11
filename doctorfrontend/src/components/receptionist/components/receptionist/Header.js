@@ -5,7 +5,8 @@ import { FaUserAlt } from "react-icons/fa";
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { clearUser } from "../../redux/user/userSlice";
+// import { clearUser } from "../../redux/user/userSlice";
+import { clearUser } from "../../../../redux/user/userSlice";
 function Header() {
   const { currentUser } = useSelector((state) => state.user);
   const userName = currentUser?.employee_name;

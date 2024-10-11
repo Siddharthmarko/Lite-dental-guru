@@ -526,13 +526,6 @@ const TreatmentForm = () => {
         treatmentStatsUpdate();
         getPatientDetail();
 
-        // navigate(
-        //   `/TPrescriptionDash/${tsid}/${appoint_id}/${tp_id}/${lastTreatment?.current_sitting}/${treatment}`
-        // );
-
-        // navigate(
-        //   `/ViewPatientSittingBill/${tp_id}/${lastTreatment?.current_sitting}/${treatment}`
-        // );
         navigate(`/TreatmentDashBoard/${tp_id}/${appoint_id}`);
       } else {
         setLoading(false);

@@ -5,7 +5,7 @@ import CreatableSelect from "react-select/creatable";
 import { Modal, Button } from "react-bootstrap";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleTableRefresh } from "../../../../redux/user/userSlice";
+import { toggleTableRefresh } from "../../../../../../redux/user/userSlice";
 import { useNavigate } from "react-router-dom";
 import cogoToast from "cogo-toast";
 

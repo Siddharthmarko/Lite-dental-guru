@@ -1,42 +1,22 @@
 # notes of deleteing thins 
-- > to doctor ka profile folder dekhne wali cheez use to kahu hua nahi hoga
-- > doctor ka prescrition to hona hi chahiye na
-- > and profile bhi doctor ki hi hongi na to isko bhi chhodte hai 
-- > i think doctor wale table ko aur dashbaord ko remove kiya ja sakta hai
-- > receptionist idk delete kar diya
-- > component ke andar header ka pata nahi 
-- > super admin to utha ke hi rakha hai to uska badhiay hai 
-- > pages ke ander doctor page mai patientprofile.jsx, prescritionquick.jsx, viewquickprescription.jsx ke alawa baki delete kar sakte hai 
-- > page ke ander patientbill folder abhi sab bachana hai 
-- > and i think page ke andar passowrd redsst and univdersall login to rahenge
-- > reception ke andar ke folder dkehne hai component wale
+<!-- - > to doctor ka profile folder dekhne wali cheez use to kahu hua nahi hoga -->
+- > doctor ka prescrition to hona hi chahiye na ?
+<!-- - > and profile bhi doctor ki hi hongi na to isko bhi chhodte hai  -->
+<!-- - > i think doctor wale table ko aur dashbaord ko remove kiya ja sakta hai -->
+<!-- - > receptionist idk delete kar diya -->
+<!-- - > component ke andar header ka pata nahi  -->
+<!-- - > super admin to utha ke hi rakha hai to uska badhiay hai  -->
+<!-- - > pages ke ander doctor page mai patientprofile.jsx, prescritionquick.jsx, viewquickprescription.jsx ke alawa baki delete kar sakte hai  -->
+<!-- - > page ke ander patientbill folder abhi sab bachana hai  -->
+<!-- - > and i think page ke andar passowrd redsst and  -->
+<!-- univdersall login to rahenge -->
+<!-- - > reception ke andar ke folder dkehne hai component wale -->
+<!-- - > doctorprofioe bagera bhi hta dena hcahiye  -->
+- > rahi baat quick presciriton ki to usme aur bh compoenent relatated prescripton to wo pata karna padega alg kare ki nahi 
+<!-- - > i think compoentn/pages ke ander doctor page ke cheeze to delte kar denichahiye -->
 - > 
 - > 
 
-# delete kar rahe hai component ko 
-- > AttendenceLeave.js 
-  -  ApplyLeave.js bhi isi mai hi hai to isko bhi uda do
-  -  MarkAttendance ye bhi isi mai hi hai bas 
-  -  Attendence folder hi utha do
-- > PediatricDental.jsx isko uda do
-- > 
-
-# ye to nahi karna relatable hai na 
-- > /EditTreatSuggestModal
-- > /SuggestedtreatmentList
-- > /TreatSuggest
-- > /TreatSuggestDashs
-- > /savedata.jsx
-- > /examinationpatient.jsx
-- > /examinationdashboard.jsx
-- > /pediatricdental.jsx
-- > /examinationdashboardpediatric.jsx
-- > /treatsuggestdashs.jsx
-- > /sittingprocessmodal.jsx
-- > /suggestedtreatmentlist.jsx
-- > /newtreatment.jsx
-- > /treatmentdashboard.jsx
-- > /treatsuggest.jsx
 # 9 oct
 - > whatsapp ke liye bhi cheeze dynamic karna hai path 
 - > 

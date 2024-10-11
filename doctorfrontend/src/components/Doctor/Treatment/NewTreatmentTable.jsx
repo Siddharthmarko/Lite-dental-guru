@@ -8,7 +8,7 @@ import { FaLocationArrow } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
 import cogoToast from "cogo-toast";
 // import Receptioinstdash from "./components/receptionist/pages/receptionist/Receptioinstdash";
-import Receptioinstdash from "../../receptionist/pages/receptionist/Receptioinstdash";
+import Receptioinstdash from "../../receptionist/pages/Receptioinstdash";
 
 const NewTreatmentTable = () => {
   const { appoint_id, tpid } = useParams();

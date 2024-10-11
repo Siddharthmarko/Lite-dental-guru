@@ -1,95 +1,59 @@
-// import "./App.css";
-
 import { Route, Routes, useNavigate } from "react-router-dom";
-import DoctorDashboard from "./pages/DoctorPage/DoctorDashboard";
-import ProfileDashboard from "./components/Doctor/Profile/ProfileDashboard";
-import PatientProfile from "./pages/DoctorPage/PatientProfile";
-// import AllPatient from "./pages/DoctorPage/AllPatient";
+import PatientProfile from "./pages/DoctorPageDLT/PatientProfileDLT";
 import ExaminationDashBoard from "./components/Doctor/Examination/ExaminationDashBoard";
 import ExaminationDashBoardPatient from "./components/Doctor/Examination/ExaminationDashBoardPatient";
 import ExaminationDashBoardPediatric from "./components/Doctor/Examination/ExaminationDashBoardPediatric";
 import TreatmentDashBoard from "./components/Doctor/Treatment/TreatmentDashBoard";
-import PrescriptionDashBoard from "./components/Doctor/Prescription/PrescriptionDashBoard";
-import TPrescription from "./components/Doctor/Prescription/TreatmentPrescription/TPrescription";
-import TPrescriptionDash from "./components/Doctor/Prescription/TreatmentPrescription/TPrescriptionDash";
+import TPrescription from "./components/Doctor/PrescriptionDLT/TreatmentPrescription/TPrescription";
 import DoctorLogin from "./components/Doctor/Login/DoctorLogin";
 import NewTreatment from "./components/Doctor/Treatment/NewTreatment";
 import TreatmentForm from "./components/Doctor/Treatment/TreatmentForm";
 import TreatmentDashTwo from "./components/Doctor/Treatment/TreatmentDashTwo";
-import NewTreatPrescription from "./components/Doctor/Prescription/TreatmentPrescription/NewTreatPrescription";
-import ViewTreatPrescription from "./components/Doctor/Prescription/TreatmentPrescription/ViewTreatPrescription";
+import NewTreatPrescription from "./components/Doctor/PrescriptionDLT/TreatmentPrescription/NewTreatPrescription";
+import ViewTreatPrescription from "./components/Doctor/PrescriptionDLT/TreatmentPrescription/ViewTreatPrescription";
 import TreatSuggestDashs from "./components/Doctor/Treatment Suggestion/TreatSuggestDashs";
-import SecurityAmount from "./components/Doctor/Treatment Suggestion/SecurityAmount";
-import PrintSecurityAmt from "./components/Doctor/Treatment Suggestion/PrintSecurityAmt";
-import CreatePrescrip from "./components/Doctor/Prescription/CreatePrescrip";
+import CreatePrescrip from "./components/Doctor/PrescriptionDLT/CreatePrescrip";
 import { useDispatch, useSelector } from "react-redux";
 import PatientBillsByTpid from "./pages/PatientBills/PatientBillsByTpid";
-import AttendanceLeave from "./pages/DoctorPage/AttendanceLeave";
 import PatintDuePaymentPrint from "./pages/PatientBills/PatintDuePaymentPrint";
 import PasswordReset from "./pages/PasswordReset";
 import ScrollToTop from "./components/ScrollToTop";
-import Print_Oral_Blood from "./pages/DoctorPage/Print_Oral_Blood";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { clearUser, toggleTableRefresh } from "./redux/user/userSlice";
 import animationData from "./animation/animation-four.json";
 import Lottie from "lottie-react";
-import PrescriptionDetails from "./pages/DoctorPage/PrescriptionDetails";
-import ViewTreatPrescriptionList from "./components/Doctor/Prescription/TreatmentPrescription/ViewTreatPrescriptionList";
-import PrescriptionQuick from "./pages/DoctorPage/PrescriptionQuick";
+import ViewTreatPrescriptionList from "./components/Doctor/PrescriptionDLT/TreatmentPrescription/ViewTreatPrescriptionList";
+import PrescriptionQuick from "./pages/DoctorPageDLT/PrescriptionQuick";
 import SittingBill from "./components/Doctor/Treatment/SittingBill";
-import QPrescriptionForm from "./components/Doctor/Prescription/Quick Prescription/QPrescriptionForm";
-import ViewQuickPrescription from "./pages/DoctorPage/ViewQuickPrescription";
-import Receptioinstdash from "./components/receptionist/pages/receptionist/Receptioinstdash";
-import AllPatient from "./components/receptionist/pages/receptionist/AllPatient";
-// import DoctorSection from "./pages/receptionist/DoctorSection";
+import QPrescriptionForm from "./components/Doctor/PrescriptionDLT/Quick Prescription/QPrescriptionForm";
+import ViewQuickPrescription from "./pages/DoctorPageDLT/ViewQuickPrescription";
+import Receptioinstdash from "./components/receptionist/pages/Receptioinstdash";
+import AllPatient from "./components/receptionist/pages/AllPatient";
+
 
 /* ---Receptionist */
 
-import Registration from "./components/receptionist/components/receptionist/Registration";
-import UniversalLogin from "./components/receptionist/pages/UniversalLogin";
-// import PasswordReset from "./components/receptionist/pages/PasswordReset";
 import EditPopup from "./components/receptionist/components/receptionist/Appointment/EditPopup";
 import ModifyPopup from "./components/receptionist/components/receptionist/Appointment/ModifyPopup";
 import DeletePopup from "./components/receptionist/components/receptionist/Appointment/DeletePopup";
-import Doctorprofile from "./components/receptionist/components/receptionist/DoctorSection/Doctorprofile";
 import PrintOpdBill from "./components/receptionist/components/receptionist/ReceptioinstDashboard/PrintOpdBill";
-// import PrintSecurityAmt from "./components/receptionist/components/receptionist/SecurityAmount/PrintSecurityAmt";
-
-import Receptionistdash from "./components/receptionist/pages/receptionist/Receptioinstdash";
-// import PatientProfile from "./components/receptionist/pages/receptionist/PatientProfile";
-// import AllPatient from "./components/receptionist/pages/receptionist/AllPatient";
-import AppointmentSection from "./components/receptionist/pages/receptionist/AppointmentSection";
-
-import BillSection from "./components/receptionist/pages/receptionist/BillSection";
-import DoctorSection from "./components/receptionist/pages/receptionist/DoctorSection";
-
-import VideoSection from "./components/receptionist/pages/receptionist/VideoSection";
-import LabSection from "./components/receptionist/pages/receptionist/LabSection";
-import ReportSection from "./components/receptionist/pages/receptionist/ReportSection";
-import NewPatient from "./components/receptionist/pages/receptionist/NewPatient";
-import Inquiry from "./components/receptionist/pages/receptionist/Inquiry";
-
-import OpdCollection from "./components/receptionist/pages/receptionist/OpdColletion";
-import Profile from "./components/receptionist/pages/receptionist/Profile";
-// import SecurityAmount from "./components/receptionist/pages/receptionist/SecurityAmount ";
-
-import BranchInfo from "./components/receptionist/pages/receptionist/BranchInfo";
-// import AttendanceLeave from "./components/receptionist/pages/receptionist/AttendanceLeave";
-import PatientsDue from "./components/receptionist/pages/receptionist/PatientsDue";
-// import PatintDuePaymentPrint from "./components/receptionist/pages/receptionist/PatintDuePaymentPrint";
-import PatientsPaid from "./components/receptionist/pages/receptionist/PatientsPaid";
-// import PatientBillsByTpid from "./components/receptionist/pages/receptionist/PatientBillsByTpid";
-import F404page from "./components/receptionist/pages/receptionist/F404page";
-import SittingBillDetails from "./components/receptionist/pages/receptionist/SittingBillDetails";
-import SittingBillPayment from "./components/receptionist/pages/receptionist/SittingBillPayment";
-// import SittingBill from "./components/receptionist/pages/receptionist/SittingBill";
-import SittingPaidBillDetails from "./components/receptionist/pages/receptionist/SittingPaidBillDetails";
-import AllCreditInvoice from "./components/receptionist/pages/receptionist/AllCreditInvoice";
-import FinalInvoices from "./components/receptionist/pages/receptionist/FinalInvoices";
-import CreditPatientBillsByTpid from "./components/receptionist/pages/receptionist/CreditPatientBillsByTpid";
-import CreditSittingBill from "./components/receptionist/pages/receptionist/CreditSittingBill";
-import ReceptionSittingBill from "./components/receptionist/pages/receptionist/ReceptionSittingBill";
+import Receptionistdash from "./components/receptionist/pages/Receptioinstdash";
+import AppointmentSection from "./components/receptionist/pages/AppointmentSection";
+import NewPatient from "./components/receptionist/pages/NewPatient";
+import Inquiry from "./components/receptionist/pages/Inquiry";
+import OpdCollection from "./components/receptionist/pages/OpdColletion";
+import Profile from "./components/receptionist/pages/Profile";
+import BranchInfo from "./components/receptionist/pages/BranchInfo";
+import PatientsPaid from "./components/receptionist/pages/PatientsPaid";
+import F404page from "./components/receptionist/pages/F404page";
+import SittingBillPayment from "./components/receptionist/pages/SittingBillPayment";
+import SittingPaidBillDetails from "./components/receptionist/pages/SittingPaidBillDetails";
+import AllCreditInvoice from "./components/receptionist/pages/AllCreditInvoice";
+import FinalInvoices from "./components/receptionist/pages/FinalInvoices";
+import CreditPatientBillsByTpid from "./components/receptionist/pages/CreditPatientBillsByTpid";
+import CreditSittingBill from "./components/receptionist/pages/CreditSittingBill";
+import ReceptionSittingBill from "./components/receptionist/pages/ReceptionSittingBill";
 
 // ************** Super Admin Routes Start Here *******************
 
@@ -100,26 +64,11 @@ import TreatmentSetting from "./components/superAdmin/TreatmentSetting";
 import CalenderSetting from "./components/superAdmin/CalenderSetting";
 import EmployeeProfile from "./components/superAdmin/EmployeeProfile";
 import Branches from "./components/superAdmin/Branches";
-import Header from "./components/receptionist/components/receptionist/Header";
-import Sider from "./components/receptionist/components/receptionist/Sider";
-import Footer from "./components/receptionist/components/receptionist/Footer";
 import styled from "styled-components";
 
 function App() {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
   const user = useSelector((state) => state?.user?.currentUser);
-  const [attend, setAttend] = useState(true);
-  const [todayAttendance, setTodayAttendance] = useState([]);
-  // console.log(user);
-  const { refreshTable } = useSelector((state) => state.user);
-  const date = new Date().toISOString().slice(0, 10);
   const [loading, setLoading] = useState(false);
-
-  const logoutHandleByToken = () => {
-    dispatch(clearUser());
-    navigate("/");
-  };
 
   const defaultOptions = {
     loop: true,
@@ -129,41 +78,6 @@ function App() {
       preserveAspectRatio: "xMidYMid slice",
     },
   };
-
-  const getTodayAttendance = async () => {
-    try {
-      setLoading(true);
-      const response = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getTodayAttendance/${user?.branch_name}/${user?.employee_ID}/${date}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${user?.token}`,
-          },
-        }
-      );
-      setTodayAttendance(response?.data?.data);
-    } catch (error) {
-      if (error.response && error.response.status === 401) {
-        const errorMessage = error.response.data.message;
-        if (errorMessage === "Unauthorized - Token expired") {
-          logoutHandleByToken();
-        } else {
-          console.log("Unauthorized access:", errorMessage);
-        }
-      } else {
-        console.log("An error occurred:", error.message);
-      }
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    getTodayAttendance();
-  }, []);
-
-  console.log(todayAttendance);
 
   return (
     <>
@@ -183,36 +97,6 @@ function App() {
             path="/AllPatient"
             element={user === null ? <DoctorLogin /> : <AllPatient />}
           />
-          <Route
-            path="/doctor-dashboard"
-            element={
-              user === null ? (
-                <DoctorLogin />
-              ) : (
-                <DoctorDashboard />
-              )
-            }
-          />
-          {/* 
-          <Route
-            path="/dashboard"
-            element={
-              user === null ? (
-                <DoctorLogin />
-              ) : loading ? (
-                <>
-                  <Lottie
-                    options={defaultOptions}
-                    height={300}
-                    width={400}
-                    style={{ background: "transparent" }}
-                  ></Lottie>
-                </>
-              ) : (
-                <Receptioinstdash />
-              )
-            }
-          /> */}
           <Route
             path="/examination-Dashboard/:id/:uhid"
             element={
@@ -266,8 +150,6 @@ function App() {
                   ></Lottie>
                 </>
               ) : (
-                // : todayAttendance.length === 0 ? (
-                // )
                 <ExaminationDashBoardPediatric />
               )
             }
@@ -291,44 +173,7 @@ function App() {
               )
             }
           />
-          <Route
-            path="/SecurityAmount/:id/:tpid"
-            element={
-              user === null ? (
-                <DoctorLogin />
-              ) : loading ? (
-                <>
-                  <Lottie
-                    options={defaultOptions}
-                    height={300}
-                    width={400}
-                    style={{ background: "transparent" }}
-                  ></Lottie>
-                </>
-              ) : (
-                <SecurityAmount />
-              )
-            }
-          />
-          <Route
-            path="/print-security-bill/:sa_id/:tpid"
-            element={
-              user === null ? (
-                <DoctorLogin />
-              ) : loading ? (
-                <>
-                  <Lottie
-                    options={defaultOptions}
-                    height={300}
-                    width={400}
-                    style={{ background: "transparent" }}
-                  ></Lottie>
-                </>
-              ) : (
-                <PrintSecurityAmt />
-              )
-            }
-          />
+          
           <Route
             path="/TreatmentDashBoard/:tpid/:appoint_id"
             element={
@@ -405,7 +250,7 @@ function App() {
               )
             }
           />
-          <Route
+          {/* <Route
             path="/NewTreatPrescription/:id"
             element={
               user === null ? (
@@ -423,27 +268,8 @@ function App() {
                 <NewTreatPrescription />
               )
             }
-          />
-          <Route
-            path="/PrescriptionDashBoard"
-            element={
-              user === null ? (
-                <DoctorLogin />
-              ) : loading ? (
-                <>
-                  <Lottie
-                    options={defaultOptions}
-                    height={300}
-                    width={400}
-                    style={{ background: "transparent" }}
-                  ></Lottie>
-                </>
-              ) : (
-                <PrescriptionDashBoard />
-              )
-            }
-          />
-          <Route
+          /> */}
+          {/* <Route
             path="/TPrescription"
             element={
               user === null ? (
@@ -461,27 +287,9 @@ function App() {
                 <TPrescription />
               )
             }
-          />
-          <Route
-            path="/TPrescriptionDash/:tsid/:appoint_id/:tpid/:sitting/:treatment"
-            element={
-              user === null ? (
-                <DoctorLogin />
-              ) : loading ? (
-                <>
-                  <Lottie
-                    options={defaultOptions}
-                    height={300}
-                    width={400}
-                    style={{ background: "transparent" }}
-                  ></Lottie>
-                </>
-              ) : (
-                <TPrescriptionDash />
-              )
-            }
-          />
-          <Route
+          /> */}
+    
+          {/* <Route
             path="/ViewTreatPrescription/:tpid/:appoint_id/:sitting/:treatment"
             element={
               user === null ? (
@@ -499,9 +307,9 @@ function App() {
                 <ViewTreatPrescription />
               )
             }
-          />
+          /> */}
 
-          <Route
+          {/* <Route
             path="/ViewTreatPrescriptionlist/:tpid/:appoint_id/:sitting/:treatment"
             element={
               user === null ? (
@@ -519,7 +327,7 @@ function App() {
                 <ViewTreatPrescriptionList />
               )
             }
-          />
+          /> */}
 
           <Route
             path="/ViewPatientTotalBill/:tpid"
@@ -537,26 +345,6 @@ function App() {
                 </>
               ) : (
                 <PatientBillsByTpid />
-              )
-            }
-          />
-
-          <Route
-            path="/profileDashboard"
-            element={
-              user === null ? (
-                <DoctorLogin />
-              ) : loading ? (
-                <>
-                  <Lottie
-                    options={defaultOptions}
-                    height={300}
-                    width={400}
-                    style={{ background: "transparent" }}
-                  ></Lottie>
-                </>
-              ) : (
-                <ProfileDashboard />
               )
             }
           />
@@ -600,26 +388,6 @@ function App() {
           />
 
           <Route
-            path="/attendance-dashboard"
-            element={
-              user === null ? (
-                <DoctorLogin />
-              ) : loading ? (
-                <>
-                  <Lottie
-                    options={defaultOptions}
-                    height={300}
-                    width={400}
-                    style={{ background: "transparent" }}
-                  ></Lottie>
-                </>
-              ) : (
-                <AttendanceLeave />
-              )
-            }
-          />
-
-          <Route
             path="/patient-due-payment-print/:tpid"
             element={
               user === null ? (
@@ -639,66 +407,6 @@ function App() {
             }
           />
           <Route path="/password-reset" element={<PasswordReset />} />
-          <Route
-            path="/print-oral-testing/:id"
-            element={
-              user === null ? (
-                <DoctorLogin />
-              ) : loading ? (
-                <>
-                  <Lottie
-                    options={defaultOptions}
-                    height={300}
-                    width={400}
-                    style={{ background: "transparent" }}
-                  ></Lottie>
-                </>
-              ) : (
-                <Print_Oral_Blood />
-              )
-            }
-          />
-
-          <Route
-            path="/prescription-details"
-            element={
-              user === null ? (
-                <DoctorLogin />
-              ) : loading ? (
-                <>
-                  <Lottie
-                    options={defaultOptions}
-                    height={300}
-                    width={400}
-                    style={{ background: "transparent" }}
-                  ></Lottie>
-                </>
-              ) : (
-                <PrescriptionDetails />
-              )
-            }
-          />
-
-          <Route
-            path="/prescription-generate/:tpid/:appoint_id"
-            element={
-              user === null ? (
-                <DoctorLogin />
-              ) : loading ? (
-                <>
-                  <Lottie
-                    options={defaultOptions}
-                    height={300}
-                    width={400}
-                    style={{ background: "transparent" }}
-                  ></Lottie>
-                </>
-              ) : (
-                <PrescriptionQuick />
-              )
-            }
-          />
-
           <Route
             path="/view-quick-prescription/:uhid/:appointId"
             element={
@@ -740,7 +448,7 @@ function App() {
           />
 
           {/* ---Quick Prescription */}
-          <Route
+          {/* <Route
             path="/Quick-Prescription/:appoint_id/:patient_uhid"
             element={
               user === null ? (
@@ -758,7 +466,7 @@ function App() {
                 <QPrescriptionForm />
               )
             }
-          />
+          /> */}
           {/* ---Quick Prescription */}
 
           {/* ****************** Doctor Routes End Here ******************* */}
@@ -767,8 +475,6 @@ function App() {
 
           {/* ****************** Receptionist Routes End Here ******************* */}
 
-          {/* receptionist routes start */}
-          {/* <Route path="/receptionist_registration" element={<Registration />} /> */}
           <Route
             path="/receptionist-dashboard"
             element={user === null ? <DoctorLogin /> : <Receptionistdash />}
@@ -790,10 +496,6 @@ function App() {
             element={user === null ? <DoctorLogin /> : <PrintOpdBill />}
           />
           <Route
-            path="/print_security_amount/:SId"
-            element={user === null ? <DoctorLogin /> : <PrintSecurityAmt />}
-          />
-          <Route
             path="/appointment"
             element={user === null ? <DoctorLogin /> : <AppointmentSection />}
           />
@@ -809,30 +511,7 @@ function App() {
             path="/delete_appointment"
             element={user === null ? <DoctorLogin /> : <DeletePopup />}
           />
-          <Route
-            path="/bill_section"
-            element={user === null ? <DoctorLogin /> : <BillSection />}
-          />
-          <Route
-            path="/DoctorSection"
-            element={user === null ? <DoctorLogin /> : <DoctorSection />}
-          />
-          <Route
-            path="/doctor_profile"
-            element={user === null ? <DoctorLogin /> : <Doctorprofile />}
-          />
-          <Route
-            path="/video"
-            element={user === null ? <DoctorLogin /> : <VideoSection />}
-          />
-          <Route
-            path="/lab"
-            element={user === null ? <DoctorLogin /> : <LabSection />}
-          />
-          <Route
-            path="/report"
-            element={user === null ? <DoctorLogin /> : <ReportSection />}
-          />
+      
           <Route
             path="/new_patient"
             element={user === null ? <DoctorLogin /> : <NewPatient />}
@@ -845,13 +524,9 @@ function App() {
             path="/receptionist_profile"
             element={user === null ? <DoctorLogin /> : <Profile />}
           />
-          <Route
-            path="/security_amount"
-            element={user === null ? <DoctorLogin /> : <SecurityAmount />}
-          />
           {/* <Route
         path="/due_amount"
-        element={
+        element={ // COULD BE EXIST
           user === null ? <DoctorLogin /> : <PatientsDue />
         }
       /> */}
@@ -859,32 +534,6 @@ function App() {
             path="/invoices"
             element={user === null ? <DoctorLogin /> : <FinalInvoices />}
           />
-          {/* <Route
-        path="/sitting-due-amount"
-        element={
-          user === null ? (
-            <DoctorLogin />
-          ) : (
-            <SittingBillDetails />
-          )
-        }
-      /> */}
-          {/* <Route
-        path="/sitting-paid-amount"
-        element={
-          user === null ? (
-            <DoctorLogin />
-          ) : (
-            <SittingPaidBillDetails />
-          )
-        }
-      /> */}
-          {/* <Route
-        path="/paid_amount"
-        element={
-          user === null ? <DoctorLogin /> : <PatientsPaid />
-        }
-      /> */}
           <Route
             path="/all_credit_invoice"
             element={user === null ? <DoctorLogin /> : <AllCreditInvoice />}
@@ -926,17 +575,7 @@ function App() {
             path="/ViewPatientSittingBill/:tpid/:sbid"
             element={user === null ? <DoctorLogin /> : <ReceptionSittingBill />}
           />
-          {/* <Route
-          path="/attendanceLeave"
-          element={
-            user === null ? (
-              <DoctorLogin />
-            ) : (
-              <AttendanceLeave />
-            )
-          }
-        /> */}
-
+          
           <Route path="/password-reset" element={<PasswordReset />} />
           <Route path="*" element={<F404page />} />
 

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Select from "react-select";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleTableRefresh } from "../../../../redux/user/userSlice";
+import { toggleTableRefresh } from "../../../../../../redux/user/userSlice";
 import { useNavigate } from "react-router-dom";
 import cogoToast from "cogo-toast";
 

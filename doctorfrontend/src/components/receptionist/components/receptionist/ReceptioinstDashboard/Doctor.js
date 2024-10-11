@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleTableRefresh } from "../../../redux/user/userSlice";
+import { toggleTableRefresh } from "../../../../../redux/user/userSlice";
 import axios from "axios";
 import moment from "moment";
 import { FaUserDoctor } from "react-icons/fa6";

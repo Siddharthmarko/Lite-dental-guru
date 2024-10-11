@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import moment from "moment";
-import { clearUser } from "../../../redux/user/userSlice";
+import { clearUser } from "../../../../../redux/user/userSlice";
 import cogoToast from "cogo-toast";
 
 function Card() {

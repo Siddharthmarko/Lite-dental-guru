@@ -1,7 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import HeadBar from "../HeadBar";
-import SideBar from "../SideBar";
 import PediatricDental from "./PediatricDental";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Sider from "../../receptionist/components/receptionist/Sider";

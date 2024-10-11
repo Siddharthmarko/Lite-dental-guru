@@ -5,9 +5,6 @@ import { IoArrowBackCircle } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 
 import styled from "styled-components";
-import Detail from "../Bill/Detail";
-import AppDetail from "./AppDetails";
-import Popup from "../Appointment/Popup";
 import AppDetails from "../Appointment/AppDetail";
 import axios from "axios";
 
