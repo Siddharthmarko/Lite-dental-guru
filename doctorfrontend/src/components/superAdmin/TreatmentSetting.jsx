@@ -3,8 +3,6 @@ import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import Sider from "../receptionist/components/receptionist/Sider";
 import Header from "../receptionist/components/receptionist/Header";
-import { FaSearch } from "react-icons/fa";
-import BranchSelector from "./BranchSelector";
 import axios from "axios";
 import cogoToast from "cogo-toast";
 import { IoMdArrowRoundBack } from "react-icons/io";
@@ -13,18 +11,15 @@ import { TbEdit } from "react-icons/tb";
 import { GrAdd } from "react-icons/gr";
 import ReactPaginate from "react-paginate";
 import Lottie from "react-lottie";
-// import animationData from "../../../animation/loading-effect.json";
 import { MdDelete } from "react-icons/md";
 
 const TreatmentSetting = () => {
-  const location = useLocation();
   const user = useSelector((state) => state.user);
   const token = user.currentUser?.token;
   console.log(`User Name: ${user.name}, User ID: ${user.id}`);
   console.log("User State:", user);
   const [showAddTreatments, setShowAddTreatments] = useState(false);
   const [showEditTreatments, setShowEditTreatments] = useState(false);
-  const [loading, setLoading] = useState(false);
   const [keyword, setkeyword] = useState("");
   const [treatList, setTreatList] = useState([]);
   const [trID, setTrID] = useState();
@@ -231,7 +226,6 @@ const TreatmentSetting = () => {
   };
 
   const getTreatmentList = async () => {
-    setLoading(true);
     try {
       const { data } = await axios.get(
         "https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/super-admin/getTreatmentList",
@@ -242,11 +236,9 @@ const TreatmentSetting = () => {
           },
         }
       );
-      setLoading(false);
       console.log(data);
       setTreatList(data);
     } catch (error) {
-      setLoading(false);
       console.log(error);
     }
   };
@@ -503,49 +495,6 @@ const TreatmentSetting = () => {
                                       </button>
                                     </td>
                                   </tr>
-                                  {/* <div
-                                      class="modal fade rounded"
-                                      id="exampleModal"
-                                      tabindex="-1"
-                                      aria-labelledby="exampleModalLabel"
-                                      aria-hidden="true"
-                                    >
-                                      <div class="modal-dialog rounded">
-                                        <div class="modal-content">
-                                          <div class="modal-header">
-                                            <h1
-                                              class="modal-title fs-5"
-                                              id="exampleModalLabel"
-                                            >
-                                              Are you sure you want to delete
-                                              this data
-                                            </h1>
-                                          </div>
-
-                                          <div class="modal-footer d-flex justify-content-center">
-                                            <button
-                                              type="button"
-                                              class="btn btn-danger"
-                                              data-bs-dismiss="modal"
-                                              onClick={() =>
-                                                deleteTreatment(
-                                                  item.treatment_id
-                                                )
-                                              }
-                                            >
-                                              Yes
-                                            </button>
-                                            <button
-                                              type="button"
-                                              class="btn btn-secondary"
-                                              data-bs-dismiss="modal"
-                                            >
-                                              Close
-                                            </button>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div> */}
                                 </>
                               ))}
                             </tbody>

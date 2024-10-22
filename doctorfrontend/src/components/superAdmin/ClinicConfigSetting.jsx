@@ -5,7 +5,6 @@ import Sider from "../receptionist/components/receptionist/Sider";
 import Header from "../receptionist/components/receptionist/Header";
 import { FaSearch } from "react-icons/fa";
 import { IoMdArrowRoundBack } from "react-icons/io";
-// import BranchSelector from "./BranchSelector";
 import axios from "axios";
 import cogoToast from "cogo-toast";
 import { useDispatch, useSelector } from "react-redux";
@@ -74,12 +73,6 @@ const ClinicConfigSetting = () => {
   const openEditInsurancePopup = (id, item) => {
     console.log(id);
     setSelected(item);
-    // setUpIns({
-    //   branch: branch_name,
-    //   companyname: item?.companyname,
-    //   category: item?.category,
-    //   status: item?.status,
-    // });
     console.log("open pop up");
     setShowEditInsurance(true);
   };

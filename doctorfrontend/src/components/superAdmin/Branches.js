@@ -17,9 +17,7 @@ const Branches = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [branchHeadImg, setBranchHeadImg] = useState(null);
   const [branchFootImg, setBranchFootImg] = useState(null);
-  const [popupVisible, setPopupVisible] = useState(false);
   const [loading, setLoading] = useState(true);
-  const user = useSelector((state) => state.user);
   const currentBranch = useSelector((state) => state.branch.currentBranch);
   console.log(currentBranch);
   const currentUser = useSelector((state) => state.user.currentUser);

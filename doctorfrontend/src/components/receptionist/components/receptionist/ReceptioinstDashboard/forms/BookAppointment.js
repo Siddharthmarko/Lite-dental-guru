@@ -29,11 +29,6 @@ function BookAppointment() {
   const [branchHolidays, setBranchHolidays] = useState([]);
   const [patientTreatmentDetails, setPatientTreatmentDetails] = useState([]);
 
-
-  // const opdCost = treatments?.filter(
-  //   (treatment) => treatment?.treatment_name === "OPD"
-  // )[0]?.treatment_cost;
-
   let opdCost ;
 
   const opdCostfind = treatments?.filter(
@@ -50,9 +45,6 @@ function BookAppointment() {
     opdCost = opdCostfind[0]?.treatment_cost
   }
   
-
-  const minDate = new Date();
-
   console.log(patientTreatmentDetails);
   const [loading, setLoading] = useState(false);
 
@@ -88,11 +80,6 @@ function BookAppointment() {
     }
   };
 
-  // Function to check if the given date is a week off day
-  // const isWeekOffDay = (date) => {
-  //   const dayOfWeek = date.getDay(); // Get the day of the week (0 for Sunday, 1 for Monday, etc.)
-  //   return dayOfWeek === weekOffDay;
-  // };
   console.log(treatments);
   const getBranchDetail = async () => {
     try {
@@ -147,22 +134,6 @@ function BookAppointment() {
   // Generate time slots with 15-minute intervals
   const generateTimeSlots = () => {
     const slots = [];
-    // for (let hour = branchDetail[0]?.open_time.split(":")[0]; hour < branchDetail[0]?.close_time.split(":")[0]; hour++) {
-    //   for (let minute = 0; minute < 60; minute += parseInt(branchDetail[0]?.appoint_slot_duration.split(" ")[0])) {
-    //     const period = hour < 12 ? "AM" : "PM";
-    //     const formattedHour = hour % 12 === 0 ? 12 : hour % 12;
-    //     const time = `${formattedHour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
-    //     slots.push({ value: time, label: `${time} ${period}` });
-    //   }
-    // }
-    //   for (let hour = parseInt(branchDetail[0]?.open_time.split(":")[0]); hour < parseInt(branchDetail[0]?.close_time.split(":")[0]); hour++) {
-    //     for (let minute = 0; minute < 60; minute += parseInt(branchDetail[0]?.appoint_slot_duration.split(" ")[0])) {
-    //         const formattedHour = hour.toString().padStart(2, '0');
-    //         const formattedMinute = minute.toString().padStart(2, '0');
-    //         const time = `${formattedHour}:${formattedMinute}`;
-    //         slots.push({ value: time, label: time });
-    //     }
-    // }
 
     for (
       let hour = parseInt(branchDetail[0]?.open_time?.split(":")[0]);
@@ -328,10 +299,6 @@ function BookAppointment() {
 
   console.log(weekOffDay);
 
-  // const handleChangeDisease = (selectedOptions) => {
-  //   setSelectedDisease(selectedOptions.map(option => option.value));
-  // };
-
   const handleChangeTreatment = (selectedOption) => {
     setSelectedTreatment(selectedOption.value);
   };
@@ -392,12 +359,10 @@ function BookAppointment() {
     const selectedDateTime = new Date(selectedDate);
 
     const filteredDoctors = doctors.filter((doctor) => {
-      // Find all leave entries for the current doctor
       const doctorLeaveEntries = doctorWithLeave.filter(
         (doc) => doc.employee_ID === doctor.employee_ID
       );
 
-      // If the doctor has leave entries, check if the selected date falls within any of them
       if (doctorLeaveEntries.length > 0) {
         return !doctorLeaveEntries.some((entry) => {
           const leaveDates = entry.leave_dates?.split(",");
@@ -406,8 +371,6 @@ function BookAppointment() {
           );
         });
       }
-
-      // If the doctor has no leave entries, include them in the filtered array
       return true;
     });
 
@@ -550,7 +513,6 @@ function BookAppointment() {
     } else {
       getTreatment();
     }
-    // setSelectedTreatment(filteredTreatment ? filteredTreatment[0]?.treatment_name : "")
     setShowDoctorList(false);
     console.log(filtered);
   }, [patientTreatmentDetails]);
@@ -558,7 +520,6 @@ function BookAppointment() {
   console.log(currentBranch[0]);
 
   const handleDoctorSelect = (doctor) => {
-    // setSelectedDoctor(doctor); // Set the selected patient when it's clicked
     setShowDoctorList(false);
     setSearchDoctor(doctor.employee_name); // Reset the search query to close the search list
   };
@@ -629,20 +590,6 @@ function BookAppointment() {
 
     // Convert appointment time to Date object
     const selectedDateTime = new Date(bookData.appDateTime);
-
-    // const isBranchHoliday = branchHolidays.some(holiday => {
-    //      let holidayDate = new Date(holiday.holiday_date);
-    //        if(holidayDate == selectedDate) {
-    //         const holidayStart = new Date(selectedDateTime);
-    //         holidayStart.setHours(holiday?.holiday_start_time?.split(":")[0], holiday?.holiday_start_time?.split(":")[1]);
-    //         const holidayEnd = new Date(selectedDateTime);
-    //         holidayEnd.setHours(holiday?.holiday_end_time?.split(":")[0], holiday?.holiday_end_time?.split(":")[1]);
-    //         return (
-    //           (selectedDateTime >= holidayStart && selectedDateTime <= holidayEnd)
-    //         )
-    //        }
-    //  })
-
     const isBranchHoliday = branchHolidays.some((holiday) => {
       let holidayDate = new Date(holiday.holiday_date);
       holidayDate = new Date(
@@ -651,8 +598,6 @@ function BookAppointment() {
         holidayDate.getDate()
       );
       const compareDateandTime = new Date(bookData.appDateTime);
-      // const time24h = formatToFullDate24Hour(compareDateandTime);
-      // Convert selectedDateTime to full date
       let selectedDateTime = new Date(bookData.appDateTime);
       selectedDateTime = new Date(
         selectedDateTime.getFullYear(),
@@ -734,41 +679,6 @@ function BookAppointment() {
       );
     });
 
-    // const isSlotAvailable = appointmentsData.every((appointment) => {
-    //   // Check if the appointment is for the selected doctor and if it falls within the same datetime range
-    //   const appointmentDate = new Date(appointment.appointment_dateTime);
-    //   const selectedDate = new Date(bookData.appDateTime);
-
-    //   // Check if the appointment is for the selected doctor
-    //   const isForSelectedDoctor = appointment.assigned_doctor_id === selectedDoctor.employee_ID;
-
-    //   // Check if the appointment is within the same datetime range
-    //   const isWithinSameDateTime = appointmentDate.getTime() === selectedDate.getTime();
-
-    //   // Check if the appointment status is 'Cancel'
-    //   const isCanceled = appointment.appointment_status === 'Cancel';
-
-    //   // Return true if the appointment is canceled and for the selected doctor within the same datetime range
-    //   return isForSelectedDoctor && isWithinSameDateTime && isCanceled;
-    // });
-
-    // Check if the selected appointment date matches with the doctor's block day
-    //  const blockDays = selectedDoctor.scheduleBlockDays; // Assuming scheduleBlockDays is an array of dates
-
-    //  // Convert appointment date to the same format as block days
-    //  const selectedDate = new Date(bookData.appDateTime);
-    //  const formattedSelectedDateTime = selectedDate.toLocaleDateString("en-US");
-
-    //  // Check if the appointment date matches any of the block days
-    //  const isBlockDayMatched = blockDays.some((blockDay) => {
-    //    const formattedBlockDay = new Date(blockDay).toLocaleDateString("en-US");
-    //    return formattedBlockDay === formattedSelectedDateTime;
-    //  });
-
-    //  if(isBlockDayMatched){
-    //   alert ("Doctor is not available in this day");
-    //   return
-    //  }
 
     if (isSlotAvailable) {
       // Slot is available, proceed with booking
@@ -793,7 +703,6 @@ function BookAppointment() {
         opd_amount: selectedTreatment === "OPD" ? opdAmount : "0",
         payment_Mode: bookData.payment_Mode,
         transaction_Id: bookData.transaction_Id,
-        // cheque_number : bookData.cheque_number,
         payment_Status: bookData.payment_Status,
         appointment_created_by: currentUser?.employee_name,
         appointment_created_by_emp_id: currentUser?.employee_ID,
@@ -803,7 +712,6 @@ function BookAppointment() {
       };
 
       if (!isDoctorAvailable(selectedDateTime)) {
-        // Doctor is not available at the specified time
 
         const confirmation = window.confirm(
           "The selected doctor is not available at the specified time. Do you want to proceed with booking?"
@@ -853,14 +761,6 @@ function BookAppointment() {
           error?.response?.data?.message || "Something went wrong"
         );
       }
-      // setAppointmentData([...appointment_data,newAppointment]);
-      // Reset form data
-
-      // Reset selected doctor
-      // setSelectedDoctor(null);
-
-      // console.log("Appointment booked successfully!");
-      // alert("Appointment booked successfully!");
     } else {
       // Slot is not available
       cogoToast.error(
@@ -871,95 +771,6 @@ function BookAppointment() {
       );
     }
   };
-
-  // const handleBook = (e) => {
-  //     e.preventDefault();
-
-  //     // Check if the selected doctor is null
-  //     if (!selectedDoctor) {
-  //       console.log("Please select a doctor");
-  //       return;
-  //     }
-
-  //     // Convert appointment time to Date object
-  //     const selectedDateTime = new Date(bookData.appDateTime);
-
-  //     // Check if the selected doctor is available during the appointment time
-  //     const isDoctorAvailable = (selectedDateTime) => {
-  //       const morningStart = new Date(selectedDateTime);
-  //       morningStart.setHours(
-  //         selectedDoctor.morningStartTiming.split(":")[0],
-  //         selectedDoctor.morningStartTiming.split(":")[1]
-  //       );
-  //       const morningEnd = new Date(selectedDateTime);
-  //       morningEnd.setHours(
-  //         selectedDoctor.morningEndTiming.split(":")[0],
-  //         selectedDoctor.morningEndTiming.split(":")[1]
-  //       );
-  //       const eveningStart = new Date(selectedDateTime);
-  //       eveningStart.setHours(
-  //         selectedDoctor.eveningStartTiming.split(":")[0],
-  //         selectedDoctor.eveningStartTiming.split(":")[1]
-  //       );
-  //       const eveningEnd = new Date(selectedDateTime);
-  //       eveningEnd.setHours(
-  //         selectedDoctor.eveningEndTiming.split(":")[0],
-  //         selectedDoctor.eveningEndTiming.split(":")[1]
-  //       );
-
-  //       return (
-  //         (selectedDateTime >= morningStart && selectedDateTime <= morningEnd) ||
-  //         (selectedDateTime >= eveningStart && selectedDateTime <= eveningEnd)
-  //       );
-  //     };
-
-  //     // Check if the appointment slot is available
-  //     const isSlotAvailable = appointment_data.every((appointment) => {
-  //       // Check if the appointment is for the selected doctor and if it falls within the same datetime range
-  //       const appointmentDate = new Date(appointment.timing);
-  //       const selectedDate = new Date(bookData.appDateTime);
-
-  //       return !(
-  //         appointment.doctorId === selectedDoctor.uid &&
-  //         appointmentDate.getTime() === selectedDate.getTime()
-  //       );
-  //     });
-
-  //     // Check if the selected appointment date matches with the doctor's block day
-  //     const isBlockDayMatched =
-  //       selectedDoctor.scheduleBlockDays ===
-  //       selectedDateTime.toLocaleDateString("en-US");
-
-  //     if (isSlotAvailable && isDoctorAvailable(selectedDateTime) && !isBlockDayMatched) {
-  //       // Slot is available, proceed with booking
-  //       const newAppointment = {
-  //         patient_uid: selectedPatient.uid,
-  //         patient_Name: selectedPatient.patient_Name,
-  //         doctorId: selectedDoctor.uid,
-  //         doctor_name: selectedDoctor.doctor_name,
-  //         appDateTime: bookData.appDateTime,
-  //         treatment: selectedTreatment,
-  //         notes: bookData.notes,
-  //         status: "apoint",
-  //       };
-
-  //       setAppointmentData([...appointment_data, newAppointment]);
-  //       console.log("Appointment booked successfully!");
-  //       alert("Appointment booked successfully!");
-  //     } else {
-  //       // Slot is not available or doctor is not available or appointment date matches with the doctor's block day
-  //       if (!isSlotAvailable) {
-  //         alert("The selected doctor's slot is already booked at the specified time");
-  //         console.log("The selected doctor's slot is already booked at the specified time");
-  //       } else if (!isDoctorAvailable(selectedDateTime)) {
-  //         alert("The selected doctor is not available at the specified time");
-  //         console.log("The selected doctor is not available at the specified time");
-  //       } else if (isBlockDayMatched) {
-  //         alert("The selected doctor has a scheduled block on this day");
-  //         console.log("The selected doctor has a scheduled block on this day");
-  //       }
-  //     }
-  //   };
 
   return (
     <Wrapper>
@@ -1083,18 +894,6 @@ function BookAppointment() {
 }
               <div className="col-sm-6 ">
                 <div className="form-outline">
-                  {/* <label className="form-label" for="form6Example2">
-                            Date&Time
-                          </label>
-                          <input
-                            type="datetime-local"
-                            id="form6Example2"
-                            className="form-control"
-                            name="appDateTime"
-                            onChange={(e)=>handleBookChange(e)}
-                            required
-                           
-                          /> */}
                   <label className="form-label mt-2" for="date1">
                     Appointment Date *
                   </label>
@@ -1109,27 +908,6 @@ function BookAppointment() {
                   />
                 </div>
               </div>
-              {/* <div className="col-sm-6 ">
-                <div className="form-outline">
-                  <label className="form-label mt-2" for="form6Example2">
-                    Appointment Time *
-                  </label>
-                  <Select
-                    options={timeSlots}
-                    required
-                    value={timeSlots.find(
-                      (slot) =>
-                        slot.value === bookData.appDateTime?.split("T")[1]
-                    )}
-                    onChange={(selectedOption) =>
-                      setBookData({
-                        ...bookData,
-                        appDateTime: `${selectedDate}T${selectedOption.value}`,
-                      })
-                    }
-                  />
-                </div>
-              </div> */}
               <div className="col-sm-6 ">
                 <div className="form-outline">
                   <label className="form-label mt-2" for="form6Example2">
@@ -1153,53 +931,6 @@ function BookAppointment() {
                 </div>
               </div>
 
-              {/* <div className="col-sm-6">
-                <div className="form-outline">
-                  <label className="form-label mt-2" for="doctor1">
-                    Doctor *
-                  </label>
-
-                  <input
-                    type="search"
-                    id="doctor1"
-                    className="form-control text-capitalize"
-                    value={searchDoctor}
-                    onChange={handleSearchDoctor}
-                    required
-                    placeholder="Search Doctor"
-                    autocomplete="off"
-                  />
-                  <DoctorList>
-                    <div>
-                      <ul className="list-group">
-                        {showDoctorList && filteredDoctor.length === 0 ? (
-                          <li className="list-group-item">
-                            <h6>No Data Found</h6>
-                          </li>
-                        ) : (
-                          searchDoctor &&
-                          filteredDoctor?.map((doctor) => (
-                            <li
-                              key={doctor.employee_ID}
-                              className={`list-group-item text-capitalize ${
-                                selectedDoctor &&
-                                selectedDoctor.employee_ID ===
-                                  doctor.employee_ID
-                                  ? "active"
-                                  : ""
-                              }`} 
-                              onClick={() => handleDoctorSelect(doctor)} 
-                            >
-                              {"Dr. "} {doctor.employee_name}  <br/> Id:{" "}
-                              {doctor.employee_ID}
-                            </li>
-                          ))
-                        )}
-                      </ul>
-                    </div>
-                  </DoctorList>
-                </div>
-              </div> */}
               <div className="col-sm-6">
                 <div className="form-outline" id="form1">
                   <label className="form-label mt-2" for="treatment">
@@ -1277,31 +1008,7 @@ function BookAppointment() {
                       </div>
                     </div>
                   )}
-                    {/* {(bookData.payment_Mode === "Cheque" )  && (
-                          <div className="col-sm-6">
-                            <div className="form-outline">
-                              <label
-                                className="form-label mt-2"
-                                for="cheque_number"
-                              >
-                                Cheque No *
-                              </label>
-                              <input
-                                type="text"
-                                id="cheque_number"
-                                className="form-control"
-                                onChange={handleChange}
-                                name="cheque_number"
-                                required
-                                placeholder="Enter Cheque No."
-                                pattern="[0-9]{6}"
-                    title="Cheque number should be 6 digits"
-                    maxLength={6}
-                    minLength={6}
-                              />
-                            </div>
-                          </div>
-                        )} */}
+                    
                   <div className="col-sm-6">
                     <div className="form-outline">
                       <label className="form-label mt-2" for="payment_Status">
@@ -1340,89 +1047,7 @@ function BookAppointment() {
               </div>
               <div className="col-sm-6"></div>
 
-              {/* <div className="d-flex  mt-4">
-                     <div className="col-sm-3 p-0 ">
-                       <div className="form-outline">
-                         <label className="form-label" for="form6Example1">
-                           Doctor :
-                         </label>
-                       </div>
-                     </div>
-                     <div className="col-sm-4 p-0">
-                       <div className="form-outline">
-                         <input
-                           class="form-check-input"
-                           type="checkbox"
-                           value=""
-                           id="flexCheckDefault"
-                         />
-                         <label
-                           class="form-check-label mx-1"
-                           for="flexCheckDefault"
-                         >
-                           Sms
-                         </label>
-                       </div>
-                     </div>
-                     <div className="col-sm-5 p-0">
-                       <div className="form-outline">
-                         <input
-                           class="form-check-input"
-                           type="checkbox"
-                           value=""
-                           id="flexCheckDefault"
-                         />
-                         <label
-                           class="form-check-label mx-1"
-                           for="flexCheckDefault"
-                         >
-                           Send Email
-                         </label>
-                       </div>
-                     </div>
-                     </div>
-                     <div className="d-flex ">
-                     <div className="col-sm-3 p-0">
-                       <div className="form-outline">
-                         <label className="form-label" for="form6Example1">
-                           Patient :
-                         </label>
-                       </div>
-                     </div>
-                     <div className="col-sm-4 p-0">
-                       <div className="form-outline">
-                         <input
-                           class="form-check-input"
-                           type="checkbox"
-                           value=""
-                           id="flexCheckDefault"
-                         />
-                         <label
-                           class="form-check-label mx-1"
-                           for="flexCheckDefault"
-                         >
-                           Sms
-                         </label>
-                       </div>
-                     </div>
-                     <div className="col-sm-5 p-0">
-                       <div className="form-outline">
-                         <input
-                           class="form-check-input"
-                           type="checkbox"
-                           value=""
-                           id="flexCheckDefault"
-                         />
-                         <label
-                           class="form-check-label mx-1"
-                           for="flexCheckDefault"
-                         >
-                           Send Email
-                         </label>
-                       </div>
-                     </div>
-                     </div> */}
-
+            
               <div className="formbtn d-flex justify-content-lg-center justify-content-md-center">
                 <button
                   className="btn btn-success "

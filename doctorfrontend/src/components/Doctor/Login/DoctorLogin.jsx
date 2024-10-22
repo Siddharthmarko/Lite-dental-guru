@@ -11,18 +11,15 @@ import { setBranch } from "../../../redux/user/branchSlice";
 const DoctorLogin = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const location = useLocation();
   const [email, setEmail] = useState("");
   const [show, setShow] = useState(false);
   const [password, setPassword] = useState("");
   const [popupVisible, setPopupVisible] = useState(false);
-  const [verification, setVerification] = useState(false);
   const [localhost, setLocalhost] = useState([]);
   const [braches, setBranches] = useState([]);
   const [selectedBranch, setSelectedBranch] = useState("");
   const [loading, setLoading] = useState(false);
-  const [storeBranch, setStoreBranch] = useState("");
-
+  
   const getBranches = async () => {
     try {
       const response = await axios.get(
@@ -39,13 +36,7 @@ const DoctorLogin = () => {
     getBranches();
   }, []);
 
-  const handleSelectBranch = (e) => {
-    setSelectedBranch(e.target.value);
-  };
-
   console.log(selectedBranch);
-  console.log(storeBranch);
-
   const receptionistLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -55,25 +46,19 @@ const DoctorLogin = () => {
         {
           email,
           password,
-          // branch_name: "Madan Mahal",
         }
       );
 
       console.log(response.data);
       setLoading(false);
-      // cogoToast.success(response.data.message);
+      cogoToast.success(response.data.message);
       setLocalhost(response.data);
       if (response.data.success === "true") {
-        // sendOtp();
         cogoToast.success(response.data.message);
         dispatch(setUser(response.data.user));
-        // dispatch(setBranch(response.data.user.branch_name));
-        console.log(braches[0], "oooooooooooooooooooooooooooo");
         dispatch(setBranch(braches));
         setLoading(false);
-        // navigate("/doctor-dashboard");
         navigate("/dashboard");
-        // setPopupVisible(true);
       } else {
         setLoading(false);
         cogoToast.error(response.data.message);
@@ -99,17 +84,6 @@ const DoctorLogin = () => {
     }
   };
 
-  //   useEffect(()=>{
-  //     const filterdResult = braches.filter((item) => {
-  //       return item.branch_name === selectedBranch;
-  //     })
-  //   console.log(filterdResult)
-  //    setStoreBranch(filterdResult)
-  // },[selectedBranch])
-
-  const closeUpdatePopup = () => {
-    setPopupVisible(false);
-  };
   return (
     <>
       <Container>
@@ -121,26 +95,6 @@ const DoctorLogin = () => {
                   <div className="card-body p-md-5">
                     <div className="row justify-content-center">
                       <div className="col-md-10 col-lg-6 col-xl-5 order-2">
-                        {/* <div className="d-flex justify-content-end">
-                          <select
-                            name="branch_name"
-                            id=""
-                            className="p-2 rounded shadow select-style"
-                            onChange={handleSelectBranch}
-                          >
-                            <option value="">Select Branch</option>
-                            {braches?.map((branch) => {
-                              return (
-                                <option
-                                  value={branch.branch_name}
-                                  key={branch.branch_id}
-                                >
-                                  {branch.branch_name}
-                                </option>
-                              );
-                            })}
-                          </select>
-                        </div> */}
                         <p className="text-center h4 fw-bold mb-5 mx-1 mx-md-4 mt-4">
                           Login
                         </p>
@@ -210,8 +164,6 @@ const DoctorLogin = () => {
                           </div>
 
                           <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                            {/* <Link to="/superadmin-dashboard"></Link> */}
-
                             <button
                               type="submit"
                               disabled={loading}
@@ -236,7 +188,6 @@ const DoctorLogin = () => {
             </div>
           </div>
         </section>
-        {/* {popupVisible && <Popup email={email} onClose={closeUpdatePopup} />} */}
       </Container>
     </>
   );

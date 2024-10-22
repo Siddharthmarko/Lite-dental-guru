@@ -9,13 +9,6 @@ import Modal from 'react-bootstrap/Modal';
 
 function ModifyPopup({onClose,onEdit,onDelete,slotInfo}) {
 
-  // const [show, setShow] = useState(true);
-
-  // const [showEditPopup, setShowEditPopup] = useState(false);
-  // const [showDeletePopup, setShowDeletePopup] = useState(false);
-  // const handleClose = () => setShow(false);
-  // const handleShow = () => setShow(true);
-
   const handleEditClick = () => {
     
     onEdit() // Close the previous modal

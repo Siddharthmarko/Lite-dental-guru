@@ -58,11 +58,9 @@ import ReceptionSittingBill from "./components/receptionist/pages/ReceptionSitti
 // ************** Super Admin Routes Start Here *******************
 
 import ClinicSetting from "./components/superAdmin/ClinicSetting";
-import ManageStaff from "./components/superAdmin/ManageStaff";
 import ClinicConfigSetting from "./components/superAdmin/ClinicConfigSetting";
 import TreatmentSetting from "./components/superAdmin/TreatmentSetting";
 import CalenderSetting from "./components/superAdmin/CalenderSetting";
-import EmployeeProfile from "./components/superAdmin/EmployeeProfile";
 import Branches from "./components/superAdmin/Branches";
 import styled from "styled-components";
 
@@ -250,7 +248,7 @@ function App() {
               )
             }
           />
-          {/* <Route
+          <Route
             path="/NewTreatPrescription/:id"
             element={
               user === null ? (
@@ -268,8 +266,8 @@ function App() {
                 <NewTreatPrescription />
               )
             }
-          /> */}
-          {/* <Route
+          />
+          <Route
             path="/TPrescription"
             element={
               user === null ? (
@@ -287,9 +285,9 @@ function App() {
                 <TPrescription />
               )
             }
-          /> */}
+          />
     
-          {/* <Route
+          <Route
             path="/ViewTreatPrescription/:tpid/:appoint_id/:sitting/:treatment"
             element={
               user === null ? (
@@ -307,9 +305,9 @@ function App() {
                 <ViewTreatPrescription />
               )
             }
-          /> */}
+          />
 
-          {/* <Route
+          <Route
             path="/ViewTreatPrescriptionlist/:tpid/:appoint_id/:sitting/:treatment"
             element={
               user === null ? (
@@ -327,7 +325,7 @@ function App() {
                 <ViewTreatPrescriptionList />
               )
             }
-          /> */}
+          />
 
           <Route
             path="/ViewPatientTotalBill/:tpid"
@@ -448,7 +446,7 @@ function App() {
           />
 
           {/* ---Quick Prescription */}
-          {/* <Route
+          <Route
             path="/Quick-Prescription/:appoint_id/:patient_uhid"
             element={
               user === null ? (
@@ -466,7 +464,7 @@ function App() {
                 <QPrescriptionForm />
               )
             }
-          /> */}
+          />
           {/* ---Quick Prescription */}
 
           {/* ****************** Doctor Routes End Here ******************* */}
@@ -592,21 +590,12 @@ function App() {
           />
 
           <Route
-            path="/manage-staff"
-            element={user === null ? <DoctorLogin /> : <ManageStaff />}
-          />
-          <Route
             path="/clinic-config-setting"
             element={user === null ? <DoctorLogin /> : <ClinicConfigSetting />}
           />
           <Route
             path="/treatment-setting"
             element={user === null ? <DoctorLogin /> : <TreatmentSetting />}
-          />
-          {/* super admin  */}
-          <Route
-            path="/employee-profile/:eid"
-            element={user === null ? <DoctorLogin /> : <EmployeeProfile />}
           />
           <Route
             path="/branch"

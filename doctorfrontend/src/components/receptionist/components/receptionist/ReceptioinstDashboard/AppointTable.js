@@ -15,7 +15,6 @@ import Lottie from "react-lottie";
 import animationData from "../../../images/animation/loading-effect.json";
 
 const AppointTable = () => {
-  const [searchInput, setSearchInput] = useState("");
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
   const [treatData, setTreatData] = useState([]);
@@ -40,28 +39,9 @@ const AppointTable = () => {
   const [loadingEffect, setLoadingEffect] = useState(true);
 
   const [selectedDateAppData, setSelectedDateAppData] = useState([]);
-  const [doctors, setDoctors] = useState([]);
   const [tp_id, setTp_id] = useState();
   const [selectedDoctor, setSelectedDoctor] = useState(null); // State to store the selected Doctor
   const navigate = useNavigate();
-
-  const getDoctors = async () => {
-    try {
-      const response = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/get-doctors/${branch}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      console.log("all doctors and not used  - ", response?.data?.data);
-      setDoctors([{ ...currentUser }]);
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   const timelineData = async (id) => {
     try {
@@ -109,41 +89,6 @@ const AppointTable = () => {
     }
   };
 
-  // console.log(appointmentsData);
-  // useEffect(() => {
-  // const intervalId = setInterval(() => {
-  //   dispatch(toggleTableRefresh());
-  // }, 5000);
-
-  // return () => clearInterval(intervalId);
-  // }, [dispatch]);
-
-  // previous code 1
-
-  // useEffect(() => {
-  //   const sortedAppointments = appointmentsData.sort((a, b) => {
-  //     return a.appointment_dateTime.localeCompare(b.appointment_dateTime);
-  //   });
-
-  //   const filteredResults = sortedAppointments.filter((row) =>
-
-  //     row.appointment_dateTime?.includes(selectedDate)
-  //   );
-  //   setSelectedDateAppData(filteredResults)
-  //   handleSearch({ target: { value: searchTerm } });
-  // }, [appointmentsData, selectedDate])
-
-  // previous code 2
-
-  // useEffect(() => {
-  //   const sortedAppointments = appointmentsData.sort((a, b) => a.appointment_dateTime.localeCompare(b.appointment_dateTime));
-  //   const filteredResults = sortedAppointments.filter((row) =>
-  //     row.appointment_dateTime?.includes(selectedDate) &&
-  //     (!selectedDoctor || row.assigned_doctor_id === selectedDoctor)
-  //   );
-  //   setSelectedDateAppData(filteredResults)
-  //   handleSearch({ target: { value: searchTerm } });
-  // }, [appointmentsData, selectedDate, selectedDoctor]);
   useEffect(() => {
     const sortedAppointments = appointmentsData.sort((a, b) =>
       a.appointment_dateTime.localeCompare(b.appointment_dateTime)
@@ -199,7 +144,6 @@ const AppointTable = () => {
       );
       setAppointmentData(currentDoctor);
       setLoadingEffect(false);
-      // paginate(currentPage)
     } catch (error) {
       console.log(error);
       setLoadingEffect(false);
@@ -237,7 +181,6 @@ const AppointTable = () => {
   }, [refreshTable]);
 
   useEffect(() => {
-    getDoctors();
     fetchAppointments();
     getTreatPackageData();
   }, []);
@@ -313,7 +256,7 @@ const AppointTable = () => {
       );
       // console.log(response);
     } catch (error) {
-      // console.log(error);
+      console.log(error);
     }
   };
 
@@ -330,7 +273,7 @@ const AppointTable = () => {
       );
       setTreatData(data);
     } catch (error) {
-      // console.log(error);
+      console.log(error);
     }
   };
 
@@ -341,7 +284,6 @@ const AppointTable = () => {
 
     const foundItem = tp_id.find((item) => item.appoint_id === appointId);
     console.log(foundItem);
-    // let tpid = appointmentsData.tp_id;
     let tpid = foundItem?.tp_id;
     if (!tpid) {
       navigate(`/examination-Dashboard/${appointId}/${uhid}`);
@@ -368,10 +310,6 @@ const AppointTable = () => {
       if (action === "in treatment") {
         timelineForStartTreat(uhid);
 
-        // const filterForPendingTp = treatData?.filter((item) => {
-        //   return item.tp_id === tpid && item.package_status === "ongoing";
-        // });
-
         const filterForPendingTp = tp_id?.filter((item) => {
           return (
             item.appoint_id === appointId && item.treatment_provided === "OPD"
@@ -396,16 +334,16 @@ const AppointTable = () => {
           filterForPendingTp[0]?.package_status !== "complete" &&
           filterForPendingTp[0]?.package_status !== "completed"
         ) {
-          // alert("filter pending tp");
+          
           navigate(`/TreatmentDashBoard/${tpid}/${appointId}`);
         } else if (filterForGoingTp.length > 0) {
           const appointFilter = tp_id?.filter((tad) => {
             return tad.appoint_id === appointId;
           });
-          // alert("current path");
+          
           navigate(appointFilter[0]?.current_path);
         } else {
-          // alert("initial");
+          
           navigate(`/examination-Dashboard/${appointId}/${uhid}`);
         }
         window.scrollTo(0, 0);
@@ -433,12 +371,7 @@ const AppointTable = () => {
         }
       );
 
-      // setAppointments(res.data.result);
-      // setFilterTableData(res.data.result);
-      // setSelectedActions({ ...selectedActions, [appointId]: action });
     } catch (error) {
-      // setLoading(false);
-      // console.error("Error updating appointment status:", error.message);
     }
   };
 
@@ -484,28 +417,6 @@ const AppointTable = () => {
       console.error("Error updating status:", error);
     }
   };
-
-  // const handleChange = (e) => {
-  //   setSearchInput(e.target.value);
-  // };
-
-  // const filteredTable_data = Table_data.filter((data) => {
-  //   return data.patient?.toLowerCase()?.includes(searchInput?.toLowerCase());
-  // });
-
-  // Searching function
-  // const handleSearch = (event) => {
-  //   const searchTerm = event.target.value?.toLowerCase();
-  //   setSearchTerm(searchTerm);
-  //   setCurrentPage(1); // Reset to the first page when searching
-
-  //   const filteredResults = appointmentsData.filter((row) =>
-  //     (row.patient_name?.toLowerCase()?.includes(searchTerm.trim()) || row.mobileno?.includes(searchTerm.trim()) || row.uhid?.toLowerCase()?.includes(searchTerm.trim()) || row.appointment_status?.toLowerCase()?.includes(searchTerm.trim()) )
-  //     && row.appointment_dateTime?.includes(selectedDate)
-  //   );
-
-  //   setFilteredData(filteredResults);
-  // };
 
   const handleSearch = (event) => {
     const searchTerm = event.target.value?.toLowerCase();
@@ -650,25 +561,7 @@ const AppointTable = () => {
               />
             </div>
 
-            {/* <div className="mt-sm-2 mt-lg-0">
-              <select
-                className="form-select text-capitalize"
-                onChange={(e) => setSelectedDoctor(e.target.value)}
-                id="form2"
-                style={{ cursor: "pointer" }}
-              >
-                <option value="">All Doctors</option>
-                {doctors?.map((doctor) => (
-                  <option
-                    value={doctor.employee_ID}
-                    className="text-capitalize"
-                  >
-                    {"Dr. "}
-                    {doctor.employee_name}
-                  </option>
-                ))}
-              </select>
-            </div> */}
+          
             <Form.Group
               controlId="rowsPerPageSelect"
               style={{ display: "flex", justifyContent: "center" }}
@@ -789,7 +682,6 @@ const AppointTable = () => {
                           <td>
                             <div className="dropdown">
                               {!(
-                                // patient.appointment_status == "in treatment" ||
                                 (
                                   patient.appointment_status == "Complete" ||
                                   patient.appointment_status == "Cancel"
@@ -814,15 +706,6 @@ const AppointTable = () => {
                                   Action
                                 </button>
                               )}
-
-                              {/* <ul className="dropdown-menu drop-pointer">
-                        {(patient.appointment_status !== "Check-In" && patient.appointment_status !== "Cancel" && patient.appointment_dateTime.split("T")[0] == todayDate) && <li><a className="dropdown-item mx-0" onClick={() => handleStatusChange(patient.appoint_id, patient.uhid, 'Check-In')}>Check-In</a></li>}
-                        {(patient.appointment_status == "Check-In" && patient.appointment_status !== "Cancel" && patient.appointment_dateTime.split("T")[0] == todayDate) && <li><a className="dropdown-item mx-0" onClick={() => handleStatusChange(patient.appoint_id, patient.uhid, 'Appoint')}>Change Status to "Appoint"</a></li>}
-                        
-                        {(patient.appointment_status == "Appoint" && patient.appointment_status !== "Cancel") && <li><a className="dropdown-item mx-0" onClick={() => handleEditAppointment(patient)}>Edit Appointment</a></li>}
-                        {patient.appointment_status == "Check-In" || patient.appointment_status !== "Cancel" && <li><a className="dropdown-item mx-0" onClick={() => handleCancelAppointment(patient)}>Cancel Appointment</a></li>}
-                      </ul> */}
-
                               <ul className="dropdown-menu">
                                 {patient.appointment_status !== "Check-In" &&
                                   patient.appointment_status !== "Cancel" &&
@@ -897,36 +780,12 @@ const AppointTable = () => {
                                           loading ? "disabled" : ""
                                         }`}
                                       >
-                                        {/* <Link to={`/examination-Dashboard/${patient.appoint_id}/${patient.uhid}`}  > */}
                                         <Link className="text-decoration-none text-light">
                                           Start Treatment
                                         </Link>
                                       </button>
                                     </li>
                                   )}
-                                {/* {patient.appointment_status !== "Check-In" &&
-                                  patient.appointment_status !== "Complete" &&
-                                  patient.appointment_status !== "Check Out" &&
-                                  patient.appointment_status !== "Appoint" && (
-                                    <>
-                                      <li>
-                                        <button
-                                          className="btn btn-warning mx-2 my-1"
-                                          onClick={() =>
-                                            handleAction(
-                                              "in treatment",
-                                              patient.appoint_id,
-                                              patient.uhid,
-                                              patient.appointment_status,
-                                              patient.treatment_provided
-                                            )
-                                          }
-                                        >
-                                          Again Treatment
-                                        </button>
-                                      </li>
-                                    </>
-                                  )} */}
                                 {patient.appointment_status === "Check-In" &&
                                   patient.appointment_status !== "Cancel" &&
                                   appointmentDate <= todayDate && (
@@ -946,16 +805,6 @@ const AppointTable = () => {
                                       </button>
                                     </li>
                                   )}
-                                {/* {(patient.appointment_status !== "Check-In" && patient.appointment_status !== "Cancel") && (
-    <li className={`dropdown-item mx-0 ${loading ? 'disabled' : ''}`}>
-      <a onClick={!loading ? () => handleStatusChange(patient.appoint_id, patient.uhid, 'Check-In') : null}>Check-In</a>
-    </li>
-  )}
-  {(patient.appointment_status === "Check-In" && patient.appointment_status !== "Cancel") && (
-    <li className={`dropdown-item mx-0 ${loading ? 'disabled' : ''}`}>
-      <a onClick={!loading ? () => handleStatusChange(patient.appoint_id, patient.uhid, 'Appoint') : null}>Change Status to "Appoint"</a>
-    </li>
-  )} */}
                                 {patient.appointment_status === "Appoint" &&
                                   patient.appointment_status !== "Cancel" && (
                                     <li className="text-center">
@@ -1022,7 +871,6 @@ const AppointTable = () => {
                     fontSize: "1.1rem",
                   }}
                 >
-                  {/* Showing Page {currentPage} of {totalPages} from {data?.length} entries */}
                   {searchTerm ? (
                     <>
                       {" "}

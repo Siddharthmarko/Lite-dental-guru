@@ -7,7 +7,6 @@ import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 import Select from "react-select";
 import { useDispatch, useSelector } from "react-redux";
-// import { toggleTableRefresh } from "../../../redux/user/userSlice";
 import { toggleTableRefresh } from "../../../../../redux/user/userSlice";
 import CreatableSelect from "react-select/creatable";
 import cogoToast from "cogo-toast";
@@ -16,29 +15,26 @@ function EditPatientDetails({ onClose, patientInfo, allPatientData }) {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const { currentUser, refreshTable } = useSelector((state) => state.user);
-  const {currentBranch} = useSelector((state) => state.branch);
+  const { currentBranch } = useSelector((state) => state.branch);
   const branch = currentUser?.branch_name;
   const token = currentUser?.token;
   const [show, setShow] = useState(false);
   const [selectedDisease, setSelectedDisease] = useState([]);
   const [inputDisease, setInputDisease] = useState("");
   const [disease, setDisease] = useState([]);
-  const [insuranceCompany , setInsuranceCompany] = useState("");
-
-
-
-
+  const [insuranceCompany, setInsuranceCompany] = useState("");
   const getInsuranceCompany = async () => {
-    try{
-     const response = await axios.get(`https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/getInsuranceCompany/${branch}`)
-     
-     setInsuranceCompany(response.data.data)
+    try {
+      const response = await axios.get(
+        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/getInsuranceCompany/${branch}`
+      );
+
+      setInsuranceCompany(response.data.data);
+    } catch (error) {
+      console.log(error);
     }
-    catch(error) {
-     console.log(error);
-    }
-}
-console.log(insuranceCompany)
+  };
+  console.log(insuranceCompany);
   const timelineData = async (id) => {
     try {
       const response = await axios.post(
@@ -84,8 +80,8 @@ console.log(insuranceCompany)
     allergy: patientInfo.allergy,
     disease: patientInfo.disease,
     patientType: patientInfo.patient_type,
-    credit_By : patientInfo.credit_By,
-    beneficiary_Id : patientInfo.beneficiary_Id,
+    credit_By: patientInfo.credit_By,
+    beneficiary_Id: patientInfo.beneficiary_Id,
     address: patientInfo.address,
     patient_updated_by: currentUser?.employee_name,
     patient_updated_by_emp_id: currentUser?.employee_ID,
@@ -118,7 +114,6 @@ console.log(insuranceCompany)
       }));
       setSelectedDisease(selected);
     }
-  
   }, [patientInfo]);
 
   console.log(selectedDisease);
@@ -265,63 +260,61 @@ console.log(insuranceCompany)
                   >
                     <option value="">Select Patient Type</option>
                     <option value="General">General</option>
-                    {currentBranch[0]?.allow_insurance == "Yes" && <option value="Credit">Credit</option>}
-                  
+                    {currentBranch[0]?.allow_insurance == "Yes" && (
+                      <option value="Credit">Credit</option>
+                    )}
                   </select>
                 </div>
-                { data.patientType == "Credit" &&
-           <>
-           <div className="mb-3">
-                <div className="form-outline">
-                  <label className="form-label mt-2" for="patientType">
-                    Credit By *
-                  </label>
+                {data.patientType == "Credit" && (
+                  <>
+                    <div className="mb-3">
+                      <div className="form-outline">
+                        <label className="form-label mt-2" for="patientType">
+                          Credit By *
+                        </label>
 
-                  <select
-                    className="form-select"
-                    id="credit_By"
-                    name="credit_By"
-                    required
-                    onChange={handleChange}
-                    value={data.credit_By}
-                  >
-                    <option value="">Select Credit By</option>
-                    {
-                  insuranceCompany && insuranceCompany?.map((item)=> (
-                      <option value={item.companyname}>{item.companyname}</option>
-                     )) 
-                    }
-                    
-                    {/* <option value="CGHS(Pensioner)">CGHS(Pensioner)</option>
-                   <option value="CSMA">CSMA</option> */}
-                  </select>
-                </div>
-              </div>
+                        <select
+                          className="form-select"
+                          id="credit_By"
+                          name="credit_By"
+                          required
+                          onChange={handleChange}
+                          value={data.credit_By}
+                        >
+                          <option value="">Select Credit By</option>
+                          {insuranceCompany &&
+                            insuranceCompany?.map((item) => (
+                              <option value={item.companyname}>
+                                {item.companyname}
+                              </option>
+                            ))}
+                        </select>
+                      </div>
+                    </div>
 
-
-              <div className="mb-3">
-                <div className="form-outline" id="form1">
-                  <label className="form-label mt-2" for="name">
-                  Beneficiary Id *
-                  </label>
-                  <input
-                    type="text"
-                    id="beneficiary_Id"
-                    className="form-control"
-                    name="beneficiary_Id"
-                    onChange={handleChange}
-                    value={data.beneficiary_Id}
-                    // pattern="[A-Za-z\s]*"
-                    // title="Text should contain only letters"
-                    placeholder="Enter Beneficiary Id"
-                    required
-                    autocomplete="off"
-                    maxLength={25}
-                  />
-                </div>
-              </div> 
-              </>
-}
+                    <div className="mb-3">
+                      <div className="form-outline" id="form1">
+                        <label className="form-label mt-2" for="name">
+                          Beneficiary Id *
+                        </label>
+                        <input
+                          type="text"
+                          id="beneficiary_Id"
+                          className="form-control"
+                          name="beneficiary_Id"
+                          onChange={handleChange}
+                          value={data.beneficiary_Id}
+                          // pattern="[A-Za-z\s]*"
+                          // title="Text should contain only letters"
+                          placeholder="Enter Beneficiary Id"
+                          required
+                          autocomplete="off"
+                          maxLength={25}
+                        />
+                      </div>
+                    </div>
+                  </>
+                )}
                 <div class="mb-3">
                   <label className="form-label" for="name1">
                     Patient name
@@ -572,7 +565,6 @@ console.log(insuranceCompany)
                     placeholder="Select or type to add..."
                   />
                 </div>
-              
 
                 <button
                   type="submit"
@@ -600,10 +592,9 @@ export default EditPatientDetails;
 const Wrapper = styled.div``;
 const DoctorList = styled.div`
   position: absolute;
-  z-index: 999; /* Set a high z-index to ensure the list is displayed above other elements */
+  z-index: 999; 
   width: 100%;
   overflow-y: auto;
   max-height: 400px;
 
-  /* Your additional styling for the doctor list */
 `;

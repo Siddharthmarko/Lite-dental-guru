@@ -5,7 +5,6 @@ import Header from "../receptionist/components/receptionist/Header";
 import Sider from "../receptionist/components/receptionist/Sider";
 import { FaSearch } from "react-icons/fa";
 import { IoMdArrowRoundBack } from "react-icons/io";
-import BranchSelector from "./BranchSelector";
 import axios from "axios";
 import cogoToast from "cogo-toast";
 import { useDispatch, useSelector } from "react-redux";
@@ -23,7 +22,6 @@ const CalenderSetting = () => {
     (state) => state.user.currentUser?.branch_name
   );
   console.log(`User Name: ${branch_name}`);
-  const location = useLocation();
   const [showAddBlockDays, setShowAddBlockDays] = useState(false);
   const [showEditBlockDays, setShowEditBlockDays] = useState(false);
   const [brData, setBrData] = useState([]);
@@ -197,7 +195,6 @@ const CalenderSetting = () => {
 
   const updateBranchDetails = async (e) => {
     e.preventDefault();
-    console.log(upData, branch_name, "ttttttttttttttttttttttttttttt");
     try {
       const response = await axios.put(
         `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/super-admin/updateBranchCalenderSetting/${branch_name}`,
@@ -235,23 +232,13 @@ const CalenderSetting = () => {
     return `${year}-${month}-${day}`;
   };
 
-  // const convertToIST = (utcDateString) => {
-  //   const utcDate = new Date(utcDateString);
-  //   const istOffset = 5.5 * 60 * 60 * 1000; // IST is UTC + 5:30
-  //   const istDate = new Date(utcDate.getTime() + istOffset);
-  //   return istDate;
-  // };
 
   console.log(selected);
 
   useEffect(() => {
     if (selected) {
       console.log("UTC Date:", selected.holiday_date);
-      // Format the date and time fields correctly
-      // const istDate = convertToIST(selected.holiday_date);
-      // const formattedDate = istDate.toISOString().split("T")[0];
       const formattedDate = convertToIST(selected.holiday_date);
-      // const formattedDate =  new Date(selected.holiday_date).toISOString().split("T")[0];
       const formattedStartTime = selected.holiday_start_time.slice(0, 5);
       const formattedEndTime = selected.holiday_end_time.slice(0, 5);
       console.log("Formatted Date:", formattedDate);
@@ -397,18 +384,6 @@ const CalenderSetting = () => {
               <div className="col-md-1"></div>
               {/* for fixed sidebar */}
               <div className="col-lg-11 col-11 ps-0">
-                <div className="container-fluid mt-3">
-                  <div className="d-flex justify-content-between">
-                    {/* <BranchSelector /> */}
-                    <div>
-                      {/* <Link to="/superadmin-add-branch">
-                          <button className="btn btn-success">
-                            Add Branch
-                          </button>
-                        </Link> */}
-                    </div>
-                  </div>
-                </div>
                 <div className="container-fluid mt-3">
                   <button
                     className="btn btn-success ms-md-2 ms-lg-0 "

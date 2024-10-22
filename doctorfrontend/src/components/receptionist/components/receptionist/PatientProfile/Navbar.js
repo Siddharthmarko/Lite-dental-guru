@@ -1,6 +1,3 @@
-
-
-
 import React from "react";
 import styled from "styled-components";
 import Appointment from "./Appointment";
@@ -133,48 +130,7 @@ const Navbar = () => {
             Lab
           </button>
         </li>
-        {/* <li className="nav-item" role="presentation">
-          <button
-            className="nav-link"
-            id="profile-tab1"
-            data-bs-toggle="tab"
-            data-bs-target="#profile-tab-pane7"
-            type="button"
-            role="tab"
-            aria-controls="profile-tab-pane7"
-            aria-selected="false"
-          >
-            Files
-          </button>
-        </li>
-        <li className="nav-item" role="presentation">
-          <button
-            className="nav-link"
-            id="profile-tab1"
-            data-bs-toggle="tab"
-            data-bs-target="#profile-tab-pane8"
-            type="button"
-            role="tab"
-            aria-controls="profile-tab-pane8"
-            aria-selected="false"
-          >
-            Sms
-          </button>
-        </li>
-        <li className="nav-item" role="presentation">
-          <button
-            className="nav-link"
-            id="profile-tab1"
-            data-bs-toggle="tab"
-            data-bs-target="#profile-tab-pane9"
-            type="button"
-            role="tab"
-            aria-controls="profile-tab-pane9"
-            aria-selected="false"
-          >
-            Email
-          </button>
-        </li> */}
+       
         <li className="nav-item" role="presentation">
           <button
             className="nav-link"

@@ -62,33 +62,7 @@ function EditPopup({ onClose, slotInfo }) {
   
         </Modal.Footer>
       </Modal>
-    </>
-   {/* <form>
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Patient Name:</label>
-            <input type="text" class="form-control" id="recipient-name"/>
-          </div>
-          <div class="mb-3">
-            <label for="message-text" class="col-form-label">Date & Time:</label>
-            <input type="text" class="form-control" id="recipient-name"/>
-          </div>
-          <div class="mb-3">
-            <label for="message-text" class="col-form-label">Doctor:</label>
-            <input type="text" class="form-control" id="recipient-name"/>
-          </div>
-          <div class="mb-3">
-            <label for="message-text" class="col-form-label">Add Treatment:</label>
-            <input type="text" class="form-control" id="recipient-name"/>
-          </div>
-          <div class="mb-3">
-            <label for="message-text" class="col-form-label">Notes:</label>
-            <input type="text" class="form-control" id="recipient-name"/>
-          </div>
-          <button type="button" class="btn btn-primary">Send message</button>
-          <Link to='/appointment'><button type="button" class="btn btn-primary float-end">Close</button></Link>
-        </form> */}
-
-        
+    </>       
    </Wrapper>
   
     </>

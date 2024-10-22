@@ -1,13 +1,47 @@
 import React, { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
-import Select from "react-select";
 import CreatableSelect from "react-select/creatable";
-import { Modal, Button } from "react-bootstrap";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleTableRefresh } from "../../../../../../redux/user/userSlice";
 import { useNavigate } from "react-router-dom";
 import cogoToast from "cogo-toast";
+
+const defualtData = {
+  branch_name: "",
+  patient_Name: "",
+  mobile: "",
+  email: "",
+  gender: "",
+  aadhaar_no: "",
+  contact_Person: "",
+  contact_Person_Name: "",
+  blood_Group: "",
+  dob: "",
+  age: "",
+  weight: "",
+  allergy: "",
+  disease: "",
+  patientType: "",
+  credit_By: "",
+  beneficiary_Id: "",
+  status: "",
+  doctorId: "",
+  doctor_name: "",
+  appDateTime: "",
+  treatment: "",
+  opd_amount: "",
+  payment_Mode: "",
+  transaction_Id: "",
+  // cheque_number : "",
+  payment_Status: "",
+  notes: "",
+  address: "",
+  patient_added_by: "",
+  patient_updated_by: "",
+  patient_added_by_emp_id: "",
+  patient_updated_by_emp_id: "",
+};
 
 function AddPatient() {
   const formRef = useRef(null);
@@ -16,36 +50,21 @@ function AddPatient() {
   const user = useSelector((state) => state.user);
   const { refreshTable } = useSelector((state) => state.user);
   const { currentBranch } = useSelector((state) => state.branch);
-  console.log(
-    currentBranch,
-    "k-----------------------------------------------------------------------------------"
-  );
   const branch = user?.currentUser?.branch_name;
   const token = user?.currentUser?.token;
-
-  const [searchDoctor, setSearchDoctor] = useState("");
-  const [showDoctorList, setShowDoctorList] = useState(false);
-  const [selectedDoctor, setSelectedDoctor] = useState(null); // State to store the selected Doctor
-  // const [selectedTreatment, setSelectedTreatment] = useState([]);
+  const [selectedDoctor, setSelectedDoctor] = useState(null);
   const [selectedTreatment, setSelectedTreatment] = useState("OPD");
-
   const [selectedDisease, setSelectedDisease] = useState([]);
   const [inputDisease, setInputDisease] = useState("");
-
   const [disease, setDisease] = useState([]);
   const [treatments, setTreatment] = useState([]);
   const [doctors, setDoctors] = useState([]);
-
   const [patients, setPatients] = useState([]);
   const [appointmentsData, setAppointmentsData] = useState([]);
   const [branchDetail, setBranchDetail] = useState([]);
   const [branchHolidays, setBranchHolidays] = useState([]);
   const [loading, setLoading] = useState(false);
   const [insuranceCompany, setInsuranceCompany] = useState("");
-
-  // const opdCost = treatments?.filter(
-  //   (treatment) => treatment?.treatment_name === "OPD"
-  // )[0]?.treatment_cost;
 
   let opdCost;
 
@@ -239,13 +258,13 @@ function AddPatient() {
           },
         }
       );
-      
+
       let data = response?.data?.data;
       setDoctors(data);
-      let currentDoctor = data.find((item) => item?.employee_name === user?.currentUser?.employee_name)
-      console.log(currentDoctor, user, "rjlewjlksdjflksdj"); 
-      setSelectedDoctor(currentDoctor)
-
+      let currentDoctor = data.find(
+        (item) => item?.employee_name === user?.currentUser?.employee_name
+      );
+      setSelectedDoctor(currentDoctor);
     } catch (error) {
       console.log(error);
     }
@@ -297,7 +316,6 @@ function AddPatient() {
 
   console.log(doctorWithLeave);
 
-
   useEffect(() => {
     getPatient();
     getAppointments();
@@ -331,66 +349,14 @@ function AddPatient() {
     }
   };
 
-  // const handleChangeDisease = (selectedOptions) => {
-  //   setSelectedDisease(selectedOptions.map(option => option.value));
-  // };
-
-  const handleChangeTreatment = (selectedOption) => {
-    setSelectedTreatment(selectedOption.value);
-  };
-
-  const [data, setData] = useState({
-    branch_name: "",
-    patient_Name: "",
-    mobile: "",
-    email: "",
-    gender: "",
-    aadhaar_no: "",
-    contact_Person: "",
-    contact_Person_Name: "",
-    blood_Group: "",
-    dob: "",
-    age: "",
-    weight: "",
-    allergy: "",
-    disease: "",
-    patientType: "",
-    credit_By: "",
-    beneficiary_Id: "",
-    status: "",
-    doctorId: "",
-    doctor_name: "",
-    appDateTime: "",
-    treatment: "",
-    opd_amount: "",
-    payment_Mode: "",
-    transaction_Id: "",
-    // cheque_number : "",
-    payment_Status: "",
-    notes: "",
-    address: "",
-    patient_added_by: "",
-    patient_updated_by: "",
-    patient_added_by_emp_id: "",
-    patient_updated_by_emp_id: "",
-  });
+  const [data, setData] = useState(defualtData);
 
   console.log(data);
 
   const [filteredDoctor, setFilteredDoctor] = useState([]);
 
-  // useEffect(() => {
-  //   // Filter patients based on the search query
-  //   const filtered = patients.filter((patient) =>
-  //     data.patient_Name.toLowerCase().includes(searchQuery.toLowerCase())
-  //   );
-  //   setFilteredPatients(filtered);
-  // }, [searchQuery, patients]);
-
   const [availableDoctorOnDate, setAvailableDoctorOnDate] = useState([]);
   useEffect(() => {
-    setSearchDoctor("");
-    // setSelectedDoctor(null);
     if (!selectedDate) {
       return;
     }
@@ -416,25 +382,8 @@ function AddPatient() {
       return true;
     });
 
-    setAvailableDoctorOnDate(filteredDoctors);
+    setAvailableDoctorOnDate(filteredDoctors);  
   }, [selectedDate, doctorWithLeave, doctors]);
-
-  useEffect(() => {
-    // Filter patients based on the search query if there's a search query, otherwise set an empty array
-    const filtered = showDoctorList
-      ? availableDoctorOnDate.filter((doctor) =>
-          doctor.employee_name
-            .toLowerCase()
-            .includes(searchDoctor.toLowerCase().trim())
-        )
-      : [];
-    setFilteredDoctor(filtered);
-  }, [searchDoctor]);
-
-  const handleSearchDoctor = (e) => {
-    setShowDoctorList(true);
-    setSearchDoctor(e.target.value);
-  };
 
   console.log(appointmentsData);
   useEffect(() => {
@@ -493,7 +442,7 @@ function AddPatient() {
     e.preventDefault();
 
     // Check if the selected doctor is null
-    
+
     if (!selectedDoctor) {
       cogoToast.error("Please select doctor from the list");
       console.log("Please select a doctor");
@@ -541,8 +490,6 @@ function AddPatient() {
         holidayDate.getDate()
       );
       const compareDateandTime = new Date(data.appDateTime);
-      // const time24h = formatToFullDate24Hour(compareDateandTime);
-      // Convert selectedDateTime to full date
       let selectedDateTime = new Date(data.appDateTime);
       selectedDateTime = new Date(
         selectedDateTime.getFullYear(),
@@ -609,15 +556,7 @@ function AddPatient() {
       );
     };
 
-    // if (!isDoctorAvailable(selectedDateTime)) {
-    //   // Doctor is not available at the specified time
-    //   alert("The selected doctor is not available at the specified time");
-    //   console.log("The selected doctor is not available at the specified time");
-    //   return;
-    // }
-
     const isSlotAvailable = appointmentsData.every((appointment) => {
-      // Check if the appointment is for the selected doctor and if it falls within the same datetime range
       const appointmentDate = new Date(appointment.appointment_dateTime);
       const selectedDate = new Date(data.appDateTime);
 
@@ -665,7 +604,6 @@ function AddPatient() {
         opd_amount: selectedTreatment === "OPD" ? opdAmount : "0",
         payment_Mode: data.payment_Mode,
         transaction_Id: data.transaction_Id,
-        // cheque_number : data.cheque_number,
         payment_Status: data.payment_Status,
         notes: data.notes,
         patient_added_by: user.currentUser?.employee_name,
@@ -708,39 +646,7 @@ function AddPatient() {
           // setSelectedDoctor(null);
           setSelectedDisease([]);
           setSelectedTreatment([]);
-          setSearchDoctor("");
-          setData({
-            branch_name: "",
-            patient_Name: "",
-            mobile: "",
-            email: "",
-            gender: "",
-            aadhaar_no: "",
-            contact_Person: "",
-            contact_Person_Name: "",
-            blood_Group: "",
-            dob: "",
-            age: "",
-            weight: "",
-            allergy: "",
-            disease: "",
-            patientType: "",
-            status: "",
-            doctorId: "",
-            doctor_name: "",
-            appDateTime: "",
-            treatment: "",
-            opd_amount: "",
-            payment_Mode: "",
-            transaction_Id: "",
-            payment_Status: "",
-            notes: "",
-            address: "",
-            patient_added_by: "",
-            patient_updated_by: "",
-            patient_added_by_emp_id: "",
-            patient_updated_by_emp_id: "",
-          });
+          setData(defualtData);
 
           if (response?.data?.treatment === "OPD") {
             navigate(`/print_Opd_Reciept/${response?.data?.data?.insertId}`);
@@ -754,39 +660,6 @@ function AddPatient() {
         console.log(error);
         cogoToast.error(error.response.data.message || "Something went wrong");
       }
-
-      // setPatients([...patients, newPatient]);
-      // setAppointmentData([...appointment_data,newPatient]);
-
-      // Reset form data
-      // setData({
-      //   patient_Name: "",
-      //   mobile: "",
-      //   email: "",
-      //   gender:"",
-      //   contact_Person: "",
-      //   contact_Person_Name: "",
-      //   blood_Group: "",
-      //   dob: "",
-      //   age: "",
-      //   address: "",
-      //   weight: "",
-      //   allergy: "",
-      //   disease: "",
-      //   patientType: "",
-      //   doctorId: "",
-      //   doctor_name: "",
-      //   appDateTime: "",
-      //   treatment: "",
-      //   notes: "",
-      // });
-
-      // Reset selected doctor
-      // setSelectedDoctor(null);
-
-      // console.log("Appointment booked successfully!");
-      // alert("Appointment booked successfully!");
-    } else {
       // Slot is not available
       cogoToast.error(
         "The selected doctor's slot is already booked at the specified time"
@@ -795,12 +668,6 @@ function AddPatient() {
         "The selected doctor's slot is already booked at the specified time"
       );
     }
-  };
-
-  const handleDoctorSelect = (doctor) => {
-    // setSelectedDoctor(doctor); // Set the selected patient when it's clicked
-    setShowDoctorList(false);
-    setSearchDoctor(doctor.employee_name); // Reset the search query to close the search list
   };
 
   console.log(filteredDoctor);
@@ -828,16 +695,10 @@ function AddPatient() {
                   >
                     <option value="">Select Patient Type</option>
                     <option value="General">General</option>
-                    {/* {currentBranch[0]?.allow_insurance == "Yes" && (
-                      <option value="Credit">Credit</option>
-                    )} */}
 
                     {currentBranch[0]?.allow_insurance === "Yes" && (
                       <option value="Credit">Credit</option>
                     )}
-                    {/* <option value="CGHS(Serving)">CGHS(Serving)</option>
-                    <option value="CGHS(Pensioner)">CGHS(Pensioner)</option>
-                    <option value="CSMA">CSMA</option> */}
                   </select>
                 </div>
               </div>
@@ -862,9 +723,6 @@ function AddPatient() {
                             {item.companyname}
                           </option>
                         ))}
-
-                        {/* <option value="CGHS(Pensioner)">CGHS(Pensioner)</option>
-                   <option value="CSMA">CSMA</option> */}
                       </select>
                     </div>
                   </div>
@@ -880,8 +738,6 @@ function AddPatient() {
                         className="form-control"
                         name="beneficiary_Id"
                         onChange={handleChange}
-                        // pattern="[A-Za-z\s]*"
-                        // title="Text should contain only letters"
                         placeholder="Enter Beneficiary Id"
                         required
                         autocomplete="off"
@@ -1170,18 +1026,6 @@ function AddPatient() {
                   <div className="row">
                     <div className="col-sm-6 ">
                       <div className="form-outline">
-                        {/* <label className="form-label" for="form6Example2">
-                            Date&Time
-                          </label>
-                          <input
-                            type="datetime-local"
-                            id="form6Example2"
-                            className="form-control"
-                            name="appDateTime"
-                            onChange={(e)=>handleBookChange(e)}
-                            required
-                           
-                          /> */}
                         <label className="form-label" for="date">
                           Appointment Date *
                         </label>
@@ -1191,32 +1035,10 @@ function AddPatient() {
                           value={selectedDate}
                           className="form-control"
                           onChange={handleDateChange}
-                          // min={formatDate(new Date())}
                           required
                         />
                       </div>
                     </div>
-                    {/* <div className="col-sm-6 ">
-                      <div className="form-outline">
-                        <label className="form-label" for="form6Example2">
-                          Appointment Time *
-                        </label>
-                        <Select
-                          options={timeSlots}
-                          required
-                          value={timeSlots.find(
-                            (slot) =>
-                              slot.value === data.appDateTime?.split("T")[1]
-                          )}
-                          onChange={(selectedOption) =>
-                            setData({
-                              ...data,
-                              appDateTime: `${selectedDate}T${selectedOption.value}`,
-                            })
-                          }
-                        />
-                      </div>
-                    </div> */}
                     <div className="col-sm-6 ">
                       <div className="form-outline">
                         <label className="form-label" for="form6Example2">
@@ -1239,95 +1061,6 @@ function AddPatient() {
                         </select>
                       </div>
                     </div>
-
-                    {/* <div className="col-sm-6">
-                      <div className="form-outline">
-                        <label className="form-label mt-2" for="doctor">
-                          Doctor *
-                        </label>
-
-                        <input
-                          type="search"
-                          id="doctor"
-                          name="doctor"
-                          className="form-control text-capitalize"
-                          value={searchDoctor}
-                          onChange={handleSearchDoctor}
-                          required
-                          placeholder="Select Doctor" 
-                          autocomplete="off"
-                        />
-                        <DoctorList>
-                          <div>
-                            <ul className="list-group">
-                              {showDoctorList && filteredDoctor.length === 0 ? (
-                                <li className="list-group-item">
-                                  <h6>No Data Found</h6>
-                                </li>
-                              ) : (
-                                searchDoctor &&
-                                filteredDoctor?.map((doctor) => (
-                                  <li
-                                    key={doctor.employee_ID}
-                                    className={`list-group-item text-capitalize${
-                                      selectedDoctor &&
-                                      selectedDoctor.employee_ID ===
-                                        doctor.employee_ID
-                                        ? "active"
-                                        : ""
-                                    }`} 
-                                    onClick={() => handleDoctorSelect(doctor)}
-                                  >
-                                    {"Dr. "} {doctor.employee_name} <br /> Id:{" "}
-                                    {doctor.employee_ID}
-                                  </li>
-                                ))
-                              )}
-                            </ul>
-                          </div>
-                        </DoctorList>
-                      </div>
-                    </div> */}
-                    {/* <div className="col-sm-6 ">
-                       <div className="form-outline">
-                       <label className="form-label" for="form6Example2">
-                           Date&Time
-                         </label>
-                         <input
-                           type="datetime-local"
-                           id="form6Example2"
-                           className="form-control"
-                           name="appDateTime"
-                           onChange={handleChange}
-                           required
-                          
-                         />
-                        
-                       </div>
-                     </div> */}
-
-                    {/* <div className="col-sm-6">
-                      <div className="form-outline" id="form1">
-                        <label className="form-label" for="form6Example2">
-                          Add Treatment
-                        </label>
-                        <Select
-                          id="treatment"
-                          name="treatment"
-                          options={treatments}
-                          value={
-                            selectedTreatment
-                              ? {
-                                  value: selectedTreatment,
-                                  label: selectedTreatment,
-                                }
-                              : null
-                          }
-                          onChange={handleChangeTreatment}
-                        />
-                      </div>
-                    </div> */}
-
                     {selectedTreatment === "OPD" && (
                       <>
                         <div className="col-sm-6">
@@ -1395,31 +1128,7 @@ function AddPatient() {
                             </div>
                           </div>
                         )}
-                        {/* {(data.payment_Mode === "Cheque" )  && (
-                          <div className="col-sm-6">
-                            <div className="form-outline">
-                              <label
-                                className="form-label mt-2"
-                                for="transaction_Id"
-                              >
-                                Cheque No *
-                              </label>
-                              <input
-                                type="text"
-                                id="cheque_number"
-                                className="form-control"
-                                onChange={handleChange}
-                                name="cheque_number"
-                                required
-                                placeholder="Enter Cheque No."
-                                pattern="[0-9]{6}"
-                    title="Cheque number should be 6 digits"
-                    maxLength={6}
-                    minLength={6}
-                              />
-                            </div>
-                          </div>
-                        )} */}
+
                         <div className="col-sm-6">
                           <div className="form-outline">
                             <label
@@ -1463,89 +1172,6 @@ function AddPatient() {
                         />
                       </div>
                     </div>
-
-                    {/* <div className="d-flex  mt-4">
-                     <div className="col-sm-3 p-0 ">
-                       <div className="form-outline">
-                         <label className="form-label" for="form6Example1">
-                           Doctor :
-                         </label>
-                       </div>
-                     </div>
-                     <div className="col-sm-4 p-0">
-                       <div className="form-outline">
-                         <input
-                           class="form-check-input"
-                           type="checkbox"
-                           value=""
-                           id="flexCheckDefault"
-                         />
-                         <label
-                           class="form-check-label mx-1"
-                           for="flexCheckDefault"
-                         >
-                           Sms
-                         </label>
-                       </div>
-                     </div>
-                     <div className="col-sm-5 p-0">
-                       <div className="form-outline">
-                         <input
-                           class="form-check-input"
-                           type="checkbox"
-                           value=""
-                           id="flexCheckDefault"
-                         />
-                         <label
-                           class="form-check-label mx-1"
-                           for="flexCheckDefault"
-                         >
-                           Send Email
-                         </label>
-                       </div>
-                     </div>
-                     </div> */}
-                    {/* <div className="d-flex ">
-                     <div className="col-sm-3 p-0">
-                       <div className="form-outline">
-                         <label className="form-label" for="form6Example1">
-                           Patient :
-                         </label>
-                       </div>
-                     </div>
-                     <div className="col-sm-4 p-0">
-                       <div className="form-outline">
-                         <input
-                           class="form-check-input"
-                           type="checkbox"
-                           value=""
-                           id="flexCheckDefault"
-                         />
-                         <label
-                           class="form-check-label mx-1"
-                           for="flexCheckDefault"
-                         >
-                           Sms
-                         </label>
-                       </div>
-                     </div>
-                     <div className="col-sm-5 p-0">
-                       <div className="form-outline">
-                         <input
-                           class="form-check-input"
-                           type="checkbox"
-                           value=""
-                           id="flexCheckDefault"
-                         />
-                         <label
-                           class="form-check-label mx-1"
-                           for="flexCheckDefault"
-                         >
-                           Send Email
-                         </label>
-                       </div>
-                     </div>
-                     </div> */}
                   </div>
                 </li>
               </ul>
@@ -1618,11 +1244,6 @@ const Wrapper = styled.div`
     overflow-y: auto;
   }
 `;
-
-// const FormContainer = styled.div`
-//   /* Your styling for the form container */
-//   margin-top: 50px;
-// `;
 
 const PatientList = styled.div`
   position: absolute;
