@@ -1,3 +1,15 @@
+# found after deployement
+<!-- 1. ViewPatientSittingBill/4/7/Single%20Implant ye page dhange se kaam nahi kar raha and due se sitting bill mai gaya tha pay now par gaya towaha apge security amount wali cheez hai t usko aalg karna hai  -->
+2. and clini coonfigure mai se branch update hona hi chahie matlb sabhi jagah se detial badle
+3.  ViewPatientTotalBill/49 back button atak agay
+4. all_credit_invoice?tab=creditSittingBill isme change status to paid karte hai to blank ho raha hai 
+5. credit-patient-bill/30/42 isme total amount in words par total amount recieved wala hona chahiye
+6. all_credit_invoice yah par change to paid wahi dikkat hai 
+6.  Quick-Prescription side rto hai  hi nahi
+7. view-quick-prescription/DH_33/138 data nahi aa raha hai footer bhi laga sakte hai
+8. viewPatientSittingBill/69/101/Laminates%20and%20Veneers@%20per%20tooth yaha par footer bottom things ko dhak raha hai  and ifnormation b hi nahi dikh raha hai aur ye to sath mai dekhna padega
+9. 
+
 # 9 oct
 - > whatsapp ke liye bhi cheeze dynamic karna hai path 
 - > 
