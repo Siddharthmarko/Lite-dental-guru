@@ -76,7 +76,7 @@ function AddPatient() {
   const getBranchDetail = async () => {
     try {
       const response = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/get-branch-detail/${branch}`
+        `http://localhost:8888/api/v1/receptionist/get-branch-detail/${branch}`
       );
       console.log(response);
       setBranchDetail(response.data.data);
@@ -88,7 +88,7 @@ function AddPatient() {
   const getInsuranceCompany = async () => {
     try {
       const response = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/getInsuranceCompany/${branch}`
+        `http://localhost:8888/api/v1/receptionist/getInsuranceCompany/${branch}`
       );
 
       setInsuranceCompany(response.data.data);
@@ -101,7 +101,7 @@ function AddPatient() {
   const getBranchHolidays = async () => {
     try {
       const response = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/get-branch-holidays/${branch}`,
+        `http://localhost:8888/api/v1/receptionist/get-branch-holidays/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -196,7 +196,7 @@ function AddPatient() {
   const getPatient = async () => {
     try {
       const response = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/get-Patients/${branch}`,
+        `http://localhost:8888/api/v1/receptionist/get-Patients/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -214,7 +214,7 @@ function AddPatient() {
   const getAppointments = async () => {
     try {
       const response = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/get-appointments/${branch}`,
+        `http://localhost:8888/api/v1/receptionist/get-appointments/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -231,7 +231,7 @@ function AddPatient() {
   const getDoctors = async () => {
     try {
       const response = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/get-doctors/${branch}`,
+        `http://localhost:8888/api/v1/receptionist/get-doctors/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -255,7 +255,7 @@ function AddPatient() {
   const getDisease = async () => {
     try {
       const response = await axios.get(
-        "https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/get-disease"
+        "http://localhost:8888/api/v1/receptionist/get-disease"
       );
       console.log(response);
       setDisease(response?.data?.data);
@@ -268,7 +268,7 @@ function AddPatient() {
   const getTreatment = async () => {
     try {
       const response = await axios.get(
-        "https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/get-treatments"
+        "http://localhost:8888/api/v1/receptionist/get-treatments"
       );
       console.log(response);
       setTreatment(response?.data?.data);
@@ -281,7 +281,7 @@ function AddPatient() {
   const getDoctorsWithLeave = async () => {
     try {
       const response = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/get-doctors-with-leave/${branch}`,
+        `http://localhost:8888/api/v1/receptionist/get-doctors-with-leave/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -469,7 +469,7 @@ function AddPatient() {
   const timelineData = async (id) => {
     try {
       const response = await axios.post(
-        "https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/insertTimelineEvent",
+        "http://localhost:8888/api/v1/receptionist/insertTimelineEvent",
         {
           type: "Add Patient",
           description: "Add Patient and Appointment scheduled",
@@ -689,7 +689,7 @@ function AddPatient() {
       try {
         setLoading(true);
         const response = await axios.post(
-          "https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/add-patient",
+          "http://localhost:8888/api/v1/receptionist/add-patient",
           newPatient,
           {
             headers: {

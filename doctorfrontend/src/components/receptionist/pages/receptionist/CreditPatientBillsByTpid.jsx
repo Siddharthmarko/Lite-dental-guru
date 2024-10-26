@@ -13,7 +13,7 @@ import { SiGmail, SiGooglemessages } from "react-icons/si";
 import { IoLogoWhatsapp } from "react-icons/io";
 import cogoToast from "cogo-toast";
 // import domtoimage from "dom-to-image";
-// import numWords from "num-words";
+import numWords from "num-words";
 
 const CreditPatientBillsByTpid = () => {
   const { tpid } = useParams();
@@ -37,7 +37,7 @@ const CreditPatientBillsByTpid = () => {
   const getBranchDetails = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/getBranchDetailsByBranch/${branch}`
+        `http://localhost:8888/api/v1/receptionist/getBranchDetailsByBranch/${branch}`
       );
       console.log(data);
       setGetBranch(data);
@@ -51,7 +51,7 @@ const CreditPatientBillsByTpid = () => {
   const getPatientDetail = async () => {
     try {
       const res = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/getAppointmentsWithPatientDetailsById/${tpid}`,
+        `http://localhost:8888/api/v1/receptionist/getAppointmentsWithPatientDetailsById/${tpid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -80,7 +80,7 @@ const CreditPatientBillsByTpid = () => {
   const getExaminDetail = async () => {
     try {
       const res = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/getDentalDataByTpid/${tpid}/${branch}`,
+        `http://localhost:8888/api/v1/receptionist/getDentalDataByTpid/${tpid}/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -104,7 +104,7 @@ const CreditPatientBillsByTpid = () => {
   const getTreatDetail = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/getTreatmentDetailsViaTpid/${tpid}/${branch}`,
+        `http://localhost:8888/api/v1/receptionist/getTreatmentDetailsViaTpid/${tpid}/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -129,7 +129,7 @@ const CreditPatientBillsByTpid = () => {
   const getTreatPrescriptionByAppointId = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/getTreatPrescriptionByTpid/${tpid}/${branch}`,
+        `http://localhost:8888/api/v1/receptionist/getTreatPrescriptionByTpid/${tpid}/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -153,7 +153,7 @@ const CreditPatientBillsByTpid = () => {
   const getTreatmentSuggestAppointId = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/getTreatSuggestViaTpid/${tpid}/${branch}`,
+        `http://localhost:8888/api/v1/receptionist/getTreatSuggestViaTpid/${tpid}/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -195,7 +195,7 @@ const CreditPatientBillsByTpid = () => {
   const getBillDetails = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/billDetailsViaTpid/${tpid}`,
+        `http://localhost:8888/api/v1/receptionist/billDetailsViaTpid/${tpid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -308,7 +308,7 @@ const CreditPatientBillsByTpid = () => {
       }
       cogoToast.success("Treatment bill sending to email");
       const response = await axios.post(
-        "https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/prescriptionOnMail",
+        "http://localhost:8888/api/v1/receptionist/prescriptionOnMail",
         formData,
         {
           headers: {
@@ -360,7 +360,7 @@ const CreditPatientBillsByTpid = () => {
       }
 
       const res = await axios.post(
-        "https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/sendWhatsapp",
+        "http://localhost:8888/api/v1/receptionist/sendWhatsapp",
         formData,
         {
           headers: {
@@ -382,7 +382,7 @@ const CreditPatientBillsByTpid = () => {
   const billDetailsSms = async () => {
     try {
       const { data } = await axios.post(
-        "https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/sendSMS",
+        "http://localhost:8888/api/v1/receptionist/sendSMS",
         formDetails,
         {
           headers: {
@@ -716,9 +716,9 @@ const CreditPatientBillsByTpid = () => {
                     <h6>Total Amount In Words :</h6>
                   </div>
                   <div className="text-word">
-                    {/* <p className="m-0 fw-bold">
-                      {numToWords(totalBillvalueWithoutGst)} {"Rupees ONLY"}
-                    </p> */}
+                    <p className="m-0 fw-bold">
+                      {numWords(totalBillvalueWithoutGst)} {"Rupees ONLY"}
+                    </p>
                   </div>
                 </div>
                 <div className="">

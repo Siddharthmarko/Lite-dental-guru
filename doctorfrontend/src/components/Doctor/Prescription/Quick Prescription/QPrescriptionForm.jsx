@@ -41,7 +41,7 @@ const QPrescriptionForm = () => {
   const ChiefComplainTOList = async () => {
     try {
       const { data } = await axios.get(
-        "https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getChiefComplain",
+        "http://localhost:8888/api/doctor/getChiefComplain",
         {
           headers: {
             "Content-Type": "application/json",
@@ -57,7 +57,7 @@ const QPrescriptionForm = () => {
   const fetchAppointments = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/get-Patient-by-id/${patient_uhid}`,
+        `http://localhost:8888/api/doctor/get-Patient-by-id/${patient_uhid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -114,7 +114,7 @@ const QPrescriptionForm = () => {
 
     try {
       const response = await axios.post(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/insertPatientPrescription`,
+        `http://localhost:8888/api/doctor/insertPatientPrescription`,
         formData
         // {
         //   headers: {
@@ -145,10 +145,16 @@ const QPrescriptionForm = () => {
       <HeadBar />
       <div className="main">
         <div className="container-fluid">
-          <div className="row flex-nowrap">
-            <div className="col-lg-1 col-1 p-0">
+          <div className="row flex-nowrap" style={{ paddingTop: "60px" }}>
+            {/* <div className="col-lg-1 col-1 p-0">
               <Sider />
-            </div>
+            </div> */}
+              <div
+          className="p-0 col-xxl-1 col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1 position-fixed "
+          id="sidebar"
+        >
+          <Sider />
+        </div>
             <div className="col-lg-11 col-11 ps-0 m-2">
               <div className="container">
                 <div className="row">

@@ -17,7 +17,7 @@ const BranchSelector = () => {
   const getBranchList = async () => {
     try {
       const response = await axios.get(
-        "https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/super-admin/getBranch"
+        "http://localhost:8888/api/v1/super-admin/getBranch"
       );
       console.log(response.data);
       setBranchList(response.data);

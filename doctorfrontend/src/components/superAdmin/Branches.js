@@ -110,7 +110,7 @@ const Branches = () => {
       console.log(upData, branchHeadImg, branchFootImg, formData, id);
 
       const response = await axios.put(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/super-admin/updateBranchDetails/${id}`,
+        `http://localhost:8888/api/v1/super-admin/updateBranchDetails/${id}`,
         formData,
         {
           headers: {
@@ -148,7 +148,7 @@ const Branches = () => {
     setLoading(true);
     try {
       const response = await axios.get(
-        "https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/super-admin/getBranch"
+        "http://localhost:8888/api/v1/super-admin/getBranch"
       );
       setLoading(false);
       console.log(response.data[0]);

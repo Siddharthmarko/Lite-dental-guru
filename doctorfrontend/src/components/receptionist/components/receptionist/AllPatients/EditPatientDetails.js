@@ -29,7 +29,7 @@ function EditPatientDetails({ onClose, patientInfo, allPatientData }) {
 
   const getInsuranceCompany = async () => {
     try{
-     const response = await axios.get(`https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/getInsuranceCompany/${branch}`)
+     const response = await axios.get(`http://localhost:8888/api/v1/receptionist/getInsuranceCompany/${branch}`)
      
      setInsuranceCompany(response.data.data)
     }
@@ -41,7 +41,7 @@ console.log(insuranceCompany)
   const timelineData = async (id) => {
     try {
       const response = await axios.post(
-        "https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/insertTimelineEvent",
+        "http://localhost:8888/api/v1/receptionist/insertTimelineEvent",
         {
           type: "Patient Profile",
           description: "Patient Profile Updated",
@@ -94,7 +94,7 @@ console.log(insuranceCompany)
   const getDisease = async () => {
     try {
       const response = await axios.get(
-        "https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/get-disease"
+        "http://localhost:8888/api/v1/receptionist/get-disease"
       );
       console.log(response);
       setDisease(response?.data?.data);
@@ -197,7 +197,7 @@ console.log(insuranceCompany)
     try {
       setLoading(true);
       const response = await axios.put(
-        "https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/receptionist/update-patient-details",
+        "http://localhost:8888/api/v1/receptionist/update-patient-details",
         updatedData,
         {
           headers: {

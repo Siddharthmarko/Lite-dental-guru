@@ -181,7 +181,7 @@ const CalenderSetting = () => {
   const getBranchDetails = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/super-admin/getBranchDetailsByBranch/${branch_name}`,
+        `http://localhost:8888/api/v1/super-admin/getBranchDetailsByBranch/${branch_name}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -200,7 +200,7 @@ const CalenderSetting = () => {
     console.log(upData, branch_name, "ttttttttttttttttttttttttttttt");
     try {
       const response = await axios.put(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/super-admin/updateBranchCalenderSetting/${branch_name}`,
+        `http://localhost:8888/api/v1/super-admin/updateBranchCalenderSetting/${branch_name}`,
         upData,
         {
           headers: {
@@ -272,7 +272,7 @@ const CalenderSetting = () => {
   const getHolidayList = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/super-admin/getHolidays/${branch_name}`,
+        `http://localhost:8888/api/v1/super-admin/getHolidays/${branch_name}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -290,7 +290,7 @@ const CalenderSetting = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/super-admin/addBlockDays",
+        "http://localhost:8888/api/v1/super-admin/addBlockDays",
         holidays,
         {
           headers: {
@@ -322,7 +322,7 @@ const CalenderSetting = () => {
     console.log(selected);
     try {
       const response = await axios.put(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/super-admin/updateHolidays/${selected.holiday_id}`,
+        `http://localhost:8888/api/v1/super-admin/updateHolidays/${selected.holiday_id}`,
         upHolidays,
         {
           headers: {
@@ -350,7 +350,7 @@ const CalenderSetting = () => {
     }
     try {
       const response = await axios.delete(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/v1/super-admin/deleteHolidays/${id}`,
+        `http://localhost:8888/api/v1/super-admin/deleteHolidays/${id}`,
         {
           headers: {
             "Content-Type": "application/json",

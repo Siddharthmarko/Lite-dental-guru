@@ -1143,7 +1143,7 @@ const addSuperAdminNotify = (req, res) => {
         }
       }
   
-      const urlAdd = "https://dentalguru-lite.vimubds5.a2hosted.com/branchHeadFootImg";
+      const urlAdd = "http://localhost:8888/branchHeadFootImg";
   
       const head_img = req.files["head_img"]
         ? `${urlAdd}/${req.files["head_img"][0].filename}`

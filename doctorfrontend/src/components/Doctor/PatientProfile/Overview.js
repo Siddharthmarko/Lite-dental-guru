@@ -34,7 +34,7 @@ const Overview = () => {
   const getPresDetails = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getPrescriptionDetailsById/${pid}`
+        `http://localhost:8888/api/doctor/getPrescriptionDetailsById/${pid}`
       );
       setPresData(data);
     } catch (error) {
@@ -45,7 +45,7 @@ const Overview = () => {
   const getPendingBillDetails = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getPatientBillByBranchAndId/${pid}`
+        `http://localhost:8888/api/doctor/getPatientBillByBranchAndId/${pid}`
       );
       // console.log(data);
       setPatPendingBill(data);
@@ -57,7 +57,7 @@ const Overview = () => {
   const getAppointDetailsPat = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getAllAppointmentByPatientId/${uhid}/${branch}`,
+        `http://localhost:8888/api/doctor/getAllAppointmentByPatientId/${uhid}/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -76,7 +76,7 @@ const Overview = () => {
   const getExamineDetails = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/examinDetailsByPatId/${pid}`
+        `http://localhost:8888/api/doctor/examinDetailsByPatId/${pid}`
       );
       // setExmData(data);
     } catch (error) {
@@ -144,7 +144,7 @@ const Overview = () => {
   const fetchLatestDentalPatientData = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getExaminationViaUhid/${branch}/${uhid}`,
+        `http://localhost:8888/api/doctor/getExaminationViaUhid/${branch}/${uhid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -167,7 +167,7 @@ const Overview = () => {
   const fetchLatestTreatPatientData = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getTreatmentViaUhid/${branch}/${uhid}`,
+        `http://localhost:8888/api/doctor/getTreatmentViaUhid/${branch}/${uhid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -189,7 +189,7 @@ const Overview = () => {
   const fetchLatestPrescriptionPatientData = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/getPrescriptionViaUhid/${branch}/${uhid}`,
+        `http://localhost:8888/api/doctor/getPrescriptionViaUhid/${branch}/${uhid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -211,7 +211,7 @@ const Overview = () => {
   const fetchLatestBillPatientData = async () => {
     try {
       const response = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/get-patientBill-data/${uhid}`,
+        `http://localhost:8888/api/doctor/get-patientBill-data/${uhid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -251,7 +251,7 @@ const Overview = () => {
   const onGoingTreat = async () => {
     try {
       const response = await axios.get(
-        `https://dentalguru-lite.vimubds5.a2hosted.com/api/doctor/onGoingTreat/${uhid}`,
+        `http://localhost:8888/api/doctor/onGoingTreat/${uhid}`,
         {
           headers: {
             "Content-Type": "application/json",
