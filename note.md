@@ -10,7 +10,9 @@
 <!-- 6. all_credit_invoice yah par change to paid wahi dikkat hai  --> its a feature
 <!-- 6.  Quick-Prescription side to hai  hi nahi -->
 7. view-quick-prescription/DH_33/138 data nahi aa raha hai footer bhi laga sakte hai
+  - > jab online wale se connect karenge tab fir se dekhna padega
 8. viewPatientSittingBill/69/101/Laminates%20and%20Veneers@%20per%20tooth yaha par footer bottom things ko dhak raha hai  and ifnormation b hi nahi dikh raha hai aur ye to sath mai dekhna padega
+  -  data n ahi aa rha atha aur wo dekhna hai
 9. bache hue payement karne ke liye bhi security amount rakha hua hai wo hatana hai
 10. and doctor ki setting nahi hai 
 11. super admin work k liye otp kaam 
