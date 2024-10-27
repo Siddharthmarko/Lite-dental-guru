@@ -14,7 +14,9 @@ const AUTH_TOKEN = process.env.AUTH_TOKEN;
 const client = twilio(ACCOUNT_SID, AUTH_TOKEN);
 
 const transporter = nodemailer.createTransport({
-  service: "Gmail",
+  host: process.env.HOST, 
+  port: 465,  
+  secure: true, 
   auth: {
     user: process.env.EMAILSENDER,
     pass: process.env.EMAILPASSWORD,
@@ -957,7 +959,9 @@ const prescriptionOnMail = (req, res) => {
     const { email, patient_name, subject, textMatter } = req.body;
     const pdfPath = req.file.path;
     const transporter = nodemailer.createTransport({
-      service: "Gmail",
+     host: process.env.HOST, 
+  port: 465,  
+  secure: true, 
       auth: {
         user: process.env.EMAILSENDER,
         pass: process.env.EMAILPASSWORD,
@@ -985,7 +989,7 @@ const prescriptionOnMail = (req, res) => {
           .status(500)
           .json({message:"An error occurred while sending the email.", err: error});
       } else {
-        res.status(200).json("Successful");
+          res.status(200).json("Successful");
         console.log("OTP sent:", info.response);
       }
     });
@@ -1023,7 +1027,7 @@ const sendWhatsapp = async (req, res) => {
       .json({ success: false, message: "All fields required" });
   }
   console.log("1019", mediaFile, phoneNumber, message);
-  const fileUrl = `http://localhost:8888/prescription/${mediaFile.filename}`;
+  const fileUrl = `https://dentalguru-lite.vimubds5.a2hosted.com/prescription/${mediaFile.filename}`;
   console.log("1027", fileUrl.toString());
   try {
     const response = await client.messages.create({

@@ -35,7 +35,7 @@ const getBranch = (req, res) => {
 
 const LoginDoctor = (req, res) => {
   try {
-    const { email, password} = req.body;
+    const { email, password, branch_name } = req.body;
     // if (!branch_name) {
     //   return res.status(404).json({
     //     success: false,
@@ -543,7 +543,9 @@ const sendOtp = (req, res) => {
 
   try {
     const transporter = nodemailer.createTransport({
-      service: "Gmail",
+    host: process.env.HOST, 
+  port: 465,  
+  secure: true, 
       auth: {
         user: process.env.EMAILSENDER,
         pass: process.env.EMAILPASSWORD,
