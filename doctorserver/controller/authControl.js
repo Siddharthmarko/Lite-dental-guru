@@ -1,6 +1,5 @@
 const express = require("express");
 const db = require("../connect.js");
-const { getBranch } = require("./authBranch.js");
 const moment = require("moment-timezone");
 
 const dentalPediatric = (req, res) => {

@@ -1,6 +1,6 @@
 const express = "express";
 const dotenv = require("dotenv");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const nodemailer = require("nodemailer");
 const JWT = require("jsonwebtoken");
 const  db  = require("../connect.js");
@@ -29,7 +29,7 @@ const getBranchDetailsByBranch = (req, res) => {
     }
   };
 
-  const updateBranchCalenderSetting = (req, res) => {
+ const updateBranchCalenderSetting = (req, res) => {
     try {
       const branch = req.params.branch;
       const { open_time, close_time, appoint_slot_duration, week_off } = req.body;
@@ -108,7 +108,6 @@ const getBranchDetailsByBranch = (req, res) => {
     }
   };
   
-
   const getHolidays = (req, res) => {
     try {
       const branch = req.params.branch;
@@ -261,90 +260,91 @@ const getBranchDetailsByBranch = (req, res) => {
     }
   };
 
-  const updateDoctorPaymentAllowSetting = (req, res) => {
-    try {
-      const branch = req.params.branch;
-      const {
-        doctor_payment,
-        allow_insurance,
-        sharewhatsapp,
-        sharemail,
-        sharesms,
-        branchCategory
-      } = req.body;
-      const selectQuery = "SELECT * FROM branches WHERE branch_name = ?";
-      db.query(selectQuery, branch, (err, result) => {
-        if (err) {
-            registrationLogger.log("error", err.message);
-          return res.status(400).json({ success: false, message: err.message });
+const updateDoctorPaymentAllowSetting = (req, res) => {
+  try {
+    const branch = req.params.branch;
+    const {
+      doctor_payment,
+      allow_insurance,
+      sharewhatsapp,
+      sharemail,
+      sharesms,
+      branchCategory
+    } = req.body;
+    const selectQuery = "SELECT * FROM branches WHERE branch_name = ?";
+    db.query(selectQuery, branch, (err, result) => {
+      if (err) {
+          registrationLogger.log("error", err.message);
+        return res.status(400).json({ success: false, message: err.message });
+      }
+      if (result && result.length > 0) {
+        const updateFields = [];
+        const updateValues = [];
+
+        if (doctor_payment) {
+          updateFields.push("doctor_payment = ?");
+          updateValues.push(doctor_payment);
         }
-        if (result && result.length > 0) {
-          const updateFields = [];
-          const updateValues = [];
-  
-          if (doctor_payment) {
-            updateFields.push("doctor_payment = ?");
-            updateValues.push(doctor_payment);
-          }
-  
-          if (allow_insurance) {
-            updateFields.push("allow_insurance = ?");
-            updateValues.push(allow_insurance);
-          }
-  
-          if (sharewhatsapp) {
-            updateFields.push("sharewhatsapp = ?");
-            updateValues.push(sharewhatsapp);
-          }
-  
-          if (sharemail) {
-            updateFields.push("sharemail = ?");
-            updateValues.push(sharemail);
-          }
-  
-          if (sharesms) {
-            updateFields.push("sharesms = ?");
-            updateValues.push(sharesms);
-          }
-          
-           if (branchCategory) {
-            updateFields.push("hospital_category = ?");
-            updateValues.push(branchCategory);
-          }
-  
-          const updateQuery = `UPDATE branches SET ${updateFields.join(
-            ", "
-          )} WHERE branch_name = ?`;
-  
-          db.query(updateQuery, [...updateValues, branch], (err, result) => {
-            if (err) {
-                registrationLogger.log("error", "Failed ton update details");
-              return res.status(500).json({
-                success: false,
-                message: "Failed to update details",
-              });
-            } else {
-                registrationLogger.log("info", "Branch details updated successfully");
-              return res.status(200).json({
-                success: true,
-                message: "Branch Details updated successfully",
-              });
-            }
-          });
-        } else {
-            registrationLogger.log("error", "Branch not found");
-          return res.status(404).json({
-            success: false,
-            message: "Branch not found",
-          });
+
+        if (allow_insurance) {
+          updateFields.push("allow_insurance = ?");
+          updateValues.push(allow_insurance);
         }
-      });
-    } catch (error) {
-        registrationLogger.log("error", "internal server error");
-      console.log(error);
-      res.status(400).json({ success: false, message: error.message });
-    }
-  };
+
+        if (sharewhatsapp) {
+          updateFields.push("sharewhatsapp = ?");
+          updateValues.push(sharewhatsapp);
+        }
+
+        if (sharemail) {
+          updateFields.push("sharemail = ?");
+          updateValues.push(sharemail);
+        }
+
+        if (sharesms) {
+          updateFields.push("sharesms = ?");
+          updateValues.push(sharesms);
+        }
+        
+         if (branchCategory) {
+          updateFields.push("hospital_category = ?");
+          updateValues.push(branchCategory);
+        }
+
+        const updateQuery = `UPDATE branches SET ${updateFields.join(
+          ", "
+        )} WHERE branch_name = ?`;
+
+        db.query(updateQuery, [...updateValues, branch], (err, result) => {
+          if (err) {
+              registrationLogger.log("error", "Failed ton update details");
+            return res.status(500).json({
+              success: false,
+              message: "Failed to update details",
+            });
+          } else {
+              registrationLogger.log("info", "Branch details updated successfully");
+            return res.status(200).json({
+              success: true,
+              message: "Branch Details updated successfully",
+            });
+          }
+        });
+      } else {
+          registrationLogger.log("error", "Branch not found");
+        return res.status(404).json({
+          success: false,
+          message: "Branch not found",
+        });
+      }
+    });
+  } catch (error) {
+      registrationLogger.log("error", "internal server error");
+    console.log(error);
+    res.status(400).json({ success: false, message: error.message });
+  }
+};
+
   const getInsuranceList = (req, res) => {
     try {
       const branch = req.params.branch;
@@ -980,112 +980,117 @@ const addSuperAdminNotify = (req, res) => {
     }
   };
 
-  const updateTreatmentDetails = (req, res) => {
-    try {
-      const treatID = req.params.id;
-      const {
-        treat_procedure_id,
-        treat_procedure_name,
-        treatment_name,
-        nabh,
-        non_nabh,
-        value,
-        label,
-      } = req.body;
-      // console.log();
-      const selectQuery =
-        "SELECT * FROM treatment_list_copy WHERE treatment_id = ?";
-      db.query(selectQuery, [treatID], (err, result) => {
-        if (err) {
-            registrationLogger.log("error", err.message);
-          res.status(400).json({ success: false, message: err.message });
-        } else {
-          if (result && result.length > 0) {
-            const updateFields = [];
-            const updateValues = [];
-  
-            if (treat_procedure_id && treat_procedure_name) {
-              updateFields.push(
-                "treat_procedure_id = ? AND treat_procedure_name = ?"
-              );
-              updateValues.push(treat_procedure_id, treat_procedure_name);
-            }
-  
-            // if (treat_procedure_name) {
-            //   updateFields.push("treat_procedure_name = ?");
-            //   updateValues.push(treat_procedure_name);
-            // }
-  
-            if (treatment_name) {
-              updateFields.push("treatment_name = ?");
-              updateValues.push(treatment_name);
-            }
-  
-            if (nabh) {
-              updateFields.push("nabh = ?");
-              updateValues.push(nabh);
-            }
-  
-            if (non_nabh) {
-              updateFields.push("non_nabh = ?");
-              updateValues.push(non_nabh);
-            }
-  
-            if (value) {
-              updateFields.push("value = ?");
-              updateValues.push(value);
-            }
-  
-            if (label) {
-              updateFields.push("label = ?");
-              updateValues.push(label);
-            }
-  
-            const updateQuery = `UPDATE treatment_list_copy SET ${updateFields.join(
-              ", "
-            )} WHERE treatment_id = ?`;
-  
-            db.query(updateQuery, [...updateValues, treatID], (err, result) => {
-              if (err) {
-                  registrationLogger.log("error", "failed to update details");
-                return res
-                  .status(500)
-                  .json({ success: false, message: "failed to update details" });
-              } else {
-                  registrationLogger.log("info", "Details updated successfully");
-                return res.status(200).json({
-                  success: true,
-                  message: "Details updated successfully",
-                });
-              }
-            });
-          } else {
-              registrationLogger.log("error", "treatment not found");
-            return res
-              .status(404)
-              .json({ success: false, message: "treatment not found" });
+
+const updateTreatmentDetails = (req, res) => {
+  try {
+    const treatID = req.params.id;
+    const {
+      treat_procedure_id,
+      treat_procedure_name,
+      treatment_name,
+      nabh,
+      non_nabh,
+      value,
+      label,
+    } = req.body;
+    // console.log();
+    const selectQuery =
+      "SELECT * FROM treatment_list_copy WHERE treatment_id = ?";
+    db.query(selectQuery, [treatID], (err, result) => {
+      if (err) {
+          registrationLogger.log("error", err.message);
+        res.status(400).json({ success: false, message: err.message });
+      } else {
+        if (result && result.length > 0) {
+          const updateFields = [];
+          const updateValues = [];
+
+          if (treat_procedure_id && treat_procedure_name) {
+            updateFields.push(
+              "treat_procedure_id = ? AND treat_procedure_name = ?"
+            );
+            updateValues.push(treat_procedure_id, treat_procedure_name);
           }
+
+          // if (treat_procedure_name) {
+          //   updateFields.push("treat_procedure_name = ?");
+          //   updateValues.push(treat_procedure_name);
+          // }
+
+          if (treatment_name) {
+            updateFields.push("treatment_name = ?");
+            updateValues.push(treatment_name);
+          }
+
+          if (nabh) {
+            updateFields.push("nabh = ?");
+            updateValues.push(nabh);
+          }
+
+          if (non_nabh) {
+            updateFields.push("non_nabh = ?");
+            updateValues.push(non_nabh);
+          }
+
+          if (value) {
+            updateFields.push("value = ?");
+            updateValues.push(value);
+          }
+
+          if (label) {
+            updateFields.push("label = ?");
+            updateValues.push(label);
+          }
+
+          const updateQuery = `UPDATE treatment_list_copy SET ${updateFields.join(
+            ", "
+          )} WHERE treatment_id = ?`;
+
+          db.query(updateQuery, [...updateValues, treatID], (err, result) => {
+            if (err) {
+                registrationLogger.log("error", "failed to update details");
+              return res
+                .status(500)
+                .json({ success: false, message: "failed to update details" });
+            } else {
+                registrationLogger.log("info", "Details updated successfully");
+              return res.status(200).json({
+                success: true,
+                message: "Details updated successfully",
+              });
+            }
+          });
+        } else {
+            registrationLogger.log("error", "treatment not found");
+          return res
+            .status(404)
+            .json({ success: false, message: "treatment not found" });
         }
-      });
-    } catch (error) {
-        registrationLogger.log("error", "internal server error");
-      console.log(error);
-      res.status(500).json({ success: false, message: "Internal server error" });
-    }
-  };
+      }
+    });
+  } catch (error) {
+      registrationLogger.log("error", "internal server error");
+    console.log(error);
+    res.status(500).json({ success: false, message: "Internal server error" });
+  }
+};
+
   const deleteTreatment = (req, res) => {
     try {
       const tid = req.params.tid;
-      const deleteQuery = "DELETE FROM treatment_list WHERE treatment_id = ?";
+      const deleteQuery = "DELETE FROM treatment_list_copy WHERE treatment_id = ?";
       db.query(deleteQuery, tid, (err, result) => {
         if (err) {
+            registrationLogger.log("error", "invalid treatment ID");
           return res.status(400).json({ success: false, message: err.message });
         }
+        registrationLogger.log("info", "treatment fetched successfully");
         return res
           .status(200)
           .json({ success: true, message: "Treatment deleted successfully" });
       });
     } catch (error) {
+        registrationLogger.log("error", "internal server error");
       console.log(error);
       return res.status(500).json({ success: false, message: error.message });
     }

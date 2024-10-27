@@ -20,7 +20,12 @@
 13. branch update ho rahi hai to uska doctor ke paas bhi cheeze update ho jaaye
 14. quick prescripotn laxmi bhavani ke yaha bhi daalna hoga
 15. okay prescription mai kuych cheeze to bhari rahe reuire hone chahiye
-16. 
+16. bcrypt se bcryptjs mai aaye hai to har jagah ye karna hai
+17. reminder.js mai nodemailer ki cheeze offline ke hisaab se karni hai 
+18. directory name ko bhi change karna hai 
+19. branch ke header footer ke liye
+20. prescription controll mai bhi url env se hona chahiye
+21. 
 
 # 9 oct
 - > whatsapp ke liye bhi cheeze dynamic karna hai path 
@@ -148,6 +153,10 @@
 
 - > frontend mai redux folder ko dekhna hoga
 - > vinay
+
+# Changes in server
+- > bcryptjs mai gadbad
+- > 
 
 # urls
 
