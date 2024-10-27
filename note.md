@@ -20,7 +20,7 @@
 13. branch update ho rahi hai to uska doctor ke paas bhi cheeze update ho jaaye
 14. quick prescripotn laxmi bhavani ke yaha bhi daalna hoga
 15. okay prescription mai kuych cheeze to bhari rahe reuire hone chahiye
-16. 
+16. bcrypt se bcryptjs mai aaye hai to har jagah ye karna hai
 
 # 9 oct
 - > whatsapp ke liye bhi cheeze dynamic karna hai path 
@@ -148,6 +148,10 @@
 
 - > frontend mai redux folder ko dekhna hoga
 - > vinay
+
+# Changes in server
+- > bcryptjs mai gadbad
+- > 
 
 # urls
 
