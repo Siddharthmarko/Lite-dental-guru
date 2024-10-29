@@ -126,67 +126,91 @@ const PrintSecurityAmt = () => {
 
 
 
-  const sendPrescriptionMail = async () => {
-    if(!patientDetails[0].emailid){
-      alert("Email id not available")
-      return
-    }
-    try {
-      const element = contentRef.current;
-      const canvas = await html2canvas(element, { scale: 2 }); // Increase the scale for better quality
-      const imgData = canvas.toDataURL("image/jpeg", 0.75); // Use JPEG with 75% quality
-      const pdf = new jsPDF();
-      const imgWidth = 210; // A4 width in mm
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
-      pdf.addImage(imgData, "JPEG", 0, 0, imgWidth, imgHeight, undefined, 'FAST'); // Use 'FAST' for compression
-      const pdfData = pdf.output("blob");
-      console.log(pdfData);
-
-      const formData = new FormData();
-      formData.append("email", patientDetails[0]?.emailid);
-      formData.append("patient_name", patientDetails[0]?.patient_name);
-      formData.append(
-        "subject",
-        `${patientDetails[0]?.patient_name}, your Security Amount bill file`
-      );
-      formData.append(
-        "textMatter",
-        `Dear ${patientDetails[0]?.patient_name}, Please find the attached Security Amount bill file.\n`
-        +
-           `Clinic Details:\n` +
-        `Name: ${currentBranch[0]?.hospital_name}\n` +
-        `Contact: ${currentBranch[0]?.branch_contact}\n` +
-        `Address: ${currentBranch[0]?.branch_address}\n` +
-        `Email: ${currentBranch[0]?.branch_email}\n\n` +
-        `Thank you for choosing ${currentBranch[0]?.hospital_name}.\n\n` +
-        `Best regards,\n` +
-        `${currentBranch[0]?.hospital_name} Team`
-      );
-      formData.append("file", pdfData, "Security_Amount.pdf");
-      for (let [key, value] of formData.entries()) {
-        console.log(key, value);
+    const sendPrescriptionMail = async () => {
+      // Check if email is available
+      if (!data?.emailid) {
+        alert("Email id not available");
+        return;
       }
-     
-      cogoToast.success("Security Amount bill Sending to email");
-      const response = await axios.post(
-        "https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/prescriptionOnMail",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${token}`,
-          },
+    
+      // Check if contentRef and data are available
+      if (!contentRef.current || !data) {
+        console.error("Content reference or patient data is missing.");
+        cogoToast.error("Content or patient data not found.");
+        return;
+      }
+    
+      try {
+        const element = contentRef.current;
+    
+        // Generate higher-quality canvas image
+        const canvas = await html2canvas(element, { scale: 2 });
+        const imgData = canvas.toDataURL("image/jpeg", 0.75);
+    
+        // PDF generation
+        const pdf = new jsPDF();
+        const imgWidth = 210; // A4 width in mm
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+        pdf.addImage(imgData, "JPEG", 0, 0, imgWidth, imgHeight, undefined, "FAST");
+        const pdfData = pdf.output("blob");
+    
+        // Prepare form data
+        const formData = new FormData();
+        formData.append("email", data.emailid);
+        formData.append("patient_name", data.patient_name);
+        formData.append("subject", `${data.patient_name}, your OPD bill file`);
+    
+        // Dynamic message creation
+        const clinicDetails = currentBranch[0] || {};
+        const textMatter = `Dear ${data.patient_name},\n\nPlease find the attached OPD bill file.\n\n` +
+          `Clinic Details:\n` +
+          `Name: ${clinicDetails.hospital_name || "N/A"}\n` +
+          `Contact: ${clinicDetails.branch_contact || "N/A"}\n` +
+          `Address: ${clinicDetails.branch_address || "N/A"}\n` +
+          `Email: ${clinicDetails.branch_email || "N/A"}\n\n` +
+          `Thank you for choosing ${clinicDetails.hospital_name || "our clinic"}.\n\n` +
+          `Best regards,\n` +
+          `${clinicDetails.hospital_name || "Clinic"} Team`;
+    
+        formData.append("textMatter", textMatter);
+        formData.append("file", pdfData, "OPD_bill.pdf");
+    
+        // Logging form data for debugging
+        console.log("Form data prepared:");
+        Array.from(formData.entries()).forEach(([key, value]) => {
+          console.log(`${key}: ${value}`);
+        });
+    
+        // Indicate sending progress to user
+        cogoToast.success("Sending OPD bill to email...");
+    
+        // API call to send email with PDF attachment
+        const response = await axios.post(
+          "http://localhost:8888/api/v1/receptionist/prescriptionOnMail",
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: `Bearer ${token}`,
+            },
+            timeout: 15000, // Adjust timeout if needed
+          }
+        );
+    
+        // Success notification
+        if (response.status === 200) {
+          cogoToast.success("OPD bill sent successfully!");
+          console.log("PDF sent successfully:", response.data);
+        } else {
+          cogoToast.error("Failed to send bill, server error.");
+          console.error("Failed to send PDF, server error:", response);
         }
-      );
-      cogoToast.success("Security Amount Bill sent successfully");
-      console.log(response)
-      console.log("PDF sent successfully:", response.data);
-    } catch (error) {
-      console.error("Error sending PDF:", error);
-      cogoToast.error("Error to send bill");
-    }
-  };
+      } catch (error) {
+        console.error("Error sending PDF:", error);
+        cogoToast.error("Error sending bill.");
+      }
+    };
+    
 
   const sendPrescriptionWhatsapp = async () => {
     try {

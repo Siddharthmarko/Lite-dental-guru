@@ -270,48 +270,69 @@ const PatientBillsByTpid = () => {
 
   const sendPrescriptionMail = async () => {
     try {
+      // Ensure contentRef is valid
       const element = contentRef.current;
+      if (!element) {
+        console.error("contentRef is not defined or invalid.");
+        cogoToast.error("Content not found.");
+        return;
+      }
+  
+      // Generate the PDF from the HTML element
       const canvas = await html2canvas(element);
       const imgData = canvas.toDataURL("image/png");
       const pdf = new jsPDF();
       const imgWidth = 210; // A4 width in mm
       const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
+  
       pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
       const pdfData = pdf.output("blob");
-      console.log(pdfData);
-
+  
+      // Prepare form data
       const formData = new FormData();
-      formData.append("email", getPatientData[0]?.emailid);
-      formData.append("patient_name", getPatientData[0]?.patient_name);
-      formData.append(
-        "subject",
-        `${getPatientData[0]?.patient_name}, your final bill file`
-      );
-      formData.append(
-        "textMatter",
-        `Dear ${getPatientData[0]?.patient_name}, Please find the attached final bill file.`
-      );
-      formData.append("file", pdfData, "prescription.pdf");
-      for (let [key, value] of formData.entries()) {
-        console.log(key, value);
-      }
-      const response = await axios.post(
-        "https://huzaifdentalclinic.dentalguru.software/api/doctor/prescriptionOnMail",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${token}`,
-          },
+      if (getPatientData.length > 0) {
+        const patient = getPatientData[0];
+        formData.append("email", patient.emailid);
+        formData.append("patient_name", patient.patient_name);
+        formData.append("subject", `${patient.patient_name}, your final bill file`);
+        formData.append("textMatter", `Dear ${patient.patient_name}, please find the attached final bill file.`);
+        formData.append("file", pdfData, "prescription.pdf");
+  
+        // Log form data for debugging
+        for (let [key, value] of formData.entries()) {
+          console.log(key, value);
         }
-      );
-      cogoToast.success("Treatment bill sent successfully");
-      console.log("PDF sent successfully:", response.data);
+  
+        // Make the API call
+        const response = await axios.post(
+          "http://localhost:8888/api/doctor/prescriptionOnMail",
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data", // Optional for FormData
+              Authorization: `Bearer ${token}`, // Assuming token is defined
+            },
+            timeout: 15000, // Increase timeout if necessary
+          }
+        );
+  
+        if (response.status === 200) {
+          cogoToast.success("Treatment bill sent successfully");
+          console.log("PDF sent successfully:", response.data);
+        } else {
+          console.error("Failed to send PDF, server error:", response);
+          cogoToast.error("Failed to send bill, server error.");
+        }
+      } else {
+        console.error("Patient data is not available");
+        cogoToast.error("Patient data is missing.");
+      }
     } catch (error) {
       console.error("Error sending PDF:", error);
+      cogoToast.error("Error sending bill.");
     }
   };
+  
 
   const sendPrescriptionWhatsapp = async () => {
     try {

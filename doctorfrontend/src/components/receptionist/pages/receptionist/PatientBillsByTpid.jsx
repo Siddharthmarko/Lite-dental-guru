@@ -281,62 +281,81 @@ const PatientBillsByTpid = () => {
 
 
   const sendPrescriptionMail = async () => {
-    if(!getPatientData[0]?.emailid){
-      alert("Email id not available")
-      return
+    if (!getPatientData[0]?.emailid) {
+      alert("Email ID not available");
+      return;
     }
+  
     try {
       const element = contentRef.current;
+      if (!element) {
+        console.error("Content reference is not defined or invalid.");
+        cogoToast.error("Content not found.");
+        return;
+      }
+  
+      // Capture the content as a canvas
       const canvas = await html2canvas(element, { scale: 2 }); // Increase the scale for better quality
-    const imgData = canvas.toDataURL("image/jpeg", 0.75); // Use JPEG with 75% quality
+      const imgData = canvas.toDataURL("image/jpeg", 0.75); // Use JPEG with 75% quality
       const pdf = new jsPDF();
       const imgWidth = 210; // A4 width in mm
       const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
+  
+      // Add image to PDF
       pdf.addImage(imgData, "JPEG", 0, 0, imgWidth, imgHeight, undefined, 'FAST'); // Use 'FAST' for compression
       const pdfData = pdf.output("blob");
-      console.log(pdfData);
-
+  
       const formData = new FormData();
-      formData.append("email", getPatientData[0]?.emailid);
-      formData.append("patient_name", getPatientData[0]?.patient_name);
-      formData.append(
-        "subject",
-        `${getPatientData[0]?.patient_name}, your final bill file`
-      );
+      const patient = getPatientData[0];
+      const branch = currentBranch[0];
+  
+      // Prepare form data
+      formData.append("email", patient.emailid);
+      formData.append("patient_name", patient.patient_name);
+      formData.append("subject", `${patient.patient_name}, your final bill file`);
       formData.append(
         "textMatter",
-        `Dear ${getPatientData[0]?.patient_name}, Please find the attached final bill file.\n` +
+        `Dear ${patient.patient_name}, Please find the attached final bill file.\n` +
         `Clinic Details:\n` +
-        `Name: ${currentBranch[0]?.hospital_name}\n` +
-        `Contact: ${currentBranch[0]?.branch_contact}\n` +
-        `Address: ${currentBranch[0]?.branch_address}\n` +
-        `Email: ${currentBranch[0]?.branch_email}\n\n` +
-        `Thank you for choosing ${currentBranch[0]?.hospital_name}.\n\n` +
+        `Name: ${branch.hospital_name}\n` +
+        `Contact: ${branch.branch_contact}\n` +
+        `Address: ${branch.branch_address}\n` +
+        `Email: ${branch.branch_email}\n\n` +
+        `Thank you for choosing ${branch.hospital_name}.\n\n` +
         `Best regards,\n` +
-        `${currentBranch[0]?.hospital_name} Team`
+        `${branch.hospital_name} Team`
       );
       formData.append("file", pdfData, "prescription.pdf");
+  
+      // Log the form data for debugging
       for (let [key, value] of formData.entries()) {
         console.log(key, value);
       }
-      cogoToast.success("Treatment bill sending to email");
+  
+      // Notify user about sending the bill
+      cogoToast.success("Treatment bill is being sent to email...");
+  
+      // Send the email via API call
       const response = await axios.post(
         "https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/prescriptionOnMail",
         formData,
         {
           headers: {
             "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${token}`, // Ensure token is valid
           },
         }
       );
+  
+      // Success notification
       cogoToast.success("Treatment bill sent successfully");
       console.log("PDF sent successfully:", response.data);
     } catch (error) {
       console.error("Error sending PDF:", error);
+      cogoToast.error("Failed to send treatment bill.");
     }
   };
+  
 
   const sendPrescriptionWhatsapp = async () => {
     try {
