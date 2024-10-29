@@ -258,71 +258,88 @@ const CreditPatientBillsByTpid = () => {
   };
 
   const sendPrescriptionMail = async () => {
+    // Check for essential data before proceeding
     if (!getPatientData[0]?.emailid) {
-      alert("Email id not available");
+      cogoToast.error("Email ID not available for the patient.");
       return;
     }
+  
     try {
       const element = contentRef.current;
-      const canvas = await html2canvas(element, { scale: 2 }); // Increase the scale for better quality
-      const imgData = canvas.toDataURL("image/jpeg", 0.75); // Use JPEG with 75% quality
+  
+      // Verify that the content element exists
+      if (!element) {
+        console.error("Content reference is not defined or invalid.");
+        cogoToast.error("Content not found.");
+        return;
+      }
+  
+      const canvas = await html2canvas(element, { scale: 2 }); // Higher scale for quality
+      const imgData = canvas.toDataURL("image/jpeg", 0.75); // Set quality to 75%
       const pdf = new jsPDF();
       const imgWidth = 210; // A4 width in mm
       const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
-      pdf.addImage(
-        imgData,
-        "JPEG",
-        0,
-        0,
-        imgWidth,
-        imgHeight,
-        undefined,
-        "FAST"
-      ); // Use 'FAST' for compression
+  
+      // Add image to the PDF
+      pdf.addImage(imgData, "JPEG", 0, 0, imgWidth, imgHeight, undefined, "FAST");
       const pdfData = pdf.output("blob");
-      console.log(pdfData);
-
+  
+      // Prepare email details and clinic information
+      const patient = getPatientData[0];
+      const clinic = currentBranch[0] || {}; // Safeguard in case `currentBranch` is undefined
+  
       const formData = new FormData();
-      formData.append("email", getPatientData[0]?.emailid);
-      formData.append("patient_name", getPatientData[0]?.patient_name);
+      formData.append("email", patient.emailid);
+      formData.append("patient_name", patient.patient_name);
       formData.append(
         "subject",
-        `${getPatientData[0]?.patient_name}, your final bill file`
+        `${patient.patient_name}, your final bill file`
       );
       formData.append(
         "textMatter",
-        `Dear ${getPatientData[0]?.patient_name}, Please find the attached final bill file.\n` +
+        `Dear ${patient.patient_name},\n\nPlease find the attached final bill file.\n\n` +
           `Clinic Details:\n` +
-          `Name: ${currentBranch[0]?.hospital_name}\n` +
-          `Contact: ${currentBranch[0]?.branch_contact}\n` +
-          `Address: ${currentBranch[0]?.branch_address}\n` +
-          `Email: ${currentBranch[0]?.branch_email}\n\n` +
-          `Thank you for choosing ${currentBranch[0]?.hospital_name}.\n\n` +
-          `Best regards,\n` +
-          `${currentBranch[0]?.hospital_name} Team`
+          `Name: ${clinic.hospital_name || "Clinic Name"}\n` +
+          `Contact: ${clinic.branch_contact || "Clinic Contact"}\n` +
+          `Address: ${clinic.branch_address || "Clinic Address"}\n` +
+          `Email: ${clinic.branch_email || "Clinic Email"}\n\n` +
+          `Thank you for choosing ${clinic.hospital_name || "our clinic"}.\n\n` +
+          `Best regards,\n${clinic.hospital_name || "Clinic Name"} Team`
       );
       formData.append("file", pdfData, "prescription.pdf");
+  
+      // Debug: Log form data entries for verification
       for (let [key, value] of formData.entries()) {
-        console.log(key, value);
+        console.log(`${key}:`, value);
       }
-      cogoToast.success("Treatment bill sending to email");
+  
+      cogoToast.info("Sending treatment bill email...");
+  
       const response = await axios.post(
         "http://localhost:8888/api/v1/receptionist/prescriptionOnMail",
         formData,
         {
           headers: {
             "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${token}`, // Use Bearer token
           },
         }
       );
-      cogoToast.success("Treatment bill sent successfully");
-      console.log("PDF sent successfully:", response.data);
+  
+      // Successful response handling
+      if (response.status === 200) {
+        cogoToast.success("Treatment bill sent successfully.");
+        console.log("PDF sent successfully:", response.data);
+      } else {
+        console.error("Failed to send PDF, server response:", response);
+        cogoToast.error("Failed to send the treatment bill.");
+      }
     } catch (error) {
       console.error("Error sending PDF:", error);
+      cogoToast.error("An error occurred while sending the bill.");
     }
   };
+  
 
   const sendPrescriptionWhatsapp = async () => {
     try {

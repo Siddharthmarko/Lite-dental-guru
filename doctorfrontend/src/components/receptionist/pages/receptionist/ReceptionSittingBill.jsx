@@ -231,73 +231,80 @@ const ReceptionSittingBill = () => {
   // };
 
   const sendPrescriptionMail = async () => {
+    // Check if email id is available
     if (!getPatientData[0]?.emailid) {
       alert("Email id not available");
       return;
     }
+  
     try {
       const element = contentRef.current;
-      const canvas = await html2canvas(element, { scale: 2 }); // Increase the scale for better quality
-      const imgData = canvas.toDataURL("image/jpeg", 0.75); // Use JPEG with 75% quality
+  
+      // Capture the element as an image
+      const canvas = await html2canvas(element, { scale: 2 }); // Higher scale for better quality
+      const imgData = canvas.toDataURL("image/jpeg", 0.75); // JPEG with 75% quality
+  
       const pdf = new jsPDF();
       const imgWidth = 210; // A4 width in mm
       const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
-      pdf.addImage(
-        imgData,
-        "JPEG",
-        0,
-        0,
-        imgWidth,
-        imgHeight,
-        undefined,
-        "FAST"
-      ); // Use 'FAST' for compression
+  
+      pdf.addImage(imgData, "JPEG", 0, 0, imgWidth, imgHeight, undefined, "FAST"); // Use 'FAST' for compression
       const pdfData = pdf.output("blob");
-      console.log(pdfData);
-
+  
+      // Prepare form data for the API
       const formData = new FormData();
-      formData.append("email", getPatientData[0]?.emailid);
-      formData.append("patient_name", getPatientData[0]?.patient_name);
-      formData.append(
-        "subject",
-        `${getPatientData[0]?.patient_name}, your sitting bill file`
+      const patient = getPatientData[0];
+      const clinic = currentBranch[0];
+  
+      formData.append("email", patient.emailid);
+      formData.append("patient_name", patient.patient_name);
+      formData.append("subject", `${patient.patient_name}, your sitting bill file`);
+      formData.append("textMatter", `Dear ${patient.patient_name}, Please find the attached sitting bill file.\n` +
+        `Clinic Details:\n` +
+        `Name: ${clinic.hospital_name}\n` +
+        `Contact: ${clinic.branch_contact}\n` +
+        `Address: ${clinic.branch_address}\n` +
+        `Email: ${clinic.branch_email}\n\n` +
+        `Thank you for choosing ${clinic.hospital_name}.\n\n` +
+        `Best regards,\n` +
+        `${clinic.hospital_name} Team`
       );
-      formData.append(
-        "textMatter",
-        `Dear ${getPatientData[0]?.patient_name}, Please find the attached sitting bill file.\n` +
-          `Clinic Details:\n` +
-          `Name: ${currentBranch[0]?.hospital_name}\n` +
-          `Contact: ${currentBranch[0]?.branch_contact}\n` +
-          `Address: ${currentBranch[0]?.branch_address}\n` +
-          `Email: ${currentBranch[0]?.branch_email}\n\n` +
-          `Thank you for choosing ${currentBranch[0]?.hospital_name}.\n\n` +
-          `Best regards,\n` +
-          `${currentBranch[0]?.hospital_name} Team`
-      );
+  
       formData.append("file", pdfData, "prescription.pdf");
+  
+      // Log form data for debugging
       for (let [key, value] of formData.entries()) {
         console.log(key, value);
       }
-      cogoToast.success("Sitting bill Sending to email");
+  
+      cogoToast.info("Sending sitting bill to email...");
+  
+      // Send the email with the PDF attached
       const response = await axios.post(
         "http://localhost:8888/api/v1/receptionist/prescriptionOnMail",
         formData,
         {
           headers: {
             "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${token}`, // Include authorization token
           },
         }
       );
-      cogoToast.success("Sitting bill sent successfully");
-      console.log(response);
-      console.log("PDF sent successfully:", response.data);
+  
+      // Successful response handling
+      if (response.status === 200) {
+        cogoToast.success("Sitting bill sent successfully");
+        console.log("PDF sent successfully:", response.data);
+      } else {
+        console.error("Failed to send PDF:", response);
+        cogoToast.error("Failed to send sitting bill.");
+      }
     } catch (error) {
       console.error("Error sending PDF:", error);
-      cogoToast.error("Error to send Sitting bill");
+      cogoToast.error("Error sending sitting bill");
     }
   };
+  
 
   const sendPrescriptionWhatsapp = async () => {
     try {

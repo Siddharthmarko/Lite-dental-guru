@@ -202,64 +202,59 @@ const SittingBill = () => {
   const sendPrescriptionMail = async () => {
     try {
       const element = contentRef.current;
+      
+      if (!element) {
+        console.error("contentRef is not defined or invalid.");
+        cogoToast.error("Content not found.");
+        return;
+      }
+  
       const canvas = await html2canvas(element);
       const imgData = canvas.toDataURL("image/png");
       const pdf = new jsPDF();
       const imgWidth = 210; // A4 width in mm
       const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
-      pdf.addImage(
-        imgData,
-        "PNG",
-        0,
-        0,
-        imgWidth,
-        imgHeight,
-        undefined,
-        "FAST"
-      );
+  
+      pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight, undefined, "FAST");
       const pdfData = pdf.output("blob");
-      console.log(pdfData);
-
+  
       const formData = new FormData();
-      formData.append("email", getPatientData[0]?.emailid);
-      formData.append("patient_name", getPatientData[0]?.patient_name);
-      formData.append(
-        "subject",
-        `${getPatientData[0]?.patient_name}, your sitting bill file`
-      );
-      formData.append(
-        "textMatter",
-        `Dear ${getPatientData[0]?.patient_name}, Please find the attached sitting bill file.`
-      );
-      formData.append("file", pdfData, "prescription.pdf");
-      for (let [key, value] of formData.entries()) {
-        console.log(key, value);
-      }
-
-      const response = await axios.post(
-        "http://localhost:8888/api/doctor/prescriptionOnMail",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${token}`,
-          },
+      if (getPatientData.length > 0) {
+        const patient = getPatientData[0];
+        formData.append("email", patient.emailid);
+        formData.append("patient_name", patient.patient_name);
+        formData.append("subject", `${patient.patient_name}, your sitting bill file`);
+        formData.append("textMatter", `Dear ${patient.patient_name}, please find the attached sitting bill file.`);
+        formData.append("file", pdfData, "prescription.pdf");
+  
+        console.log("Form data prepared:", Array.from(formData.entries()));
+  
+        const response = await axios.post(
+          "http://localhost:8888/api/doctor/prescriptionOnMail",
+          formData,
+          {
+            headers: { "Content-Type": "multipart/form-data" }, // Optional
+            timeout: 15000, // Increased timeout for slower connections
+          }
+        );
+  
+        if (response.status === 200) {
+          cogoToast.success("Sitting bill sent successfully");
+          console.log("PDF sent successfully:", response.data);
+        } else {
+          console.error("Failed to send PDF, server error:", response);
+          cogoToast.error("Failed to send bill, server error.");
         }
-      );
-      // alert("Done mail");
-      console.log(
-        formData,
-        "!----------------------------------------------------------------!"
-      );
-
-      cogoToast.success("Sitting bill sent successfully");
-      console.log("256 PDF sent successfully:", response.data);
+      } else {
+        console.error("Patient data is not available");
+        cogoToast.error("Patient data is missing.");
+      }
     } catch (error) {
       console.error("Error sending PDF:", error);
-      cogoToast.error("Error to send bill");
+      cogoToast.error("Error sending bill.");
     }
   };
+  
 
   const sendPrescriptionWhatsapp = async () => {
     try {
