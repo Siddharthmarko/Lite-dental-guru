@@ -17,7 +17,7 @@ const PasswordReset = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:8888/api/doctor/sendOtp",
+        "https://huzaifdentalclinic.dentalguru.software/api/doctor/sendOtp",
         {
           email,
         }
@@ -35,7 +35,7 @@ const PasswordReset = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:8888/api/doctor/verifyOtp",
+        "https://huzaifdentalclinic.dentalguru.software/api/doctor/verifyOtp",
         {
           email,
           otp,
@@ -55,7 +55,7 @@ const PasswordReset = () => {
     e.preventDefault();
     try {
       const response = await axios.put(
-        "http://localhost:8888/api/doctor/resetPassword",
+        "https://huzaifdentalclinic.dentalguru.software/api/doctor/resetPassword",
         {
           email,
           password: newPassword,

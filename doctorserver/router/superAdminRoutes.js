@@ -139,7 +139,6 @@ router.put(
     { name: "head_img", maxCount: 1 },
     { name: "foot_img", maxCount: 1 },
   ]),
-  authenticate,
   updateBranchDetails
 );
 

@@ -50,7 +50,7 @@ function CreditOPDBill() {
     setLoadingEffect(true);
     try {
       const response = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/get-appointments/${branch}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/get-appointments/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -247,7 +247,7 @@ function CreditOPDBill() {
     }
     try {
       const res = await axios.put(
-        `http://localhost:8888/api/v1/receptionist/ChangeStatusToPaidOPDBill/${id}/${branch}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/ChangeStatusToPaidOPDBill/${id}/${branch}`,
         {},
         {
           headers: {

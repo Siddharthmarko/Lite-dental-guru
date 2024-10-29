@@ -57,7 +57,7 @@ const TreatmentFormDocPay = () => {
     setLoading(true);
     try {
       const { data } = await axios.get(
-        `http://localhost:8888/api/doctor/getOnlyExaminv/${tp_id}/${tsid}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/doctor/getOnlyExaminv/${tp_id}/${tsid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -79,9 +79,9 @@ const TreatmentFormDocPay = () => {
     try {
       let endpoint;
       if (sitCheck.length > 0) {
-        endpoint = `http://localhost:8888/api/doctor/getExaminedataByIdandexamineAfterSitOne/${tsid}/${tp_id}`;
+        endpoint = `https://huzaifdentalclinic.dentalguru.software/api/doctor/getExaminedataByIdandexamineAfterSitOne/${tsid}/${tp_id}`;
       } else {
-        endpoint = `http://localhost:8888/api/doctor/getExaminedataByIdandexamine/${tsid}/${tp_id}`;
+        endpoint = `https://huzaifdentalclinic.dentalguru.software/api/doctor/getExaminedataByIdandexamine/${tsid}/${tp_id}`;
       }
 
       const { data } = await axios.get(endpoint, {
@@ -302,7 +302,7 @@ const TreatmentFormDocPay = () => {
   const timelineForTreatForm = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:8888/api/doctor/insertTimelineEvent",
+        "https://huzaifdentalclinic.dentalguru.software/api/doctor/insertTimelineEvent",
         {
           type: "Treatment Procedure",
           description:
@@ -434,7 +434,7 @@ const TreatmentFormDocPay = () => {
   const treatmentStatsUpdate = async () => {
     try {
       const response = await axios.put(
-        `http://localhost:8888/api/doctor/updateTreatSittingStatus/${branch}/${tsid}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/doctor/updateTreatSittingStatus/${branch}/${tsid}`,
         { treatment_status: treatStats },
         {
           headers: {
@@ -500,7 +500,7 @@ const TreatmentFormDocPay = () => {
   const generateBillSitting = async () => {
     try {
       const res = await axios.post(
-        `http://localhost:8888/api/doctor/generateSittingBill/${tp_id}/${branch}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/doctor/generateSittingBill/${tp_id}/${branch}`,
         sittingForm
       );
       cogoToast.success("sitting bill generate successfully");
@@ -512,7 +512,7 @@ const TreatmentFormDocPay = () => {
   const updateAppointStatus = async () => {
     try {
       const res = await axios.put(
-        `http://localhost:8888/api/doctor/updateAppointmentStatusAfterTreat/${appoint_id}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/doctor/updateAppointmentStatusAfterTreat/${appoint_id}`,
         {
           status: "Complete",
         },
@@ -534,7 +534,7 @@ const TreatmentFormDocPay = () => {
     setLoading(true);
     try {
       const res = await axios.post(
-        `http://localhost:8888/api/doctor/insertTreatmentData/${tsid}/${appoint_id}/${tp_id}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/doctor/insertTreatmentData/${tsid}/${appoint_id}/${tp_id}`,
         formDetails,
         {
           headers: {
@@ -584,7 +584,7 @@ const TreatmentFormDocPay = () => {
   const getPatientDetail = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:8888/api/doctor/getAppointmentsWithPatientDetailsById/${tp_id}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/doctor/getAppointmentsWithPatientDetailsById/${tp_id}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -637,7 +637,7 @@ const TreatmentFormDocPay = () => {
   const getSecurityAmt = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8888/api/doctor/getSecurityAmountByAppointmentId/${tp_id}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/doctor/getSecurityAmountByAppointmentId/${tp_id}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -682,7 +682,7 @@ const TreatmentFormDocPay = () => {
   const updateAmountAfterPayViaSecAmount = async () => {
     try {
       const res = await axios.put(
-        `http://localhost:8888/api/doctor/updateRecSecAmountAfterPayment/${tp_id}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/doctor/updateRecSecAmountAfterPayment/${tp_id}`,
         {
           sec_rec_amt:
             lastTreatment?.pending_amount <= 0
@@ -723,7 +723,7 @@ const TreatmentFormDocPay = () => {
   const timelineForMakePayViaSecurity = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:8888/api/doctor/insertTimelineEvent",
+        "https://huzaifdentalclinic.dentalguru.software/api/doctor/insertTimelineEvent",
         {
           type: "Security Amount Used",
           description: `${
@@ -751,7 +751,7 @@ const TreatmentFormDocPay = () => {
     } else {
       try {
         const res = await axios.put(
-          `http://localhost:8888/api/doctor/updateSecurityAmountAfterPayment/${tp_id}`,
+          `https://huzaifdentalclinic.dentalguru.software/api/doctor/updateSecurityAmountAfterPayment/${tp_id}`,
           { remaining_amount: remaining_amount },
           {
             headers: {

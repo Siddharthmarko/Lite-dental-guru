@@ -135,7 +135,7 @@ function App() {
   //   try {
   //     setLoading(true);
   //     const response = await axios.get(
-  //       `http://localhost:8888/api/doctor/getTodayAttendance/${user?.branch_name}/${user?.employee_ID}/${date}`,
+  //       `https://huzaifdentalclinic.dentalguru.software/api/doctor/getTodayAttendance/${user?.branch_name}/${user?.employee_ID}/${date}`,
   //       {
   //         headers: {
   //           "Content-Type": "application/json",
@@ -177,7 +177,7 @@ function App() {
     try {
       setLoading(true);
       const response = await axios.get(
-        `http://localhost:8888/api/doctor/getTodayAttendance/${user?.branch_name}/${user?.employee_ID}/${date}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/doctor/getTodayAttendance/${user?.branch_name}/${user?.employee_ID}/${date}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -1046,7 +1046,8 @@ function App() {
 
           <Route
             path="/ViewPatientSittingBill/:tpid/:sbid/:treatment"
-            element={user === null ? <DoctorLogin /> : <SittingBill />}
+            // element={user === null ? <DoctorLogin /> : <SittingBill />}
+            element={user === null ? <DoctorLogin /> : <ReceptionSittingBill />}
           />
           <Route
             path="/ViewCreditPatientSittingBill/:tpid/:sbid"

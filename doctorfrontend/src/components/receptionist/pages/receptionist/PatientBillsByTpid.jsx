@@ -38,7 +38,7 @@ const PatientBillsByTpid = () => {
   const getBranchDetails = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/getBranchDetailsByBranch/${branch}`
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/getBranchDetailsByBranch/${branch}`
       );
       console.log(data);
       setGetBranch(data);
@@ -52,7 +52,7 @@ const PatientBillsByTpid = () => {
   const getPatientDetail = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/getAppointmentsWithPatientDetailsById/${tpid}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/getAppointmentsWithPatientDetailsById/${tpid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -81,7 +81,7 @@ const PatientBillsByTpid = () => {
   const getExaminDetail = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/getDentalDataByTpid/${tpid}/${branch}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/getDentalDataByTpid/${tpid}/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -124,7 +124,7 @@ const PatientBillsByTpid = () => {
   const getTreatDetail = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/getTreatmentDetailsViaTpid/${tpid}/${branch}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/getTreatmentDetailsViaTpid/${tpid}/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -149,7 +149,7 @@ const PatientBillsByTpid = () => {
   const getTreatPrescriptionByAppointId = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/getTreatPrescriptionByTpid/${tpid}/${branch}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/getTreatPrescriptionByTpid/${tpid}/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -173,7 +173,7 @@ const PatientBillsByTpid = () => {
   const getTreatmentSuggestAppointId = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/getTreatSuggestViaTpid/${tpid}/${branch}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/getTreatSuggestViaTpid/${tpid}/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -215,7 +215,7 @@ const PatientBillsByTpid = () => {
   const getBillDetails = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/billDetailsViaTpid/${tpid}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/billDetailsViaTpid/${tpid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -322,7 +322,7 @@ const PatientBillsByTpid = () => {
       }
       cogoToast.success("Treatment bill sending to email");
       const response = await axios.post(
-        "http://localhost:8888/api/v1/receptionist/prescriptionOnMail",
+        "https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/prescriptionOnMail",
         formData,
         {
           headers: {
@@ -365,7 +365,7 @@ const PatientBillsByTpid = () => {
       }
 
       const res = await axios.post(
-        "http://localhost:8888/api/v1/receptionist/sendWhatsapp",
+        "https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/sendWhatsapp",
         formData,
         {
           headers: {
@@ -387,7 +387,7 @@ const PatientBillsByTpid = () => {
   const billDetailsSms = async () => {
     try {
       const { data } = await axios.post(
-        "http://localhost:8888/api/v1/receptionist/sendSMS",
+        "https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/sendSMS",
         formDetails,
         {
           headers: {

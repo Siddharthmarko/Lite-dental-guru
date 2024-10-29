@@ -97,7 +97,7 @@ function BookAppointment() {
   const getBranchDetail = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/get-branch-detail/${branch}`
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/get-branch-detail/${branch}`
       );
       console.log(response);
       setBranchDetail(response.data.data);
@@ -108,7 +108,7 @@ function BookAppointment() {
   const getBranchHolidays = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/get-branch-holidays/${branch}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/get-branch-holidays/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -126,7 +126,7 @@ function BookAppointment() {
   const getPatientTreatmentDetails = async (uhid) => {
     try {
       const response = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/getPatientDeatilsByUhid/${branch}/${uhid}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/getPatientDeatilsByUhid/${branch}/${uhid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -221,7 +221,7 @@ function BookAppointment() {
   const getPatient = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/get-Patients/${branch}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/get-Patients/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -239,7 +239,7 @@ function BookAppointment() {
   const getAppointments = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/get-appointments/${branch}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/get-appointments/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -256,7 +256,7 @@ function BookAppointment() {
   const getTreatment = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8888/api/v1/receptionist/get-treatments"
+        "https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/get-treatments"
       );
       console.log(response);
       setTreatment(response?.data?.data);
@@ -270,7 +270,7 @@ function BookAppointment() {
   const getDoctors = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/get-doctors/${branch}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/get-doctors/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -312,7 +312,7 @@ function BookAppointment() {
   const getDoctorsWithLeave = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/get-doctors-with-leave/${branch}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/get-doctors-with-leave/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -577,7 +577,7 @@ function BookAppointment() {
   const timelineData = async (id) => {
     try {
       const response = await axios.post(
-        "http://localhost:8888/api/v1/receptionist/insertTimelineEvent",
+        "https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/insertTimelineEvent",
         {
           type: "Appointment",
           description: "Appointment scheduled",
@@ -615,12 +615,12 @@ function BookAppointment() {
     }
 
     const selectedDay = new Date(selectedDate).getDay();
-    if (selectedDay === weekOffDay) {
-      cogoToast.info(
-        "Selected date is a week off day. Please choose another date."
-      );
-      return;
-    }
+    // if (selectedDay === weekOffDay) {
+    //   cogoToast.info(
+    //     "Selected date is a week off day. Please choose another date."
+    //   );
+    //   return;
+    // }
 
     if (bookData.payment_Status === "unpaid") {
       cogoToast.info("Please paid the OPD amount to book appointment");
@@ -816,7 +816,7 @@ function BookAppointment() {
       try {
         setLoading(true);
         const response = await axios.post(
-          "http://localhost:8888/api/v1/receptionist/book-appointment",
+          "https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/book-appointment",
           newAppointment,
           {
             headers: {

@@ -16,7 +16,7 @@ const Lab = () => {
   const getLabTest = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/getPatientLabTestByPatientId/${pid}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/getPatientLabTestByPatientId/${pid}`,
         {
           headers: {
             "Content-Type": "application/json",

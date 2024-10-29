@@ -525,8 +525,8 @@ const sendOtp = (req, res) => {
   try {
     const transporter = nodemailer.createTransport({
     host: process.env.HOST, 
-  port: 465,  
-  secure: true, 
+      port: 465,  
+      secure: true, 
       auth: {
         user: process.env.EMAILSENDER,
         pass: process.env.EMAILPASSWORD,
@@ -545,7 +545,8 @@ const sendOtp = (req, res) => {
         console.error(error);
         return res
           .status(500)
-          .json("An error occurred while sending the email.");
+          .json({message: "An error occurred while sending the email.", err: error });
+
       } else {
         console.log("OTP sent:", info.response);
 
@@ -619,7 +620,6 @@ const verifyOtp = (req, res) => {
     res.status(500).json({ success: false, message: "Internal server error" });
   }
 };
-
 const resetPassword = (req, res) => {
   try {
     const { email, password } = req.body;

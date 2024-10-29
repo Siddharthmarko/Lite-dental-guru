@@ -29,7 +29,7 @@ const EditTreatSuggestModal = ({ onClose, selectedData, openBookAppoint }) => {
     try {
       if (selectedData.current_sitting < changeSitting) {
         const { data } = await axios.put(
-          `http://localhost:8888/api/doctor/updateTreatSuggestion/${selectedData.ts_id}/${branch}`,
+          `https://huzaifdentalclinic.dentalguru.software/api/doctor/updateTreatSuggestion/${selectedData.ts_id}/${branch}`,
           { total_sitting: changeSitting },
           {
             headers: {

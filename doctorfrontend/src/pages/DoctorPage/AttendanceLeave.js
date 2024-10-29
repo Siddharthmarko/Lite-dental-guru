@@ -44,7 +44,7 @@ const AttendanceLeave = () => {
   const getAttendance = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8888/api/doctor/getAttendancebyempId/${branch}/${employeeId}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/doctor/getAttendancebyempId/${branch}/${employeeId}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -68,7 +68,7 @@ const AttendanceLeave = () => {
   const getLeaves = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8888/api/doctor/get-leaves/${branch}/${employeeId}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/doctor/get-leaves/${branch}/${employeeId}`,
         {
           headers: {
             "Content-Type": "application/json",

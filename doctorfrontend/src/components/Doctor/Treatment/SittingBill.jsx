@@ -38,7 +38,7 @@ const SittingBill = () => {
   const getBranchDetails = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8888/api/doctor/getBranchDetails/${branch}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/doctor/getBranchDetails/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -59,7 +59,7 @@ const SittingBill = () => {
   const getPatientDetail = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:8888/api/doctor/getAppointmentsWithPatientDetailsById/${tpid}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/doctor/getAppointmentsWithPatientDetailsById/${tpid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -78,7 +78,7 @@ const SittingBill = () => {
   const getLabAllData = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:8888/api/doctor/lab-details/${tpid}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/doctor/lab-details/${tpid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -95,8 +95,11 @@ const SittingBill = () => {
 
   const getSittingBillbyId = async () => {
     try {
+      console.log(branch, sitting, tpid, appoint_id, "lkdsjflksdjflksdjlkfjsdok");
+
       const { data } = await axios.get(
-        `http://localhost:8888/api/doctor/getSittingBillbyId/${branch}/${sitting}/${tpid}/${appoint_id}`,
+        
+        `https://huzaifdentalclinic.dentalguru.software/api/doctor/getSittingBillbyId/${branch}/${sitting}/${tpid}/${appoint_id}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -104,7 +107,6 @@ const SittingBill = () => {
           },
         }
       );
-      console.log(data, "lkdsjflksdjflksdjlkfjsdok");
       setSittingBill(data);
     } catch (error) {
       console.log(error);
@@ -118,7 +120,7 @@ const SittingBill = () => {
   const getDoctorDetails = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8888/api/doctor/getEmployeeDetailsbyId/${branch}/${eid}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/doctor/getEmployeeDetailsbyId/${branch}/${eid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -137,7 +139,7 @@ const SittingBill = () => {
   const getExamineDetails = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:8888/api/doctor/getDentalDataByTpid/${tpid}/${branch}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/doctor/getDentalDataByTpid/${tpid}/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -238,7 +240,7 @@ const SittingBill = () => {
       }
 
       const response = await axios.post(
-        "http://localhost:8888/api/doctor/prescriptionOnMail",
+        "https://huzaifdentalclinic.dentalguru.software/api/doctor/prescriptionOnMail",
         formData,
         {
           headers: {
@@ -297,7 +299,7 @@ const SittingBill = () => {
       }
 
       const res = await axios.post(
-        "http://localhost:8888/api/doctor/sendWhatsapp",
+        "https://huzaifdentalclinic.dentalguru.software/api/doctor/sendWhatsapp",
         formData,
         {
           headers: {
@@ -318,7 +320,7 @@ const SittingBill = () => {
   const billDetailsSms = async () => {
     try {
       const { data } = await axios.post(
-        "http://localhost:8888/api/doctor/sendSMS",
+        "https://huzaifdentalclinic.dentalguru.software/api/doctor/sendSMS",
         formDetails,
         {
           headers: {
@@ -338,8 +340,8 @@ const SittingBill = () => {
         {/* branch details */}
 
         <div className="container-fluid">
-          <div className="d-flex justify-content-between">
-            <button
+          <div className="d-flex justify-content-end">
+            {/* <button
               className="btn btn-info no-print mt-2 mb-2 text-white shadow"
               style={{
                 backgroundColor: "#0dcaf0",
@@ -348,7 +350,7 @@ const SittingBill = () => {
               onClick={goBack}
             >
               <IoMdArrowRoundBack /> Back
-            </button>
+            </button> */}
             <button
               className="btn btn-info no-print mt-2 mb-2 text-white shadow"
               style={{
@@ -530,7 +532,7 @@ const SittingBill = () => {
                           {item.payment_status === "Pending"
                             ? 0
                             : item.paid_amount === null
-                            ? item.sitting_amount
+                            ? 0
                             : item.paid_amount}
                         </td>
                       </tr>

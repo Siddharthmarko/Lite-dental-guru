@@ -61,7 +61,7 @@ const ManageStaff = () => {
   const getBranchData = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:8888/api/v1/super-admin/getBranch"
+        "https://huzaifdentalclinic.dentalguru.software/api/v1/super-admin/getBranch"
       );
       setBranchDetails(data);
     } catch (error) {
@@ -293,7 +293,7 @@ const ManageStaff = () => {
     setLoading(true);
     try {
       const { data } = await axios.get(
-        `http://localhost:8888/api/v1/super-admin/getEmployeeDataByBranch/${branch_name}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/super-admin/getEmployeeDataByBranch/${branch_name}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -393,7 +393,7 @@ const ManageStaff = () => {
       console.log(inEmpData, empProfilePicture);
 
       const { data } = await axios.post(
-        "http://localhost:8888/api/v1/super-admin/enroll-employee",
+        "https://huzaifdentalclinic.dentalguru.software/api/v1/super-admin/enroll-employee",
         formData,
         {
           headers: {
@@ -446,7 +446,7 @@ const ManageStaff = () => {
   const addEmployeeTimeline = async () => {
     try {
       const response = await axios.post(
-        `http://localhost:8888/api/v1/super-admin/addSuperAdminNotify`,
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/super-admin/addSuperAdminNotify`,
         {
           branch_name: branch_name,
           title: "New Employee Registered",
@@ -487,7 +487,7 @@ const ManageStaff = () => {
     setLoading(true);
     try {
       const response = await axios.put(
-        `http://localhost:8888/api/v1/super-admin/editEmployeeDetails/${branch_name}/${eid}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/super-admin/editEmployeeDetails/${branch_name}/${eid}`,
         { status: "Approved" },
         {
           headers: {

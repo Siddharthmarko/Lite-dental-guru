@@ -541,7 +541,7 @@ const updateDoctorPaymentAllowSetting = (req, res) => {
       const empProfilePicture = req.file;
       console.log(empProfilePicture, "pro");
   
-      const imageUrl = `http://localhost:${PORT}/empProfilePicture/${empProfilePicture?.filename}`;
+      const imageUrl = `https://huzaifdentalclinic.dentalguru.software/empProfilePicture/${empProfilePicture?.filename}`;
   
       console.log("profilePicture: 770", imageUrl);
   
@@ -718,7 +718,7 @@ const addSuperAdminNotify = (req, res) => {
       const empProfilePicture = req.file;
       console.log(empProfilePicture, "pro");
   
-      const imageUrl = `http://localhost:${PORT}/empProfilePicture/${empProfilePicture?.filename}`;
+      const imageUrl = `https://huzaifdentalclinic.dentalguru.software/empProfilePicture/${empProfilePicture?.filename}`;
   
       console.log("profilePicture: 770", imageUrl);
   
@@ -1125,37 +1125,58 @@ const updateTreatmentDetails = (req, res) => {
         open_time,
         close_time,
         appoint_slot_duration,
-        account_number, 
-        bank_name,      
-        upi_id,         
-        ifsc_code       
+        account_number,
+        bank_name,
+        upi_id,
+        ifsc_code,
       } = req.body;
   
-      const files = req.files;
+      const files = req.files || {}; // Default to an empty object if no files are uploaded
+      const additionalDirectories = path.join(__dirname, "branchHeadFootImg");
   
-      // Define additional directories
-      const additionalDirectories = "/home/vimubdsa/dentalguru-lite.vimubds5.a2hosted.com/branchHeadFootImg/";
-  
+      // Ensure the directory exists
       if (!fs.existsSync(additionalDirectories)) {
-        fs.mkdirSync(additionalDirectories, { recursive: true });
-      }
-  
-      for (const fieldname in files) {
-        for (const file of files[fieldname]) {
-          const originalFilePath = path.join("/home/vimubdsa/dentalguru-lite.vimubds5.a2hosted.com/branchHeadFootImg/", file.filename);
-          const newFilePath = path.join(additionalDirectories, file.filename);
-          fs.copyFileSync(originalFilePath, newFilePath);
+        try {
+          fs.mkdirSync(additionalDirectories, { recursive: true });
+          console.log("Directory created successfully:", additionalDirectories);
+        } catch (err) {
+          console.error("Failed to create directory:", additionalDirectories, err);
+          return res.status(500).json({
+            success: false,
+            message: "Server error: unable to create directory for images.",
+          });
         }
       }
   
-      const urlAdd = "https://dentalguru-lite.vimubds5.a2hosted.com/branchHeadFootImg";
+      // URL for serving images
+      const urlAdd = "https://huzaifdentalclinic.dentalguru.software/branchHeadFootImg";
   
-      const head_img = req.files["head_img"]
-        ? `${urlAdd}/${req.files["head_img"][0].filename}`
-        : null;
-      const foot_img = req.files["foot_img"]
-        ? `${urlAdd}/${req.files["foot_img"][0].filename}`
-        : null;
+      // Use uploaded file or a default image
+      const head_img = files["head_img"]
+        ? `${urlAdd}/${files["head_img"][0].filename}`
+        : `${urlAdd}/default_head.png`; 
+  
+      const foot_img = files["foot_img"]
+        ? `${urlAdd}/${files["foot_img"][0].filename}`
+        : `${urlAdd}/default_foot.png`;
+  
+      // Copy files to the directory if they exist
+      for (const fieldname in files) {
+        for (const file of files[fieldname]) {
+          const newFilePath = path.join(additionalDirectories, file.filename);
+  
+          try {
+            fs.copyFileSync(file.path, newFilePath);
+            console.log(`File copied to: ${newFilePath}`);
+          } catch (err) {
+            console.error(`Failed to copy file: ${file.path}`, err);
+            return res.status(500).json({
+              success: false,
+              message: "Server error: failed to save image files.",
+            });
+          }
+        }
+      }
   
       const selectQuery = "SELECT * FROM branches WHERE branch_id = ?";
       db.query(selectQuery, bid, (err, result) => {
@@ -1163,70 +1184,24 @@ const updateTreatmentDetails = (req, res) => {
           registrationLogger.log("error", "internal server error");
           return res.status(400).json({ success: false, message: err.message });
         }
+  
         if (result && result.length > 0) {
           const updateFields = [];
           const updateValues = [];
   
-          if (name) {
-            updateFields.push("branch_name = ?");
-            updateValues.push(name);
-          }
-  
-          if (address) {
-            updateFields.push("branch_address = ?");
-            updateValues.push(address);
-          }
-  
-          if (contact) {
-            updateFields.push("branch_contact = ?");
-            updateValues.push(contact);
-          }
-  
-          if (open_time) {
-            updateFields.push("open_time = ?");
-            updateValues.push(open_time);
-          }
-  
-          if (close_time) {
-            updateFields.push("close_time = ?");
-            updateValues.push(close_time);
-          }
-  
-          if (appoint_slot_duration) {
-            updateFields.push("appoint_slot_duration = ?");
-            updateValues.push(appoint_slot_duration);
-          }
-  
-          // Update bank-related fields
-          if (account_number) {
-            updateFields.push("account_number = ?");
-            updateValues.push(account_number);
-          }
-  
-          if (bank_name) {
-            updateFields.push("bank_name = ?");
-            updateValues.push(bank_name);
-          }
-  
-          if (upi_id) {
-            updateFields.push("upi_id = ?");
-            updateValues.push(upi_id);
-          }
-  
-          if (ifsc_code) {
-            updateFields.push("ifsc_code = ?");
-            updateValues.push(ifsc_code);
-          }
-  
-          if (head_img) {
-            updateFields.push("head_img = ?");
-            updateValues.push(head_img);
-          }
-  
-          if (foot_img) {
-            updateFields.push("foot_img = ?");
-            updateValues.push(foot_img);
-          }
+          // Push values to be updated
+          if (name) updateFields.push("branch_name = ?"), updateValues.push(name);
+          if (address) updateFields.push("branch_address = ?"), updateValues.push(address);
+          if (contact) updateFields.push("branch_contact = ?"), updateValues.push(contact);
+          if (open_time) updateFields.push("open_time = ?"), updateValues.push(open_time);
+          if (close_time) updateFields.push("close_time = ?"), updateValues.push(close_time);
+          if (appoint_slot_duration) updateFields.push("appoint_slot_duration = ?"), updateValues.push(appoint_slot_duration);
+          if (account_number) updateFields.push("account_number = ?"), updateValues.push(account_number);
+          if (bank_name) updateFields.push("bank_name = ?"), updateValues.push(bank_name);
+          if (upi_id) updateFields.push("upi_id = ?"), updateValues.push(upi_id);
+          if (ifsc_code) updateFields.push("ifsc_code = ?"), updateValues.push(ifsc_code);
+          if (head_img) updateFields.push("head_img = ?"), updateValues.push(head_img);
+          if (foot_img) updateFields.push("foot_img = ?"), updateValues.push(foot_img);
   
           const updateQuery = `UPDATE branches SET ${updateFields.join(", ")} WHERE branch_id = ?`;
   
@@ -1255,10 +1230,13 @@ const updateTreatmentDetails = (req, res) => {
       });
     } catch (error) {
       registrationLogger.log("error", "internal server error");
-      console.log(error);
+      console.error("Error in updateBranchDetails:", error);
       res.status(500).json({ success: false, message: error.message });
     }
   };
+  
+  
+  
 
   
 

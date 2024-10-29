@@ -181,7 +181,7 @@ const CalenderSetting = () => {
   const getBranchDetails = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8888/api/v1/super-admin/getBranchDetailsByBranch/${branch_name}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/super-admin/getBranchDetailsByBranch/${branch_name}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -200,7 +200,7 @@ const CalenderSetting = () => {
     console.log(upData, branch_name, "ttttttttttttttttttttttttttttt");
     try {
       const response = await axios.put(
-        `http://localhost:8888/api/v1/super-admin/updateBranchCalenderSetting/${branch_name}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/super-admin/updateBranchCalenderSetting/${branch_name}`,
         upData,
         {
           headers: {
@@ -272,7 +272,7 @@ const CalenderSetting = () => {
   const getHolidayList = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8888/api/v1/super-admin/getHolidays/${branch_name}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/super-admin/getHolidays/${branch_name}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -290,7 +290,7 @@ const CalenderSetting = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:8888/api/v1/super-admin/addBlockDays",
+        "https://huzaifdentalclinic.dentalguru.software/api/v1/super-admin/addBlockDays",
         holidays,
         {
           headers: {
@@ -322,7 +322,7 @@ const CalenderSetting = () => {
     console.log(selected);
     try {
       const response = await axios.put(
-        `http://localhost:8888/api/v1/super-admin/updateHolidays/${selected.holiday_id}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/super-admin/updateHolidays/${selected.holiday_id}`,
         upHolidays,
         {
           headers: {
@@ -350,7 +350,7 @@ const CalenderSetting = () => {
     }
     try {
       const response = await axios.delete(
-        `http://localhost:8888/api/v1/super-admin/deleteHolidays/${id}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/super-admin/deleteHolidays/${id}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -444,9 +444,9 @@ const CalenderSetting = () => {
                       Current Appointment Slot :{" "}
                       <span>{brData[0]?.appoint_slot_duration}</span>
                     </h6>
-                    <h6 className="text-center mt-2 fw-bold text-success">
+                    {/* <h6 className="text-center mt-2 fw-bold text-success">
                       Current Week-off Day : <span>{brData[0]?.week_off}</span>
-                    </h6>
+                    </h6> */}
                   </div>
                   <form onSubmit={updateBranchDetails}>
                     <div className="container calender-time">
@@ -524,7 +524,7 @@ const CalenderSetting = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="container d-flex justify-content-center align-item-center mb-2">
+                    {/* <div className="container d-flex justify-content-center align-item-center mb-2">
                       <h6 className="fw-bold mx-2">Set week-off Day :</h6>
                       <select
                         name="week_off"
@@ -539,7 +539,7 @@ const CalenderSetting = () => {
                           </>
                         ))}
                       </select>
-                    </div>
+                    </div> */}
                     <div className="d-flex justify-content-center">
                       <button className="btn btn-success mx-2">Change</button>
                     </div>

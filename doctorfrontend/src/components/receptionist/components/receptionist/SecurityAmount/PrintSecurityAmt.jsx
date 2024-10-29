@@ -33,7 +33,7 @@ const PrintSecurityAmt = () => {
   const getBranchDetails = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/getBranchDetailsByBranch/${branch}`
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/getBranchDetailsByBranch/${branch}`
       );
       console.log(data);
       setGetBranch(data);
@@ -45,7 +45,7 @@ const PrintSecurityAmt = () => {
   const getBill = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/getSinglePatientSecurityAmt/${branch}/${SId}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/getSinglePatientSecurityAmt/${branch}/${SId}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -64,7 +64,7 @@ const PrintSecurityAmt = () => {
   const getPatientTreatmentDetails = async (uhid) => {
     try {
       const response = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/getPatientDeatilsByUhidFromSecurityAmt/${branch}/${uhid}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/getPatientDeatilsByUhidFromSecurityAmt/${branch}/${uhid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -170,7 +170,7 @@ const PrintSecurityAmt = () => {
      
       cogoToast.success("Security Amount bill Sending to email");
       const response = await axios.post(
-        "http://localhost:8888/api/v1/receptionist/prescriptionOnMail",
+        "https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/prescriptionOnMail",
         formData,
         {
           headers: {
@@ -215,7 +215,7 @@ const PrintSecurityAmt = () => {
       }
 
       const res = await axios.post(
-        "http://localhost:8888/api/v1/receptionist/sendWhatsapp",
+        "https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/sendWhatsapp",
         formData,
         {
           headers: {

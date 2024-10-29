@@ -14,12 +14,13 @@ import Files from "./Files";
 import Overview from "./Overview";
 import { useParams } from "react-router-dom";
 
+
 const Navbar = () => {
   const { uhid } = useParams();
   console.log(uhid);
   return (
     <Wrapper>
-      <ul className="nav nav-tabs" id="myTab" role="tablist">
+      <ul style={{maxWidth: "900px"}} className="nav nav-tabs" id="myTab" role="tablist">
         <li className="nav-item" role="presentation">
           <button
             className="nav-link active"
@@ -190,6 +191,8 @@ const Navbar = () => {
           </button>
         </li>
 
+<div className="w-100">
+
         <div className="tab-content" id="myTabContent">
           <div
             className="tab-pane fade show active"
@@ -348,6 +351,7 @@ const Navbar = () => {
             </ul>
           </div>
         </div>
+</div>
       </ul>
     </Wrapper>
   );

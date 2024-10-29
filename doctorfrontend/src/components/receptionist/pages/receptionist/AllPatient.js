@@ -29,7 +29,7 @@ function AllPatient() {
     setLoading(true);
     try {
       const response = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/get-Patients/${branch}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/get-Patients/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",

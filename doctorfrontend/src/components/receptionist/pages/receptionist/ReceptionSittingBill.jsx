@@ -34,7 +34,7 @@ const ReceptionSittingBill = () => {
   const getBranchDetails = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/getBranchDetailsByBranch/${branch}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/getBranchDetailsByBranch/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -62,7 +62,7 @@ const ReceptionSittingBill = () => {
   const getPatientDetail = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/getAppointmentsWithPatientDetailsById/${tpid}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/getAppointmentsWithPatientDetailsById/${tpid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -81,7 +81,7 @@ const ReceptionSittingBill = () => {
   const getLabAllData = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/lab-details/${tpid}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/lab-details/${tpid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -99,7 +99,7 @@ const ReceptionSittingBill = () => {
   const getSittingBillbyId = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/getSittingBillbyId/${branch}/${sbid}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/getSittingBillbyId/${branch}/${sbid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -107,6 +107,7 @@ const ReceptionSittingBill = () => {
           },
         }
       );
+      console.log(data, "get here");
       setSittingBill(data);
     } catch (error) {
       console.log(error);
@@ -118,7 +119,7 @@ const ReceptionSittingBill = () => {
   const getDoctorDetails = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/getEmployeeDetailsbyId/${branch}/${getPatientData[0]?.doctor_id}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/getEmployeeDetailsbyId/${branch}/${getPatientData[0]?.doctor_id}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -137,7 +138,7 @@ const ReceptionSittingBill = () => {
   const getExamineDetails = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/getDentalDataByTpid/${tpid}/${branch}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/getDentalDataByTpid/${tpid}/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -281,7 +282,7 @@ const ReceptionSittingBill = () => {
       }
       cogoToast.success("Sitting bill Sending to email");
       const response = await axios.post(
-        "http://localhost:8888/api/v1/receptionist/prescriptionOnMail",
+        "https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/prescriptionOnMail",
         formData,
         {
           headers: {
@@ -335,7 +336,7 @@ const ReceptionSittingBill = () => {
       }
 
       const res = await axios.post(
-        "http://localhost:8888/api/v1/receptionist/sendWhatsapp",
+        "https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/sendWhatsapp",
         formData,
         {
           headers: {
@@ -358,7 +359,7 @@ const ReceptionSittingBill = () => {
   const billDetailsSms = async () => {
     try {
       const { data } = await axios.post(
-        "http://localhost:8888/api/v1/receptionist/sendSMS",
+        "https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/sendSMS",
         formDetails,
         {
           headers: {
@@ -795,7 +796,7 @@ const ReceptionSittingBill = () => {
                 <div className="text-termslong"></div>
               </div>
             </div>
-            <div className="row d-none d-print-block fixed-bottom">
+            <div className="row d-none d-print-block">
               <div className="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                 <div className="clinic-logo">
                   <img

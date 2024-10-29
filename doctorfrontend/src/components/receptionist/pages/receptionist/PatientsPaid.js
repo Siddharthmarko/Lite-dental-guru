@@ -25,7 +25,7 @@ function PatientsPaid() {
     setLoadingEffect(true);
     try {
       const { data } = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/paidBillLIst/${branch}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/paidBillLIst/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",

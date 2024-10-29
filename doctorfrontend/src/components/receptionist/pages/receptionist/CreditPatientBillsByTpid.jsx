@@ -37,7 +37,7 @@ const CreditPatientBillsByTpid = () => {
   const getBranchDetails = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/getBranchDetailsByBranch/${branch}`
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/getBranchDetailsByBranch/${branch}`
       );
       console.log(data);
       setGetBranch(data);
@@ -51,7 +51,7 @@ const CreditPatientBillsByTpid = () => {
   const getPatientDetail = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/getAppointmentsWithPatientDetailsById/${tpid}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/getAppointmentsWithPatientDetailsById/${tpid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -80,7 +80,7 @@ const CreditPatientBillsByTpid = () => {
   const getExaminDetail = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/getDentalDataByTpid/${tpid}/${branch}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/getDentalDataByTpid/${tpid}/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -104,7 +104,7 @@ const CreditPatientBillsByTpid = () => {
   const getTreatDetail = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/getTreatmentDetailsViaTpid/${tpid}/${branch}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/getTreatmentDetailsViaTpid/${tpid}/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -129,7 +129,7 @@ const CreditPatientBillsByTpid = () => {
   const getTreatPrescriptionByAppointId = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/getTreatPrescriptionByTpid/${tpid}/${branch}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/getTreatPrescriptionByTpid/${tpid}/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -153,7 +153,7 @@ const CreditPatientBillsByTpid = () => {
   const getTreatmentSuggestAppointId = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/getTreatSuggestViaTpid/${tpid}/${branch}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/getTreatSuggestViaTpid/${tpid}/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -195,7 +195,7 @@ const CreditPatientBillsByTpid = () => {
   const getBillDetails = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/billDetailsViaTpid/${tpid}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/billDetailsViaTpid/${tpid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -308,7 +308,7 @@ const CreditPatientBillsByTpid = () => {
       }
       cogoToast.success("Treatment bill sending to email");
       const response = await axios.post(
-        "http://localhost:8888/api/v1/receptionist/prescriptionOnMail",
+        "https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/prescriptionOnMail",
         formData,
         {
           headers: {
@@ -360,7 +360,7 @@ const CreditPatientBillsByTpid = () => {
       }
 
       const res = await axios.post(
-        "http://localhost:8888/api/v1/receptionist/sendWhatsapp",
+        "https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/sendWhatsapp",
         formData,
         {
           headers: {
@@ -382,7 +382,7 @@ const CreditPatientBillsByTpid = () => {
   const billDetailsSms = async () => {
     try {
       const { data } = await axios.post(
-        "http://localhost:8888/api/v1/receptionist/sendSMS",
+        "https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/sendSMS",
         formDetails,
         {
           headers: {
@@ -880,6 +880,17 @@ const CreditPatientBillsByTpid = () => {
             </button> */}
           </div>
         </div>
+        <div className="row d-none d-print-block">
+              <div className="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div className="clinic-logo">
+                  <img
+                    src={getBranch[0]?.foot_img}
+                    alt="header"
+                    className="img-fluid"
+                  />
+                </div>
+              </div>
+            </div>
         {/* print button */}
         {/* <div className="container-fluid">
           <div className="d-flex justify-content-center align-items-center my-2 gap-2">

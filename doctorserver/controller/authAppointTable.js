@@ -957,11 +957,17 @@ const insertPatientPrescription = (req, res) => {
 const prescriptionOnMail = (req, res) => {
   try {
     const { email, patient_name, subject, textMatter } = req.body;
+
+    // Check if the file is uploaded
+    if (!req.file) {
+      return res.status(400).json({ message: "No file uploaded." });
+    }
+    
     const pdfPath = req.file.path;
     const transporter = nodemailer.createTransport({
-     host: process.env.HOST, 
-  port: 465,  
-  secure: true, 
+      host: process.env.HOST, 
+      port: 465,  
+      secure: true, 
       auth: {
         user: process.env.EMAILSENDER,
         pass: process.env.EMAILPASSWORD,
@@ -975,7 +981,7 @@ const prescriptionOnMail = (req, res) => {
       text: textMatter,
       attachments: [
         {
-          filename: "prescription.pdf",
+          filename: "Bill.pdf",
           path: pdfPath,
           contentType: "application/pdf",
         },
@@ -984,19 +990,19 @@ const prescriptionOnMail = (req, res) => {
 
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
-        console.error(error);
-        return res
-          .status(500)
-          .json({message:"An error occurred while sending the email.", err: error});
+        console.error("Error sending email:", error);
+        return res.status(500).json("An error occurred while sending the email.");
       } else {
-          res.status(200).json("Successful");
-        console.log("OTP sent:", info.response);
+        console.log("Email sent successfully:", info.response);
+        return res.status(200).json("Email sent successfully");
       }
     });
   } catch (error) {
-    res.status(500).json({ success: false, message: "internal server error" });
+    console.error("Internal server error:", error);
+    res.status(500).json({ success: false, message: "Internal server error" });
   }
 };
+
 
 const sendSMS = async (req, res) => {
   const { phoneNumber, message } = req.body;
@@ -1027,7 +1033,7 @@ const sendWhatsapp = async (req, res) => {
       .json({ success: false, message: "All fields required" });
   }
   console.log("1019", mediaFile, phoneNumber, message);
-  const fileUrl = `https://dentalguru-lite.vimubds5.a2hosted.com/prescription/${mediaFile.filename}`;
+  const fileUrl = `https://huzaifdentalclinic.dentalguru.software/prescription/${mediaFile.filename}`;
   console.log("1027", fileUrl.toString());
   try {
     const response = await client.messages.create({

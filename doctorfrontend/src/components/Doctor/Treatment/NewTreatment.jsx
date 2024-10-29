@@ -32,7 +32,7 @@ const NewTreatment = () => {
   const getBillData = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8888/api/doctor/getPatBills/${branch}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/doctor/getPatBills/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -59,7 +59,7 @@ const NewTreatment = () => {
   const getPatientDetail = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:8888/api/doctor/getAppointmentsWithPatientDetailsById/${tpid}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/doctor/getAppointmentsWithPatientDetailsById/${tpid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -102,7 +102,7 @@ const NewTreatment = () => {
   const getExamintionTeeth = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:8888/api/doctor/getExaminedataById/${tpid}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/doctor/getExaminedataById/${tpid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -134,7 +134,7 @@ const NewTreatment = () => {
   const getUniqueTreatValues = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8888/api/doctor/getFilteredTreat/13/${branch}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/doctor/getFilteredTreat/13/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -155,7 +155,7 @@ const NewTreatment = () => {
   const getData = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8888/api/doctor/getDentalDataByID/${appoint_id}/${tpid}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/doctor/getDentalDataByID/${appoint_id}/${tpid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -175,7 +175,7 @@ const NewTreatment = () => {
   const fetchPatientDetails = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8888/api/doctor/getPatientLabWithPatientDetails/${tpid}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/doctor/getPatientLabWithPatientDetails/${tpid}`,
         {
           headers: {
             "Content-Type": "application/json",

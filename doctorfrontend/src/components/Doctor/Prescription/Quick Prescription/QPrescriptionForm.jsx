@@ -41,7 +41,7 @@ const QPrescriptionForm = () => {
   const ChiefComplainTOList = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:8888/api/doctor/getChiefComplain",
+        "https://huzaifdentalclinic.dentalguru.software/api/doctor/getChiefComplain",
         {
           headers: {
             "Content-Type": "application/json",
@@ -57,7 +57,7 @@ const QPrescriptionForm = () => {
   const fetchAppointments = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8888/api/doctor/get-Patient-by-id/${patient_uhid}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/doctor/get-Patient-by-id/${patient_uhid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -114,7 +114,7 @@ const QPrescriptionForm = () => {
 
     try {
       const response = await axios.post(
-        `http://localhost:8888/api/doctor/insertPatientPrescription`,
+        `https://huzaifdentalclinic.dentalguru.software/api/doctor/insertPatientPrescription`,
         formData
         // {
         //   headers: {
@@ -155,7 +155,8 @@ const QPrescriptionForm = () => {
         >
           <Sider />
         </div>
-            <div className="col-lg-11 col-11 ps-0 m-2">
+            {/* <div className="col-lg-11 col-11 ps-0 m-2"> */}
+            <div className="w-100 ps-md-5 ms-md-2 m-xxl-auto p-xxl-0">
               <div className="container">
                 <div className="row">
                   <div className="col-lg-12 col-md-12">

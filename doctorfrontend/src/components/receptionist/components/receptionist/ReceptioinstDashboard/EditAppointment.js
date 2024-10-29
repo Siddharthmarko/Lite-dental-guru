@@ -40,7 +40,7 @@ function EditAppointment({ onClose, appointmentInfo, allAppointmentData }) {
   const getBranchDetail = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/get-branch-detail/${branch}`
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/get-branch-detail/${branch}`
       );
       console.log(response);
       setBranchDetail(response.data.data);
@@ -52,7 +52,7 @@ function EditAppointment({ onClose, appointmentInfo, allAppointmentData }) {
   const getBranchHolidays = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/get-branch-holidays/${branch}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/get-branch-holidays/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -165,7 +165,7 @@ function EditAppointment({ onClose, appointmentInfo, allAppointmentData }) {
   const getTreatment = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8888/api/v1/receptionist/get-treatments"
+        "https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/get-treatments"
       );
       console.log(response);
       setTreatment(response?.data?.data);
@@ -176,7 +176,7 @@ function EditAppointment({ onClose, appointmentInfo, allAppointmentData }) {
   const getDoctors = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/get-doctors/${branch}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/get-doctors/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -383,7 +383,7 @@ function EditAppointment({ onClose, appointmentInfo, allAppointmentData }) {
   const timelineData = async (id) => {
     try {
       const response = await axios.post(
-        "http://localhost:8888/api/v1/receptionist/insertTimelineEvent",
+        "https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/insertTimelineEvent",
         {
           type: "Edit Appointment",
           description: "Edit Appointment",
@@ -413,10 +413,10 @@ function EditAppointment({ onClose, appointmentInfo, allAppointmentData }) {
     }
 
     const selectedDay = new Date(selectedDate).getDay();
-    if (selectedDay === weekOffDay) {
-      alert("Selected date is a week off day. Please choose another date.");
-      return;
-    }
+    // if (selectedDay === weekOffDay) {
+    //   alert("Selected date is a week off day. Please choose another date.");
+    //   return;
+    // }
 
     // Convert appointment time to Date object
     const selectedDateTime = new Date(data.appointment_dateTime);
@@ -565,7 +565,7 @@ function EditAppointment({ onClose, appointmentInfo, allAppointmentData }) {
       try {
         setLoading(true);
         const response = await axios.put(
-          "http://localhost:8888/api/v1/receptionist/update-appointment",
+          "https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/update-appointment",
           newAppointment,
           {
             headers: {
@@ -620,7 +620,7 @@ function EditAppointment({ onClose, appointmentInfo, allAppointmentData }) {
   const getDoctorsWithLeave = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/get-doctors-with-leave/${branch}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/get-doctors-with-leave/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",

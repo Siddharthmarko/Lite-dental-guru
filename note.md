@@ -1,7 +1,7 @@
 # found after deployement
 <!-- 1. ViewPatientSittingBill/4/7/Single%20Implant ye page dhange se kaam nahi kar raha and due se sitting bill mai gaya tha pay now par gaya towaha apge security amount wali cheez hai t usko aalg karna hai  -->
 2. and clini coonfigure mai se branch update hona hi chahie matlb sabhi jagah se detial badle
-3. ViewPatientTotalBill/49 back button atak agay
+<!-- 3. ViewPatientTotalBill/49 back button atak agay -->
   - > jab dobara yaha phochneg etab dekghne back ka
 <!-- 4. all_credit_invoice?tab=creditSittingBill isme change status to paid karte hai to blank ho raha hai  -->
   - > its not a bug its feature
@@ -21,6 +21,13 @@
 14. quick prescripotn laxmi bhavani ke yaha bhi daalna hoga
 15. okay prescription mai kuych cheeze to bhari rahe reuire hone chahiye
 16. bcrypt se bcryptjs mai aaye hai to har jagah ye karna hai
+17. reminder.js mai nodemailer ki cheeze offline ke hisaab se karni hai 
+18. directory name ko bhi change karna hai 
+19. branch ke header footer ke liye
+20. prescription controll mai bhi url env se hona chahiye
+21. env mai path bhi dena chahiye header and footer ka 
+22. branchd header footer ku ni ho rahe dekhna hai ye cheez
+23. re you sure you want to continue lab test is still pend
 
 # 9 oct
 - > whatsapp ke liye bhi cheeze dynamic karna hai path 

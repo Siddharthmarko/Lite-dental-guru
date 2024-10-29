@@ -165,7 +165,7 @@ const PatientProfile = () => {
   const getPatient = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/get-Patient-by-id/${branch}/${pid}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/get-Patient-by-id/${branch}/${pid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -183,7 +183,7 @@ const PatientProfile = () => {
   const getOngoingTreat = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/getTreatmentViaUhid/${branch}/${pid}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/getTreatmentViaUhid/${branch}/${pid}`,
         {
           headers: {
             "Content-Type": "application/json",

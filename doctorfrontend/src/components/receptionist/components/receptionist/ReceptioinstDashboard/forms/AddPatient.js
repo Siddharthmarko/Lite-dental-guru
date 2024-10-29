@@ -76,7 +76,7 @@ function AddPatient() {
   const getBranchDetail = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/get-branch-detail/${branch}`
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/get-branch-detail/${branch}`
       );
       console.log(response);
       setBranchDetail(response.data.data);
@@ -88,7 +88,7 @@ function AddPatient() {
   const getInsuranceCompany = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/getInsuranceCompany/${branch}`
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/getInsuranceCompany/${branch}`
       );
 
       setInsuranceCompany(response.data.data);
@@ -101,7 +101,7 @@ function AddPatient() {
   const getBranchHolidays = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/get-branch-holidays/${branch}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/get-branch-holidays/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -196,7 +196,7 @@ function AddPatient() {
   const getPatient = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/get-Patients/${branch}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/get-Patients/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -214,7 +214,7 @@ function AddPatient() {
   const getAppointments = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/get-appointments/${branch}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/get-appointments/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -231,7 +231,7 @@ function AddPatient() {
   const getDoctors = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/get-doctors/${branch}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/get-doctors/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -255,7 +255,7 @@ function AddPatient() {
   const getDisease = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8888/api/v1/receptionist/get-disease"
+        "https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/get-disease"
       );
       console.log(response);
       setDisease(response?.data?.data);
@@ -268,7 +268,7 @@ function AddPatient() {
   const getTreatment = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8888/api/v1/receptionist/get-treatments"
+        "https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/get-treatments"
       );
       console.log(response);
       setTreatment(response?.data?.data);
@@ -281,7 +281,7 @@ function AddPatient() {
   const getDoctorsWithLeave = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/get-doctors-with-leave/${branch}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/get-doctors-with-leave/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -469,7 +469,7 @@ function AddPatient() {
   const timelineData = async (id) => {
     try {
       const response = await axios.post(
-        "http://localhost:8888/api/v1/receptionist/insertTimelineEvent",
+        "https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/insertTimelineEvent",
         {
           type: "Add Patient",
           description: "Add Patient and Appointment scheduled",
@@ -507,12 +507,12 @@ function AddPatient() {
     }
 
     const selectedDay = new Date(selectedDate).getDay();
-    if (selectedDay === weekOffDay) {
-      cogoToast.info(
-        "Selected date is a week off day. Please choose another date."
-      );
-      return;
-    }
+    // if (selectedDay === weekOffDay) {
+    //   cogoToast.info(
+    //     "Selected date is a week off day. Please choose another date."
+    //   );
+    //   return;
+    // }
 
     if (
       patients.some(
@@ -689,7 +689,7 @@ function AddPatient() {
       try {
         setLoading(true);
         const response = await axios.post(
-          "http://localhost:8888/api/v1/receptionist/add-patient",
+          "https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/add-patient",
           newPatient,
           {
             headers: {

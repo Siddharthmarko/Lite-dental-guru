@@ -30,7 +30,7 @@ const ViewQuickPrescription = () => {
   const getBranchDetails = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8888/api/doctor/getBranchDetails/${branch}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/doctor/getBranchDetails/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -52,7 +52,7 @@ const ViewQuickPrescription = () => {
   const getPatientDetail = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:8888/api/doctor/getPatientByAppID/${appointId}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/doctor/getPatientByAppID/${appointId}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -69,7 +69,7 @@ const ViewQuickPrescription = () => {
   const getTreatPrescriptionByAppointId = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8888/api/doctor/getQuickPrescription/${appointId}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/doctor/getQuickPrescription/${appointId}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -274,7 +274,7 @@ const ViewQuickPrescription = () => {
                 </table>
               </div>
 
-              <div className="sign-seal">
+              <div className="sign-seal mt-5">
                 <div>
                   <h4>Doctor's signature</h4>
                 </div>
@@ -305,6 +305,15 @@ const ViewQuickPrescription = () => {
                 >
                   Treatment Dashboard
                 </button> */}
+                  <div className="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12  d-none d-print-block">
+                <div className="clinic-logo">
+                  <img
+                    src={getBranch[0]?.foot_img}
+                    alt="header"
+                    className="img-fluid"
+                  />
+                </div>
+              </div>
               </div>
             </div>
           </div>

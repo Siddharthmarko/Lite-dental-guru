@@ -62,7 +62,7 @@ function Doctor() {
   const getDoctors = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/get-doctors/${branch}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/get-doctors/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -79,7 +79,7 @@ function Doctor() {
   const getPatient = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/get-Patients/${branch}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/get-Patients/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -97,7 +97,7 @@ function Doctor() {
   const getAppointments = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/get-appointments/${branch}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/get-appointments/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -115,7 +115,7 @@ function Doctor() {
   const getDoctorsWithLeave = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/get-doctors-with-leave/${branch}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/get-doctors-with-leave/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -132,7 +132,7 @@ function Doctor() {
   const getBranchDetail = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/get-branch-detail/${branch}`
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/get-branch-detail/${branch}`
       );
       console.log(response);
       setBranchDetail(response.data.data);
@@ -143,7 +143,7 @@ function Doctor() {
   const getBranchHolidays = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8888/api/v1/receptionist/get-branch-holidays/${branch}`,
+        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/get-branch-holidays/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -316,8 +316,10 @@ function Doctor() {
       });
       setFilteredDoctor(filteredDoctors);
     } else {
-      let currentDoctor = availableDoctorOnDate.filter((item) => item.employee_ID == currentUser?.employee_ID)
-      console.log("Available doctor - : ", currentDoctor)
+      let currentDoctor = availableDoctorOnDate.filter(
+        (item) => item.employee_ID == currentUser?.employee_ID
+      );
+      console.log("Available doctor - : ", currentDoctor);
       setFilteredDoctor(currentDoctor);
     }
   };
@@ -406,11 +408,11 @@ function Doctor() {
                         appointment.appointment_dateTime
                       ).getTime();
                       // Check if the appointment timing overlaps with the current slot
-
+                      console.log(new Date(slot));
+                      console.log(new Date(appointment.appointment_dateTime));
                       return appointmentTime === slotTime;
                     });
                   });
-
                 return (
                   <tr key={index}>
                     {/* <td>{index + 1}</td> */}
@@ -428,11 +430,12 @@ function Doctor() {
                           <option value="Morning">Morning</option>
                           {/* Display available time slots for the current doctor */}
                           {availableMorningSlots &&
-                            availableMorningSlots?.map((slot, i) => (
+                            availableMorningSlots.map((slot, i) => (
                               <option key={i} value={slot} disabled>
                                 {new Date(slot).toLocaleTimeString([], {
                                   hour: "2-digit",
                                   minute: "2-digit",
+                                  hour12: true, // Use 12-hour format
                                 })}
                               </option>
                             ))}
@@ -443,13 +446,14 @@ function Doctor() {
                           style={{ cursor: "pointer" }}
                         >
                           {/* Display available time slots for the current doctor */}
-                          <option value="Morning">Evening</option>
+                          <option value="Evening">Evening</option>
                           {availableEveningSlots &&
-                            availableEveningSlots?.map((slot, i) => (
+                            availableEveningSlots.map((slot, i) => (
                               <option key={i} value={slot} disabled>
                                 {new Date(slot).toLocaleTimeString([], {
                                   hour: "2-digit",
                                   minute: "2-digit",
+                                  hour12: true, // Use 12-hour format
                                 })}
                               </option>
                             ))}
