@@ -232,7 +232,7 @@ const SittingBill = () => {
         console.log("Form data prepared:", Array.from(formData.entries()));
   
         const response = await axios.post(
-          "http://localhost:8888/api/doctor/prescriptionOnMail",
+          "https://huzaifdentalclinic.dentalguru.software/api/doctor/prescriptionOnMail",
           formData,
           {
             headers: { "Content-Type": "multipart/form-data" }, // Optional

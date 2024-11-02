@@ -279,13 +279,14 @@ const PatientBillsByTpid = () => {
       }
   
       // Generate the PDF from the HTML element
-      const canvas = await html2canvas(element);
-      const imgData = canvas.toDataURL("image/png");
+      const canvas = await html2canvas(element, { scale: 0.5 }); // Reduce scale for lower resolution
+      const imgData = canvas.toDataURL("image/jpeg", 0.5); // Use JPEG format with lower quality
+  
       const pdf = new jsPDF();
       const imgWidth = 210; // A4 width in mm
       const imgHeight = (canvas.height * imgWidth) / canvas.width;
   
-      pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
+      pdf.addImage(imgData, "JPEG", 0, 0, imgWidth, imgHeight); // Use JPEG for smaller file size
       const pdfData = pdf.output("blob");
   
       // Prepare form data
@@ -305,7 +306,7 @@ const PatientBillsByTpid = () => {
   
         // Make the API call
         const response = await axios.post(
-          "http://localhost:8888/api/doctor/prescriptionOnMail",
+          "https://huzaifdentalclinic.dentalguru.software/api/doctor/prescriptionOnMail",
           formData,
           {
             headers: {
@@ -332,6 +333,7 @@ const PatientBillsByTpid = () => {
       cogoToast.error("Error sending bill.");
     }
   };
+  
   
 
   const sendPrescriptionWhatsapp = async () => {

@@ -28,6 +28,9 @@
 21. env mai path bhi dena chahiye header and footer ka 
 22. branchd header footer ku ni ho rahe dekhna hai ye cheez
 23. re you sure you want to continue lab test is still pend
+24. server ke code ko na rakhlena kuki presciriton kel iye change hue hai
+25. branch update mai doctor ke paas bhi cheeze update honi hchaiye to filhaal edit na kar paaye
+26.  
 
 # 9 oct
 - > whatsapp ke liye bhi cheeze dynamic karna hai path 

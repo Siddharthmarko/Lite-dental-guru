@@ -223,7 +223,7 @@ const PrescriptionQuick = () => {
         }
   
         const response = await axios.post(
-          "http://localhost:8888/api/doctor/prescriptionOnMail",
+          "https://huzaifdentalclinic.dentalguru.software/api/doctor/prescriptionOnMail",
           formData,
           {
             headers: {

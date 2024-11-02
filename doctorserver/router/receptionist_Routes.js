@@ -274,8 +274,8 @@ router.get(
   getSittingBillDueBySittingId
 );
 
-router.post("/sendOtp", sendOtp);
-router.post("/verifyOtp", verifyOtp);
+// router.post("/sendOtp", sendOtp);
+// router.post("/verifyOtp", verifyOtp);
 router.put("/resetPassword", resetPassword);
 router.put(
   "/updateSittingBillPayment/:sbid/:branch",
@@ -329,7 +329,7 @@ const prestorage = multer.diskStorage({
 const preUpload = multer({ storage: prestorage });
 router.post(
   "/prescriptionOnMail",
-  authenticate,
+//   authenticate,
   preUpload.single("file"),
   prescriptionOnMail
 );

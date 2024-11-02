@@ -591,15 +591,19 @@ router.get(
   getSittingBillDueBySittingId
 );
 
-const prestorage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "prescription/"); // Define destination folder
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + path.extname(file.originalname));
-  },
-});
-router.get("/getQuickPrescription/:appointId", getQuickPrescription);
+// const prestorage = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     cb(null, "prescription/"); // Define destination folder
+//   },
+//   filename: function (req, file, cb) {
+//     cb(null, Date.now() + path.extname(file.originalname));
+//   },
+// }); 
+// router.get("/getQuickPrescription/:appointId", getQuickPrescription);
+
+// const preUpload = multer({ storage: prestorage });
+
+const prestorage = multer.memoryStorage();
 
 const preUpload = multer({ storage: prestorage });
 router.post(
