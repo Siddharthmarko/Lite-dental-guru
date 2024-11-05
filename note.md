@@ -30,7 +30,9 @@
 23. re you sure you want to continue lab test is still pend
 24. server ke code ko na rakhlena kuki presciriton kel iye change hue hai
 25. branch update mai doctor ke paas bhi cheeze update honi hchaiye to filhaal edit na kar paaye
-26.  
+26. backend update hai to baki jagah bhi fir se patakna padega
+27. backend mai bnhi kuch jagah file ko save bagera karne keliye url lagte haito unko checkkarna hai
+28. githb maintaine ka kaam to hai hi hai 
 
 # 9 oct
 - > whatsapp ke liye bhi cheeze dynamic karna hai path 

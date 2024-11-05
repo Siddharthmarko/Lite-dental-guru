@@ -100,7 +100,7 @@ const ClinicConfigSetting = () => {
     e.preventDefault();
     try {
       const res = await axios.put(
-        `https://huzaifdentalclinic.dentalguru.software/api/v1/super-admin/updateDoctorPaymentAllowSetting/${branch_name}`,
+        `http://localhost:8888/api/v1/super-admin/updateDoctorPaymentAllowSetting/${branch_name}`,
         {
           doctor_payment: docPayment,
           allow_insurance: allowInsurance,
@@ -126,7 +126,7 @@ const ClinicConfigSetting = () => {
   const getBranchData = async () => {
     try {
       const { data } = await axios.get(
-        `https://huzaifdentalclinic.dentalguru.software/api/v1/super-admin/getBranchDetailsByBranch/${branch_name}`,
+        `http://localhost:8888/api/v1/super-admin/getBranchDetailsByBranch/${branch_name}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -146,7 +146,7 @@ const ClinicConfigSetting = () => {
   const getInsuranceList = async () => {
     try {
       const { data } = await axios.get(
-        `https://huzaifdentalclinic.dentalguru.software/api/v1/super-admin/getInsuranceList/${branch_name}`,
+        `http://localhost:8888/api/v1/super-admin/getInsuranceList/${branch_name}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -171,7 +171,7 @@ const ClinicConfigSetting = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        `https://huzaifdentalclinic.dentalguru.software/api/v1/super-admin/addInsuranceCompany/${branch_name}`,
+        `http://localhost:8888/api/v1/super-admin/addInsuranceCompany/${branch_name}`,
         addIns,
         {
           headers: {
@@ -193,7 +193,7 @@ const ClinicConfigSetting = () => {
     e.preventDefault();
     try {
       const res = await axios.put(
-        `https://huzaifdentalclinic.dentalguru.software/api/v1/super-admin/updateInsuranceDetails/${selected.ins_id}/${branch_name}`,
+        `http://localhost:8888/api/v1/super-admin/updateInsuranceDetails/${selected.ins_id}/${branch_name}`,
         upIns,
         {
           headers: {
@@ -216,7 +216,7 @@ const ClinicConfigSetting = () => {
       const confirm = window.confirm("Are you sure you want to delete ?");
       if (confirm) {
         const del = await axios.delete(
-          `https://huzaifdentalclinic.dentalguru.software/api/v1/super-admin/deleteInsurance/${id}/${branch_name}`,
+          `http://localhost:8888/api/v1/super-admin/deleteInsurance/${id}/${branch_name}`,
           {
             headers: {
               "Content-Type": "application/json",

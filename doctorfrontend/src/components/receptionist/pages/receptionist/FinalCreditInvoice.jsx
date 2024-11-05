@@ -25,7 +25,7 @@ function FinalCreditInvoice() {
     setLoadingEffect(true);
     try {
       const { data } = await axios.get(
-        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/paidBillLIst/${branch}`,
+        `http://localhost:8888/api/v1/receptionist/paidBillLIst/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -188,7 +188,7 @@ function FinalCreditInvoice() {
     }
     try {
       const res = await axios.put(
-        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/ChangeStatusToPaidPatientBill/${id}/${branch}`,
+        `http://localhost:8888/api/v1/receptionist/ChangeStatusToPaidPatientBill/${id}/${branch}`,
         billUpdateForm,
         {
           headers: {

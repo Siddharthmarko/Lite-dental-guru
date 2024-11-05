@@ -260,7 +260,7 @@ CREATE TABLE `branches` (
 --
 
 INSERT INTO `branches` (`branch_id`, `branch_name`, `branch_email`, `hospital_name`, `hospital_id`, `branch_address`, `branch_contact`, `open_time`, `close_time`, `appoint_slot_duration`, `week_off`, `head_img`, `foot_img`, `account_number`, `bank_name`, `upi_id`, `ifsc_code`, `doctor_payment`, `allow_insurance`, `sharemail`, `sharewhatsapp`, `sharesms`, `hospital_category`, `branch_currency`, `currency_symbol`, `timezone`) VALUES
-(1, 'Madan Mahal', 'siddhartha.marko.3@gmail.com', 'dental square', 'hos_1', 'Madan Mahal', '8602161019', '09:00:00.000000', '23:00:00.000000', '10 min', 'sunday', 'https://dentalguru-lite.vimubds5.a2hosted.com/branchHeadFootImg/17280458019621728022622310header (2).png', 'https://dentalguru-lite.vimubds5.a2hosted.com/branchHeadFootImg/1728022622320footer.png', 2147483647, 'doaguru@bank', 'doaguruUPI', 'DoaguruIFSC234', 'Yes', 'Yes', 'Yes', 'No', 'No', 'Nabh', NULL, NULL, NULL);
+(1, 'Madan Mahal', 'siddhartha.marko.3@gmail.com', 'dental square', 'hos_1', 'Madan Mahal', '8602161019', '09:00:00.000000', '23:00:00.000000', '10 min', 'sunday', 'http://localhost:8888/branchHeadFootImg/17280458019621728022622310header (2).png', 'http://localhost:8888/branchHeadFootImg/1728022622320footer.png', 2147483647, 'doaguru@bank', 'doaguruUPI', 'DoaguruIFSC234', 'Yes', 'Yes', 'Yes', 'No', 'No', 'Nabh', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 

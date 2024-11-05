@@ -103,7 +103,7 @@ const TreatSuggest = () => {
   const updateAppointmentData = async () => {
     try {
       const res = await axios.put(
-        `https://huzaifdentalclinic.dentalguru.software/api/doctor/updateAppointmentPath/${id}/${branch}`,
+        `http://localhost:8888/api/doctor/updateAppointmentPath/${id}/${branch}`,
         {
           currentPath: `/treatmentSuggestion/${id}/${tpid}`,
           tpid: tpid,
@@ -125,7 +125,7 @@ const TreatSuggest = () => {
   const getData = async () => {
     try {
       const { data } = await axios.get(
-        `https://huzaifdentalclinic.dentalguru.software/api/doctor/getDentalDataByID/${id}/${tpid}`,
+        `http://localhost:8888/api/doctor/getDentalDataByID/${id}/${tpid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -161,7 +161,7 @@ const TreatSuggest = () => {
   const getTreatmentList = async () => {
     try {
       const { data } = await axios.get(
-        `https://huzaifdentalclinic.dentalguru.software/api/doctor/treatmentLists`,
+        `http://localhost:8888/api/doctor/treatmentLists`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -181,7 +181,7 @@ const TreatSuggest = () => {
   const getProcedureTreat = async () => {
     try {
       const { data } = await axios.get(
-        "https://huzaifdentalclinic.dentalguru.software/api/doctor/getProcedureList",
+        "http://localhost:8888/api/doctor/getProcedureList",
         {
           headers: {
             "Content-Type": "application/json",
@@ -211,7 +211,7 @@ const TreatSuggest = () => {
   const getPatientDetail = async () => {
     try {
       const res = await axios.get(
-        `https://huzaifdentalclinic.dentalguru.software/api/doctor/getAppointmentsWithPatientDetailsById/${tpid}`,
+        `http://localhost:8888/api/doctor/getAppointmentsWithPatientDetailsById/${tpid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -237,7 +237,7 @@ const TreatSuggest = () => {
   const getLabAllData = async () => {
     try {
       const res = await axios.get(
-        `https://huzaifdentalclinic.dentalguru.software/api/doctor/lab-details/${tpid}`,
+        `http://localhost:8888/api/doctor/lab-details/${tpid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -262,7 +262,7 @@ const TreatSuggest = () => {
   const timelineForTreatSuggest = async () => {
     try {
       const response = await axios.post(
-        "https://huzaifdentalclinic.dentalguru.software/api/doctor/insertTimelineEvent",
+        "http://localhost:8888/api/doctor/insertTimelineEvent",
         {
           type: "Treatment Suggest",
           description: `Select Treatment : ${formData.treatment_name} for disease : ${formData.disease}`,
@@ -319,7 +319,7 @@ const TreatSuggest = () => {
     setLoading(true);
     try {
       const res = await axios.post(
-        `https://huzaifdentalclinic.dentalguru.software/api/doctor/insertTreatSuggest`,
+        `http://localhost:8888/api/doctor/insertTreatSuggest`,
         forms,
         {
           headers: {
@@ -398,7 +398,7 @@ const TreatSuggest = () => {
 
     try {
       const response = await axios.post(
-        `https://huzaifdentalclinic.dentalguru.software/api/doctor/insertLab`,
+        `http://localhost:8888/api/doctor/insertLab`,
         formsData,
         {
           headers: {
@@ -428,7 +428,7 @@ const TreatSuggest = () => {
   const getLabList = async () => {
     try {
       const { data } = await axios.get(
-        `https://huzaifdentalclinic.dentalguru.software/api/doctor/getLab`,
+        `http://localhost:8888/api/doctor/getLab`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -446,7 +446,7 @@ const TreatSuggest = () => {
   const getLabTestList = async () => {
     try {
       const { data } = await axios.get(
-        `https://huzaifdentalclinic.dentalguru.software/api/doctor/getLabTest`,
+        `http://localhost:8888/api/doctor/getLabTest`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -471,7 +471,7 @@ const TreatSuggest = () => {
     if (quest) {
       try {
         const response = await axios.delete(
-          `https://huzaifdentalclinic.dentalguru.software/api/doctor/deleteLabTestSuggest/${id}`,
+          `http://localhost:8888/api/doctor/deleteLabTestSuggest/${id}`,
           {
             headers: {
               "Content-Type": "application/json",
@@ -493,7 +493,7 @@ const TreatSuggest = () => {
   const getListTreatment = async () => {
     try {
       const { data } = await axios.get(
-        `https://huzaifdentalclinic.dentalguru.software/api/doctor/getTreatList/${branch}/${tpid}`,
+        `http://localhost:8888/api/doctor/getTreatList/${branch}/${tpid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -523,7 +523,7 @@ const TreatSuggest = () => {
   const getTreatDetails = async () => {
     try {
       const { data } = await axios.get(
-        `https://huzaifdentalclinic.dentalguru.software/api/doctor/getTreatmentDataList/${tpid}/${branch}`
+        `http://localhost:8888/api/doctor/getTreatmentDataList/${tpid}/${branch}`
       );
       setGetTreatData(data);
     } catch (error) {
@@ -536,7 +536,7 @@ const TreatSuggest = () => {
   const fetchMedicineOptions = async () => {
     try {
       const { data } = await axios.get(
-        "https://huzaifdentalclinic.dentalguru.software/api/doctor/getMedicineData",
+        "http://localhost:8888/api/doctor/getMedicineData",
         {
           headers: {
             "Content-Type": "application/json",
@@ -560,7 +560,7 @@ const TreatSuggest = () => {
   const addNewMedicine = async () => {
     try {
       const response = await axios.post(
-        `https://huzaifdentalclinic.dentalguru.software/api/doctor/purchaseInventory/${branch}`,
+        `http://localhost:8888/api/doctor/purchaseInventory/${branch}`,
         {
           item_name: otherMed,
           item_category: "drugs",
@@ -606,7 +606,7 @@ const TreatSuggest = () => {
     setLoading(true);
     try {
       const response = await axios.post(
-        `https://huzaifdentalclinic.dentalguru.software/api/doctor/insertTreatPrescriptionQuick/${tpid}`,
+        `http://localhost:8888/api/doctor/insertTreatPrescriptionQuick/${tpid}`,
         medicineInput,
         {
           headers: {
@@ -641,7 +641,7 @@ const TreatSuggest = () => {
   const getTreatPrescriptionByAppointId = async () => {
     try {
       const { data } = await axios.get(
-        `https://huzaifdentalclinic.dentalguru.software/api/doctor/getTreatPrescriptionByAppointIdList/${tpid}`,
+        `http://localhost:8888/api/doctor/getTreatPrescriptionByAppointIdList/${tpid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -670,7 +670,7 @@ const TreatSuggest = () => {
 
       if (confirmed) {
         const res = await axios.delete(
-          `https://huzaifdentalclinic.dentalguru.software/api/doctor/deleteTreatPrescriptionById/${id}`,
+          `http://localhost:8888/api/doctor/deleteTreatPrescriptionById/${id}`,
           {
             headers: {
               "Content-Type": "application/json",
@@ -729,7 +729,7 @@ const TreatSuggest = () => {
   const insertCorrectData = async () => {
     try {
       const resp = await axios.post(
-        `https://huzaifdentalclinic.dentalguru.software/api/doctor/addSecurityAmount`,
+        `http://localhost:8888/api/doctor/addSecurityAmount`,
         formsCorrect,
         {
           headers: {

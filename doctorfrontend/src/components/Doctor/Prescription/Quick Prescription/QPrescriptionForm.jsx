@@ -41,7 +41,7 @@ const QPrescriptionForm = () => {
   const ChiefComplainTOList = async () => {
     try {
       const { data } = await axios.get(
-        "https://huzaifdentalclinic.dentalguru.software/api/doctor/getChiefComplain",
+        "http://localhost:8888/api/doctor/getChiefComplain",
         {
           headers: {
             "Content-Type": "application/json",
@@ -57,7 +57,7 @@ const QPrescriptionForm = () => {
   const fetchAppointments = async () => {
     try {
       const { data } = await axios.get(
-        `https://huzaifdentalclinic.dentalguru.software/api/doctor/get-Patient-by-id/${patient_uhid}`,
+        `http://localhost:8888/api/doctor/get-Patient-by-id/${patient_uhid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -114,7 +114,7 @@ const QPrescriptionForm = () => {
 
     try {
       const response = await axios.post(
-        `https://huzaifdentalclinic.dentalguru.software/api/doctor/insertPatientPrescription`,
+        `http://localhost:8888/api/doctor/insertPatientPrescription`,
         formData
         // {
         //   headers: {

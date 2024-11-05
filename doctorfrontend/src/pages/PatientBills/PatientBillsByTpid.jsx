@@ -35,7 +35,7 @@ const PatientBillsByTpid = () => {
   const getBranchDetails = async () => {
     try {
       const { data } = await axios.get(
-        `https://huzaifdentalclinic.dentalguru.software/api/doctor/getBranchDetails/${branch}`,
+        `http://localhost:8888/api/doctor/getBranchDetails/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -55,7 +55,7 @@ const PatientBillsByTpid = () => {
   const getPatientDetail = async () => {
     try {
       const res = await axios.get(
-        `https://huzaifdentalclinic.dentalguru.software/api/doctor/getAppointmentsWithPatientDetailsById/${tpid}`,
+        `http://localhost:8888/api/doctor/getAppointmentsWithPatientDetailsById/${tpid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -80,7 +80,7 @@ const PatientBillsByTpid = () => {
   const getExaminDetail = async () => {
     try {
       const res = await axios.get(
-        `https://huzaifdentalclinic.dentalguru.software/api/doctor/getDentalDataByTpid/${tpid}/${branch}`,
+        `http://localhost:8888/api/doctor/getDentalDataByTpid/${tpid}/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -106,7 +106,7 @@ const PatientBillsByTpid = () => {
   const getTreatDetail = async () => {
     try {
       const { data } = await axios.get(
-        `https://huzaifdentalclinic.dentalguru.software/api/doctor/getTreatmentDetailsViaTpid/${tpid}/${branch}`,
+        `http://localhost:8888/api/doctor/getTreatmentDetailsViaTpid/${tpid}/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -131,7 +131,7 @@ const PatientBillsByTpid = () => {
   const getTreatPrescriptionByAppointId = async () => {
     try {
       const { data } = await axios.get(
-        `https://huzaifdentalclinic.dentalguru.software/api/doctor/getTreatPrescriptionByTpid/${tpid}/${branch}`,
+        `http://localhost:8888/api/doctor/getTreatPrescriptionByTpid/${tpid}/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -155,7 +155,7 @@ const PatientBillsByTpid = () => {
   const getTreatmentSuggestAppointId = async () => {
     try {
       const { data } = await axios.get(
-        `https://huzaifdentalclinic.dentalguru.software/api/doctor/getTreatSuggestViaTpid/${tpid}/${branch}`,
+        `http://localhost:8888/api/doctor/getTreatSuggestViaTpid/${tpid}/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -184,7 +184,7 @@ const PatientBillsByTpid = () => {
   const getBillDetails = async () => {
     try {
       const { data } = await axios.get(
-        `https://huzaifdentalclinic.dentalguru.software/api/doctor/billDetailsViaTpid/${tpid}`,
+        `http://localhost:8888/api/doctor/billDetailsViaTpid/${tpid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -306,7 +306,7 @@ const PatientBillsByTpid = () => {
   
         // Make the API call
         const response = await axios.post(
-          "https://huzaifdentalclinic.dentalguru.software/api/doctor/prescriptionOnMail",
+          "http://localhost:8888/api/doctor/prescriptionOnMail",
           formData,
           {
             headers: {
@@ -363,7 +363,7 @@ const PatientBillsByTpid = () => {
       }
 
       const res = await axios.post(
-        "https://huzaifdentalclinic.dentalguru.software/api/doctor/sendWhatsapp",
+        "http://localhost:8888/api/doctor/sendWhatsapp",
         formData,
         {
           headers: {
@@ -385,7 +385,7 @@ const PatientBillsByTpid = () => {
   const billDetailsSms = async () => {
     try {
       const { data } = await axios.post(
-        "https://huzaifdentalclinic.dentalguru.software/api/doctor/sendSMS",
+        "http://localhost:8888/api/doctor/sendSMS",
         formDetails,
         {
           headers: {

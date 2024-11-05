@@ -27,7 +27,7 @@ function SittingCreditBill() {
     setLoadingEffect(true);
     try {
       const { data } = await axios.get(
-        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/getSittingBillDue/${branch}`,
+        `http://localhost:8888/api/v1/receptionist/getSittingBillDue/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -57,7 +57,7 @@ function SittingCreditBill() {
     }
     try {
       const res = await axios.put(
-        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/updateSittingBillToPaid/${id}/${branch}`,
+        `http://localhost:8888/api/v1/receptionist/updateSittingBillToPaid/${id}/${branch}`,
         billUpdateForm,
         {
           headers: {
