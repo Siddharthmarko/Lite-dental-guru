@@ -35,7 +35,7 @@ const PrescriptionQuick = () => {
   const getBranchDetails = async () => {
     try {
       const { data } = await axios.get(
-        `https://huzaifdentalclinic.dentalguru.software/api/doctor/getBranchDetails/${branch}`,
+        `http://localhost:8888/api/doctor/getBranchDetails/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -57,7 +57,7 @@ const PrescriptionQuick = () => {
   const getPatientDetail = async () => {
     try {
       const res = await axios.get(
-        `https://huzaifdentalclinic.dentalguru.software/api/doctor/getAppointmentsWithPatientDetailsById/${tpid}`,
+        `http://localhost:8888/api/doctor/getAppointmentsWithPatientDetailsById/${tpid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -74,7 +74,7 @@ const PrescriptionQuick = () => {
   const getLabAllData = async () => {
     try {
       const res = await axios.get(
-        `https://huzaifdentalclinic.dentalguru.software/api/doctor/lab-details/${tpid}`,
+        `http://localhost:8888/api/doctor/lab-details/${tpid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -92,7 +92,7 @@ const PrescriptionQuick = () => {
   const getTreatDetails = async () => {
     try {
       const { data } = await axios.get(
-        `https://huzaifdentalclinic.dentalguru.software/api/doctor/getTreatmentDataList/${tpid}/${branch}`
+        `http://localhost:8888/api/doctor/getTreatmentDataList/${tpid}/${branch}`
       );
       setGetTreatData(data);
     } catch (error) {
@@ -114,7 +114,7 @@ const PrescriptionQuick = () => {
   const getExaminDetail = async () => {
     try {
       const res = await axios.get(
-        `https://huzaifdentalclinic.dentalguru.software/api/doctor/getDentalDataByTpid/${tpid}/${branch}`,
+        `http://localhost:8888/api/doctor/getDentalDataByTpid/${tpid}/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -150,7 +150,7 @@ const PrescriptionQuick = () => {
   const getTreatPrescriptionByAppointId = async () => {
     try {
       const { data } = await axios.get(
-        `https://huzaifdentalclinic.dentalguru.software/api/doctor/getTreatPrescriptionByAppointIdList/${tpid}`,
+        `http://localhost:8888/api/doctor/getTreatPrescriptionByAppointIdList/${tpid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -291,7 +291,7 @@ const PrescriptionQuick = () => {
         console.log(key, value);
       }
       const res = await axios.post(
-        "https://huzaifdentalclinic.dentalguru.software/api/doctor/sendWhatsapp",
+        "http://localhost:8888/api/doctor/sendWhatsapp",
         formData,
         {
           headers: {

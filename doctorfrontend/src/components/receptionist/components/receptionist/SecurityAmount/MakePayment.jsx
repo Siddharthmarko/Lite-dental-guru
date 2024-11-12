@@ -21,7 +21,7 @@ function MakePayment({ onClose, patientInfo }) {
   const timelineData = async (id) => {
     try {
       const response = await axios.post(
-        "https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/insertTimelineEvent",
+        "http://localhost:8888/api/v1/receptionist/insertTimelineEvent",
         {
           type: "Security Amount",
           description: "Security Amount Received",
@@ -69,7 +69,7 @@ function MakePayment({ onClose, patientInfo }) {
 
     try {
       const response = await axios.put(
-        "https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/updatePatientSecurityAmt",
+        "http://localhost:8888/api/v1/receptionist/updatePatientSecurityAmt",
         data
       );
       console.log(response);

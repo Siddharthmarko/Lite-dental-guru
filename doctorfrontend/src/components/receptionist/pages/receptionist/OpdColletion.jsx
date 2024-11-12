@@ -46,7 +46,7 @@ function OpdCollection() {
     setLoadingEffect(true);
     try {
       const response = await axios.get(
-        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/get-appointments/${branch}`,
+        `http://localhost:8888/api/v1/receptionist/get-appointments/${branch}`,
         {
           headers: {
             "Content-Type": "application/json",

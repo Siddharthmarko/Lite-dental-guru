@@ -174,7 +174,7 @@ const Appointment = () => {
   const getAppointDetailsPat = async () => {
     try {
       const { data } = await axios.get(
-        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/getAllAppointmentByPatientId/${branch}/${pid}`,
+        `http://localhost:8888/api/v1/receptionist/getAllAppointmentByPatientId/${branch}/${pid}`,
         {
           headers: {
             "Content-Type": "application/json",

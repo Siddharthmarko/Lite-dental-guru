@@ -28,7 +28,7 @@ const Overview = () => {
   const getTreatmentsDetails = async () => {
     try {
       const { data } = await axios.get(
-        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/getTreatmentViaUhid/${branch}/${pid}`,
+        `http://localhost:8888/api/v1/receptionist/getTreatmentViaUhid/${branch}/${pid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -44,7 +44,7 @@ const Overview = () => {
   const getPrescriptionDetails = async () => {
     try {
       const { data } = await axios.get(
-        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/getPrescriptionViaUhid/${branch}/${pid}`,
+        `http://localhost:8888/api/v1/receptionist/getPrescriptionViaUhid/${branch}/${pid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -60,7 +60,7 @@ const Overview = () => {
   const getBillDetails = async () => {
     try {
       const { data } = await axios.get(
-        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/getBillsViaUhid/${branch}/${pid}`,
+        `http://localhost:8888/api/v1/receptionist/getBillsViaUhid/${branch}/${pid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -76,7 +76,7 @@ const Overview = () => {
   const getExaminationDetails = async () => {
     try {
       const { data } = await axios.get(
-        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/getExaminationViaUhid/${branch}/${pid}`,
+        `http://localhost:8888/api/v1/receptionist/getExaminationViaUhid/${branch}/${pid}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -93,7 +93,7 @@ const Overview = () => {
   const getAppointDetailsPat = async () => {
     try {
       const { data } = await axios.get(
-        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/getAllAppointmentByPatientId/${branch}/${pid}`,
+        `http://localhost:8888/api/v1/receptionist/getAllAppointmentByPatientId/${branch}/${pid}`,
         {
           headers: {
             "Content-Type": "application/json",

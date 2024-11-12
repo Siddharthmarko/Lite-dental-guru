@@ -32,7 +32,7 @@ const PrintOpdBill = () => {
   const getBranchDetails = async () => {
     try {
       const { data } = await axios.get(
-        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/getBranchDetailsByBranch/${branch}`
+        `http://localhost:8888/api/v1/receptionist/getBranchDetailsByBranch/${branch}`
       );
       console.log(data);
       setGetBranch(data);
@@ -44,7 +44,7 @@ const PrintOpdBill = () => {
   const getBill = async () => {
     try {
       const response = await axios.get(
-        `https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/get-appointment-by-id/${branch}/${appointmentId}`,
+        `http://localhost:8888/api/v1/receptionist/get-appointment-by-id/${branch}/${appointmentId}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -224,7 +224,7 @@ const PrintOpdBill = () => {
       }
 
       const res = await axios.post(
-        "https://huzaifdentalclinic.dentalguru.software/api/v1/receptionist/sendWhatsapp",
+        "http://localhost:8888/api/v1/receptionist/sendWhatsapp",
         formData,
         {
           headers: {

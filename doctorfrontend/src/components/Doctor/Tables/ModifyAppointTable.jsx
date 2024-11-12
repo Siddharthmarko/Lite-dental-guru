@@ -24,7 +24,7 @@ const ModifyAppointTable = () => {
     const fetchAppointments = async () => {
       try {
         const res = await axios.get(
-          `https://huzaifdentalclinic.dentalguru.software/api/doctor/getAppointmentsWithPatientDetails?date=${selectedDate}`
+          `http://localhost:8888/api/doctor/getAppointmentsWithPatientDetails?date=${selectedDate}`
         );
         setAppointments(res.data.result);
         const filteredData = res.data.result.filter(
@@ -76,7 +76,7 @@ const ModifyAppointTable = () => {
       }
 
       await axios.put(
-        `https://huzaifdentalclinic.dentalguru.software/api/doctor/upDateAppointmentStatus`,
+        `http://localhost:8888/api/doctor/upDateAppointmentStatus`,
         requestBody
       );
 
@@ -85,7 +85,7 @@ const ModifyAppointTable = () => {
       }
 
       const res = await axios.get(
-        `https://huzaifdentalclinic.dentalguru.software/api/doctor/getAppointmentsWithPatientDetails?date=${selectedDate}`
+        `http://localhost:8888/api/doctor/getAppointmentsWithPatientDetails?date=${selectedDate}`
       );
       setAppointments(res.data.result);
       setFilterTableData(res.data.result);

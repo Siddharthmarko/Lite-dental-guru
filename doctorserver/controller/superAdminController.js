@@ -541,7 +541,7 @@ const updateDoctorPaymentAllowSetting = (req, res) => {
       const empProfilePicture = req.file;
       console.log(empProfilePicture, "pro");
   
-      const imageUrl = `https://huzaifdentalclinic.dentalguru.software/empProfilePicture/${empProfilePicture?.filename}`;
+      const imageUrl = `http://localhost:8888/empProfilePicture/${empProfilePicture?.filename}`;
   
       console.log("profilePicture: 770", imageUrl);
   
@@ -718,7 +718,7 @@ const addSuperAdminNotify = (req, res) => {
       const empProfilePicture = req.file;
       console.log(empProfilePicture, "pro");
   
-      const imageUrl = `https://huzaifdentalclinic.dentalguru.software/empProfilePicture/${empProfilePicture?.filename}`;
+      const imageUrl = `http://localhost:8888/empProfilePicture/${empProfilePicture?.filename}`;
   
       console.log("profilePicture: 770", imageUrl);
   
@@ -1149,7 +1149,7 @@ const updateTreatmentDetails = (req, res) => {
       }
   
       // URL for serving images
-      const urlAdd = "https://huzaifdentalclinic.dentalguru.software/branchHeadFootImg";
+      const urlAdd = "http://localhost:8888/branchHeadFootImg";
   
       // Use uploaded file or a default image
       const head_img = files["head_img"]
