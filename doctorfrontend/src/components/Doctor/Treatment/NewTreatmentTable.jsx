@@ -186,6 +186,7 @@ const NewTreatmentTable = () => {
     }
   };
 
+  // This api dont pass anything
   const updateAppointmentStat = async () => {
     try {
       const res = await axios.put(
