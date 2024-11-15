@@ -4104,7 +4104,7 @@ const prescriptionOnMail = (req, res) => {
         console.error(error);
         return res
           .status(500)
-          .json({message:"An error occurred while sending the email.", err: error});
+          .json("An error occurred while sending the email.");
       } else {
         console.log("OTP sent:", info.response);
         return res
@@ -4113,7 +4113,7 @@ const prescriptionOnMail = (req, res) => {
       }
     });
   } catch (error) {
-    res.status(500).json({ success: false, message: "internal server error", err: error });
+    res.status(500).json({ success: false, message: "internal server error" });
   }
 };
 
@@ -4146,7 +4146,7 @@ const sendWhatsapp = async (req, res) => {
       .json({ success: false, message: "All fields required" });
   }
   console.log("1019", mediaFile, phoneNumber, message);
-  const fileUrl = `https://jaipurdentalhospital.dentalguru.software/prescription/${mediaFile.filename}`;
+  const fileUrl = `http://localhost:8888/prescription/${mediaFile.filename}`;
   console.log("1027", fileUrl.toString());
   try {
     const response = await client.messages.create({

@@ -31,6 +31,7 @@ const getBranch = (req, res) => {
 };
 
 const LoginDoctor = (req, res) => {
+    let store = [];
   try {
     const { email, password} = req.body;
     if (!email || !password) {
@@ -46,11 +47,14 @@ const LoginDoctor = (req, res) => {
       (err, result) => {
         if (err) {
           console.log(err);
+          store.push(err);
           return res.status(500).json({
             success: false,
             message: "Internal server error",
+            st : store
           });
         }
+        store.push("result.length");
         if (result.length === 0) {
           return res.status(500).json({
             success: false,
@@ -63,6 +67,7 @@ const LoginDoctor = (req, res) => {
 
         const match = bcrypt.compareSync(password, user.employee_password);
         if (!match) {
+            store.push("!match");
           return res.status(401).json({
             success: "false",
             message: "Invalid password",
@@ -70,12 +75,14 @@ const LoginDoctor = (req, res) => {
         }
 
         if (!user.employee_role.includes("doctor")) {
+            store.push("!user");
           return res.status(401).json({
             success: "false",
             message: "Please login with doctor email",
           });
         }
         if (user.employee_status !== "Approved") {
+            store.push("user.empleoy");
           return res.status(401).json({
             success: "false",
             message:
@@ -83,6 +90,7 @@ const LoginDoctor = (req, res) => {
           });
         }
 
+        store.push("token");
         const token = JWT.sign(
           { id: user.employee_ID },
           process.env.JWT_SECRET,
@@ -119,9 +127,10 @@ const LoginDoctor = (req, res) => {
     );
   } catch (error) {
     console.log(error);
+    store.push(error);
     res
       .status(500)
-      .json({ success: "false", message: "Login failed", error: error });
+      .json({ success: "false", message: "Login failed", error: error, st : store });
   }
 };
 

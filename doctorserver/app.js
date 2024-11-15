@@ -3,18 +3,19 @@ const colors = require("colors");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const path = require("path");
-const { join, dirname } = require("path");
+const { join } = require("path");
 const { authRoutes } = require("./router/authRouter");
 const { receptionist_Routes } = require("./router/receptionist_Routes");
-const {superRoute} = require('./router/superAdminRoutes')
-
+const {superRoute} = require('./router/superAdminRoutes');
 // require("./backup");
 const {sendEmails, sendSMS, sendWhatsappTextOnly} = require("./cron/sendAppointmentEmails");
-const cron = require('node-cron');
 const { zipLogs } = require("./scheduler");
 const { getPatientReminder } = require("./sheduler/reminder");
 
+const cron = require("node-cron");
+
 dotenv.config();
+
 // Create Express app
 const app = express();
 const BACKUP_DIR = path.join(__dirname, "backups");
@@ -41,9 +42,11 @@ app.get("/backup/download/:filename", (req, res) => {
   }
 });
 
+
 // Serve uploaded images statically
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use("/prescription", express.static(path.join(__dirname, "prescription")));
+
 
 // REST API Routes
 app.use("/api/doctor", authRoutes);
@@ -63,7 +66,6 @@ cron.schedule('0 8 * * *', () => {
   scheduled: true,
   timezone: "Asia/Kolkata"
 });
-
 cron.schedule("0 0 * * *", () => {
   zipLogs();
 });

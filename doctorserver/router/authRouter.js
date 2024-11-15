@@ -598,7 +598,7 @@ router.get(
 //   filename: function (req, file, cb) {
 //     cb(null, Date.now() + path.extname(file.originalname));
 //   },
-// }); 
+// });
 // router.get("/getQuickPrescription/:appointId", getQuickPrescription);
 
 // const preUpload = multer({ storage: prestorage });
