@@ -295,8 +295,7 @@ const ReceptionSittingBill = () => {
   
       // Send the email with the PDF attached
       const response = await axios.post(
-        // "http://localhost:8888/api/doctor/prescriptionOnMail",
-        "https://ashishdentalclinic.dentalguru.software/api/doctor/prescriptionOnMail",
+        "http://localhost:8888/api/doctor/prescriptionOnMail",
         formData,
         {
           headers: {

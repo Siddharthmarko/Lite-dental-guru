@@ -159,7 +159,7 @@ const PrintOpdBill = () => {
     
         // API call to send email with PDF attachment
         const response = await axios.post(
-          "https://ashishdentalclinic.dentalguru.software/api/v1/receptionist/prescriptionOnMail",
+          "http://localhost:8888/api/v1/receptionist/prescriptionOnMail",
           formData,
           {
             headers: {
