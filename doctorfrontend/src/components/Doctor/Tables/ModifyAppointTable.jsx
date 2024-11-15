@@ -4,6 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { FaArrowCircleLeft } from "react-icons/fa";
 import { FaArrowCircleRight } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
 const ModifyAppointTable = () => {
   const [searchInput, setSearchInput] = useState("");

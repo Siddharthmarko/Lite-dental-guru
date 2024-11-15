@@ -35,9 +35,9 @@ const DoctorLogin = () => {
     }
   };
 
-  useEffect(() => {
-    getBranches();
-  }, []);
+  // useEffect(() => {
+  //   getBranches();
+  // }, []);
 
   const handleSelectBranch = (e) => {
     setSelectedBranch(e.target.value);

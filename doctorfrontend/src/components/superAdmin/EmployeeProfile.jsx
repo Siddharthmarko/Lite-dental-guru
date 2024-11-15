@@ -13,7 +13,7 @@ import DoctorProfile from "./DoctorProfile";
 const EmployeeProfile = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-  const token = user.currenttoken;
+  const token = user.currentUser?.token;
   console.log(`User Name: ${user.currentUser?.name}, User ID: ${user.currentUser?.id}`);
   const branch_name = useSelector((state) => state.user.currentUser?.branch_name);
   console.log(`User Name: ${branch_name}`);

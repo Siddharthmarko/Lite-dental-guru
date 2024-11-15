@@ -16,10 +16,7 @@ function AddPatient() {
   const user = useSelector((state) => state.user);
   const { refreshTable } = useSelector((state) => state.user);
   const { currentBranch } = useSelector((state) => state.branch);
-  console.log(
-    currentBranch,
-    "k-----------------------------------------------------------------------------------"
-  );
+  console.log( currentBranch );
   const branch = user?.currentUser?.branch_name;
   const token = user?.currentUser?.token;
 
@@ -243,7 +240,7 @@ function AddPatient() {
       let data = response?.data?.data;
       setDoctors(data);
       let currentDoctor = data.find((item) => item?.employee_name === user?.currentUser?.employee_name)
-      console.log(currentDoctor, user, "rjlewjlksdjflksdj"); 
+      console.log(currentDoctor, user, data, "rjlewjlksdjflksdj"); 
       setSelectedDoctor(currentDoctor)
 
     } catch (error) {

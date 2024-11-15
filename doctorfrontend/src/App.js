@@ -203,7 +203,7 @@ function App() {
   };
 
   useEffect(() => {
-    getTodayAttendance();
+    // getTodayAttendance();
   }, []);
 
   console.log(todayAttendance);
