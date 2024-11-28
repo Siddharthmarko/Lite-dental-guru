@@ -27,7 +27,7 @@ function EditAppointment({ onClose, appointmentInfo, allAppointmentData }) {
   ]);
   const [treatments, setTreatment] = useState([]);
   const [doctors, setDoctors] = useState([]);
-  const branch = currentUser.branch_name;
+  const branch = currentUser?.branch_name;
   const [branchHolidays, setBranchHolidays] = useState([]);
 
   // Remove current appointment data from allAppointmentData
@@ -229,8 +229,8 @@ function EditAppointment({ onClose, appointmentInfo, allAppointmentData }) {
     treatment_provided: appointmentInfo.treatment_provided,
     notes: appointmentInfo.notes,
     appointment_status: appointmentInfo.appointment_status,
-    appointment_updated_by: currentUser.employee_name,
-    appointment_updated_by_emp_id: currentUser.employee_ID,
+    appointment_updated_by: currentUser?.employee_name,
+    appointment_updated_by_emp_id: currentUser?.employee_ID,
   });
 
   const [appointment_data, setAppointmentData] = useState([
@@ -413,10 +413,10 @@ function EditAppointment({ onClose, appointmentInfo, allAppointmentData }) {
     }
 
     const selectedDay = new Date(selectedDate).getDay();
-    if (selectedDay === weekOffDay) {
-      alert("Selected date is a week off day. Please choose another date.");
-      return;
-    }
+    // if (selectedDay === weekOffDay) {
+    //   alert("Selected date is a week off day. Please choose another date.");
+    //   return;
+    // }
 
     // Convert appointment time to Date object
     const selectedDateTime = new Date(data.appointment_dateTime);
@@ -546,9 +546,9 @@ function EditAppointment({ onClose, appointmentInfo, allAppointmentData }) {
         notes: data.notes,
         appointment_updated_by: data.appointment_updated_by,
         appointment_updated_by_emp_id: data.appointment_updated_by_emp_id,
-        sharemail : currentBranch[0].sharemail,
-        sharewhatsapp : currentBranch[0].sharewhatsapp,
-        sharesms : currentBranch[0].sharesms
+        sharemail : currentBranch[0]?.sharemail,
+        sharewhatsapp : currentBranch[0]?.sharewhatsapp,
+        sharesms : currentBranch[0]?.sharesms
       };
 
       if (!isDoctorAvailable(selectedDateTime)) {

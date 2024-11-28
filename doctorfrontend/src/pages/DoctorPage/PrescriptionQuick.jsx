@@ -15,9 +15,9 @@ const PrescriptionQuick = () => {
   const contentRef = useRef();
   // console.log(useParams());
   const user = useSelector((state) => state.user);
-  const token = user.currentUser.token;
+  const token = user.currentUser?.token;
   console.log(user);
-  const branch = user.currentUser.branch_name;
+  const branch = user.currentUser?.branch_name;
   console.log(branch);
   const branchData = useSelector((state) => state.branch.currentBranch);
   console.log(branchData);
@@ -191,56 +191,66 @@ const PrescriptionQuick = () => {
   const sendPrescriptionMail = async () => {
     try {
       const element = contentRef.current;
+  
+      if (!element) {
+        console.error("Content reference is not defined.");
+        cogoToast.error("Content not found.");
+        return;
+      }
+  
       const canvas = await html2canvas(element);
       const imgData = canvas.toDataURL("image/png");
       const pdf = new jsPDF();
       const imgWidth = 210; // A4 width in mm
       const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
-      pdf.addImage(
-        imgData,
-        "PNG",
-        0,
-        0,
-        imgWidth,
-        imgHeight,
-        undefined,
-        "FAST"
-      );
+  
+      pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight, undefined, "FAST");
       const pdfData = pdf.output("blob");
-      console.log(pdfData);
-
+  
       const formData = new FormData();
-      formData.append("email", getPatientData[0]?.emailid);
-      formData.append("patient_name", getPatientData[0]?.patient_name);
-      formData.append(
-        "subject",
-        `${getPatientData[0]?.patient_name}, your prescription file`
-      );
-      formData.append(
-        "textMatter",
-        `Dear ${getPatientData[0]?.patient_name}, Please find the attached Prescription file.`
-      );
-      formData.append("file", pdfData, "prescription.pdf");
-      for (let [key, value] of formData.entries()) {
-        console.log(key, value);
-      }
-      const response = await axios.post(
-        "http://localhost:8888/api/doctor/prescriptionOnMail",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${token}`,
-          },
+      
+      if (getPatientData.length > 0) {
+        const patient = getPatientData[0];
+        formData.append("email", patient.emailid);
+        formData.append("patient_name", patient.patient_name);
+        formData.append("subject", `${patient.patient_name}, your prescription file`);
+        formData.append("textMatter", `Dear ${patient.patient_name}, Please find the attached Prescription file.`);
+        formData.append("file", pdfData, "prescription.pdf");
+  
+        // Log the form data for debugging
+        for (let [key, value] of formData.entries()) {
+          console.log(`${key}: ${value instanceof Blob ? 'Blob' : value}`);
         }
-      );
-      cogoToast.success("Prescription sent successfully");
-      console.log("PDF sent successfully:", response.data);
+  
+        const response = await axios.post(
+          "http://localhost:8888/api/doctor/prescriptionOnMail",
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data", // Optional
+              Authorization: `Bearer ${token}`, // Ensure token is defined
+            },
+            timeout: 15000, // Increased timeout for API call
+          }
+        );
+  
+        if (response.status === 200) {
+          cogoToast.success("Prescription sent successfully");
+          console.log("PDF sent successfully:", response.data);
+        } else {
+          console.error("Failed to send PDF:", response);
+          cogoToast.error("Failed to send prescription, please try again.");
+        }
+      } else {
+        console.error("No patient data available.");
+        cogoToast.error("Patient data is missing.");
+      }
     } catch (error) {
       console.error("Error sending PDF:", error);
+      cogoToast.error("An error occurred while sending the prescription.");
     }
   };
+  
 
   const sendPrescriptionWhatsapp = async () => {
     try {
@@ -343,17 +353,17 @@ const PrescriptionQuick = () => {
               <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4">
                 <div className="header-left">
                   <h3 className="text-start">
-                    Dr. {user.currentUser.employee_name}
+                    Dr. {user.currentUser?.employee_name}
                   </h3>
                   <h6
                     className="fw-bold text-capitalize text-start "
                     style={{ color: "#00b894" }}
                   >
-                    {user.currentUser.doctor_expertise}
+                    {user.currentUser?.doctor_expertise}
                   </h6>
 
                   <h6 className="fw-bold text-capitalize text-start ">
-                    {user.currentUser.doctor_education_details}
+                    {user.currentUser?.doctor_education_details}
                   </h6>
 
                   {/* <h6 className="fw-bold text-capitalize text-start">

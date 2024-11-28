@@ -331,8 +331,8 @@ const ExaminationPatientTest = ({ tpid }) => {
   const [otherList, setOtherList] = useState(false);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-  const branch = user.currentUser.branch_name;
-  const token = user.currentUser.token;
+  const branch = user.currentUser?.branch_name;
+  const token = user.currentUser?.token;
   console.log(branch);
 
   const handleChiefListChange = () => {
@@ -1102,7 +1102,7 @@ const ExaminationPatientTest = ({ tpid }) => {
   return (
     <>
       <Wrapper>
-        <div className="container-fluid">
+        <div className="container-fluid ps-5">
           <div className="d-flex justify-content-start align-items-center p-3">
             <button
               className="btn btn-secondary"
@@ -1730,7 +1730,7 @@ const ExaminationPatientTest = ({ tpid }) => {
               <div className="text-center">
                 <button
                   onClick={handleClick}
-                  className=" btn btn-info text-light mx-2"
+                  className=" btn btn-color text-light mx-2"
                 >
                   {selectAllTeeth ? "Unselect All" : "Select All"}
                 </button>
@@ -1795,7 +1795,7 @@ const ExaminationPatientTest = ({ tpid }) => {
                       <div data-mdb-input-init class="form-outline">
                         <label className="lable">Cheif Complaint</label>
                         <button
-                          className="btn btn-info text-light mx-3 mb-1"
+                          className="btn btn-color text-light mx-3 mb-1"
                           onClick={handleChiefListChange}
                           type="button"
                         >
@@ -1876,7 +1876,7 @@ const ExaminationPatientTest = ({ tpid }) => {
                           required
                           onChange={handleSelecteditem}
                           value={inputItem.advice}
-                          class="form-control"
+                          class="form-control mt-2"
                           placeholder="Advice"
                         />
                       </div>
@@ -1891,7 +1891,7 @@ const ExaminationPatientTest = ({ tpid }) => {
                           onChange={handleSelecteditem}
                           required
                           value={inputItem.onExamination}
-                          class="form-control"
+                          class="form-control mt-2"
                           placeholder="Examination"
                         />
                       </div>
@@ -1900,7 +1900,7 @@ const ExaminationPatientTest = ({ tpid }) => {
                   <div className="text-center m-3">
                     <button
                       type="submit"
-                      className="btn btn-info text-light mx-3"
+                      className="btn btn-color text-light mx-3"
                       disabled={loading}
                     >
                       {loading ? "Save..." : "Save"}
@@ -2008,6 +2008,9 @@ const ExaminationPatientTest = ({ tpid }) => {
 
 export default ExaminationPatientTest;
 const Wrapper = styled.div`
+  .btn-color {
+    background-color: rgb(8 145 178);
+  }
   .buttons {
     width: 150px;
     cursor: pointer;

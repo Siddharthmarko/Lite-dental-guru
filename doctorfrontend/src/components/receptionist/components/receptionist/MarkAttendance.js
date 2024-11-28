@@ -9,13 +9,13 @@ import { toggleTableRefresh } from "../../redux/user/userSlice";
 const MarkAttendance = () => {
   const { refreshTable, currentUser } = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const branch_name = currentUser.branch_name;
+  const branch_name = currentUser?.branch_name;
   const [loading, setLoading] = useState(false);
   const token = currentUser?.token;
 
-  const employee_name = currentUser.employee_name;
-  const employee_ID = currentUser.employee_ID;
-  const employee_designation = currentUser.employee_designation;
+  const employee_name = currentUser?.employee_name;
+  const employee_ID = currentUser?.employee_ID;
+  const employee_designation = currentUser?.employee_designation;
   const date = new Date().toISOString().slice(0, 10);
   const time = new Date();
   //   const loginTime = moment(time).format("HH:mm:ss");

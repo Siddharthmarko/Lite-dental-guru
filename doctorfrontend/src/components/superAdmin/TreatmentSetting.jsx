@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Sider from "../receptionist/components/receptionist/Sider";
 import Header from "../receptionist/components/receptionist/Header";
 import { FaSearch } from "react-icons/fa";
-// import BranchSelector from "../../../components/BranchSelector";
+import BranchSelector from "./BranchSelector";
 import axios from "axios";
 import cogoToast from "cogo-toast";
 import { IoMdArrowRoundBack } from "react-icons/io";
@@ -19,6 +19,7 @@ import { MdDelete } from "react-icons/md";
 const TreatmentSetting = () => {
   const location = useLocation();
   const user = useSelector((state) => state.user);
+  const token = user.currentUser?.token;
   console.log(`User Name: ${user.name}, User ID: ${user.id}`);
   console.log("User State:", user);
   const [showAddTreatments, setShowAddTreatments] = useState(false);
@@ -134,8 +135,8 @@ const TreatmentSetting = () => {
   useEffect(() => {
     updateFilterForProcId();
   }, [upTreatData[0]?.treat_procedure_name]);
-
   console.log(treatData);
+
   console.log(treatList);
 
   const openAddTreatmentsPopup = (index, item) => {
@@ -160,11 +161,11 @@ const TreatmentSetting = () => {
   const getTreatmentDataViaId = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-superadmin.vimubds5.a2hosted.com/api/v1/super-admin/getTreatmentViaId/${trID}`,
+        `http://localhost:8888/api/v1/super-admin/getTreatmentViaId/${trID}`,
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${user.token}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
@@ -183,14 +184,15 @@ const TreatmentSetting = () => {
   const getProcedure = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-superadmin.vimubds5.a2hosted.com/api/v1/super-admin/getProcedureList`,
+        `http://localhost:8888/api/v1/super-admin/getProcedureList`,
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${user.token}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
+      console.log("hre is data", data);
       setProceList(data);
     } catch (error) {
       console.log(error);
@@ -203,12 +205,12 @@ const TreatmentSetting = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "https://dentalguru-superadmin.vimubds5.a2hosted.com/api/v1/super-admin/addTreatment",
+        "http://localhost:8888/api/v1/super-admin/addTreatment",
         treatData,
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${user.token}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
@@ -232,11 +234,11 @@ const TreatmentSetting = () => {
     setLoading(true);
     try {
       const { data } = await axios.get(
-        "https://dentalguru-superadmin.vimubds5.a2hosted.com/api/v1/super-admin/getTreatmentList",
+        "http://localhost:8888/api/v1/super-admin/getTreatmentList",
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${user.token}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
@@ -253,12 +255,12 @@ const TreatmentSetting = () => {
     e.preventDefault();
     try {
       const response = await axios.put(
-        `https://dentalguru-superadmin.vimubds5.a2hosted.com/api/v1/super-admin/updateTreatmentDetails/${id}`,
+        `http://localhost:8888/api/v1/super-admin/updateTreatmentDetails/${id}`,
         updateTreatVal,
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${user.token}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
@@ -280,16 +282,21 @@ const TreatmentSetting = () => {
 
       if (isConfirmed) {
         const response = await axios.delete(
-          `https://dentalguru-superadmin.vimubds5.a2hosted.com/api/v1/super-admin/deleteTreatment/${id}`,
+          `http://localhost:8888/api/v1/super-admin/deleteTreatment/${id}`,
           {
             headers: {
               "Content-Type": "application/json",
-              Authorization: `Bearer ${user.token}`,
+              Authorization: `Bearer ${token}`,
             },
           }
         );
-        getTreatmentList();
-        cogoToast.success("Treatment deleted successfully");
+        if(response.data.success === true){
+          console.log(response);
+          getTreatmentList();
+          cogoToast.success("Treatment deleted successfully");
+        } else {
+          cogoToast.error("Treatment Not deleted successfully");
+        }
       }
     } catch (error) {
       console.log(error);
@@ -353,18 +360,26 @@ const TreatmentSetting = () => {
   return (
     <Container>
       <Header />
-      <div className="main">
+      <div className="main" style={{ paddingTop: "60px" }}>
         <div className="container-fluid">
           <div className="row flex-nowrap ">
-            <div className="col-lg-1 col-1 p-0">
+            <div className="col-lg-1 col-1 p-0 position-fixed" id="sidebar">
               <Sider />
             </div>
-            <div className="col-lg-11 col-11 ps-0">
+
+            {/* for fixed sidebar */}
+            <div className="col-md-1"></div>
+            {/* for fixed sidebar */}
+
+            <div className="col-lg-11 col-11 ps-0 mt-3">
               <div className="container-fluid mt-3">
                 {/* <BranchSelector /> */}
               </div>
               <div className="container-fluid mt-3">
-                <button className="btn btn-success" onClick={goBack}>
+                <button
+                  className="btn btn-success ms-md-2 ms-lg-0"
+                  onClick={goBack}
+                >
                   <IoMdArrowRoundBack /> Back
                 </button>
                 <div className="container-fluid">
@@ -392,7 +407,7 @@ const TreatmentSetting = () => {
                         <div className="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12">
                           <div className="d-flex justify-content-center align-items-center">
                             <button
-                              className="btn btn-info btnback p-3"
+                              className="btn btn-info btnback p-lg-3 "
                               onClick={() => openAddTreatmentsPopup()}
                             >
                               <GrAdd size={22} /> Add Treatment
@@ -461,9 +476,9 @@ const TreatmentSetting = () => {
                                     {/* <td className="table-small">
                                       {item.treatment_discount}
                                     </td> */}
-                                    <td>
+                                    <td className="d-flex">
                                       <button
-                                        className="btn btn-warning text-light"
+                                        className="btn btn-warning text-light "
                                         style={{
                                           backgroundColor: "#014cb1",
                                           borderColor: "#014cb1",
@@ -847,7 +862,7 @@ const Container = styled.div`
   }
 
   .banner-mid {
-    background-color: #004aad;
+    background-color: #008080;
     padding: 1rem;
     display: flex;
     justify-content: space-between;
@@ -885,6 +900,28 @@ const Container = styled.div`
     width: 100%;
     &:hover {
       background: #000;
+    }
+  }
+  #sidebar {
+    width: 5.04rem;
+    height: 79rem;
+    background-color: #008080;
+    @media screen and (max-width: 768px) {
+      width: 3rem;
+      height: 212rem;
+    }
+    @media screen and (min-width: 768px) and (max-width: 1020px) {
+      width: 5rem;
+      height: 151rem;
+    }
+    @media screen and (min-width: 1020px) and (max-width: 1600px) {
+      height: 62rem;
+    }
+  }
+  @media (min-width: 768px) and (max-width: 1000px) {
+    .custom-btn {
+      font-size: 12px; /* Adjust font size */
+      padding: 5px 10px; /* Adjust padding */
     }
   }
 `;
@@ -938,5 +975,8 @@ const PaginationContainer = styled.div`
   hr {
     color: #dbd4d4;
     box-shadow: 0px 4px 3px black;
+  }
+  body {
+    padding: 0;
   }
 `;

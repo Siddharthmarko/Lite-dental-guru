@@ -7,6 +7,8 @@ import { MdEdit } from "react-icons/md";
 import { FaLocationArrow } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
 import cogoToast from "cogo-toast";
+// import Receptioinstdash from "./components/receptionist/pages/receptionist/Receptioinstdash";
+import Receptioinstdash from "../../receptionist/pages/receptionist/Receptioinstdash";
 
 const NewTreatmentTable = () => {
   const { appoint_id, tpid } = useParams();
@@ -23,9 +25,9 @@ const NewTreatmentTable = () => {
 
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-  const branch = user.currentUser.branch_name;
-  const doctor = user.currentUser.employee_name;
-  const token = user.currentUser.token;
+  const branch = user.currentUser?.branch_name;
+  const doctor = user.currentUser?.employee_name;
+  const token = user.currentUser?.token;
   console.log(branch);
   console.log(doctor);
 
@@ -184,6 +186,7 @@ const NewTreatmentTable = () => {
     }
   };
 
+  // This api dont pass anything
   const updateAppointmentStat = async () => {
     try {
       const res = await axios.put(
@@ -280,47 +283,48 @@ const NewTreatmentTable = () => {
               </p>
             </div>
           </div>
-          <table class="table table-bordered table-striped border">
-            <thead>
-              <tr>
-                <th>Date</th>
-                <th>Sitting Number</th>
-                <th>Treatment</th>
-                <th>Teeth No.</th>
-                <th>Qty</th>
-                <th>Treatment Cost</th>
-                <th>Cost * Qty</th>
-                <th>Discount %</th>
+          <div className="table-responsive m-md-3 m-lg-0">
+            <table class="table table-bordered table-striped border">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Sitting Number</th>
+                  <th>Treatment</th>
+                  <th>Teeth No.</th>
+                  <th>Qty</th>
+                  <th>Treatment Cost</th>
+                  <th>Cost * Qty</th>
+                  <th>Discount %</th>
 
-                <th>Final Cost</th>
-                <th>Sitting Amount</th>
-                <th>Note</th>
-              </tr>
-            </thead>
-            <tbody>
-              {treatmentData?.map((item, index) => (
-                <tr key={index}>
-                  <td>{item.date?.split(" ")[0]}</td>
-                  <td>{item.sitting_number}</td>
-                  <td>{item.dental_treatment}</td>
-                  <td>{item.no_teeth}</td>
-                  <td>{item.qty}</td>
-                  <td>{item.total_amt}</td>
-                  <td>{item.cost_amt}</td>
-                  <td>{item.disc_amt}</td>
+                  <th>Final Cost</th>
+                  <th>Sitting Amount</th>
+                  <th>Note</th>
+                </tr>
+              </thead>
+              <tbody>
+                {treatmentData?.map((item, index) => (
+                  <tr key={index}>
+                    <td>{item.date?.split(" ")[0]}</td>
+                    <td>{item.sitting_number}</td>
+                    <td>{item.dental_treatment}</td>
+                    <td>{item.no_teeth}</td>
+                    <td>{item.qty}</td>
+                    <td>{item.total_amt}</td>
+                    <td>{item.cost_amt}</td>
+                    <td>{item.disc_amt}</td>
 
-                  <td>{item.net_amount}</td>
-                  <td>
-                    {" "}
-                    {item.sitting_payment_status === "Pending" ||
-                    item.sitting_payment_status === "pending"
-                      ? item.sec_rec_amt > 0
-                        ? item.sec_rec_amt
-                        : 0
-                      : item.paid_amount}
-                  </td>
-                  <td>{item.note}</td>
-                  {/* <td>
+                    <td>{item.net_amount}</td>
+                    <td>
+                      {" "}
+                      {item.sitting_payment_status === "Pending" ||
+                      item.sitting_payment_status === "pending"
+                        ? item.sec_rec_amt > 0
+                          ? item.sec_rec_amt
+                          : 0
+                        : item.paid_amount}
+                    </td>
+                    <td>{item.note}</td>
+                    {/* <td>
                     <button
                       className="btn btn-primary justify-content-end"
                       data-bs-toggle="modal"
@@ -330,36 +334,37 @@ const NewTreatmentTable = () => {
                       <MdEdit size={25} />
                     </button>
                   </td> */}
-                  <div
-                    className="modal fade"
-                    id={`exampleModal-${index}`}
-                    tabIndex="-1"
-                    aria-labelledby={`exampleModalLabel-${index}`}
-                    aria-hidden="true"
-                  >
-                    <div className="modal-dialog modal-dialog-centered">
-                      <div className="modal-content">
-                        <div className="modal-header">
-                          <h1
-                            className="modal-title fs-5"
-                            id={`exampleModalLabel-${index}`}
-                          >
-                            Update Data
-                          </h1>
-                          <button
-                            type="button"
-                            className="btn-close"
-                            data-bs-dismiss="modal"
-                            aria-label="Close"
-                          ></button>
+                    <div
+                      className="modal fade"
+                      id={`exampleModal-${index}`}
+                      tabIndex="-1"
+                      aria-labelledby={`exampleModalLabel-${index}`}
+                      aria-hidden="true"
+                    >
+                      <div className="modal-dialog modal-dialog-centered">
+                        <div className="modal-content">
+                          <div className="modal-header">
+                            <h1
+                              className="modal-title fs-5"
+                              id={`exampleModalLabel-${index}`}
+                            >
+                              Update Data
+                            </h1>
+                            <button
+                              type="button"
+                              className="btn-close"
+                              data-bs-dismiss="modal"
+                              aria-label="Close"
+                            ></button>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
           <div className="text-center">
             {filterTreatmentStats ? (
               <button
@@ -371,9 +376,44 @@ const NewTreatmentTable = () => {
                 <FaLocationArrow size={25} />
               </button>
             ) : (
-              <button className="btn btn-info fs-5 text-light" disabled>
+              <button className="btn btn-color fs-5 text-light" disabled>
                 Complete Treatment <FaLocationArrow size={25} />
               </button>
+
+              //   <>
+              //     <button
+              //       className="btn btn-info fs-5 text-light"
+              //       onClick={generateFinalBill}
+              //       disabled={loading}
+              //     >
+              //       {loading ? "Complete Treatment..." : "Complete Treatment"}{" "}
+              //       <FaLocationArrow size={25} />
+              //     </button>
+
+              //     {/* New Complete Button */}
+              //     <button
+              //       className="btn btn-success fs-5 text-light ms-3"
+              //       // Replace with your function
+              //       disabled={loading}
+              //     >
+              //       {loading ? "Completing..." : "Complete"}{" "}
+              //       <FaLocationArrow size={25} />
+              //     </button>
+              //   </>
+              // ) : (
+              //   <>
+              //     <button className="btn btn-info fs-5 text-light" disabled>
+              //       Complete Treatment <FaLocationArrow size={25} />
+              //     </button>
+
+              //     {/* Disabled Complete Button */}
+              //     <button
+              //       className="btn btn-success fs-5 text-light ms-3"
+              //       onClick={Receptioinstdash}
+              //     >
+              //       Dashboard <FaLocationArrow size={25} />
+              //     </button>
+              //   </>
             )}
           </div>
         </div>
@@ -383,4 +423,8 @@ const NewTreatmentTable = () => {
 };
 
 export default NewTreatmentTable;
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  .btn-color {
+    background-color: rgb(8 145 178);
+  }
+`;

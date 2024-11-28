@@ -8,8 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearUser } from "../../redux/user/userSlice";
 function Header() {
   const { currentUser } = useSelector((state) => state.user);
-  const userName = currentUser.employee_name;
-  const userId = currentUser.employee_ID;
+  const userName = currentUser?.employee_name;
+  const userId = currentUser?.employee_ID;
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -27,7 +27,10 @@ function Header() {
 
   return (
     <Wrapper>
-      <div className="container-fluid" style={{ backgroundColor: "teal" }}>
+      <div
+        className="container-fluid fixed-top header"
+        style={{ backgroundColor: "teal" }}
+      >
         <nav className="navbar navbar-expand-lg ">
           <div className="container-fluid">
             <Link to="/receptionist-dashboard">
@@ -92,17 +95,17 @@ function Header() {
                   </a>
                   <ul className="dropdown-menu">
                     <li>
-                      <Link
+                      {/* <Link
                         to="/receptionist_profile"
                         className="dropdown-item"
                       >
                         View Profile
-                      </Link>
+                      </Link> */}
                     </li>
                     <li>
-                      <Link to="/attendanceLeave" className="dropdown-item">
+                      {/* <Link to="/attendanceLeave" className="dropdown-item">
                         View Attendance & Leave
-                      </Link>
+                      </Link> */}
                     </li>
                     <li>
                       <Link to="/branch-details" className="dropdown-item">
@@ -132,6 +135,9 @@ function Header() {
 export default Header;
 const Wrapper = styled.div`
   box-shadow: 1px 1px 6px black;
+  .header {
+    z-index: 2;
+  }
 
   #userid {
     margin-left: -5rem;

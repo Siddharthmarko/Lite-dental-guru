@@ -16,7 +16,7 @@ const PasswordReset = () => {
   const sendOtp = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.put(
+      const response = await axios.post(
         "http://localhost:8888/api/doctor/sendOtp",
         {
           email,

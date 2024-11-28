@@ -15,12 +15,16 @@ const PatientBillsByTpid = () => {
   const contentRef = useRef();
   const navigate = useNavigate();
   const branchData = useSelector((state) => state.branch.currentBranch);
-  console.log(branchData);
+  const test = useSelector((state) => state.branch);
+  console.log(test);
+
   const [getPatientData, setGetPatientData] = useState([]);
   const user = useSelector((state) => state.user);
-  const token = user.currentUser.token;
-  const branch = user.currentUser.branch_name;
+  const token = user.currentUser?.token;
+  const branch = user.currentUser?.branch_name;
   console.log(branch);
+  const currentBranch = useSelector((state) => state.branch.currentBranch);
+  console.log(currentBranch);
   const [getExaminData, setGetExaminData] = useState([]);
   const [getTreatData, setGetTreatData] = useState([]);
   const [getTreatMedicine, setGetTreatMedicine] = useState([]);
@@ -188,6 +192,7 @@ const PatientBillsByTpid = () => {
           },
         }
       );
+      console.log(data, "fjsadlkjflksdajflksdajflksdfj");
       setBillDetails(data);
     } catch (error) {
       console.log(error);
@@ -259,54 +264,77 @@ const PatientBillsByTpid = () => {
     const imgWidth = 210; // A4 width in mm
     const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
-    pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
+    pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight, undefined, "FAST");
     pdf.save("final bill.pdf");
   };
 
   const sendPrescriptionMail = async () => {
     try {
+      // Ensure contentRef is valid
       const element = contentRef.current;
-      const canvas = await html2canvas(element);
-      const imgData = canvas.toDataURL("image/png");
+      if (!element) {
+        console.error("contentRef is not defined or invalid.");
+        cogoToast.error("Content not found.");
+        return;
+      }
+  
+      // Generate the PDF from the HTML element
+      const canvas = await html2canvas(element, { scale: 0.5 }); // Reduce scale for lower resolution
+      const imgData = canvas.toDataURL("image/jpeg", 0.5); // Use JPEG format with lower quality
+  
       const pdf = new jsPDF();
       const imgWidth = 210; // A4 width in mm
       const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
-      pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
+  
+      pdf.addImage(imgData, "JPEG", 0, 0, imgWidth, imgHeight); // Use JPEG for smaller file size
       const pdfData = pdf.output("blob");
-      console.log(pdfData);
-
+  
+      // Prepare form data
       const formData = new FormData();
-      formData.append("email", getPatientData[0]?.emailid);
-      formData.append("patient_name", getPatientData[0]?.patient_name);
-      formData.append(
-        "subject",
-        `${getPatientData[0]?.patient_name}, your final bill file`
-      );
-      formData.append(
-        "textMatter",
-        `Dear ${getPatientData[0]?.patient_name}, Please find the attached final bill file.`
-      );
-      formData.append("file", pdfData, "prescription.pdf");
-      for (let [key, value] of formData.entries()) {
-        console.log(key, value);
-      }
-      const response = await axios.post(
-        "http://localhost:8888/api/doctor/prescriptionOnMail",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${token}`,
-          },
+      if (getPatientData.length > 0) {
+        const patient = getPatientData[0];
+        formData.append("email", patient.emailid);
+        formData.append("patient_name", patient.patient_name);
+        formData.append("subject", `${patient.patient_name}, your final bill file`);
+        formData.append("textMatter", `Dear ${patient.patient_name}, please find the attached final bill file.`);
+        formData.append("file", pdfData, "prescription.pdf");
+  
+        // Log form data for debugging
+        for (let [key, value] of formData.entries()) {
+          console.log(key, value);
         }
-      );
-      cogoToast.success("Treatment bill sent successfully");
-      console.log("PDF sent successfully:", response.data);
+  
+        // Make the API call
+        const response = await axios.post(
+          "http://localhost:8888/api/doctor/prescriptionOnMail",
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data", // Optional for FormData
+              Authorization: `Bearer ${token}`, // Assuming token is defined
+            },
+            timeout: 15000, // Increase timeout if necessary
+          }
+        );
+  
+        if (response.status === 200) {
+          cogoToast.success("Treatment bill sent successfully");
+          console.log("PDF sent successfully:", response.data);
+        } else {
+          console.error("Failed to send PDF, server error:", response);
+          cogoToast.error("Failed to send bill, server error.");
+        }
+      } else {
+        console.error("Patient data is not available");
+        cogoToast.error("Patient data is missing.");
+      }
     } catch (error) {
       console.error("Error sending PDF:", error);
+      cogoToast.error("Error sending bill.");
     }
   };
+  
+  
 
   const sendPrescriptionWhatsapp = async () => {
     try {
@@ -372,6 +400,7 @@ const PatientBillsByTpid = () => {
     }
   };
 
+  
   return (
     <>
       <Wrapper>
@@ -444,6 +473,7 @@ const PatientBillsByTpid = () => {
         </div> */}
         <div className="container-fluid">
           <div className="d-flex justify-content-end">
+         
             <button
               className="btn btn-info no-print mt-2 mb-2 text-white shadow"
               style={{
@@ -537,13 +567,13 @@ const PatientBillsByTpid = () => {
               <div className="text-start docDetails">
                 <p>
                   <strong>Doctor Name :</strong> Dr.{" "}
-                  {user.currentUser.employee_name}
+                  {user.currentUser?.employee_name}
                 </p>
                 <p>
-                  <strong>Mobile :</strong> {user.currentUser.employee_mobile}
+                  <strong>Mobile :</strong> {user.currentUser?.employee_mobile}
                 </p>
                 <p>
-                  <strong>Email :</strong> {user.currentUser.email}
+                  <strong>Email :</strong> {user.currentUser?.email}
                 </p>
               </div>
             </div>
@@ -692,7 +722,7 @@ const PatientBillsByTpid = () => {
                   </div>
                   <div className="text-word">
                     <p className="m-0 px-1">
-                      {numWords(billDetails[0]?.paid_amount)}
+                      {numWords(billDetails[0]?.paid_amount).toUpperCase()} ONLY
                     </p>
                   </div>
                 </div>
@@ -707,31 +737,42 @@ const PatientBillsByTpid = () => {
                           <td className="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 border p-1">
                             Account No.:
                           </td>
-                          <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1"></td>
+                          <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1">
+                            {currentBranch[0]?.account_number}
+                          </td>
                         </tr>
                         <tr>
                           <td className="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 border p-1">
                             Account Name:
                           </td>
-                          <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1"></td>
+                          <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1">
+                            {/* Assuming you want to put a placeholder or value here */}
+                            {currentBranch[0]?.branch_name}
+                          </td>
                         </tr>
                         <tr>
                           <td className="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 border p-1">
                             Bank Name:
                           </td>
-                          <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1"></td>
+                          <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1">
+                            {currentBranch[0]?.bank_name}
+                          </td>
                         </tr>
                         <tr>
                           <td className="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 border p-1">
                             IFSC/Bank Code:
                           </td>
-                          <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1"></td>
+                          <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1">
+                            {currentBranch[0]?.ifsc_code}
+                          </td>
                         </tr>
                         <tr>
                           <td className="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 border p-1">
                             UPI ID:
                           </td>
-                          <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1"></td>
+                          <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1">
+                            {currentBranch[0]?.upi_id}
+                          </td>
                         </tr>
                       </tbody>
                     </table>
@@ -792,7 +833,7 @@ const PatientBillsByTpid = () => {
               Print
             </button> */}
             <button
-              className="btn btn-info no-print mx-3 mb-3 mt-2 text-white shadow"
+              className="btn btn-info no-print mx-3 mb-3 mt-3 text-white shadow"
               style={{
                 backgroundColor: "#0dcaf0",
                 border: "#0dcaf0",
@@ -805,7 +846,7 @@ const PatientBillsByTpid = () => {
               <>
                 {" "}
                 <button
-                  className="btn btn-info no-print mx-3 mt-2 mb-2 text-white shadow"
+                  className="btn btn-info no-print mx-3 mb-4 mt-2 text-white shadow"
                   style={{
                     backgroundColor: "#0dcaf0",
                     border: "#0dcaf0",
@@ -916,6 +957,17 @@ const PatientBillsByTpid = () => {
               Appointment Dashboard
             </button> */}
           </div>
+          <div className="row d-none d-print-block">
+              <div className="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div className="clinic-logo">
+                  <img
+                    src={getBranch[0]?.foot_img}
+                    alt="header"
+                    className="img-fluid"
+                  />
+                </div>
+              </div>
+            </div>
         </div>
       </Wrapper>
     </>

@@ -20,10 +20,10 @@ const TreatSuggest = () => {
   const user = useSelector((state) => state.user);
   const branchData = useSelector((state) => state.branch.currentBranch);
   console.log(branchData);
-  const branch = user.currentUser.branch_name;
-  const employeeName = user.currentUser.employee_name;
+  const branch = user.currentUser?.branch_name;
+  const employeeName = user.currentUser?.employee_name;
   const [otherMed, setOtherMed] = useState("");
-  const token = user.currentUser.token;
+  const token = user.currentUser?.token;
   console.log(branch);
   const { id, tpid } = useParams();
   console.log(id, tpid);
@@ -929,7 +929,7 @@ const TreatSuggest = () => {
                         <button
                           type="submit"
                           disabled={loading}
-                          className="btn btn-info text-light mt-5"
+                          className="btn btn-color text-light mt-5"
                         >
                           {loading ? "Save..." : "Save"}
                         </button>
@@ -1018,7 +1018,7 @@ const TreatSuggest = () => {
             />
           </div>
 
-          <div className="container-fluid">
+          {/* <div className="container-fluid">
             <div className="row shadow-sm p-3 mb-5 bg-body rounded">
               <div className="text-start">
                 <h3>Suggested Lab Test</h3>
@@ -1131,7 +1131,7 @@ const TreatSuggest = () => {
                 </tbody>
               </table>
             </div>
-          </div>
+          </div> */}
 
           {/* Medicine section starts */}
           <div className="container-fluid">
@@ -1141,7 +1141,7 @@ const TreatSuggest = () => {
                 <div className="row g-3">
                   <div className="col-xxl-2 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6">
                     <div className="form-outline">
-                      <label>disease</label>
+                      <label>Disease</label>
                       <select
                         name="disease"
                         onChange={handleChangeMed}
@@ -1150,7 +1150,7 @@ const TreatSuggest = () => {
                         value={prescriptionData.disease}
                         className="form-select text-start w-100"
                       >
-                        <option value="">-select disease-</option>
+                        <option value="">-select Disease-</option>
                         {uniqueDiseases.map((item, index) => (
                           <option key={index} value={item}>
                             {item}
@@ -1319,11 +1319,12 @@ const TreatSuggest = () => {
                   <div className="col-xxl-2 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6">
                     <div className="d-flex justify-content-center align-items-center h-100">
                       <button
-                        className="btn btn-secondary fs-5 mt-4 text-white shadow"
-                        style={{
-                          backgroundColor: "#0dcaf0",
-                          border: "#0dcaf0",
-                        }}
+                        className="btn btn-color fs-5 mt-4 text-white shadow"
+                        // style={{
+                        //   backgroundColor: "#0dcaf0",
+                        //   backgroundolor: rgb(8 145 178);
+                        //   border: "#0dcaf0",
+                        // }}
                         type="submit"
                         disabled={loading}
                       >
@@ -1344,6 +1345,7 @@ const TreatSuggest = () => {
                   <tr>
                     <th className="colorth">Date</th>
                     <th className="colorth">Medicine Name</th>
+                    <th className="colorth">Disease</th>
                     <th className="colorth">Dosage</th>
                     <th className="colorth">Frequency</th>
                     <th className="colorth">Duration</th>
@@ -1356,13 +1358,14 @@ const TreatSuggest = () => {
                     <tr key={index}>
                       <td>{item.date?.split(" ")[0]}</td>
                       <td>{item.medicine_name}</td>
+                      <td>{item.desease}</td>
                       <td>{item.dosage}</td>
                       <td>{item.frequency}</td>
                       <td>{item.duration}</td>
                       <td>{item.note}</td>
                       <td>
                         <button
-                          className="btn btn-danger text-white shadow"
+                          className="btn btn-color text-white shadow"
                           style={{
                             backgroundColor: "#0dcaf0",
                             border: "#0dcaf0",
@@ -1417,7 +1420,7 @@ const TreatSuggest = () => {
               //   )}
               <>
                 <button
-                  className="btn btn-info text-light mx-2 shadow fw-bold"
+                  className="btn btn-color text-light mx-2 shadow fw-bold"
                   onClick={handleChangePage}
                 >
                   Start Treatment
@@ -1427,20 +1430,20 @@ const TreatSuggest = () => {
               <>
                 {branchData[0]?.doctor_payment === "Yes" ? (
                   <>
-                    <button
+                    {/* <button
                       type="button"
-                      className="btn btn-info text-light mx-2 shadow fw-bold"
-                      disabled
+                      className="btn btn-color text-light mx-2 shadow fw-bold"
+                      // disabled
                     >
                       Security Amount
-                    </button>
+                    </button> */}
                   </>
                 ) : (
                   <>
                     {" "}
                     <button
                       type="button"
-                      className="btn btn-info text-light shadow fw-bold"
+                      className="btn btn-color text-light shadow fw-bold"
                       disabled
                     >
                       Print Prescription
@@ -1449,7 +1452,7 @@ const TreatSuggest = () => {
                 )}
 
                 <button
-                  className="btn btn-info text-light mx-2 shadow fw-bold"
+                  className="btn btn-color text-light mx-2 shadow fw-bold"
                   disabled
                 >
                   Start Treatment
@@ -1496,7 +1499,11 @@ const Wrapper = styled.div`
     padding: 0.5rem 0rem;
   }
   .colorth {
-    background-color: #0dcaf0;
+    // background-color: #0dcaf0;
+    background: #008080;
     color: white;
+  }
+  .btn-color {
+    background-color: rgb(8 145 178);
   }
 `;

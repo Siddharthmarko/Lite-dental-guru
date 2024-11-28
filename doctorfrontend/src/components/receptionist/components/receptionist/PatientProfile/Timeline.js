@@ -12,7 +12,7 @@ const Timeline = () => {
   const { pid } = useParams();
   const { currentUser } = useSelector((state) => state.user);
 
-  const branch = currentUser.branch_name;
+  const branch = currentUser?.branch_name;
   const token = currentUser?.token;
 
   const [patTimeline, setPatTimeline] = useState([]);
@@ -28,7 +28,7 @@ const Timeline = () => {
           },
         }
       );
-      console.log(data);
+      console.log(data, "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
       setPatTimeline(data?.data);
     } catch (error) {
       console.log(error);

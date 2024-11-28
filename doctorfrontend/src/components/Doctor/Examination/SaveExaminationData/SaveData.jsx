@@ -24,7 +24,7 @@ const SaveData = ({ id, tpid }) => {
   const dispatch = useDispatch();
   const { refreshTable, currentUser } = useSelector((state) => state.user);
   const user = useSelector((state) => state.user);
-  const token = user.currentUser.token;
+  const token = user.currentUser?.token;
 
   const getData = async () => {
     try {
@@ -360,7 +360,7 @@ const SaveData = ({ id, tpid }) => {
               <div className="d-flex justify-content-end">
                 <button
                   type="button"
-                  className="btn btn-info text-light mx-3"
+                  className="btn btn-color text-light mx-3"
                   onClick={handleSaveContinue}
                 >
                   Next
@@ -383,5 +383,8 @@ const Wrapper = styled.div`
     font-weight: 600;
     font-family: "Roboto", sans-serif;
     padding-left: 0.9rem;
+  }
+  .btn-color {
+    background-color: rgb(8 145 178);
   }
 `;

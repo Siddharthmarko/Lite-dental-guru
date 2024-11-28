@@ -16,12 +16,12 @@ const QPrescriptionForm = () => {
   const user = useSelector((state) => state.user);
   console.log(user);
 
-  const token = user.currentUser.token;
+  const token = user.currentUser?.token;
   const [appointments, setAppointments] = useState({});
   const [chiefList, setChiefList] = useState([]);
   const [formData, setFormData] = useState({
     name: appointments?.patient_name,
-    branch_name: user.currentUser.branch_name,
+    branch_name: user.currentUser?.branch_name,
     uhid: appointments?.uhid,
     appoint_id: appoint_id,
     age: appointments?.age,
@@ -65,8 +65,7 @@ const QPrescriptionForm = () => {
           },
         }
       );
-      setAppointments(data.data);
-      console.log(data);
+      setAppointments(data[0]);
     } catch (error) {
       console.log(error);
     }
@@ -146,11 +145,18 @@ const QPrescriptionForm = () => {
       <HeadBar />
       <div className="main">
         <div className="container-fluid">
-          <div className="row flex-nowrap">
-            <div className="col-lg-1 col-1 p-0">
+          <div className="row flex-nowrap" style={{ paddingTop: "60px" }}>
+            {/* <div className="col-lg-1 col-1 p-0">
               <Sider />
-            </div>
-            <div className="col-lg-11 col-11 ps-0 m-2">
+            </div> */}
+              <div
+          className="p-0 col-xxl-1 col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1 position-fixed "
+          id="sidebar"
+        >
+          <Sider />
+        </div>
+            {/* <div className="col-lg-11 col-11 ps-0 m-2"> */}
+            <div className="w-100 ps-md-5 ms-md-2 m-xxl-auto p-xxl-0">
               <div className="container">
                 <div className="row">
                   <div className="col-lg-12 col-md-12">

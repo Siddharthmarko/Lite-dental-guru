@@ -17,13 +17,13 @@ function SittingBillPayment() {
   const { refreshTable, currentUser } = useSelector((state) => state.user);
   console.log(currentUser);
   const token = currentUser?.token;
-  const {currentBranch} = useSelector((state) => state.branch);
-  const branch = currentUser.branch_name;
+  const { currentBranch } = useSelector((state) => state.branch);
+  const branch = currentUser?.branch_name;
   const [branchData, setBranchData] = useState([]);
   const [allSitting, setAllSitting] = useState([]);
   const [billAmount, setBillAmount] = useState([]);
   const [saAmt, setSaAmt] = useState([]);
-  const [patientData,setPatientData] = useState([]);
+  const [patientData, setPatientData] = useState([]);
   console.log(token);
   const [data, setData] = useState({
     paid_amount: "",
@@ -97,7 +97,6 @@ function SittingBillPayment() {
     }
   };
 
-  
   const getBillDetails = async () => {
     try {
       const { data } = await axios.get(
@@ -109,6 +108,7 @@ function SittingBillPayment() {
           },
         }
       );
+      console.log("get this data ", data);
       setBillAmount(data);
     } catch (error) {
       console.log(error);
@@ -191,8 +191,7 @@ function SittingBillPayment() {
   const remainingSecurityAmountCheck = () => {
     if (saAmt[0]?.remaining_amount >= billAmount[0]?.sitting_amount) {
       return saAmt[0]?.remaining_amount - billAmount[0]?.sitting_amount;
-    }
-    else{
+    } else {
       return 0;
     }
   };
@@ -251,8 +250,8 @@ function SittingBillPayment() {
     payment_mode: "",
     transaction_Id: "",
     note: "",
-    receiver_name: currentUser.employee_name,
-    receiver_emp_id: currentUser.employee_ID,
+    receiver_name: currentUser?.employee_name,
+    receiver_emp_id: currentUser?.employee_ID,
     pay_by_sec_amt:
       data.payment_option === "security"
         ? totalSecPaidValue + billAmount[0]?.sitting_amount
@@ -279,27 +278,25 @@ function SittingBillPayment() {
     }
   };
 
-  
   const submitSittingBill = async () => {
-    if(!data.payment_option === "security"){
-      if(!data.payment_mode){
-        alert("Please Select Payment Mode")
-        return
+    if (!data.payment_option === "security") {
+      if (!data.payment_mode) {
+        alert("Please Select Payment Mode");
+        return;
       }
     }
-    if(data.payment_option === "paydirect"){
-      if(!data.payment_mode){
-        alert("Please Select Payment Mode")
-        return
+    if (data.payment_option === "paydirect") {
+      if (!data.payment_mode) {
+        alert("Please Select Payment Mode");
+        return;
       }
     }
-    
-    if(data.payment_mode === "UPI" || data.payment_mode === "Card"){
-      if(!data.reference_number){
-        alert("Please Enter reference number")
-      return
-    }
-     
+
+    if (data.payment_mode === "UPI" || data.payment_mode === "Card") {
+      if (!data.reference_number) {
+        alert("Please Enter reference number");
+        return;
+      }
     }
     try {
       const res = await axios.put(
@@ -313,10 +310,10 @@ function SittingBillPayment() {
         }
       );
       cogoToast.success("successfully paid sitting bill");
-      if(data.payment_option === "security"){
+      if (data.payment_option === "security") {
         updateRemainingSecurity();
       }
-      
+
       updateBillforSitting();
       navigate(
         `/ViewPatientSittingBill/${tpid}/${sbid}/${billAmount[0]?.treatment}`
@@ -461,69 +458,6 @@ function SittingBillPayment() {
                       />
                     </div>
                   </div>
-                  <div className="col-xxl-2 col-xl-2 col-lg-2 col-md-4 col-sm-12 col-12">
-                    <div class="mb-3">
-                      <label class="form-label">Sitting Amount</label>
-                      <input
-                        type="text"
-                        value={billAmount[0]?.sitting_amount}
-                        class="form-control"
-                      />
-                    </div>
-                  </div>
-                  <div className="col-xxl-2 col-xl-2 col-lg-2 col-md-4 col-sm-12 col-12">
-                    <div class="mb-3">
-                      <label class="form-label">Paid Amount</label>
-                      <input
-                        type="text"
-                        name="paid_amount"
-                        value={billAmount[0]?.sitting_amount}
-                        readOnly
-                        placeholder="Add Amount"
-                        class="form-control"
-                      />
-                    </div>
-                  </div>
-                  {saAmt[0]?.payment_status === "pending" || !saAmt[0]?.remaining_amount ? (
-                    <>
-                      <div className="col-xxl-2 col-xl-2 col-lg-2 col-md-4 col-sm-12 col-12">
-                        <div class="mb-3">
-                          <label class="form-label">
-                            Remaining Security Amount
-                          </label>
-                          <input
-                            type="text"
-                            value={"0"}
-                            readonly
-                            class="form-control"
-                          />
-                        </div>
-                      </div>
-                    </>
-                  ) : (
-                    <>
-                      <div className="col-xxl-2 col-xl-2 col-lg-2 col-md-4 col-sm-12 col-12">
-                        <div class="mb-3">
-                          <label class="form-label">
-                            Remaining Security Amount
-                          </label>
-                          <input
-                            type="text"
-                            // value={
-                            //   saAmt[0]?.remaining_amount === 0
-                            //     ? saAmt[0]?.amount
-                            //     : saAmt[0]?.remaining_amount
-                            // }
-                            value={
-                             saAmt[0]?.remaining_amount
-                            }
-                            readonly
-                            class="form-control"
-                          />
-                        </div>
-                      </div>
-                    </>
-                  )}
 
                   <div className="col-xxl-2 col-xl-2 col-lg-2 col-md-4 col-sm-12 col-12">
                     <div class="mb-3">
@@ -535,23 +469,11 @@ function SittingBillPayment() {
                         class="form-control"
                       >
                         <option value="">-select-</option>
-                        {/* {saAmt[0]?.payment_status === "pending" &&
-                        saAmt[0]?.remaining_amount === 0 ? (
-                          ""
-                        ) : (
-                          <option value="security">Pay security amount</option>
-                        )} */}
-                        {saAmt[0]?.payment_status === "pending" ||
-                        (saAmt[0]?.remaining_amount < billAmount[0]?.sitting_amount) || !saAmt[0]?.remaining_amount ? (
-                          ""
-                        ) : (
-                          <option value="security">Pay security amount</option>
-                        )}
-
                         <option value="paydirect">Pay direct</option>
                       </select>
                     </div>
                   </div>
+
                   <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
                     <div class="mb-3">
                       <label class="form-label">Note</label>
@@ -564,43 +486,7 @@ function SittingBillPayment() {
                       />
                     </div>
                   </div>
-                  {saAmt[0]?.payment_status === "pending" &&
-                  (saAmt[0]?.remaining_amount === 0 ||
-                    saAmt[0]?.remaining_amount < data.paid_amount) ? (
-                    ""
-                  ) : (
-                    <>
-                      <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-12 col-12">
-                        <div class="mb-3">
-                          <label class="form-label">
-                            Pay using Security Amount
-                          </label>
-                          {data.payment_option !== "security" ? (
-                            <>
-                              {" "}
-                              <button
-                                className="btn btn-info form-control shadow"
-                                disabled
-                              >
-                                Pay using security amount
-                              </button>
-                            </>
-                          ) : (
-                            <>
-                              {" "}
-                              <button
-                                className="btn btn-info form-control shadow"
-                                type="button"
-                                onClick={submitSittingBill}
-                              >
-                                Pay using security amount
-                              </button>
-                            </>
-                          )}
-                        </div>
-                      </div>
-                    </>
-                  )}
+
                   {data.payment_option === "paydirect" && (
                     <>
                       <div className="col-xxl-2 col-xl-2 col-lg-2 col-md-4 col-sm-12 col-12">
@@ -616,7 +502,10 @@ function SittingBillPayment() {
                           >
                             <option value="">-select-</option>
                             <option value="Cash">Cash</option>
-                            {(patientData?.patient_type == "Credit" && currentBranch[0].allow_insurance == "Yes") && <option value="Credit">Credit</option> }
+                            {patientData?.patient_type == "Credit" &&
+                              currentBranch[0]?.allow_insurance == "Yes" && (
+                                <option value="Credit">Credit</option>
+                              )}
                             <option value="UPI">UPI</option>
                             <option value="Card">Card</option>
                           </select>
@@ -625,8 +514,8 @@ function SittingBillPayment() {
                     </>
                   )}
 
-                  {data.payment_mode === "UPI" ||
-                  data.payment_mode === "Card" ? (
+                  {(data.payment_mode === "UPI" ||
+                    data.payment_mode === "Card") && (
                     <>
                       <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
                         <div class="mb-3">
@@ -642,14 +531,13 @@ function SittingBillPayment() {
                         </div>
                       </div>
                     </>
-                  ) : (
-                    ""
                   )}
+
                   {data.payment_option === "paydirect" && (
                     <>
                       <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-12 col-12">
                         <div class="mb-3">
-                          <label class="form-label">Pay sitting Amount</label>
+                          <label class="form-label">Pay Sitting Amount</label>
                           <button
                             className="btn btn-info form-control shadow"
                             type="button"
@@ -661,10 +549,15 @@ function SittingBillPayment() {
                       </div>
                     </>
                   )}
-                  {
-                    ((saAmt[0]?.remaining_amount < billAmount[0]?.sitting_amount) || !saAmt[0]?.remaining_amount) && 
-                    <p style={{color:"red"}}>* if Remaining Security amount is less than sitting amount so select Pay direct </p>
-                  }
+
+                  {(saAmt[0]?.remaining_amount <
+                    billAmount[0]?.sitting_amount ||
+                    !saAmt[0]?.remaining_amount) && (
+                    <p style={{ color: "red" }}>
+                      * if Remaining Security amount is less than sitting amount
+                      so select Pay direct
+                    </p>
+                  )}
                 </div>
               </form>
             </div>

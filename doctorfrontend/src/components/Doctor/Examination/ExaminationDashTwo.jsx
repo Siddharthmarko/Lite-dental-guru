@@ -13,19 +13,19 @@ const ExaminationDashTwo = () => {
   const { id, uhid } = useParams();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-  const branch = user.currentUser.branch_name;
-  const token = user.currentUser.token;
+  const branch = user.currentUser?.branch_name;
+  const token = user.currentUser?.token;
   const [getPatient, setGetPatient] = useState([]);
   console.log(branch);
-  console.log(user.currentUser.branch_name);
+  console.log(user.currentUser?.branch_name);
   const [dcat, setDcat] = useState("");
   const [treatData, setTreatData] = useState({
     uhid: uhid,
-    branch_name: user.currentUser.branch_name,
+    branch_name: user.currentUser?.branch_name,
     appointment_id: id,
     examination_id: "",
-    doctor_id: user.currentUser.employee_ID,
-    doctor_name: user.currentUser.employee_name,
+    doctor_id: user.currentUser?.employee_ID,
+    doctor_name: user.currentUser?.employee_name,
     diagnosis_category: dcat,
     package_status: "started",
   });
@@ -190,7 +190,12 @@ const ExaminationDashTwo = () => {
 
 export default ExaminationDashTwo;
 const Wrapper = styled.div`
-  overflow: hidden;
+  // .main {
+  //   height: 50rem;
+  //   background-color: #f0f8ff;
+  //   overflow: hidden;
+  // }
+
   img {
     width: 650px;
     border-radius: 15px;

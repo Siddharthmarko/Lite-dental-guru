@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 const HeadBar = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-  // console.log(user.currentUser.employee_name);
+  // console.log(user.currentUser?.employee_name);
   return (
     <Wrapper>
       <div>
@@ -52,8 +52,8 @@ const HeadBar = () => {
                 <p className="text-white fw-bold">
                   Welcome{" "}
                   <strong>
-                    Dr. {user.currentUser.employee_name}(
-                    {user.currentUser.employee_ID})
+                    Dr. {user.currentUser?.employee_name}(
+                    {user.currentUser?.employee_ID})
                   </strong>
                 </p>
                 <li className="nav-item dropdown mx-3" id="userid">

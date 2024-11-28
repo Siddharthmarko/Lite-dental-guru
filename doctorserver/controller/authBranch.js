@@ -1,13 +1,10 @@
-const express = require("express");
 const db = require("../connect.js");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const JWT = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 const dotenv = require("dotenv");
 
 dotenv.config();
-
-const PORT = process.env.PORT;
 
 const getBranch = (req, res) => {
   try {
@@ -35,13 +32,7 @@ const getBranch = (req, res) => {
 
 const LoginDoctor = (req, res) => {
   try {
-    const { email, password, branch_name } = req.body;
-    if (!branch_name) {
-      return res.status(404).json({
-        success: false,
-        message: "Please select branch",
-      });
-    }
+    const { email, password} = req.body;
     if (!email || !password) {
       return res.status(404).json({
         success: false,
@@ -84,13 +75,6 @@ const LoginDoctor = (req, res) => {
             message: "Please login with doctor email",
           });
         }
-        if (user.branch_name !== branch_name) {
-          return res.status(401).json({
-            success: "false",
-            message: "Please login with your branch",
-          });
-        }
-
         if (user.employee_status !== "Approved") {
           return res.status(401).json({
             success: "false",
@@ -268,7 +252,6 @@ const billPatientDataByAppId = (req, res) => {
                 error: "An error occurred while inserting data into new_table",
               });
             }
-            // console.log('Data inserted into new_table:', insertResult);
           }
         );
       });
@@ -387,8 +370,6 @@ const updateRemainingSecurityAmount = (req, res) => {
     const tpid = req.params.tpid;
     const { remaining_amount } = req.body;
     console.log(remaining_amount);
-
-    // Checking if all required fields are present in the request body
 
     const selectQuery = "SELECT * FROM security_amount WHERE tp_id = ?";
     db.query(selectQuery, tpid, (err, result) => {
@@ -543,7 +524,9 @@ const sendOtp = (req, res) => {
 
   try {
     const transporter = nodemailer.createTransport({
-      service: "Gmail",
+    host: process.env.HOST, 
+      port: 465,  
+      secure: true, 
       auth: {
         user: process.env.EMAILSENDER,
         pass: process.env.EMAILPASSWORD,
@@ -562,7 +545,8 @@ const sendOtp = (req, res) => {
         console.error(error);
         return res
           .status(500)
-          .json("An error occurred while sending the email.");
+          .json({message: "An error occurred while sending the email.", err: error });
+
       } else {
         console.log("OTP sent:", info.response);
 
@@ -636,7 +620,6 @@ const verifyOtp = (req, res) => {
     res.status(500).json({ success: false, message: "Internal server error" });
   }
 };
-
 const resetPassword = (req, res) => {
   try {
     const { email, password } = req.body;
@@ -830,10 +813,6 @@ const updateAppointmentPath = (req, res) => {
 
     db.query(selectQuery, [branch, appoint_id], (err, result) => {
       if (err) {
-        // logger.registrationLogger.log(
-        //   "error",
-        //   "An error occurred while fetching data"
-        // );
         return res.status(400).json({ success: false, message: err.message });
       }
       if (result && result.length > 0) {
@@ -859,20 +838,12 @@ const updateAppointmentPath = (req, res) => {
           [...updateValues, branch, appoint_id],
           (err, result) => {
             if (err) {
-              // logger.registrationLogger.log(
-              //   "error",
-              //   "Failed to update details"
-              // );
               console.log("866", err);
               return res.status(500).json({
                 success: false,
                 message: "Failed to update details",
               });
             } else {
-              // logger.registrationLogger.log(
-              //   "info",
-              //   "Appointment updated successfully"
-              // );
               return res.status(200).json({
                 success: true,
                 message: "Appointment updated successfully",
@@ -881,7 +852,6 @@ const updateAppointmentPath = (req, res) => {
           }
         );
       } else {
-        // logger.registrationLogger.log("error", "branch or tpid not found");
         return res.status(404).json({
           success: false,
           message: "Branch/tpid not found",
@@ -889,7 +859,6 @@ const updateAppointmentPath = (req, res) => {
       }
     });
   } catch (error) {
-    // logger.registrationLogger.log("error", "Internal server error");
     console.log(error);
     res.status(500).json({ success: false, message: "Internal server error" });
   }

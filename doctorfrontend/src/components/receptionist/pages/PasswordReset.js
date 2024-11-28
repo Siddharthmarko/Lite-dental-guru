@@ -19,7 +19,7 @@ const PasswordReset = () => {
     try {
       setLoading(true);
       const response = await axios.post(
-        "http://localhost:8888/api/v1/receptionist/sendOtp",
+        "http://localhost:8888/api/doctor/sendOtp",
         {
           email,
         }

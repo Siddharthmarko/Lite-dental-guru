@@ -1235,6 +1235,21 @@ const getSittingBillDueBySittingId = (req, res) => {
   }
 };
 
+const getQuickPrescription = (req, res) => {
+  try {
+    const appointId = req.params.appointId;
+    const selectQuery = "SELECT * FROM quick_prescription WHERE appoint_id = ?";
+    db.query(selectQuery, appointId, (err, result) => {
+      if (err) {
+        res.status(400).json({ success: false, message: err.message });
+      }
+      res.status(200).send(result);
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, message: "internal server error" });
+  }
+};
+
 module.exports = {
   getTreatmentList,
   insertTreatmentData,
@@ -1277,4 +1292,5 @@ module.exports = {
   generateSittingBill,
   getEmployeeDetailsbyId,
   getSittingBillDueBySittingId,
+  getQuickPrescription,
 };

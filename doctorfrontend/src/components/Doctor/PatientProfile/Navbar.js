@@ -14,12 +14,13 @@ import Files from "./Files";
 import Overview from "./Overview";
 import { useParams } from "react-router-dom";
 
+
 const Navbar = () => {
   const { uhid } = useParams();
   console.log(uhid);
   return (
     <Wrapper>
-      <ul className="nav nav-tabs" id="myTab" role="tablist">
+      <ul style={{maxWidth: "900px"}} className="nav nav-tabs" id="myTab" role="tablist">
         <li className="nav-item" role="presentation">
           <button
             className="nav-link active"
@@ -102,7 +103,7 @@ const Navbar = () => {
             aria-controls="profile-tab-pane4"
             aria-selected="false"
           >
-            Clinical Examin
+            Clinical Examine
           </button>
         </li>
         <li className="nav-item" role="presentation">
@@ -119,7 +120,7 @@ const Navbar = () => {
             Prescription
           </button>
         </li>
-        <li className="nav-item" role="presentation">
+        {/* <li className="nav-item" role="presentation">
           <button
             className="nav-link"
             id="profile-tab1"
@@ -132,7 +133,7 @@ const Navbar = () => {
           >
             Lab
           </button>
-        </li>
+        </li> */}
         {/*<li className="nav-item" role="presentation">
           <button
             className="nav-link"
@@ -189,6 +190,8 @@ const Navbar = () => {
             TimeLine
           </button>
         </li>
+
+<div className="w-100">
 
         <div className="tab-content" id="myTabContent">
           <div
@@ -343,11 +346,12 @@ const Navbar = () => {
           >
             <ul className="list-group">
               <li className="list-group-item">
-                <Timeline uhid={uhid} />
+                <Timeline />
               </li>
             </ul>
           </div>
         </div>
+</div>
       </ul>
     </Wrapper>
   );
@@ -376,7 +380,8 @@ const Wrapper = styled.div`
   } */
 
   .nav-link {
-    background-color: #0dcaf0;
+    // background-color: #0dcaf0;
+    background-color: rgb(8 145 178);
     color: white;
     margin-left: 1px;
   }

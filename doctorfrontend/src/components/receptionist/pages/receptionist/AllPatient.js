@@ -12,7 +12,7 @@ import Lottie from "react-lottie";
 import animationData from "../../images/animation/loading-effect.json";
 function AllPatient() {
   const { refreshTable, currentUser } = useSelector((state) => state.user);
-  const branch = currentUser.branch_name;
+  const branch = currentUser?.branch_name;
   const token = currentUser?.token;
   const [patients, setPatients] = useState([]);
 
@@ -174,7 +174,7 @@ function AllPatient() {
       </div>
 
       <div className="row flex-nowrap ">
-        <div className="col-lg-1 col-1" id="hd">
+        <div className="col-lg-1 col-1" id="hd" style={{ paddingTop: "60px" }}>
           <Sider />
         </div>
 

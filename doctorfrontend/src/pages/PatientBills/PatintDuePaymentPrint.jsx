@@ -7,6 +7,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import cogoToast from "cogo-toast";
 import HeadBar from "../../components/Doctor/HeadBar";
+import Header from "../../components/receptionist/components/receptionist/Header";
 
 const PatintDuePaymentPrint = () => {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ const PatintDuePaymentPrint = () => {
   const branch = useSelector((state) => state.branch.currentBranch);
   console.log(branch);
   const userToken = useSelector((state) => state.user);
-  const token = userToken.currentUser.token;
+  const token = userToken.currentUser?.token;
   console.log(token);
   console.log(user);
   const [branchData, setBranchData] = useState([]);
@@ -344,7 +345,7 @@ const PatintDuePaymentPrint = () => {
   return (
     <>
       <Container>
-        <HeadBar />
+        <Header />
         <div className="container-fluid">
           <div className="row">
             <div className="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">

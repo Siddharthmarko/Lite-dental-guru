@@ -1,6 +1,5 @@
 const express = require("express");
 const db = require("../connect.js");
-const { getBranch } = require("./authBranch.js");
 const moment = require("moment-timezone");
 
 const dentalPediatric = (req, res) => {
@@ -656,7 +655,7 @@ const insertLab = (req, res) => {
       }
     });
   } catch (error) {
-    logger.registrationLogger.log("error", "Internal server error");
+    // logger.registrationLogger.log("error", "Internal server error");
     console.error("Error inserting data:", error);
     res.status(500).json({ error: "Failed to insert data into database" });
   }

@@ -17,7 +17,7 @@ function PatintDuePaymentPrint() {
   const { refreshTable, currentUser } = useSelector((state) => state.user);
   const token = currentUser?.token;
   const {currentBranch} = useSelector((state) => state.branch);
-  const branch = currentUser.branch_name;
+  const branch = currentUser?.branch_name;
   const [branchData, setBranchData] = useState([]);
   const [billAmount, setBillAmount] = useState([]);
   const [saAmt, setSaAmt] = useState([]);
@@ -220,8 +220,8 @@ function PatintDuePaymentPrint() {
           payment_mode: data.payment_mode,
           transaction_Id: data.transaction_Id,
           note: data.note,
-          receiver_name: currentUser.employee_name,
-          receiver_emp_id: currentUser.employee_ID,
+          receiver_name: currentUser?.employee_name,
+          receiver_emp_id: currentUser?.employee_ID,
           pay_by_sec_amt: updatedPay_by_sec_amt,
         },
         {
@@ -616,7 +616,7 @@ function PatintDuePaymentPrint() {
                     </option> */}
                     <option value="" selected>Select</option>
                               <option value="Cash">Cash</option>
-                             {(getPatient[0]?.patient_type == "Credit" && currentBranch[0].allow_insurance == "Yes") && <option value="Credit">Credit</option> }
+                             {(getPatient[0]?.patient_type == "Credit" && currentBranch[0]?.allow_insurance == "Yes") && <option value="Credit">Credit</option> }
                               <option value="UPI">UPI</option>
                               <option value="Card">Card</option>
                   </select>

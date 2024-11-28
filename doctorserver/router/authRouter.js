@@ -118,6 +118,7 @@ const {
   generateSittingBill,
   getEmployeeDetailsbyId,
   getSittingBillDueBySittingId,
+  getQuickPrescription,
 } = require("../controller/authTreatment.js");
 const {
   uploadImage,
@@ -496,9 +497,9 @@ router.put(
 );
 
 router.put("/makeBillPayment/:tpid/:branch", authenticate, makeBillPayment);
-router.post("/sendOtp", authenticate, sendOtp);
-router.post("/verifyOtp", authenticate, verifyOtp);
-router.put("/resetPassword", authenticate, resetPassword);
+router.post("/sendOtp", sendOtp);
+router.post("/verifyOtp", verifyOtp);
+router.put("/resetPassword", resetPassword);
 router.get(
   "/getTreatmentViaUhid/:branch/:uhid",
   authenticate,
@@ -598,6 +599,7 @@ const prestorage = multer.diskStorage({
     cb(null, Date.now() + path.extname(file.originalname));
   },
 });
+router.get("/getQuickPrescription/:appointId", getQuickPrescription);
 
 const preUpload = multer({ storage: prestorage });
 router.post(

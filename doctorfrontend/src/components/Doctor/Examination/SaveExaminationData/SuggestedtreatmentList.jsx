@@ -11,8 +11,8 @@ const SuggestedtreatmentList = ({ tpid, getPatientData }) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const { refreshTable, currentUser } = useSelector((state) => state.user);
-  const branch = user.currentUser.branch_name;
-  const token = user.currentUser.token;
+  const branch = user.currentUser?.branch_name;
+  const token = user.currentUser?.token;
   console.log(branch);
   const [treatList, setTreatList] = useState([]);
   const [showEditPopup, setShowEditPopup] = useState(false);
@@ -113,7 +113,7 @@ const SuggestedtreatmentList = ({ tpid, getPatientData }) => {
             >
               <thead className="">
                 <tr>
-                  <th className="word-wrap">disease</th>
+                  <th className="word-wrap">Disease</th>
                   <th className="word-wrap">Treatment</th>
                   {/* <th className="word-wrap">Treatment Cost</th> */}
                   <th className="word-wrap">Total Req. Sitting</th>
@@ -137,22 +137,22 @@ const SuggestedtreatmentList = ({ tpid, getPatientData }) => {
                             Set Sitting
                           </button> */}
                           <button
-                            className="btn btn-warning ms-2 shadow text-white"
-                            style={{
-                              backgroundColor: "#0dcaf0",
-                              border: "#0dcaf0",
-                            }}
+                            className="btn btn-color ms-2 shadow text-white"
+                            // style={{
+                            //   backgroundColor: "#0dcaf0",
+                            //   border: "#0dcaf0",
+                            // }}
                             onClick={() => openTreatEdit(item)}
                           >
                             Change Total Sitting
                           </button>
                           {item.current_sitting > 0 ? (
                             <button
-                              className="btn btn-danger ms-2 text-white shadow"
-                              style={{
-                                backgroundColor: "#0dcaf0",
-                                border: "#0dcaf0",
-                              }}
+                              className="btn btn-color ms-2 text-white shadow"
+                              // style={{
+                              //   backgroundColor: "#0dcaf0",
+                              //   border: "#0dcaf0",
+                              // }}
                               disabled
                               onClick={() => handleDelete(item.ts_id)}
                             >
@@ -160,11 +160,11 @@ const SuggestedtreatmentList = ({ tpid, getPatientData }) => {
                             </button>
                           ) : (
                             <button
-                              className="btn btn-danger ms-2 text-white shadow"
-                              style={{
-                                backgroundColor: "#0dcaf0",
-                                border: "#0dcaf0",
-                              }}
+                              className="btn btn-color ms-2 text-white shadow"
+                              // style={{
+                              //   backgroundColor: "#0dcaf0",
+                              //   border: "#0dcaf0",
+                              // }}
                               onClick={() => handleDelete(item.ts_id)}
                             >
                               Delete
@@ -214,5 +214,8 @@ const Container = styled.div`
   th,
   td {
     text-wrap: nowrap;
+  }
+  .btn-color {
+    background-color: rgb(8 145 178);
   }
 `;

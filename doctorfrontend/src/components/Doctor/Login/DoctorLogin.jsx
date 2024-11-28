@@ -35,24 +35,17 @@ const DoctorLogin = () => {
     }
   };
 
-  useEffect(() => {
-    getBranches();
-  }, []);
+  // useEffect(() => {
+  //   getBranches();
+  // }, []);
 
   const handleSelectBranch = (e) => {
     setSelectedBranch(e.target.value);
   };
 
-  useEffect(() => {
-    const filterdResult = braches.filter((item) => {
-      return item.branch_name === selectedBranch;
-    });
-    console.log(filterdResult);
-    setStoreBranch(filterdResult);
-  }, [selectedBranch]);
-
   console.log(selectedBranch);
   console.log(storeBranch);
+
   const receptionistLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -62,7 +55,7 @@ const DoctorLogin = () => {
         {
           email,
           password,
-          branch_name: selectedBranch,
+          // branch_name: "Madan Mahal",
         }
       );
 
@@ -74,7 +67,9 @@ const DoctorLogin = () => {
         // sendOtp();
         cogoToast.success(response.data.message);
         dispatch(setUser(response.data.user));
-        dispatch(setBranch(storeBranch));
+        // dispatch(setBranch(response.data.user.branch_name));
+        console.log(braches[0], "oooooooooooooooooooooooooooo");
+        dispatch(setBranch(braches));
         setLoading(false);
         // navigate("/doctor-dashboard");
         navigate("/dashboard");
@@ -104,6 +99,14 @@ const DoctorLogin = () => {
     }
   };
 
+  //   useEffect(()=>{
+  //     const filterdResult = braches.filter((item) => {
+  //       return item.branch_name === selectedBranch;
+  //     })
+  //   console.log(filterdResult)
+  //    setStoreBranch(filterdResult)
+  // },[selectedBranch])
+
   const closeUpdatePopup = () => {
     setPopupVisible(false);
   };
@@ -118,7 +121,7 @@ const DoctorLogin = () => {
                   <div className="card-body p-md-5">
                     <div className="row justify-content-center">
                       <div className="col-md-10 col-lg-6 col-xl-5 order-2">
-                        <div className="d-flex justify-content-end">
+                        {/* <div className="d-flex justify-content-end">
                           <select
                             name="branch_name"
                             id=""
@@ -137,9 +140,9 @@ const DoctorLogin = () => {
                               );
                             })}
                           </select>
-                        </div>
+                        </div> */}
                         <p className="text-center h4 fw-bold mb-5 mx-1 mx-md-4 mt-4">
-                          Doctor's Login
+                          Login
                         </p>
 
                         <form

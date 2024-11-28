@@ -19,12 +19,13 @@ const SittingBill = () => {
   const navigate = useNavigate();
   const [getPatientData, setGetPatientData] = useState([]);
   const user = useSelector((state) => state.user);
-  const token = user.currentUser.token;
+  const token = user.currentUser?.token;
+  console.log(token, "sdfghjksdfghjsdfghjksdfghjk");
   console.log(user);
-  const branch = user.currentUser.branch_name;
+  const branch = user.currentUser?.branch_name;
   console.log(branch);
-  const branchData = useSelector((state) => state.branch.currentBranch);
-  console.log(branchData);
+  const { currentBranch } = useSelector((state) => state.branch);
+  console.log(currentBranch);
   const [getExaminData, setGetExaminData] = useState([]);
   const [getTreatData, setGetTreatData] = useState([]);
   const [getTreatMedicine, setGetTreatMedicine] = useState([]);
@@ -94,7 +95,10 @@ const SittingBill = () => {
 
   const getSittingBillbyId = async () => {
     try {
+      console.log(branch, sitting, tpid, appoint_id, "lkdsjflksdjflksdjlkfjsdok");
+
       const { data } = await axios.get(
+        
         `http://localhost:8888/api/doctor/getSittingBillbyId/${branch}/${sitting}/${tpid}/${appoint_id}`,
         {
           headers: {
@@ -193,11 +197,68 @@ const SittingBill = () => {
     const imgWidth = 210; // A4 width in mm
     const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
-    pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
+    pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight, undefined, "FAST");
     pdf.save("sitting bill.pdf");
   };
 
   const sendPrescriptionMail = async () => {
+    try {
+      const element = contentRef.current;
+      
+      if (!element) {
+        console.error("contentRef is not defined or invalid.");
+        cogoToast.error("Content not found.");
+        return;
+      }
+  
+      const canvas = await html2canvas(element);
+      const imgData = canvas.toDataURL("image/png");
+      const pdf = new jsPDF();
+      const imgWidth = 210; // A4 width in mm
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+  
+      pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight, undefined, "FAST");
+      const pdfData = pdf.output("blob");
+  
+      const formData = new FormData();
+      if (getPatientData.length > 0) {
+        const patient = getPatientData[0];
+        formData.append("email", patient.emailid);
+        formData.append("patient_name", patient.patient_name);
+        formData.append("subject", `${patient.patient_name}, your sitting bill file`);
+        formData.append("textMatter", `Dear ${patient.patient_name}, please find the attached sitting bill file.`);
+        formData.append("file", pdfData, "prescription.pdf");
+  
+        console.log("Form data prepared:", Array.from(formData.entries()));
+  
+        const response = await axios.post(
+          "http://localhost:8888/api/doctor/prescriptionOnMail",
+          formData,
+          {
+            headers: { "Content-Type": "multipart/form-data" }, // Optional
+            timeout: 15000, // Increased timeout for slower connections
+          }
+        );
+  
+        if (response.status === 200) {
+          cogoToast.success("Sitting bill sent successfully");
+          console.log("PDF sent successfully:", response.data);
+        } else {
+          console.error("Failed to send PDF, server error:", response);
+          cogoToast.error("Failed to send bill, server error.");
+        }
+      } else {
+        console.error("Patient data is not available");
+        cogoToast.error("Patient data is missing.");
+      }
+    } catch (error) {
+      console.error("Error sending PDF:", error);
+      cogoToast.error("Error sending bill.");
+    }
+  };
+  
+
+  const sendPrescriptionWhatsapp = async () => {
     try {
       const element = contentRef.current;
       const canvas = await html2canvas(element);
@@ -216,51 +277,6 @@ const SittingBill = () => {
         undefined,
         "FAST"
       );
-      const pdfData = pdf.output("blob");
-      console.log(pdfData);
-
-      const formData = new FormData();
-      formData.append("email", getPatientData[0]?.emailid);
-      formData.append("patient_name", getPatientData[0]?.patient_name);
-      formData.append(
-        "subject",
-        `${getPatientData[0]?.patient_name}, your sitting bill file`
-      );
-      formData.append(
-        "textMatter",
-        `Dear ${getPatientData[0]?.patient_name}, Please find the attached sitting bill file.`
-      );
-      formData.append("file", pdfData, "prescription.pdf");
-      for (let [key, value] of formData.entries()) {
-        console.log(key, value);
-      }
-      const response = await axios.post(
-        "http://localhost:8888/api/doctor/prescriptionOnMail",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      cogoToast.success("Sitting bill sent successfully");
-      console.log("PDF sent successfully:", response.data);
-    } catch (error) {
-      console.error("Error sending PDF:", error);
-    }
-  };
-
-  const sendPrescriptionWhatsapp = async () => {
-    try {
-      const element = contentRef.current;
-      const canvas = await html2canvas(element);
-      const imgData = canvas.toDataURL("image/png");
-      const pdf = new jsPDF();
-      const imgWidth = 210; // A4 width in mm
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
-      pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
       const pdfData = pdf.output("blob");
       console.log(pdfData);
 
@@ -319,8 +335,8 @@ const SittingBill = () => {
         {/* branch details */}
 
         <div className="container-fluid">
-          <div className="d-flex justify-content-between">
-            <button
+          <div className="d-flex justify-content-end">
+            {/* <button
               className="btn btn-info no-print mt-2 mb-2 text-white shadow"
               style={{
                 backgroundColor: "#0dcaf0",
@@ -329,7 +345,7 @@ const SittingBill = () => {
               onClick={goBack}
             >
               <IoMdArrowRoundBack /> Back
-            </button>
+            </button> */}
             <button
               className="btn btn-info no-print mt-2 mb-2 text-white shadow"
               style={{
@@ -511,7 +527,7 @@ const SittingBill = () => {
                           {item.payment_status === "Pending"
                             ? 0
                             : item.paid_amount === null
-                            ? item.sitting_amount
+                            ? 0
                             : item.paid_amount}
                         </td>
                       </tr>
@@ -580,7 +596,7 @@ const SittingBill = () => {
                       style={{ fontSize: "12px" }}
                     >
                       {sittingBill[0]?.paid_amount === null
-                        ? numWords(sittingBill[0]?.sitting_amount).toUpperCase()
+                        ? numWords(sittingBill[0]?.paid_amount).toUpperCase()
                         : numWords(
                             sittingBill[0]?.paid_amount
                           ).toUpperCase()}{" "}
@@ -599,31 +615,42 @@ const SittingBill = () => {
                           <td className="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 border p-1">
                             Account No.:
                           </td>
-                          <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1"></td>
+                          <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1">
+                            {currentBranch[0]?.account_number}
+                          </td>
                         </tr>
                         <tr>
                           <td className="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 border p-1">
                             Account Name:
                           </td>
-                          <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1"></td>
+                          <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1">
+                            {/* Assuming you want to put a placeholder or value here */}
+                            {currentBranch[0]?.branch_name}
+                          </td>
                         </tr>
                         <tr>
                           <td className="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 border p-1">
                             Bank Name:
                           </td>
-                          <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1"></td>
+                          <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1">
+                            {currentBranch[0]?.bank_name}
+                          </td>
                         </tr>
                         <tr>
                           <td className="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 border p-1">
                             IFSC/Bank Code:
                           </td>
-                          <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1"></td>
+                          <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1">
+                            {currentBranch[0]?.ifsc_code}
+                          </td>
                         </tr>
                         <tr>
                           <td className="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 border p-1">
                             UPI ID:
                           </td>
-                          <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1"></td>
+                          <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1">
+                            {currentBranch[0]?.upi_id}
+                          </td>
                         </tr>
                       </tbody>
                     </table>
@@ -652,7 +679,7 @@ const SittingBill = () => {
                           {sittingBill[0]?.payment_status === "pending" ||
                           sittingBill[0]?.payment_status === "Pending"
                             ? 0
-                            : sittingBill[0]?.paid_amount}
+                            : sittingBill[0]?.paid_amount ? sittingBill[0]?.paid_amount : 0}
                         </td>
                       </tr>
                     </tbody>
@@ -673,34 +700,45 @@ const SittingBill = () => {
               <div className="text-termslong"></div>
             </div>
           </div>
-        </div>
+          <div className="row d-print-block d-none fixed-bottom">
+              <div className="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div className="clinic-logo">
+                  <img
+                    src={getBranch[0]?.foot_img}
+                    alt="header"
+                    className="img-fluid"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
 
         {/* print button */}
         <div className="container-fluid">
           <div className="text-center">
             <button
-              className="btn btn-info no-print mx-3 mb-3 mt-2 text-white shadow"
-              style={{
-                backgroundColor: "#0dcaf0",
-                border: "#0dcaf0",
-              }}
+              className="btn btn-color no-print mx-3 mb-3 mt-2 text-white shadow"
+              // style={{
+              //   backgroundColor: "#0dcaf0",
+              //   border: "#0dcaf0",
+              // }}
               onClick={handleDownloadPdf}
             >
               Download Sitting Bill
             </button>
             <button
-              className="btn btn-info no-print text-white mt-2 mb-3 shadow"
+              className="btn btn-color  no-print text-white mt-2 mb-3 shadow"
               onClick={handleTreatNavigate}
-              style={{
-                backgroundColor: "#0dcaf0",
-                border: "#0dcaf0",
-              }}
+              // style={{
+              //   backgroundColor: "#0dcaf0",
+              //   border: "#0dcaf0",
+              // }}
             >
               Treatment Dashboard
             </button>
             <br />
             Share on :
-            {branchData[0]?.sharemail === "Yes" && (
+            {currentBranch[0]?.sharemail === "Yes" && (
               <button
                 className="btn btn-info no-print mx-3 mb-3 mt-2 text-white shadow"
                 style={{
@@ -712,7 +750,7 @@ const SittingBill = () => {
                 <SiGmail />
               </button>
             )}
-            {branchData[0]?.sharewhatsapp === "Yes" && (
+            {currentBranch[0]?.sharewhatsapp === "Yes" && (
               <button
                 className="btn btn-info no-print mx-3 mb-3 mt-2 text-white shadow"
                 style={{
@@ -724,7 +762,7 @@ const SittingBill = () => {
                 <IoLogoWhatsapp />
               </button>
             )}
-            {branchData[0]?.sharesms === "Yes" && (
+            {currentBranch[0]?.sharesms === "Yes" && (
               <button
                 className="btn btn-info no-print mx-3 mb-3 mt-2 text-white shadow"
                 style={{
@@ -788,6 +826,10 @@ const SittingBill = () => {
 
 export default SittingBill;
 const Wrapper = styled.div`
+  .btn-color {
+    background-color: rgb(8 145 178);
+  }
+
   overflow: hidden;
   background-color: white;
   height: 100%;

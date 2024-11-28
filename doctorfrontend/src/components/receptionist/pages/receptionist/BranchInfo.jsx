@@ -19,6 +19,7 @@ const BranchInfo = () => {
   const [loadingEffect, setLoadingEffect] = useState(false);
   const getBranchDetail = async () => {
     try {
+      console.log(branch);
       const response = await axios.get(
         `http://localhost:8888/api/v1/receptionist/get-branch-detail/${branch}`
       );
@@ -71,7 +72,11 @@ const BranchInfo = () => {
         </div>
 
         <div className="row mrgnzero">
-          <div className="col-lg-1 col-md-1 col-1" id="sider">
+          <div
+            className="col-lg-1 col-md-1 col-1"
+            id="sider"
+            style={{ paddingTop: "70px" }}
+          >
             <Sider />
           </div>
           <div className="col-lg-11 col-md-11 col-11" id="set">
@@ -170,12 +175,12 @@ const BranchInfo = () => {
                     </div>
                   </div>
                   <div className="row mb-3">
-                    <div className="col-lg-4">
+                    {/* <div className="col-lg-4">
                       <label className="text">Week Off</label>
                       <div className="shadow-none p-1 bg-light rounded">
                         <p className="m-0">{branchDetail[0]?.week_off}</p>
                       </div>
-                    </div>
+                    </div> */}
                     <div className="col-lg-4">
                       <label className="text">Slot Duration</label>
                       <div className="shadow-none p-1 bg-light rounded">

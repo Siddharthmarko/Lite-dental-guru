@@ -1,6 +1,6 @@
 const  db  = require("../connect.js");
 const dotenv = require("dotenv");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const JWT = require("jsonwebtoken");
 dotenv.config();
 const nodemailer = require("nodemailer");
@@ -135,7 +135,9 @@ const client = twilio(ACCOUNT_SID, AUTH_TOKEN);
 // }
 
 const transporter = nodemailer.createTransport({
-  service: "Gmail",
+host: process.env.HOST, 
+  port: 465,  
+  secure: true, 
   auth: {
     user: process.env.EMAILSENDER,
     pass: process.env.EMAILPASSWORD,
@@ -4074,7 +4076,9 @@ const prescriptionOnMail = (req, res) => {
     const { email, patient_name, subject, textMatter } = req.body;
     const pdfPath = req.file.path;
     const transporter = nodemailer.createTransport({
-      service: "Gmail",
+ host: process.env.HOST, 
+  port: 465,  
+  secure: true, 
       auth: {
         user: process.env.EMAILSENDER,
         pass: process.env.EMAILPASSWORD,

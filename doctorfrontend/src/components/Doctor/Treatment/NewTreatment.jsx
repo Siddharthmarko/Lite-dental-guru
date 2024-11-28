@@ -20,8 +20,8 @@ const NewTreatment = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const { refreshTable, currentUser } = useSelector((state) => state.user);
-  const branch = user.currentUser.branch_name;
-  const token = user.currentUser.token;
+  const branch = user.currentUser?.branch_name;
+  const token = user.currentUser?.token;
   const [getPatientData, setGetPatientData] = useState([]);
   const [uniqueValue, setUniqueValue] = useState([]);
   const [getExamTeeth, setGetExamTeeth] = useState([]);
@@ -199,7 +199,7 @@ const NewTreatment = () => {
   return (
     <>
       <Wrapper>
-        <div className="container-fluid main">
+        <div className="container-fluid main mt-2 ms-md-2 ms-md-0">
           <div className="">
             {" "}
             {/* Center the content horizontally */}
@@ -268,7 +268,7 @@ const NewTreatment = () => {
           </div>
         </div>
         <div className="box">
-          <div className="table-responsive">
+          <div className="table-responsive m-md-4 m-lg-0">
             <table
               className="table table-bordered table-striped border"
               style={{ overflowX: "scroll" }}
@@ -277,12 +277,12 @@ const NewTreatment = () => {
                 <tr>
                   <th>Date</th>
                   <th>Treatment</th>
-                  <th>disease</th>
+                  <th>Disease</th>
                   <th>Teeth</th>
                   <th>Chief Complain</th>
                   <th>Advice</th>
                   <th>On Examination</th>
-                  <th>Treatment status</th>
+                  <th>Treatment Status</th>
                   <th className="text-center">Action</th>
                 </tr>
               </thead>
@@ -357,7 +357,7 @@ const NewTreatment = () => {
             </div> */}
           </div>
         </div>
-        <div className="mt-4 mx-3">
+        {/* <div className="mt-4 mx-3">
           <h2 style={{ color: "#213555" }}>List of Tests</h2>
           <div className="mb-3">
             <div className="row"></div>
@@ -446,7 +446,7 @@ const NewTreatment = () => {
               </>
             )}
           </div>
-        </div>
+        </div> */}
 
         {showEditPopup && (
           <SittingProcessModal
@@ -479,7 +479,8 @@ const Wrapper = styled.div`
     font-size: 10px;
   }
   th {
-    background: #0dcaf0;
+    // background: #0dcaf0;
+    background: #008080;
     white-space: nowrap;
     color: white;
   }

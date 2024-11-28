@@ -5,7 +5,7 @@ import Sider from "../receptionist/components/receptionist/Sider";
 import Header from "../receptionist/components/receptionist/Header";
 import { FaSearch } from "react-icons/fa";
 import { IoMdArrowRoundBack } from "react-icons/io";
-// import BranchSelector from "../../../components/BranchSelector";
+// import BranchSelector from "./BranchSelector";
 import axios from "axios";
 import cogoToast from "cogo-toast";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,10 +14,16 @@ import moment from "moment";
 const ClinicConfigSetting = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-  console.log(`User Name: ${user.name}, User ID: ${user.id}`);
+  const token = user.currentUser?.token;
+  console.log(`User Name: ${token}`);
+  console.log(
+    `User Name: ${user.currentUser?.name}, User ID: ${user.currentUser?.id}`
+  );
   console.log("User State:", user);
-  const branch = useSelector((state) => state.branch);
-  console.log(`User Name: ${branch.name}`);
+  const branch_name = useSelector(
+    (state) => state.user.currentUser?.branch_name
+  );
+  console.log(`User Name: ${branch_name}`);
   const [docPayment, setDocPayment] = useState();
   const [allowInsurance, setAllowInsurance] = useState();
   const [shareWhatapps, setShareWhatapps] = useState();
@@ -30,13 +36,13 @@ const ClinicConfigSetting = () => {
   const [branchCategory, setBranchCategory] = useState();
   const [showEditInsurance, setShowEditInsurance] = useState(false);
   const [addIns, setAddIns] = useState({
-    branch: branch.name,
+    branch: branch_name,
     companyname: "",
     category: "",
     status: "",
   });
   const [upIns, setUpIns] = useState({
-    branch: branch.name,
+    branch: branch_name,
     companyname: "",
     category: "",
     status: "",
@@ -69,7 +75,7 @@ const ClinicConfigSetting = () => {
     console.log(id);
     setSelected(item);
     // setUpIns({
-    //   branch: branch.name,
+    //   branch: branch_name,
     //   companyname: item?.companyname,
     //   category: item?.category,
     //   status: item?.status,
@@ -80,7 +86,7 @@ const ClinicConfigSetting = () => {
 
   useEffect(() => {
     setUpIns({
-      branch: branch.name,
+      branch: branch_name,
       companyname: selected?.companyname,
       category: selected?.category,
       status: selected?.status,
@@ -94,7 +100,7 @@ const ClinicConfigSetting = () => {
     e.preventDefault();
     try {
       const res = await axios.put(
-        `https://dentalguru-superadmin.vimubds5.a2hosted.com/api/v1/super-admin/updateDoctorPaymentAllowSetting/${branch.name}`,
+        `http://localhost:8888/api/v1/super-admin/updateDoctorPaymentAllowSetting/${branch_name}`,
         {
           doctor_payment: docPayment,
           allow_insurance: allowInsurance,
@@ -106,7 +112,7 @@ const ClinicConfigSetting = () => {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${user.token}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
@@ -120,14 +126,15 @@ const ClinicConfigSetting = () => {
   const getBranchData = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-superadmin.vimubds5.a2hosted.com/api/v1/super-admin/getBranchDetailsByBranch/${branch.name}`,
+        `http://localhost:8888/api/v1/super-admin/getBranchDetailsByBranch/${branch_name}`,
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${user.token}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
+      console.log(data);
       setBranchDetails(data);
     } catch (error) {
       console.log(error);
@@ -139,11 +146,11 @@ const ClinicConfigSetting = () => {
   const getInsuranceList = async () => {
     try {
       const { data } = await axios.get(
-        `https://dentalguru-superadmin.vimubds5.a2hosted.com/api/v1/super-admin/getInsuranceList/${branch.name}`,
+        `http://localhost:8888/api/v1/super-admin/getInsuranceList/${branch_name}`,
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${user.token}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
@@ -156,7 +163,7 @@ const ClinicConfigSetting = () => {
   useEffect(() => {
     getBranchData();
     getInsuranceList();
-  }, [branch.name]);
+  }, [branch_name]);
 
   console.log(insList);
 
@@ -164,12 +171,12 @@ const ClinicConfigSetting = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        `https://dentalguru-superadmin.vimubds5.a2hosted.com/api/v1/super-admin/addInsuranceCompany/${branch.name}`,
+        `http://localhost:8888/api/v1/super-admin/addInsuranceCompany/${branch_name}`,
         addIns,
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${user.token}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
@@ -186,12 +193,12 @@ const ClinicConfigSetting = () => {
     e.preventDefault();
     try {
       const res = await axios.put(
-        `https://dentalguru-superadmin.vimubds5.a2hosted.com/api/v1/super-admin/updateInsuranceDetails/${selected.ins_id}/${branch.name}`,
+        `http://localhost:8888/api/v1/super-admin/updateInsuranceDetails/${selected.ins_id}/${branch_name}`,
         upIns,
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${user.token}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
@@ -209,11 +216,11 @@ const ClinicConfigSetting = () => {
       const confirm = window.confirm("Are you sure you want to delete ?");
       if (confirm) {
         const del = await axios.delete(
-          `https://dentalguru-superadmin.vimubds5.a2hosted.com/api/v1/super-admin/deleteInsurance/${id}/${branch.name}`,
+          `http://localhost:8888/api/v1/super-admin/deleteInsurance/${id}/${branch_name}`,
           {
             headers: {
               "Content-Type": "application/json",
-              Authorization: `Bearer ${user.token}`,
+              Authorization: `Bearer ${token}`,
             },
           }
         );
@@ -243,12 +250,15 @@ const ClinicConfigSetting = () => {
     <>
       <Container>
         <Header />
-        <div className="main">
+        <div className="main" style={{ paddingTop: "60px" }}>
           <div className="container-fluid">
             <div className="row flex-nowrap ">
-              <div className="col-lg-1 col-1 p-0">
+              <div className="col-lg-1 col-1 p-0 position-fixed" id="sidebar">
                 <Sider />
               </div>
+              {/* for fixed sidebar */}
+              <div className="col-md-1"></div>
+              {/* for fixed sidebar */}
               <div className="col-lg-11 col-11 ps-0">
                 <div className="container-fluid mt-3">
                   <div className="d-flex justify-content-between">
@@ -263,14 +273,15 @@ const ClinicConfigSetting = () => {
                   </div>
                 </div>
                 <div className="container-fluid mt-3">
-                  <button className="btn btn-success" onClick={goBack}>
+                  <button
+                    className="btn btn-success ms-md-2 ms-lg-0"
+                    onClick={goBack}
+                  >
                     <IoMdArrowRoundBack /> Back
                   </button>
                   <div className="banner-mid mt-2">
                     <div>
-                      <h3 className="text-light text-center">
-                        Clinic Settings
-                      </h3>
+                      <h3 className="text-dark text-center">Clinic Settings</h3>
                     </div>
                   </div>
                   <div>
@@ -486,7 +497,7 @@ const ClinicConfigSetting = () => {
                       placeholder="branch name"
                       className="form-control rounded p-2"
                       name="branch"
-                      value={branch.name}
+                      value={branch_name}
                       onChange={handleChange}
                     />
                   </div>
@@ -580,7 +591,7 @@ const ClinicConfigSetting = () => {
                       placeholder="branch name"
                       className="form-control rounded p-2"
                       name="branch"
-                      value={branch.name}
+                      value={branch_name}
                       onChange={handleUpChange}
                     />
                   </div>
@@ -660,7 +671,7 @@ const ClinicConfigSetting = () => {
 export default ClinicConfigSetting;
 const Container = styled.div`
   .banner-mid {
-    background-color: #004aad;
+    background-color: #fff;
     padding: 1rem;
     display: flex;
     justify-content: space-between;
@@ -708,7 +719,7 @@ const Container = styled.div`
   }
 
   th {
-    background-color: #004aad;
+    background-color: #008080;
     color: white;
     white-space: nowrap;
   }
@@ -720,5 +731,21 @@ const Container = styled.div`
   }
   .table-responsive {
     height: 20rem;
+  }
+  #sidebar {
+    width: 5.04rem;
+    height: 79rem;
+    background-color: #008080;
+    @media screen and (max-width: 768px) {
+      width: 3rem;
+      height: 212rem;
+    }
+    @media screen and (min-width: 768px) and (max-width: 1020px) {
+      width: 5rem;
+      height: 151rem;
+    }
+    @media screen and (min-width: 1020px) and (max-width: 1600px) {
+      height: 62rem;
+    }
   }
 `;

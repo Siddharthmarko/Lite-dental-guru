@@ -4,13 +4,14 @@ import HeadBar from "../../components/Doctor/HeadBar";
 import SideBar from "../../components/Doctor/SideBar";
 import AppointTable from "../../components/Doctor/Tables/AppointTable";
 import { useDispatch, useSelector } from "react-redux";
+import Footer from "../../components/receptionist/components/receptionist/Footer";
 
 const DoctorDashboard = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
 
   // console.log(user);
-  const branch = user.currentUser.branch_name;
+  const branch = user.currentUser?.branch_name;
   // console.log(`User Branch: ${branch}`);
   return (
     <Wrapper>
@@ -40,6 +41,7 @@ const DoctorDashboard = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </Wrapper>
   );
 };

@@ -15,7 +15,7 @@ import animationData from "../../images/animation/loading-effect.json";
 
 function PatientsDue() {
   const { refreshTable, currentUser } = useSelector((state) => state.user);
-  const branch = currentUser.branch_name;
+  const branch = currentUser?.branch_name;
   const token = currentUser?.token;
   const [loadingEffect, setLoadingEffect] = useState(false);
   const [patBill, setPatBill] = useState([]);
@@ -43,7 +43,9 @@ function PatientsDue() {
   console.log(patBill);
   const filterForUnPaidBills = patBill?.filter((item) => {
     // return (item.payment_status !== "paid" && item.payment_status !== "Paid");
-    return (item.payment_status === "pending" || item.payment_status === "Pending")
+    return (
+      item.payment_status === "pending" || item.payment_status === "Pending"
+    );
   });
 
   useEffect(() => {
@@ -274,7 +276,7 @@ function PatientsDue() {
                           <th className=" sticky">Doctor Name</th>
                           <th className=" sticky">Total Amount</th>
                           <th className=" sticky">Paid By Direct Amount</th>
-                          <th className=" sticky">Paid By Secuirty Amt</th>
+                          {/* <th className=" sticky">Paid By Secuirty Amt</th> */}
                           <th className=" sticky">Due Amount</th>
                           <th className=" sticky">Bill Date</th>
                           <th className=" sticky">Action</th>
@@ -306,7 +308,7 @@ function PatientsDue() {
                                 </td>
                                 <td>{item.total_amount}</td>
                                 <td>{item.paid_amount}</td>
-                                <td>{item.pay_by_sec_amt}</td>
+                                {/* <td>{item.pay_by_sec_amt}</td> */}
                                 <td>
                                   {Number(item.total_amount) -
                                     (Number(item.paid_amount) +

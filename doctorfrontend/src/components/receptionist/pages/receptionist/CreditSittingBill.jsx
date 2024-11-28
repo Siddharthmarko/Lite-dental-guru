@@ -20,7 +20,7 @@ const CreditSittingBill = () => {
   const { refreshTable, currentUser } = useSelector((state) => state.user);
   const { currentBranch } = useSelector((state) => state.branch);
   const token = currentUser?.token;
-  const branch = currentUser.branch_name;
+  const branch = currentUser?.branch_name;
   const [getExaminData, setGetExaminData] = useState([]);
   const [getTreatData, setGetTreatData] = useState([]);
   const [getTreatMedicine, setGetTreatMedicine] = useState([]);
@@ -212,55 +212,65 @@ const CreditSittingBill = () => {
   // };
 
   const sendPrescriptionMail = async () => {
+    // Check if email is available
     if (!getPatientData[0]?.emailid) {
-      alert("Email id not available");
+      alert("Email ID not available");
       return;
     }
+  
     try {
+      // Check if content element is defined
       const element = contentRef.current;
-      const canvas = await html2canvas(element, { scale: 2 }); // Increase the scale for better quality
-      const imgData = canvas.toDataURL("image/jpeg", 0.75); // Use JPEG with 75% quality
+      if (!element) {
+        console.error("Content reference is invalid.");
+        cogoToast.error("Content not found.");
+        return;
+      }
+  
+      // Generate canvas and adjust quality
+      const canvas = await html2canvas(element, { scale: 2 });
+      const imgData = canvas.toDataURL("image/jpeg", 0.75); // Use JPEG for smaller file size with 75% quality
       const pdf = new jsPDF();
       const imgWidth = 210; // A4 width in mm
       const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
-      pdf.addImage(
-        imgData,
-        "JPEG",
-        0,
-        0,
-        imgWidth,
-        imgHeight,
-        undefined,
-        "FAST"
-      ); // Use 'FAST' for compression
+  
+      // Add image to PDF
+      pdf.addImage(imgData, "JPEG", 0, 0, imgWidth, imgHeight, undefined, "FAST");
       const pdfData = pdf.output("blob");
-      console.log(pdfData);
-
+  
+      // Prepare form data for API
       const formData = new FormData();
-      formData.append("email", getPatientData[0]?.emailid);
-      formData.append("patient_name", getPatientData[0]?.patient_name);
-      formData.append(
-        "subject",
-        `${getPatientData[0]?.patient_name}, your sitting bill file`
-      );
+      const patient = getPatientData[0];
+      const clinic = currentBranch[0];
+      formData.append("email", patient.emailid);
+      formData.append("patient_name", patient.patient_name);
+      formData.append("subject", `${patient.patient_name}, your sitting bill file`);
+      
+      // Text body for email
       formData.append(
         "textMatter",
-        `Dear ${getPatientData[0]?.patient_name}, Please find the attached sitting bill file.\n` +
-          `Clinic Details:\n` +
-          `Name: ${currentBranch[0]?.hospital_name}\n` +
-          `Contact: ${currentBranch[0]?.branch_contact}\n` +
-          `Address: ${currentBranch[0]?.branch_address}\n` +
-          `Email: ${currentBranch[0]?.branch_email}\n\n` +
-          `Thank you for choosing ${currentBranch[0]?.hospital_name}.\n\n` +
-          `Best regards,\n` +
-          `${currentBranch[0]?.hospital_name} Team`
+        `Dear ${patient.patient_name},\n\nPlease find the attached sitting bill file.\n\n` +
+        `Clinic Details:\n` +
+        `Name: ${clinic.hospital_name}\n` +
+        `Contact: ${clinic.branch_contact}\n` +
+        `Address: ${clinic.branch_address}\n` +
+        `Email: ${clinic.branch_email}\n\n` +
+        `Thank you for choosing ${clinic.hospital_name}.\n\n` +
+        `Best regards,\n${clinic.hospital_name} Team`
       );
+  
+      // Attach PDF file
       formData.append("file", pdfData, "prescription.pdf");
+  
+      // Log form data for debugging
       for (let [key, value] of formData.entries()) {
-        console.log(key, value);
+        console.log(`${key}:`, value);
       }
-      cogoToast.success("Sitting bill Sending to email");
+  
+      // Inform user before sending
+      cogoToast.success("Sending sitting bill via email...");
+  
+      // API call to send the email
       const response = await axios.post(
         "http://localhost:8888/api/v1/receptionist/prescriptionOnMail",
         formData,
@@ -271,14 +281,18 @@ const CreditSittingBill = () => {
           },
         }
       );
+  
+      // Confirm success to user
       cogoToast.success("Sitting bill sent successfully");
-      console.log(response);
       console.log("PDF sent successfully:", response.data);
+  
     } catch (error) {
+      // Handle any errors
       console.error("Error sending PDF:", error);
-      cogoToast.error("Error to send Sitting bill");
+      cogoToast.error("Failed to send sitting bill.");
     }
   };
+  
 
   const sendPrescriptionWhatsapp = async () => {
     try {
@@ -684,46 +698,57 @@ const CreditSittingBill = () => {
                     </div>
                   </div>
                   <div className="">
-                    <div className="heading-title mt-0">
-                      <h6>Payment Info :</h6>
-                    </div>
-                    <div className="">
-                      <table className="table table-bordered mb-0">
-                        <tbody>
-                          <tr>
-                            <td className="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 border p-1">
-                              Account No.:
-                            </td>
-                            <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1"></td>
-                          </tr>
-                          <tr>
-                            <td className="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 border p-1">
-                              Account Name:
-                            </td>
-                            <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1"></td>
-                          </tr>
-                          <tr>
-                            <td className="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 border p-1">
-                              Bank Name:
-                            </td>
-                            <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1"></td>
-                          </tr>
-                          <tr>
-                            <td className="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 border p-1">
-                              IFSC/Bank Code:
-                            </td>
-                            <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1"></td>
-                          </tr>
-                          <tr>
-                            <td className="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 border p-1">
-                              UPI ID:
-                            </td>
-                            <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1"></td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
+                  <div className="heading-title mt-0">
+                    <h4 className="">Payment Info :</h4>
                   </div>
+                  <div className="">
+                    <table className="table table-bordered mb-0">
+                      <tbody>
+                        <tr>
+                          <td className="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 border p-1">
+                            Account No.:
+                          </td>
+                          <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1">
+                            {currentBranch[0]?.account_number}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 border p-1">
+                            Account Name:
+                          </td>
+                          <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1">
+                            {/* Assuming you want to put a placeholder or value here */}
+                            {currentBranch[0]?.branch_name}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 border p-1">
+                            Bank Name:
+                          </td>
+                          <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1">
+                            {currentBranch[0]?.bank_name}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 border p-1">
+                            IFSC/Bank Code:
+                          </td>
+                          <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1">
+                            {currentBranch[0]?.ifsc_code}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 border p-1">
+                            UPI ID:
+                          </td>
+                          <td className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 border p-1">
+                            {currentBranch[0]?.upi_id}
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
                 </div>
                 <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4">
                   <div className="">
@@ -765,7 +790,19 @@ const CreditSittingBill = () => {
                 <div className="text-termslong"></div>
               </div>
             </div>
+            <div className="row d-none d-print-block">
+              <div className="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div className="clinic-logo">
+                  <img
+                    src={getBranch[0]?.foot_img}
+                    alt="header"
+                    className="img-fluid"
+                  />
+                </div>
+              </div>
+            </div>
           </div>
+
         </div>
         {/* print button */}
         <div className="container-fluid">

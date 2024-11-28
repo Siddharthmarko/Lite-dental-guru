@@ -14,7 +14,7 @@ function BookAppointment() {
   const { refreshTable, currentUser } = useSelector((state) => state.user);
   const {currentBranch} = useSelector((state) => state.branch);
   const token = currentUser?.token;
-  const branch = currentUser.branch_name;
+  const branch = currentUser?.branch_name;
   const [searchQuery, setSearchQuery] = useState("");
   const [searchDoctor, setSearchDoctor] = useState("");
   const [showDoctorList, setShowDoctorList] = useState(false);
@@ -278,7 +278,11 @@ function BookAppointment() {
           },
         }
       );
-      setDoctors(response?.data?.data);
+      let data = response?.data?.data;
+      setDoctors(data);
+      let currentDoctor = data.find((item) => item?.employee_name === currentUser?.employee_name)
+      console.log(currentDoctor, currentUser, "rjlewjlksdjflksdj"); 
+      setSelectedDoctor(currentDoctor)
     } catch (error) {
       console.log(error);
     }
@@ -381,7 +385,7 @@ function BookAppointment() {
 
   useEffect(() => {
     setSearchDoctor("");
-    setSelectedDoctor(null);
+    // setSelectedDoctor(null);
     if (!selectedDate) {
       return;
     }
@@ -504,7 +508,7 @@ function BookAppointment() {
     setSearchDoctor(
       filtered[0]?.employee_name ? filtered[0].employee_name : ""
     );
-    setSelectedDoctor(filtered[0]);
+    // setSelectedDoctor(filtered[0]);
 
     const filteredTreatment = patientTreatmentDetails?.length
       ? patientTreatmentDetails?.filter(
@@ -554,7 +558,7 @@ function BookAppointment() {
   console.log(currentBranch[0]);
 
   const handleDoctorSelect = (doctor) => {
-    setSelectedDoctor(doctor); // Set the selected patient when it's clicked
+    // setSelectedDoctor(doctor); // Set the selected patient when it's clicked
     setShowDoctorList(false);
     setSearchDoctor(doctor.employee_name); // Reset the search query to close the search list
   };
@@ -597,11 +601,13 @@ function BookAppointment() {
     e.preventDefault();
 
     // Check if the selected doctor is null
+
     if (!selectedDoctor) {
       cogoToast.error("Please select doctor from the list");
       console.log("Please select a doctor");
       return;
     }
+    
     if (selectedTreatment?.length == 0) {
       cogoToast.error("Please select treatment");
       console.log("Please select treatment");
@@ -609,12 +615,12 @@ function BookAppointment() {
     }
 
     const selectedDay = new Date(selectedDate).getDay();
-    if (selectedDay === weekOffDay) {
-      cogoToast.info(
-        "Selected date is a week off day. Please choose another date."
-      );
-      return;
-    }
+    // if (selectedDay === weekOffDay) {
+    //   cogoToast.info(
+    //     "Selected date is a week off day. Please choose another date."
+    //   );
+    //   return;
+    // }
 
     if (bookData.payment_Status === "unpaid") {
       cogoToast.info("Please paid the OPD amount to book appointment");
@@ -789,11 +795,11 @@ function BookAppointment() {
         transaction_Id: bookData.transaction_Id,
         // cheque_number : bookData.cheque_number,
         payment_Status: bookData.payment_Status,
-        appointment_created_by: currentUser.employee_name,
-        appointment_created_by_emp_id: currentUser.employee_ID,
-        sharemail : currentBranch[0].sharemail,
-        sharewhatsapp : currentBranch[0].sharewhatsapp,
-        sharesms : currentBranch[0].sharesms
+        appointment_created_by: currentUser?.employee_name,
+        appointment_created_by_emp_id: currentUser?.employee_ID,
+        sharemail : currentBranch[0]?.sharemail,
+        sharewhatsapp : currentBranch[0]?.sharewhatsapp,
+        sharesms : currentBranch[0]?.sharesms
       };
 
       if (!isDoctorAvailable(selectedDateTime)) {
@@ -1147,7 +1153,7 @@ function BookAppointment() {
                 </div>
               </div>
 
-              <div className="col-sm-6">
+              {/* <div className="col-sm-6">
                 <div className="form-outline">
                   <label className="form-label mt-2" for="doctor1">
                     Doctor *
@@ -1181,12 +1187,11 @@ function BookAppointment() {
                                   doctor.employee_ID
                                   ? "active"
                                   : ""
-                              }`} // Add 'active' class if the patient is selected
-                              onClick={() => handleDoctorSelect(doctor)} // Call handlePatientSelect function when the patient is clicked
+                              }`} 
+                              onClick={() => handleDoctorSelect(doctor)} 
                             >
                               {"Dr. "} {doctor.employee_name}  <br/> Id:{" "}
                               {doctor.employee_ID}
-                              {/* Display other patient details as needed */}
                             </li>
                           ))
                         )}
@@ -1194,7 +1199,7 @@ function BookAppointment() {
                     </div>
                   </DoctorList>
                 </div>
-              </div>
+              </div> */}
               <div className="col-sm-6">
                 <div className="form-outline" id="form1">
                   <label className="form-label mt-2" for="treatment">
@@ -1246,7 +1251,7 @@ function BookAppointment() {
                       >
                         <option value="">Select</option>
                         <option value="Cash">Cash</option>
-                             {(selectedPatient?.patient_type == "Credit" && currentBranch[0].allow_insurance == "Yes") && <option value="Credit">Credit</option> }
+                             {(selectedPatient?.patient_type == "Credit" && currentBranch[0]?.allow_insurance == "Yes") && <option value="Credit">Credit</option> }
                               <option value="UPI">UPI</option>
                               <option value="Card">Card</option>
                               {/* <option value="Cheque">Cheque</option> */}

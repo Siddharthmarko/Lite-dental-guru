@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Sep 18, 2024 at 08:38 PM
--- Server version: 10.5.15-MariaDB-cll-lve
--- PHP Version: 8.3.10
+-- Generation Time: Oct 27, 2024 at 05:12 PM
+-- Server version: 10.5.26-MariaDB-cll-lve
+-- PHP Version: 8.3.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `vimubdsa_dental_guru_v2`
+-- Database: `vimubdsa_dental_guru_lite`
 --
 
 -- --------------------------------------------------------
@@ -51,7 +51,7 @@ CREATE TABLE `appointments` (
   `current_path` varchar(100) DEFAULT NULL,
   `created_at` varchar(100) DEFAULT NULL,
   `updated_at` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `appointments`
@@ -154,7 +154,7 @@ INSERT INTO `appointments` (`appoint_id`, `patient_uhid`, `branch_name`, `tp_id`
 (94, 'DH_19', 'Madan Mahal', NULL, 'shadab', 'dg_4', '2024-09-02T10:30', 'saf', NULL, 'OPD', 'shadab', 'dg_4', 'shadab', 'dg_4', 'Check-In', '350', 'Cash', '', 'paid', NULL, NULL, '2024-09-02 15:51:47', '2024-09-02 18:22:18.728'),
 (95, 'DH_10', 'Madan Mahal', 42, 'shadab', 'dg_4', '2024-09-02T09:20', 'test', NULL, 'Laminates and Veneers@ per tooth', 'shadab', 'dg_4', NULL, NULL, 'Appoint', NULL, NULL, NULL, NULL, NULL, NULL, '2024-09-02 19:23:50.022', NULL),
 (96, 'DH_10', 'Madan Mahal', 42, 'shadab', 'dg_4', '2024-09-02T09:40', 'test', NULL, 'Laminates and Veneers@ per tooth', 'shadab', 'dg_4', NULL, NULL, 'Appoint', NULL, NULL, NULL, NULL, NULL, NULL, '2024-09-02 19:47:44.462', NULL),
-(97, 'DH_8', 'Madan Mahal', 23, 'shadab', 'dg_4', '2024-09-03T11:50', 'ok', NULL, 'OPD', 'shadab', 'dg_4', NULL, NULL, 'Appoint', '350', 'Credit', '', 'Credit', NULL, NULL, '2024-09-03 11:02:38', NULL),
+(97, 'DH_8', 'Madan Mahal', 23, 'shadab', 'dg_4', '2024-09-03T11:50', 'ok', NULL, 'OPD', 'shadab', 'dg_4', NULL, NULL, 'Appoint', '350', 'Credit', '', 'paid', NULL, NULL, '2024-09-03 11:02:38', NULL),
 (98, 'DH_20', 'Madan Mahal', NULL, 'shadab', 'dg_4', '2024-09-03T09:20', '', NULL, 'OPD', 'shadab', 'dg_4', NULL, NULL, 'Appoint', '350', 'Cash', '', 'paid', NULL, NULL, '2024-09-03 11:46:11', NULL),
 (99, 'DH_14', 'Madan Mahal', 38, 'shadab', 'dg_4', '2024-09-04T09:00', 'test', NULL, 'OPD', 'shadab', 'dg_4', NULL, NULL, 'Appoint', '350', 'Credit', '', 'Credit', NULL, NULL, '2024-09-03 14:16:22', NULL),
 (100, 'DH_8', 'Madan Mahal', 23, 'shadab', 'dg_4', '2024-09-03T09:50', 'adsad', NULL, 'Digital Compuler zcd XRay (R.V.G.)', 'shadab', 'dg_4', NULL, NULL, 'Appoint', '0', '', '', '', NULL, NULL, '2024-09-03 18:29:22', NULL),
@@ -164,7 +164,46 @@ INSERT INTO `appointments` (`appoint_id`, `patient_uhid`, `branch_name`, `tp_id`
 (104, 'DH_22', 'Madan Mahal', 46, 'shadab', 'dg_4', '2024-09-06T17:00', 'paid', NULL, 'OPD', 'shadab', 'dg_4', 'shadab', 'dg_4', 'Complete', '350', 'Cash', '', 'paid', NULL, '/treatmentSuggestion/104/46', '2024-09-06 15:36:33', '2024-09-06 18:15:27.350'),
 (105, 'DH_23', 'Madan Mahal', NULL, 'shadab', 'dg_4', '2024-09-12T11:00', 'done', NULL, 'OPD', 'DEMO', 'dg_19', 'DEMO', 'dg_19', 'Check-In', '350', 'Cash', '', 'paid', NULL, NULL, '2024-09-12 12:56:39', '2024-09-12 15:28:07.822'),
 (106, 'DH_24', 'Madan Mahal', 52, 'DEMO', 'dg_19', '2024-09-12T09:30', 'done', NULL, 'OPD', 'DEMO', 'dg_19', 'DEMO', 'dg_19', 'Complete', '350', 'Cash', '', 'paid', NULL, '/treatmentSuggestion/106/52', '2024-09-12 13:16:24', '2024-09-12 15:46:33.661'),
-(107, 'DH_24', 'Madan Mahal', 52, 'DEMO', 'dg_19', '2024-09-12Tundefined', 'done', NULL, 'Re-Root Canal Treatlment @ per tooth', 'DEMO', 'dg_19', NULL, NULL, 'Appoint', NULL, NULL, NULL, NULL, NULL, NULL, '2024-09-12 16:16:42.064', NULL);
+(107, 'DH_24', 'Madan Mahal', 52, 'DEMO', 'dg_19', '2024-09-12Tundefined', 'done', NULL, 'Re-Root Canal Treatlment @ per tooth', 'DEMO', 'dg_19', NULL, NULL, 'Appoint', NULL, NULL, NULL, NULL, NULL, NULL, '2024-09-12 16:16:42.064', NULL),
+(108, 'DH_11', 'Madan Mahal', 53, 'shadab', 'dg_4', '2024-09-23T09:20', 'i', NULL, 'Digital Compuler zcd XRay (R.V.G.)', 'shadab', 'dg_4', 'shadab', 'dg_4', 'Complete', '0', '', '', '', NULL, '/treatmentSuggestion/108/53', '2024-09-23 17:17:09', '2024-09-23 17:23:01.422'),
+(109, 'DH_25', 'Madan Mahal', 54, 'shadab', 'dg_4', '2024-09-23T18:20', 'd', NULL, 'OPD', 'shadab', 'dg_4', 'shadab', 'dg_4', 'Complete', '350', 'Cash', '', 'paid', NULL, '/treatmentSuggestion/109/54', '2024-09-23 17:38:07', '2024-09-23 17:38:17.062'),
+(110, 'DH_25', 'Madan Mahal', 54, 'shadab', 'dg_4', '2024-09-23T13:20', 'h', NULL, 'Re-Root Canal Treatlment @ per tooth', 'shadab', 'dg_4', 'shadab', 'dg_4', 'Check-In', NULL, NULL, NULL, NULL, NULL, NULL, '2024-09-23 17:39:42.051', '2024-09-23 17:42:24.628'),
+(111, 'DH_25', 'Madan Mahal', 54, 'shadab', 'dg_4', '2024-09-23T09:30', 's', NULL, 'Re-Root Canal Treatlment @ per tooth', 'shadab', 'dg_4', 'shadab', 'dg_4', 'Check-In', NULL, NULL, NULL, NULL, NULL, NULL, '2024-09-23 17:40:44.546', '2024-09-23 17:42:03.622'),
+(112, 'DH_26', 'Madan Mahal', 56, 'shadab', 'dg_4', '2024-09-23T10:00', 'd', NULL, 'OPD', 'shadab', 'dg_4', 'shadab', 'dg_4', 'Complete', '350', 'Cash', '', 'paid', NULL, '/treatmentSuggestion/112/56', '2024-09-23 17:43:31', '2024-09-23 17:43:43.044'),
+(113, 'DH_26', 'Madan Mahal', 56, 'shadab', 'dg_4', '2024-09-23T12:20', 's', NULL, 'Digital Compuler zcd XRay (R.V.G.)', 'shadab', 'dg_4', 'shadab', 'dg_4', 'in treatment', NULL, NULL, NULL, NULL, NULL, NULL, '2024-09-23 17:45:51.164', '2024-09-23 17:46:22.949'),
+(114, 'DH_27', 'Madan Mahal', 57, 'shadab', 'dg_4', '2024-09-23T16:30', 'g', NULL, 'OPD', 'shadab', 'dg_4', 'shadab', 'dg_4', 'in treatment', '350', 'Cash', '', 'paid', NULL, '/ExaminationDashBoardPatient/114/Dental-X/57', '2024-09-23 17:58:10', '2024-09-23 17:58:19.196'),
+(115, 'DH_28', 'Madan Mahal', 58, 'shadab', 'dg_4', '2024-09-23T12:10', 'd', NULL, 'OPD', 'shadab', 'dg_4', 'shadab', 'dg_4', 'in treatment', '350', 'UPI', '2', 'paid', NULL, '/ExaminationDashBoardPatient/115/Dental-X/58', '2024-09-23 18:05:02', '2024-09-23 18:05:17.005'),
+(116, 'DH_29', 'Madan Mahal', 60, 'shadab', 'dg_4', '2024-09-23T11:50', 's', NULL, 'OPD', 'shadab', 'dg_4', 'shadab', 'dg_4', 'Complete', '350', 'Cash', '', 'paid', NULL, '/treatmentSuggestion/116/60', '2024-09-23 18:09:37', '2024-09-23 18:09:45.273'),
+(117, 'DH_29', 'Madan Mahal', 60, 'shadab', 'dg_4', '2024-09-23T13:00', 'dfdf', NULL, 'Re-Root Canal Treatlment @ per tooth', 'shadab', 'dg_4', 'shadab', 'dg_4', 'in treatment', NULL, NULL, NULL, NULL, NULL, NULL, '2024-09-23 18:11:35.473', '2024-09-23 18:14:05.522'),
+(118, 'DH_28', 'Madan Mahal', 61, 'shadab', 'dg_4', '2024-09-24T17:00', 'f', NULL, 'Digital Compuler zcd XRay (R.V.G.)', 'shadab', 'dg_4', 'shadab', 'dg_4', 'Complete', '0', '', '', '', NULL, '/treatmentSuggestion/118/61', '2024-09-24 14:10:05', '2024-09-24 14:10:10.747'),
+(119, 'DH_28', 'Madan Mahal', 61, 'shadab', 'dg_4', '2024-09-24T13:00', 'p', NULL, 'Digital Compuler zcd XRay (R.V.G.)', 'shadab', 'dg_4', 'shadab', 'dg_4', 'Complete', NULL, NULL, NULL, NULL, NULL, NULL, '2024-09-24 14:12:23.371', '2024-09-24 14:56:05.425'),
+(120, 'DH_28', 'Madan Mahal', 61, 'shadab', 'dg_4', '2024-09-24T10:50', 'd', NULL, 'Digital Compuler zcd XRay (R.V.G.)', 'shadab', 'dg_4', 'shadab', 'dg_4', 'in treatment', '0', '', '', '', NULL, NULL, '2024-09-24 14:47:21', '2024-09-24 14:47:30.862'),
+(121, 'DH_25', 'Madan Mahal', 62, 'shadab', 'dg_4', '2024-09-24T10:30', 'd', NULL, 'Digital Compuler zcd XRay (R.V.G.)', 'shadab', 'dg_4', 'shadab', 'dg_4', 'in treatment', '0', '', '', '', NULL, '/treatmentSuggestion/121/62', '2024-09-24 14:49:27', '2024-09-24 14:49:45.904'),
+(122, 'DH_28', 'Madan Mahal', 61, 'shadab', 'dg_4', '2024-10-01T12:20', 'meri marji', NULL, 'Digital Compuler zcd XRay (R.V.G.)', 'shadab', 'dg_4', 'shadab', 'dg_4', 'Check-In', NULL, NULL, NULL, NULL, NULL, NULL, '2024-09-24 14:57:37.950', '2024-09-24 20:16:36.937'),
+(123, 'DH_30', 'Madan Mahal', 63, 'shadab', 'dg_4', '2024-10-04T09:40', '', NULL, 'OPD', 'shadab', 'dg_4', 'shadab', 'dg_4', 'Complete', '350', 'Cash', '', 'paid', NULL, '/treatmentSuggestion/123/63', '2024-10-04 13:19:47', '2024-10-04 15:50:28.261'),
+(124, 'DH_31', 'Madan Mahal', 64, 'shadab', 'dg_4', '2024-10-04T09:00', '', NULL, 'OPD', 'shadab', 'dg_4', 'shadab', 'dg_4', 'Complete', '350', 'Cash', '', 'paid', NULL, '/treatmentSuggestion/124/64', '2024-10-04 15:53:23', '2024-10-04 18:23:59.463'),
+(125, 'DH_32', 'Madan Mahal', NULL, 'shubham', 'dg_1', '2024-10-04T17:10', '', NULL, 'OPD', 'DEMO', 'dg_19', NULL, NULL, 'Appoint', '350', 'Cash', '', 'paid', NULL, NULL, '2024-10-04 17:06:40', NULL),
+(126, 'DH_32', 'Madan Mahal', NULL, 'DEMO', 'dg_19', '2024-10-04T17:20', '', NULL, 'Root Canal Treatment @ per tooth', 'DEMO', 'dg_19', 'DEMO', 'dg_19', 'Check-In', '0', '', '', '', NULL, NULL, '2024-10-04 17:11:43', '2024-10-04 19:44:48.098'),
+(127, 'DH_33', 'Madan Mahal', 66, 'shadab', 'dg_4', '2024-10-05T09:00', '', NULL, 'OPD', 'shadab', 'dg_4', 'shadab', 'dg_4', 'Complete', '350', 'Cash', '', 'paid', NULL, '/treatmentSuggestion/127/66', '2024-10-05 17:23:51', '2024-10-05 19:54:00.428'),
+(128, 'DH_33', 'Madan Mahal', 67, 'shadab', 'dg_4', '2024-10-05T10:00', 'ghar', NULL, 'OPD', 'shadab', 'dg_4', 'shadab', 'dg_4', 'Complete', '350', 'Cash', '', 'paid', NULL, '/treatmentSuggestion/128/67', '2024-10-05 17:27:21', '2024-10-05 19:57:30.222'),
+(129, 'DH_34', 'Madan Mahal', 68, 'DEMO', 'dg_19', '2024-10-05T17:50', 'okay', NULL, 'OPD', 'DEMO', 'dg_19', 'DEMO', 'dg_19', 'Complete', '350', 'Cash', '', 'paid', NULL, '/treatmentSuggestion/129/68', '2024-10-05 17:47:41', '2024-10-05 20:19:02.087'),
+(130, 'DH_35', 'Madan Mahal', NULL, 'shadab', 'dg_4', '2024-10-05T09:50', '', NULL, 'OPD', 'shadab', 'dg_4', NULL, NULL, 'Appoint', '350', 'Cash', '', 'paid', NULL, NULL, '2024-10-05 19:05:58', NULL),
+(131, 'DH_36', 'Madan Mahal', 69, 'shadab', 'dg_4', '2024-10-07T10:40', 'opd', NULL, 'OPD', 'shadab', 'dg_4', 'shadab', 'dg_4', 'Complete', '350', 'Cash', '', 'paid', NULL, '/treatmentSuggestion/131/69', '2024-10-07 11:36:21', '2024-10-07 14:06:42.567'),
+(132, 'DH_36', 'Madan Mahal', 69, 'shadab', 'dg_4', '2024-10-17T09:30', '7gu', NULL, 'Laminates and Veneers@ per tooth', 'shadab', 'dg_4', NULL, NULL, 'Appoint', NULL, NULL, NULL, NULL, NULL, NULL, '2024-10-07 14:12:36.932', NULL),
+(133, 'DH_36', 'Madan Mahal', 69, 'shadab', 'dg_4', '2024-10-17T09:30', '7gu', NULL, 'Laminates and Veneers@ per tooth', 'shadab', 'dg_4', NULL, NULL, 'Appoint', NULL, NULL, NULL, NULL, NULL, NULL, '2024-10-07 14:12:37.087', NULL),
+(134, 'DH_37', 'Madan Mahal', 70, 'shadab', 'dg_4', '2024-10-07T11:40', '75824010', NULL, 'OPD', 'shadab', 'dg_4', 'shadab', 'dg_4', 'Complete', '350', 'Cash', '', 'paid', NULL, '/treatmentSuggestion/134/70', '2024-10-07 11:46:18', '2024-10-07 14:16:27.004'),
+(135, 'DH_37', 'Madan Mahal', 70, 'shadab', 'dg_4', '2024-11-02Tundefined', '35', NULL, 'Third Molar Impacted Tooth Removal', 'shadab', 'dg_4', NULL, NULL, 'Appoint', NULL, NULL, NULL, NULL, NULL, NULL, '2024-10-07 14:20:09.863', NULL),
+(136, 'DH_38', 'Madan Mahal', 71, 'DEMO', 'dg_19', '2024-10-07T17:30', 'hgj', NULL, 'OPD', 'DEMO', 'dg_19', 'DEMO', 'dg_19', 'Check-In', '350', 'Cash', '', 'paid', NULL, '/ExaminationDashBoardPediatric/136/Pediatric/71', '2024-10-07 17:20:05', '2024-10-25 20:14:39.738'),
+(137, 'DH_1', 'Madan Mahal', 72, 'shadab', 'dg_4', '2024-10-08T09:50', '', NULL, 'Root Canal Treatment @ per tooth', 'shadab', 'dg_4', 'shadab', 'dg_4', 'Complete', '0', '', '', '', NULL, '/treatmentSuggestion/137/72', '2024-10-08 16:26:05', '2024-10-08 18:56:23.860'),
+(138, 'DH_33', 'Madan Mahal', 67, 'shadab', 'dg_4', '2024-10-09T11:40', '', NULL, 'Digital Compuler zcd XRay (R.V.G.)', 'shadab', 'dg_4', 'shadab', 'dg_4', 'Check-In', '0', '', '', '', NULL, NULL, '2024-10-09 17:00:08', '2024-10-09 19:30:18.182'),
+(139, 'DH_39', 'Madan Mahal', NULL, 'shadab', 'dg_4', '2024-10-09T09:00', '', NULL, 'OPD', 'shadab', 'dg_4', NULL, NULL, 'Appoint', '350', 'Cash', '', 'paid', NULL, NULL, '2024-10-09 17:05:11', NULL),
+(140, 'DH_12', 'Madan Mahal', NULL, 'shadab', 'dg_4', '2024-10-11T09:10', '', NULL, 'Root Canal Treatment @ per tooth', 'shadab', 'dg_4', 'shadab', 'dg_4', 'Check-In', '0', '', '', '', NULL, NULL, '2024-10-11 13:19:54', '2024-10-11 15:50:05.564'),
+(141, 'DH_33', 'Madan Mahal', 67, 'shadab', 'dg_4', '2024-10-11T09:00', '', NULL, 'Digital Compuler zcd XRay (R.V.G.)', 'shadab', 'dg_4', NULL, NULL, 'Appoint', '0', '', '', '', NULL, NULL, '2024-10-11 18:40:18', NULL),
+(142, 'DH_32', 'Madan Mahal', 73, 'DEMO', 'dg_19', '2024-10-21T19:00', '', NULL, 'Post and core @ per tooth', 'DEMO', 'dg_19', 'DEMO', 'dg_19', 'Complete', '0', '', '', '', NULL, '/treatmentSuggestion/142/73', '2024-10-21 18:51:25', '2024-10-21 21:21:35.832'),
+(143, 'DH_40', 'Madan Mahal', 74, 'DEMO', 'dg_19', '2024-10-26T13:30', 'dgthrdt', NULL, 'OPD', 'DEMO', 'dg_19', 'DEMO', 'dg_19', 'Complete', '300', 'Cash', '', 'paid', NULL, '/treatmentSuggestion/143/74', '2024-10-26 13:20:29', '2024-10-26 15:52:20.889'),
+(144, 'DH_41', 'Madan Mahal', 75, 'DEMO', 'dg_19', '2024-10-26T12:20', 'okay', NULL, 'OPD', 'DEMO', 'dg_19', 'DEMO', 'dg_19', 'Complete', '300', 'Cash', '', 'paid', NULL, '/treatmentSuggestion/144/75', '2024-10-26 14:00:46', '2024-10-26 16:31:57.597'),
+(145, 'DH_42', 'Madan Mahal', 76, 'DEMO', 'dg_19', '2024-10-26T16:30', '', NULL, 'OPD', 'DEMO', 'dg_19', 'DEMO', 'dg_19', 'Complete', '300', 'Cash', '', 'paid', NULL, '/treatmentSuggestion/145/76', '2024-10-26 15:52:06', '2024-10-26 19:15:39.155'),
+(146, 'DH_29', 'Madan Mahal', 60, 'shadab', 'dg_4', '2024-10-26T11:20', 'fd', NULL, 'Re-Root Canal Treatlment @ per tooth', 'shadab', 'dg_4', 'shadab', 'dg_4', 'Check-In', '0', '', '', '', NULL, NULL, '2024-10-26 18:11:55', '2024-10-26 20:42:00.593');
 
 -- --------------------------------------------------------
 
@@ -179,7 +218,7 @@ CREATE TABLE `appointment_notification` (
   `sms` varchar(100) DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL,
   `whatsapp` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -199,8 +238,8 @@ CREATE TABLE `branches` (
   `close_time` time(6) DEFAULT NULL,
   `appoint_slot_duration` varchar(100) DEFAULT NULL,
   `week_off` varchar(100) DEFAULT NULL,
-  `head_img` varchar(100) DEFAULT NULL,
-  `foot_img` varchar(100) DEFAULT NULL,
+  `head_img` varchar(255) DEFAULT NULL,
+  `foot_img` varchar(255) DEFAULT NULL,
   `account_number` int(100) DEFAULT NULL,
   `bank_name` varchar(100) DEFAULT NULL,
   `upi_id` varchar(100) DEFAULT NULL,
@@ -210,16 +249,18 @@ CREATE TABLE `branches` (
   `sharemail` varchar(100) DEFAULT NULL,
   `sharewhatsapp` varchar(100) DEFAULT NULL,
   `sharesms` varchar(100) DEFAULT NULL,
-  `hospital_category` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `hospital_category` varchar(100) DEFAULT NULL,
+  `branch_currency` varchar(100) DEFAULT NULL,
+  `currency_symbol` varchar(100) DEFAULT NULL,
+  `timezone` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `branches`
 --
 
-INSERT INTO `branches` (`branch_id`, `branch_name`, `branch_email`, `hospital_name`, `hospital_id`, `branch_address`, `branch_contact`, `open_time`, `close_time`, `appoint_slot_duration`, `week_off`, `head_img`, `foot_img`, `account_number`, `bank_name`, `upi_id`, `ifsc_code`, `doctor_payment`, `allow_insurance`, `sharemail`, `sharewhatsapp`, `sharesms`, `hospital_category`) VALUES
-(1, 'Madan Mahal', 'madanmahal@gmail.com', 'dental square', 'hos_1', 'Madan Mahal', '8602161019', '09:00:00.000000', '23:00:00.000000', '10 min', 'sunday', '/branchHeadFootImg/1725445346717headerdent.png', 'https://dentalguru-superadmin.vimubds5.a2hosted.com//branchHeadFootImg/1722876101168Dentalguru.png', NULL, NULL, NULL, NULL, 'Yes', 'Yes', 'Yes', 'Yes', 'Yes', 'non-Nabh'),
-(2, 'Vijay Nagar', NULL, 'dental square', 'hos_1', 'Vijay Nagar', '8602161018', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'General');
+INSERT INTO `branches` (`branch_id`, `branch_name`, `branch_email`, `hospital_name`, `hospital_id`, `branch_address`, `branch_contact`, `open_time`, `close_time`, `appoint_slot_duration`, `week_off`, `head_img`, `foot_img`, `account_number`, `bank_name`, `upi_id`, `ifsc_code`, `doctor_payment`, `allow_insurance`, `sharemail`, `sharewhatsapp`, `sharesms`, `hospital_category`, `branch_currency`, `currency_symbol`, `timezone`) VALUES
+(1, 'Madan Mahal', 'siddhartha.marko.3@gmail.com', 'dental square', 'hos_1', 'Madan Mahal', '8602161019', '09:00:00.000000', '23:00:00.000000', '10 min', 'sunday', 'https://dentalguru-lite.vimubds5.a2hosted.com/branchHeadFootImg/17280458019621728022622310header (2).png', 'https://dentalguru-lite.vimubds5.a2hosted.com/branchHeadFootImg/1728022622320footer.png', 2147483647, 'doaguru@bank', 'doaguruUPI', 'DoaguruIFSC234', 'Yes', 'Yes', 'Yes', 'No', 'No', 'Nabh', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -231,7 +272,7 @@ CREATE TABLE `chief_complain_list` (
   `chief_id` int(100) NOT NULL,
   `chief_complain` varchar(100) DEFAULT NULL,
   `created_time` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `chief_complain_list`
@@ -259,7 +300,33 @@ CREATE TABLE `clinic_prescription` (
   `frequency` varchar(100) DEFAULT NULL,
   `duration` varchar(100) DEFAULT NULL,
   `notes` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `currencydetails`
+--
+
+CREATE TABLE `currencydetails` (
+  `cr_id` int(100) NOT NULL,
+  `country_name` varchar(100) DEFAULT NULL,
+  `timezone` varchar(100) DEFAULT NULL,
+  `currency_name` varchar(100) DEFAULT NULL,
+  `currency_symbol` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `currencydetails`
+--
+
+INSERT INTO `currencydetails` (`cr_id`, `country_name`, `timezone`, `currency_name`, `currency_symbol`) VALUES
+(1, 'United States of America', 'America/New_York', 'US Dollar', '$'),
+(2, 'Canada', 'America/Toronto', 'Canadian Dollar', '$'),
+(3, 'Spain', 'Europe/Madrid', 'Euro', '€'),
+(4, 'United Arab Emirates', 'Asia/Dubai', 'United Arab Emirates Dirham', 'د.إ.'),
+(5, 'Afghanistan', 'Asia/Kabul', 'Afghan Afghani', '؋'),
+(6, 'India', 'Asia/Kolkata', 'Indian Rupee', '₹');
 
 -- --------------------------------------------------------
 
@@ -280,7 +347,7 @@ CREATE TABLE `dental_examination` (
   `on_examination` varchar(255) DEFAULT NULL,
   `diagnosis_category` varchar(100) DEFAULT NULL,
   `date` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `dental_examination`
@@ -341,7 +408,28 @@ INSERT INTO `dental_examination` (`exm_id`, `tp_id`, `branch_name`, `appointment
 (52, 47, 'Madan Mahal', 103, 'DH_20', '55, 54', 'Caries', 'caries', 'sf', 'dfg', 'Pediatric', '06-09-2024 16:18:16'),
 (53, 49, 'Madan Mahal', 102, 'DH_21', '55, 54', 'Caries', 'caries', 'hj', 'tyui', 'Pediatric', '06-09-2024 17:54:46'),
 (54, 50, 'Madan Mahal', 106, 'DH_24', '46', '50% good', 'Sensitivity to hot or cold', 'drink normal water', 'NA', 'Dental-X', '12-09-2024 13:20:29'),
-(55, 52, 'Madan Mahal', 106, 'DH_24', '42', 'Caries', 'Toothache', 'drink normal water', 'NA', 'Dental-X', '12-09-2024 13:44:50');
+(55, 52, 'Madan Mahal', 106, 'DH_24', '42', 'Caries', 'Toothache', 'drink normal water', 'NA', 'Dental-X', '12-09-2024 13:44:50'),
+(56, 53, 'Madan Mahal', 108, 'DH_11', '18, 17, 16, 15, 14, 13, 12, 11, 21, 22, 23, 24, 25, 26, 27, 28, 48, 47, 46, 45, 44, 43, 42, 41, 31, 32, 33, 34, 35, 36, 37, 38', 'dfdf', 'Toothache', 'ji', 'j', 'Dental-X', '23-09-2024 17:23:51'),
+(57, 54, 'Madan Mahal', 109, 'DH_25', '18, 17, 16, 15, 14, 13, 12, 11, 21, 22, 23, 24, 25, 26, 27, 28, 48, 47, 46, 45, 44, 43, 42, 41, 31, 32, 33, 34, 35, 36, 37, 38', 's', 'Swollen gums', 'd', 'd', 'Dental-X', '23-09-2024 17:38:32'),
+(59, 56, 'Madan Mahal', 112, 'DH_26', '18, 17, 16, 15, 14, 13, 12, 11, 21, 22, 23, 24, 25, 26, 27, 28, 48, 47, 46, 45, 44, 43, 42, 41, 31, 32, 33, 34, 35, 36, 37, 38', 'Caries', 'Toothache', 'ji', 'j', 'Dental-X', '23-09-2024 17:44:36'),
+(61, 57, 'Madan Mahal', 114, 'DH_27', '18, 17, 16, 15, 14, 13, 12, 11, 21, 22, 23, 24, 25, 26, 27, 28, 48, 47, 46, 45, 44, 43, 42, 41, 31, 32, 33, 34, 35, 36, 37, 38', 'Caries', 'Swollen gums', 'hg', 'fd', 'Dental-X', '23-09-2024 17:59:39'),
+(62, 58, 'Madan Mahal', 115, 'DH_28', '18, 17, 16, 15, 14, 13, 12, 11, 21, 22, 23, 24, 25, 26, 27, 28, 48, 47, 46, 45, 44, 43, 42, 41, 31, 32, 33, 34, 35, 36, 37, 38', 'Caries', 'Sensitivity to hot or cold', 'd', 'd', 'Dental-X', '23-09-2024 18:05:34'),
+(63, 60, 'Madan Mahal', 116, 'DH_29', '18, 17, 16, 15, 14, 13, 12, 11, 21, 22, 23, 24, 25, 26, 27, 28, 48, 47, 46, 45, 44, 43, 42, 41, 31, 32, 33, 34, 35, 36, 37, 38', 'Caries', 'Bleeding gums', 'f', 'f', 'Dental-X', '23-09-2024 18:10:01'),
+(64, 61, 'Madan Mahal', 118, 'DH_28', '18, 17, 16, 15, 14, 13, 12, 11, 21, 22, 23, 24, 25, 26, 27, 28, 48, 47, 46, 45, 44, 43, 42, 41, 31, 32, 33, 34, 35, 36, 37, 38', 'Caries', 'Swollen gums', 'g', 'g', 'Dental-X', '24-09-2024 14:10:23'),
+(65, 62, 'Madan Mahal', 121, 'DH_25', '18, 17, 16, 15, 14, 13, 12, 11, 21, 22, 23, 24, 25, 26, 27, 28, 48, 47, 46, 45, 44, 43, 42, 41, 31, 32, 33, 34, 35, 36, 37, 38', 'Caries', 'Swollen gums', 's', 's', 'Dental-X', '24-09-2024 19:00:58'),
+(66, 63, 'Madan Mahal', 123, 'DH_30', '18', 'Caries', 'Toothache', 'Caries', 'Caries', 'Dental-X', '04-10-2024 13:21:03'),
+(67, 64, 'Madan Mahal', 124, 'DH_31', '18', 'Caries', 'Toothache', 'Fracture', 'Caries', 'Dental-X', '04-10-2024 15:54:22'),
+(68, 66, 'Madan Mahal', 127, 'DH_33', '18, 17, 16, 15, 14, 13, 12, 11, 21, 22, 23, 24, 25, 26, 27, 28, 48, 47, 46, 45, 44, 43, 42, 41, 31, 32, 33, 34, 35, 36, 37, 38', 'Caries', 'Toothache', 'adddEXAA', 'EXX', 'Dental-X', '05-10-2024 17:24:32'),
+(69, 67, 'Madan Mahal', 128, 'DH_33', '18, 17, 16, 15, 14, 13, 12, 11, 21, 22, 23, 24, 25, 26, 27, 28, 48, 47, 46, 45, 44, 43, 42, 41, 31, 32, 33, 34, 35, 36, 37, 38', 'Caries', 'Sensitivity to hot or cold', 'add', 'ex', 'Dental-X', '05-10-2024 17:27:44'),
+(70, 68, 'Madan Mahal', 129, 'DH_34', '55', 'Caries', 'Toothache', 'bg', 'tyr', 'Pediatric', '05-10-2024 17:51:04'),
+(71, 69, 'Madan Mahal', 131, 'DH_36', '18', 'Caries', 'Caries', 'dont eat sweets', 'Caries', 'Dental-X', '07-10-2024 11:40:06'),
+(72, 70, 'Madan Mahal', 134, 'DH_37', '18', 'Missing Tooth', 'Toothache', 'c', 'Impacted', 'Dental-X', '07-10-2024 11:47:47'),
+(73, 71, 'Madan Mahal', 136, 'DH_38', '55, 61', 'Caries', 'Swollen gums', 'okay', 'oaky', 'Pediatric', '07-10-2024 17:46:18'),
+(74, 72, 'Madan Mahal', 137, 'DH_1', '18, 17, 16, 15, 14, 13, 12, 11, 21, 22, 23, 24, 25, 26, 27, 28, 48, 47, 46, 45, 44, 43, 42, 41, 31, 32, 33, 34, 35, 36, 37, 38', 'Caries', 'Toothache', 'f', 'f', 'Dental-X', '08-10-2024 16:26:39'),
+(75, 73, 'Madan Mahal', 142, 'DH_32', '17', 'Fracture', 'Bleeding gums', 'take care', 'xyz', 'Dental-X', '21-10-2024 18:52:35'),
+(76, 74, 'Madan Mahal', 143, 'DH_40', '14', 'Caries', 'bad teeth', 'bad teeth', 'bad teeth', 'Dental-X', '26-10-2024 13:24:05'),
+(77, 75, 'Madan Mahal', 144, 'DH_41', '14', 'Caries', 'bad teeth', 'take water', 'abc', 'Dental-X', '26-10-2024 14:03:54'),
+(78, 76, 'Madan Mahal', 145, 'DH_42', '43', 'Impacted', 'bad teeth', 'take water', 'abc', 'Dental-X', '26-10-2024 15:55:03');
 
 -- --------------------------------------------------------
 
@@ -364,7 +452,7 @@ CREATE TABLE `dental_prescription` (
   `duration` varchar(255) NOT NULL,
   `note` varchar(255) NOT NULL,
   `date` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `dental_prescription`
@@ -420,7 +508,20 @@ INSERT INTO `dental_prescription` (`id`, `appoint_id`, `tp_id`, `branch_name`, `
 (47, 0, 43, 'Madan Mahal', 'DH_17', 'Caries', 'Root Canal Treatment @ per tooth', NULL, 'Disprin 400 tablet', '223', '1-0-1(BD)', '6 days', 'test', '02-09-2024 17:21:59'),
 (48, 0, 46, 'Madan Mahal', 'DH_22', 'Caries', 'Laminates and Veneers@ per tooth', NULL, 'Disprin 500 tablet', '500mg', '1-1-1(TDS)', '2 days', 'srhd', '06-09-2024 15:51:31'),
 (49, 0, 50, 'Madan Mahal', 'DH_24', '50% good', 'Digital Compuler zcd XRay (R.V.G.)', NULL, 'Disprin 325 tablet', '5', '1-1-1(TDS)', '3 days', 'Take Care', '12-09-2024 13:27:32'),
-(50, 0, 52, 'Madan Mahal', 'DH_24', 'Caries', 'Re-Root Canal Treatlment @ per tooth', NULL, 'Disprin 400 tablet', '5', '0-1-1(BD)', '1 week', '5', '12-09-2024 13:45:36');
+(50, 0, 52, 'Madan Mahal', 'DH_24', 'Caries', 'Re-Root Canal Treatlment @ per tooth', NULL, 'Disprin 400 tablet', '5', '0-1-1(BD)', '1 week', '5', '12-09-2024 13:45:36'),
+(51, 0, 53, 'Madan Mahal', 'DH_11', 'dfdf', 'Re-Root Canal Treatlment @ per tooth', NULL, 'Disprin 325 tablet', 'gf', '1-1-0(BD)', '2 days', 'ftgrf', '23-09-2024 17:27:05'),
+(52, 0, 54, 'Madan Mahal', 'DH_25', 's', 'Re-Root Canal Treatlment @ per tooth', NULL, 'Disprin 400 tablet', '2', '0-0-1(HS)', '4 days', 'ddfdf', '23-09-2024 17:38:59'),
+(53, 0, 56, 'Madan Mahal', 'DH_26', 'Caries', 'Digital Compuler zcd XRay (R.V.G.)', NULL, 'Disprin 400 tablet', '1', '1-1-0(BD)', '1 week', 'ws', '23-09-2024 17:45:11'),
+(54, 0, 60, 'Madan Mahal', 'DH_29', 'Caries', 'Re-Root Canal Treatlment @ per tooth', NULL, 'Disprin 400 tablet', '2', '1-1-0(BD)', '1 week', 'dfs', '23-09-2024 18:11:09'),
+(55, 0, 61, 'Madan Mahal', 'DH_28', 'Caries', 'Digital Compuler zcd XRay (R.V.G.)', NULL, 'Disprin 400 tablet', '1', '1-0-1(BD)', '2 weeks', 'kl', '24-09-2024 14:11:54'),
+(56, 0, 62, 'Madan Mahal', 'DH_25', 'Caries', 'Re-Root Canal Treatlment @ per tooth', NULL, 'Disprin 500 tablet', '1', '1-1-0(BD)', '3 days', '3', '24-09-2024 19:01:26'),
+(57, 0, 63, 'Madan Mahal', 'DH_30', 'Caries', 'Root Canal Treatment @ per tooth', NULL, 'Disprin 400 tablet', '500mg', '1-1-1(TDS)', '2 days', '', '04-10-2024 13:22:29'),
+(58, 0, 64, 'Madan Mahal', 'DH_31', 'Caries', 'Root Canal Treatment @ per tooth', NULL, 'Disprin 400 tablet', '500mg', '1-0-0(BM)', '3 weeks', '', '04-10-2024 15:54:47'),
+(59, 0, 66, 'Madan Mahal', 'DH_33', 'Caries', 'Digital Compuler zcd XRay (R.V.G.)', NULL, 'Disprin 400 tablet', '2', '1-0-0(BM)', '2 weeks', 'd', '05-10-2024 17:24:58'),
+(60, 0, 68, 'Madan Mahal', 'DH_34', 'Caries', 'Amalgam Restoration@ per tooth', NULL, 'Disprin 325 tablet', '500mg', '1-1-1(TDS)', '1 day', 'take water', '05-10-2024 17:52:29'),
+(61, 0, 69, 'Madan Mahal', 'DH_36', 'Caries', 'Laminates and Veneers@ per tooth', NULL, 'Disprin 400 tablet', '500 mg', '0-0-1(HS)', '3 weeks', 'weff', '07-10-2024 11:41:01'),
+(63, 0, 74, 'Madan Mahal', 'DH_40', 'Caries', 'GIC Restoration @ per tooth', NULL, 'Disprin 325 tablet', '200mg', '1-1-1(TDS)', '1 day', 'jgfghfv', '26-10-2024 13:25:54'),
+(64, 0, 75, 'Madan Mahal', 'DH_41', 'Caries', 'Re-Root Canal Treatlment @ per tooth', NULL, 'Disprin 325 tablet', '200mg', '1-1-1(TDS)', '1 day', 'okay', '26-10-2024 14:05:52');
 
 -- --------------------------------------------------------
 
@@ -452,7 +553,7 @@ CREATE TABLE `dental_treatment` (
   `sitting_payment_status` varchar(100) DEFAULT NULL,
   `note` varchar(1000) NOT NULL,
   `date` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `dental_treatment`
@@ -545,7 +646,29 @@ INSERT INTO `dental_treatment` (`id`, `exam_id`, `tp_id`, `branch_name`, `appoin
 (84, 53, 42, 'Madan Mahal', 0, 5, 'DH_10', 'Laminates and Veneers@ per tooth', '18, 17', '2', '10000', '', '10', '20000', 10000, 10000, 0, 10000, 0, 'dg_4', 'paid', 'test', '02-09-2024 17:18:25'),
 (85, 56, 46, 'Madan Mahal', 104, 1, 'DH_22', 'Laminates and Veneers@ per tooth', '18', '1', '10000', '', '20', '10000', 8000, 8000, 0, 8000, 0, 'dg_4', 'paid', '', '06-09-2024 15:52:38'),
 (86, 57, 49, 'Madan Mahal', 102, 1, 'DH_21', 'Oral Prophylaxis (Scaling)', '55, 54', '2', '1500', '', '12', '3000', 2640, 2640, 0, 2640, 0, 'dg_4', 'paid', '', '06-09-2024 17:58:08'),
-(87, 59, 52, 'Madan Mahal', 106, 1, 'DH_24', 'Re-Root Canal Treatlment @ per tooth', '42', '1', '4000', '', '1', '4000', 3960, 0, 3960, 0, 0, 'dg_19', 'Pending', '', '12-09-2024 13:46:42');
+(87, 59, 52, 'Madan Mahal', 106, 1, 'DH_24', 'Re-Root Canal Treatlment @ per tooth', '42', '1', '4000', '', '1', '4000', 3960, 0, 3960, 0, 0, 'dg_19', 'Pending', '', '12-09-2024 13:46:42'),
+(88, 60, 53, 'Madan Mahal', 108, 1, 'DH_11', 'Re-Root Canal Treatlment @ per tooth', '18, 17, 16, 15, 14, 13, 12, 11, 21, 22, 23, 24, 25, 26, 27, 28, 48, 47, 46, 45, 44, 43, 42, 41, 31, 32, 33, 34, 35, 36, 37, 38', '32', '4000', '', '5', '128000', 121600, 0, 121600, 0, 0, 'dg_4', 'Pending', '', '23-09-2024 17:29:14'),
+(89, 61, 54, 'Madan Mahal', 109, 1, 'DH_25', 'Re-Root Canal Treatlment @ per tooth', '18, 17, 16, 15, 14, 13, 12, 11, 21, 22, 23, 24, 25, 26, 27, 28, 48, 47, 46, 45, 44, 43, 42, 41, 31, 32, 33, 34, 35, 36, 37, 38', '32', '4000', '', '1', '128000', 126720, 0, 126720, 0, 0, 'dg_4', 'Pending', 'hg', '23-09-2024 17:39:42'),
+(90, 61, 54, 'Madan Mahal', 109, 1, 'DH_25', 'Re-Root Canal Treatlment @ per tooth', '18, 17, 16, 15, 14, 13, 12, 11, 21, 22, 23, 24, 25, 26, 27, 28, 48, 47, 46, 45, 44, 43, 42, 41, 31, 32, 33, 34, 35, 36, 37, 38', '32', '4000', '', '', '128000', 128000, 0, 128000, 0, 0, 'dg_4', 'Pending', '', '23-09-2024 17:40:44'),
+(91, 62, 56, 'Madan Mahal', 112, 1, 'DH_26', 'Digital Compuler zcd XRay (R.V.G.)', '18, 17, 16, 15, 14, 13, 12, 11, 21, 22, 23, 24, 25, 26, 27, 28, 48, 47, 46, 45, 44, 43, 42, 41, 31, 32, 33, 34, 35, 36, 37, 38', '32', '50', '', '1', '1600', 1584, 0, 1584, 0, 0, 'dg_4', 'Pending', 'tr', '23-09-2024 17:45:51'),
+(92, 63, 60, 'Madan Mahal', 116, 1, 'DH_29', 'Re-Root Canal Treatlment @ per tooth', '18, 17, 16, 15, 14, 13, 12, 11, 21, 22, 23, 24, 25, 26, 27, 28, 48, 47, 46, 45, 44, 43, 42, 41, 31, 32, 33, 34, 35, 36, 37, 38', '32', '4000', '', '1', '128000', 126720, 0, 126720, 0, 0, 'dg_4', 'Pending', 'nhhbv', '23-09-2024 18:11:35'),
+(93, 64, 61, 'Madan Mahal', 118, 1, 'DH_28', 'Digital Compuler zcd XRay (R.V.G.)', '18, 17, 16, 15, 14, 13, 12, 11, 21, 22, 23, 24, 25, 26, 27, 28, 48, 47, 46, 45, 44, 43, 42, 41, 31, 32, 33, 34, 35, 36, 37, 38', '32', '50', '', '1', '1600', 1584, 0, 1584, 0, 0, 'dg_4', 'Pending', 'o', '24-09-2024 14:12:23'),
+(94, 64, 61, 'Madan Mahal', 119, 2, 'DH_28', 'Digital Compuler zcd XRay (R.V.G.)', '18, 17, 16, 15, 14, 13, 12, 11, 21, 22, 23, 24, 25, 26, 27, 28, 48, 47, 46, 45, 44, 43, 42, 41, 31, 32, 33, 34, 35, 36, 37, 38', '32', '50', '', '1', '1600', 1600, 0, 1584, 0, 0, 'dg_4', 'Pending', 'd', '24-09-2024 14:57:38'),
+(95, 66, 63, 'Madan Mahal', 123, 1, 'DH_30', 'Root Canal Treatment @ per tooth', '18', '1', '500', '', '0', '500', 500, 0, 500, 0, 0, 'dg_4', 'Pending', '', '04-10-2024 13:44:06'),
+(96, 67, 64, 'Madan Mahal', 124, 1, 'DH_31', 'Root Canal Treatment @ per tooth', '18', '1', '500', '', '0', '500', 500, 0, 500, 0, 0, 'dg_4', 'Pending', '', '04-10-2024 15:55:13'),
+(97, 68, 66, 'Madan Mahal', 127, 1, 'DH_33', 'Digital Compuler zcd XRay (R.V.G.)', '18, 17, 16, 15, 14, 13, 12, 11, 21, 22, 23, 24, 25, 26, 27, 28, 48, 47, 46, 45, 44, 43, 42, 41, 31, 32, 33, 34, 35, 36, 37, 38', '32', '50', '', '1', '1600', 1584, 32, 1552, 32, 0, 'dg_4', 'paid', 'sd', '05-10-2024 17:25:21'),
+(98, 69, 67, 'Madan Mahal', 128, 1, 'DH_33', 'Re-Root Canal Treatlment @ per tooth', '18, 17, 16, 15, 14, 13, 12, 11, 21, 22, 23, 24, 25, 26, 27, 28, 48, 47, 46, 45, 44, 43, 42, 41, 31, 32, 33, 34, 35, 36, 37, 38', '32', '4000', '', '1', '128000', 126720, 22, 126698, 22, 0, 'dg_4', 'paid', '', '05-10-2024 17:28:17'),
+(99, 70, 68, 'Madan Mahal', 129, 1, 'DH_34', 'Amalgam Restoration@ per tooth', '55', '1', '200', '', '10', '200', 180, 180, 0, 180, 0, 'dg_19', 'paid', 'okay', '05-10-2024 17:53:50'),
+(100, 71, 69, 'Madan Mahal', 131, 1, 'DH_36', 'Laminates and Veneers@ per tooth', '18', '1', '10000', '', '10', '10000', 9000, 0, 9000, 0, 0, 'dg_4', 'Pending', '', '07-10-2024 11:42:37'),
+(101, 71, 69, 'Madan Mahal', 131, 1, 'DH_36', 'Laminates and Veneers@ per tooth', '18', '1', '10000', '', '10', '10000', 9000, 0, 9000, 0, 0, 'dg_4', 'Pending', '', '07-10-2024 11:42:37'),
+(102, 72, 70, 'Madan Mahal', 134, 1, 'DH_37', 'Third Molar Impacted Tooth Removal', '18', '1', '3000', '', '10', '3000', 2700, 2400, 300, 2400, 0, 'dg_4', 'paid', '', '07-10-2024 11:50:10'),
+(103, 73, 72, 'Madan Mahal', 137, 1, 'DH_1', 'Digital Compuler zcd XRay (R.V.G.)', '18, 17, 16, 15, 14, 13, 12, 11, 21, 22, 23, 24, 25, 26, 27, 28, 48, 47, 46, 45, 44, 43, 42, 41, 31, 32, 33, 34, 35, 36, 37, 38', '32', '58', '', '0', '1856', 1856, 2, 1854, 2, 0, 'dg_4', 'paid', '', '08-10-2024 16:27:12'),
+(104, 73, 72, 'Madan Mahal', 137, 1, 'DH_1', 'Digital Compuler zcd XRay (R.V.G.)', '18, 17, 16, 15, 14, 13, 12, 11, 21, 22, 23, 24, 25, 26, 27, 28, 48, 47, 46, 45, 44, 43, 42, 41, 31, 32, 33, 34, 35, 36, 37, 38', '32', '58', '', '0', '1856', 1854, 1, 1855, 1, 0, 'dg_4', 'paid', '', '08-10-2024 16:28:55'),
+(105, 73, 72, 'Madan Mahal', 137, 1, 'DH_1', 'Digital Compuler zcd XRay (R.V.G.)', '18, 17, 16, 15, 14, 13, 12, 11, 21, 22, 23, 24, 25, 26, 27, 28, 48, 47, 46, 45, 44, 43, 42, 41, 31, 32, 33, 34, 35, 36, 37, 38', '32', '58', '', '0', '1856', 1855, 1, 1855, 1, 0, 'dg_4', 'paid', '', '08-10-2024 16:42:37'),
+(106, 74, 73, 'Madan Mahal', 142, 1, 'DH_32', 'Amalgam Restoration@ per tooth', '17', '1', '230', '', '5', '230', 219, 100, 119, 100, 0, 'dg_19', 'paid', '', '21-10-2024 18:54:46'),
+(107, 75, 74, 'Madan Mahal', 143, 1, 'DH_40', 'GIC Restoration @ per tooth', '14', '1', '600', '', '2', '600', 588, 588, 0, 588, 0, 'dg_19', 'paid', 'hgfgyfy', '26-10-2024 13:27:05'),
+(108, 76, 75, 'Madan Mahal', 144, 1, 'DH_41', 'Re-Root Canal Treatlment @ per tooth', '14', '1', '4000', '', '2', '4000', 3920, 3920, 0, 3920, 0, 'dg_19', 'paid', 'okay', '26-10-2024 14:07:42'),
+(109, 77, 76, 'Madan Mahal', 145, 1, 'DH_42', 'Retention plate@ per arch', '43', '1', '2000', '', '5', '2000', 1900, 1900, 0, 1900, 0, 'dg_19', 'paid', 'gy', '26-10-2024 16:51:19');
 
 -- --------------------------------------------------------
 
@@ -561,7 +684,7 @@ CREATE TABLE `drugs` (
   `drug_strength` varchar(100) DEFAULT NULL,
   `instruction` varchar(100) DEFAULT NULL,
   `branch_name` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `drugs`
@@ -591,7 +714,7 @@ CREATE TABLE `employee_attendance` (
   `allday_shift_login_time` time(6) DEFAULT NULL,
   `allday_shift_logout_time` time(6) DEFAULT NULL,
   `availability` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `employee_attendance`
@@ -615,7 +738,9 @@ INSERT INTO `employee_attendance` (`attendance_id`, `employee_ID`, `emp_name`, `
 (20, 'dg_4', 'shadab', 'Madan Mahal', 'doctor', '2024-09-02', NULL, NULL, NULL, NULL, '12:22:58.000000', '15:44:21.000000', 'yes'),
 (21, 'dg_5', 'vijendra', 'Madan Mahal', 'consultant', '2024-09-02', NULL, NULL, NULL, NULL, '14:06:30.000000', '14:06:39.000000', 'no'),
 (22, 'dg_4', 'shadab', 'Madan Mahal', 'doctor', '2024-09-06', NULL, NULL, NULL, NULL, '11:46:07.000000', '15:38:09.000000', 'yes'),
-(23, 'dg_19', 'DEMO', 'Madan Mahal', 'doctor', '2024-09-12', NULL, NULL, NULL, NULL, '13:18:31.000000', NULL, 'yes');
+(23, 'dg_19', 'DEMO', 'Madan Mahal', 'doctor', '2024-09-12', NULL, NULL, NULL, NULL, '13:18:31.000000', NULL, 'yes'),
+(24, 'dg_4', 'shadab', 'Madan Mahal', 'doctor', '2024-09-23', NULL, NULL, NULL, NULL, '17:25:35.000000', NULL, NULL),
+(25, 'dg_4', 'shadab', 'Madan Mahal', 'doctor', '2024-09-24', NULL, NULL, NULL, NULL, '14:08:24.000000', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -633,7 +758,7 @@ CREATE TABLE `employee_complaints` (
   `status` varchar(255) DEFAULT NULL,
   `solved_on` datetime(6) DEFAULT NULL,
   `pending_since` datetime(6) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -650,7 +775,7 @@ CREATE TABLE `employee_leave` (
   `leave_reason` varchar(1000) DEFAULT NULL,
   `leave_status` varchar(50) DEFAULT NULL,
   `created_at` timestamp(6) NOT NULL DEFAULT current_timestamp(6)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `employee_leave`
@@ -694,7 +819,7 @@ CREATE TABLE `employee_register` (
   `language` varchar(100) DEFAULT NULL,
   `experience` varchar(100) DEFAULT NULL,
   `type_of` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `employee_register`
@@ -719,7 +844,8 @@ INSERT INTO `employee_register` (`sr_id`, `employee_ID`, `branch_name`, `employe
 (17, 'dg_16', 'Madan Mahal', 'shadab', '8602161019', 'test3@gmail.com', 'male', 'admin', '$2b$10$mmmzMxyNKdC.O8jU0PmXO.jPtjuQJ31nys9sc2.qEoDFNrU88f5GG', 'admin', '50000', 'Jabalpur', 'Approved', '00:00:00.000000', '00:00:00.000000', '00:00:00.000000', '00:00:00.000000', '18:11:00.000000', '17:11:00.000000', 'mon-fri', '', '8888/empProfilePicture/17165473208254261702-KC_Tomar.png', '', '', '', '', 'full time'),
 (18, 'dg_17', 'Madan Mahal', 'umer', '8602161019', 'mohitsahu1993@gmail.com', 'male', 'admin', '$2a$10$jgkLC6MEC/HnnGpjqjM0fO6VSgP86DEC86yECdrU9aYCTm2StesYS', 'admin', '50000', 'Jabalpur', 'Approved', '00:00:00.000000', '00:00:00.000000', '00:00:00.000000', '00:00:00.000000', '16:49:00.000000', '18:47:00.000000', 'mon-fri', '', '8888/empProfilePicture/17165494698734904301-RavindraTomar.png', '', '', '', '', 'full time'),
 (19, 'dg_18', 'Madan Mahal', 'huyah', '8602161019', 'huyah@gmail.com', 'male', 'receptionist', '$2b$10$3M1Z48GpvByPDcZYl5u6AeGBrTYy1r6NqAE6xRLrujnKeCyWGdPx2', 'receptionist', '50000', 'Jabalpur', 'Approved', '00:00:00.000000', '00:00:00.000000', '00:00:00.000000', '00:00:00.000000', '10:00:00.000000', '20:00:00.000000', 'mon-fri', '', 'http://localhost:https://dentalguru-superadmin.vimubds5.a2hosted.com/empProfilePicture/1722960046708test-bag.jpg', NULL, NULL, NULL, NULL, NULL),
-(20, 'dg_19', 'Madan Mahal', 'DEMO', '7047485555', 'demo@gmail.com', 'other', 'doctor', '$2b$10$7cnqkHC7yXF5dYKOUUJ9S.4FQgvRvCT0IbK8B1gLtUlFatFONB1pu', 'admin,receptionist,consultant,accountant,lab attendant,doctor', '50000', 'Jabalpur', 'Approved', '00:00:00.000000', '00:00:00.000000', '00:00:00.000000', '00:00:00.000000', '09:00:00.000000', '18:30:00.000000', '7', '', 'https://dentalguru-superadmin.vimubds5.a2hosted.com/empProfilePicture/1726125133293Add a heading.jpg', NULL, NULL, NULL, NULL, NULL);
+(20, 'dg_19', 'Madan Mahal', 'DEMO', '7047485555', 'demo@gmail.com', 'male', 'doctor', '$2b$10$7cnqkHC7yXF5dYKOUUJ9S.4FQgvRvCT0IbK8B1gLtUlFatFONB1pu', 'admin,receptionist,consultant,accountant,lab attendant,doctor', '50000', 'Jabalpur', 'Approved', '01:00:00.000000', '13:59:00.000000', '14:30:00.000000', '23:33:00.000000', '09:00:00.000000', '18:30:00.000000', '7', '', 'https://dentalguru-superadmin.vimubds5.a2hosted.com/empProfilePicture/1726125133293Add a heading.jpg', NULL, NULL, NULL, NULL, NULL),
+(21, 'dg_21', 'Madan Mahal', 'Siddharth', '8602161019', 'siddhartha.marko.3@gmail.com', 'male', 'doctor', '$2b$10$sAv4MPzsvhR8LEmyE/4eWeH0QcFPwSWKLbl0TAjW1/N.VoDF/Vagy', 'doctor,receptionist,admin', '50000', 'Jabalpur', 'Approved', '01:00:00.000000', '13:59:00.000000', '14:30:00.000000', '23:33:00.000000', '10:00:00.000000', '19:00:00.000000', 'null', 'yes', 'https://dentalgurusuperadmin.doaguru.com/empProfilePicture/17104102635691709210206279kd.jpg', 'Advanced Orthodontic Training - Institute of Orthodontics  Cityville State, Doctor of Dental Medicine (DMD) - University of Dental Sciences Cityville State', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -735,7 +861,7 @@ CREATE TABLE `employee_timeline` (
   `open` varchar(100) DEFAULT NULL,
   `status` varchar(100) DEFAULT NULL,
   `time` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `employee_timeline`
@@ -767,7 +893,7 @@ CREATE TABLE `examin_details` (
   `tooth` varchar(255) DEFAULT NULL,
   `diagnosis` varchar(255) DEFAULT NULL,
   `doctor_name` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -783,7 +909,7 @@ CREATE TABLE `expense_voucher` (
   `voucher_amount` int(100) DEFAULT NULL,
   `voucher_date` varchar(100) DEFAULT NULL,
   `created_by` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -799,7 +925,7 @@ CREATE TABLE `holidays` (
   `holiday_start_time` time(6) DEFAULT NULL,
   `holiday_end_time` time(6) DEFAULT NULL,
   `notes` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `holidays`
@@ -828,7 +954,7 @@ CREATE TABLE `inquiries` (
   `doctorName` varchar(255) DEFAULT NULL,
   `created_at` varchar(255) DEFAULT NULL,
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -843,7 +969,7 @@ CREATE TABLE `insurance_company` (
   `category` varchar(100) DEFAULT NULL,
   `status` varchar(100) DEFAULT NULL,
   `added_date` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `insurance_company`
@@ -870,7 +996,7 @@ CREATE TABLE `lab_details` (
   `lab_email` varchar(255) DEFAULT NULL,
   `address` varchar(255) DEFAULT NULL,
   `status` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `lab_details`
@@ -892,10 +1018,10 @@ INSERT INTO `lab_details` (`lab_id`, `branch_name`, `lab_name`, `lab_type`, `lab
 
 CREATE TABLE `lab_tests` (
   `lab_tid` int(100) NOT NULL,
-  `test_name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `test_code` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `waiting_days` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `default_lab` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `test_name` varchar(100) DEFAULT NULL,
+  `test_code` varchar(100) DEFAULT NULL,
+  `waiting_days` varchar(100) DEFAULT NULL,
+  `default_lab` varchar(100) DEFAULT NULL,
   `test_date` date DEFAULT NULL,
   `test_cost` int(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -945,7 +1071,7 @@ CREATE TABLE `otpcollections` (
   `code` int(10) DEFAULT NULL,
   `expiresIn` int(20) DEFAULT NULL,
   `createdAt` timestamp(6) NOT NULL DEFAULT current_timestamp(6)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `otpcollections`
@@ -954,7 +1080,8 @@ CREATE TABLE `otpcollections` (
 INSERT INTO `otpcollections` (`otp_id`, `email`, `code`, `expiresIn`, `createdAt`) VALUES
 (1, 'kuldeepdoauruinfosystems@gmail.com', 851181, NULL, '2024-08-13 06:59:36.777227'),
 (2, 'mohitsahu1993@gmail.com', 254910, NULL, '2024-08-22 07:31:13.481316'),
-(3, 'shadab@gmail.com', 942162, NULL, '2024-09-02 07:06:14.109336');
+(3, 'shadab@gmail.com', 522293, NULL, '2024-09-02 07:06:14.109336'),
+(4, 'siddhartha.marko.3@gmail.com', 507465, NULL, '2024-10-04 08:00:51.430232');
 
 -- --------------------------------------------------------
 
@@ -983,7 +1110,7 @@ CREATE TABLE `patient_bills` (
   `transaction_Id` varchar(255) DEFAULT NULL,
   `note` varchar(1000) DEFAULT NULL,
   `pay_by_sec_amt` int(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `patient_bills`
@@ -1009,7 +1136,7 @@ INSERT INTO `patient_bills` (`bill_id`, `bill_date`, `uhid`, `tp_id`, `branch_na
 (17, '30-08-2024 12:15:41', 'DH_7', 15, 'Madan Mahal', 'rahul', '7877878787', '', NULL, 'shadab', 4000, 0, 'Paid', '2024-08-30', 'shadab', 'dg_4', 'cash', NULL, 'test', 4000),
 (18, '30-08-2024 12:22:07', 'DH_2', 25, 'Madan Mahal', 'Ayushi Singh', '7974507514', 'devdeveloper998@gmail.com', NULL, 'shadab', 1080, 1080, 'paid', '30-08-2024 12:46:10', 'shadab', 'dg_4', 'Cash', NULL, NULL, 0),
 (19, '30-08-2024 13:07:54', 'DH_2', 26, 'Madan Mahal', 'Ayushi Singh', '7974507514', 'devdeveloper998@gmail.com', NULL, 'shadab', 81000, 81000, 'Paid', '30-08-2024 13:08:04', 'shadab', 'dg_4', 'cash', NULL, 'test', 0),
-(20, '30-08-2024 15:31:11', 'DH_6', 27, 'Madan Mahal', 'mohit', '8989898989', '', NULL, 'shadab', 5400, 5400, 'Paid', '30-08-2024 16:16:14', 'shadab', 'dg_4', 'cash', NULL, 'test', 0),
+(20, '30-08-2024 15:31:11', 'DH_6', 27, 'Madan Mahal', 'mohit', '8989898989', '', NULL, 'shadab', 5400, 2000, 'Paid', '23-10-2024 19:04:31', 'shadab', 'dg_4', 'cash', NULL, 'test', 0),
 (21, '30-08-2024 16:37:59', 'DH_2', 28, 'Madan Mahal', 'Ayushi Singh', '7974507514', 'devdeveloper998@gmail.com', NULL, 'shadab', 5200, 6000, 'Paid', '02-09-2024 13:13:51', 'shadab', 'dg_4', 'cash', NULL, NULL, 0),
 (22, '30-08-2024 16:42:25', 'DH_2', 29, 'Madan Mahal', 'Ayushi Singh', '7974507514', 'devdeveloper998@gmail.com', NULL, 'shadab', 14400, 14400, 'Paid', '30-08-2024 16:42:47', 'shadab', 'dg_4', 'cash', NULL, 'test', 0),
 (23, '30-08-2024 16:51:04', 'DH_2', 30, 'Madan Mahal', 'Ayushi Singh', '7974507514', 'devdeveloper998@gmail.com', NULL, 'shadab', 14400, 14400, 'Paid', '30-08-2024 16:57:07', 'shadab', 'dg_4', 'cash', NULL, 'test', 0),
@@ -1020,7 +1147,17 @@ INSERT INTO `patient_bills` (`bill_id`, `bill_date`, `uhid`, `tp_id`, `branch_na
 (28, '02-09-2024 14:51:06', 'DH_16', 40, 'Madan Mahal', 'Kubul he', '6656565654', 'g@d.com', NULL, 'shadab', 225, 225, 'Credit', '02-09-2024 14:52:13', 'shadab', 'dg_4', 'Credit', NULL, 'done by online', 0),
 (29, '02-09-2024 15:00:29', 'DH_18', 41, 'Madan Mahal', 'Morgan lalui', '3554564564', '65456545654@f.com', NULL, 'shadab', 9000, 9000, 'Credit', '02-09-2024 15:00:57', 'shadab', 'dg_4', 'Credit', NULL, 'for testing ', 0),
 (30, '02-09-2024 17:18:33', 'DH_10', 42, 'Madan Mahal', 'lalui yadab', '4654564564', 'kuldeepdoauruinfosystems@gmail.com', NULL, 'shadab', 18000, 18000, 'Credit', '02-09-2024 17:18:50', 'shadab', 'dg_4', 'Credit', NULL, 'test', 0),
-(31, '06-09-2024 18:00:24', 'DH_21', 49, 'Madan Mahal', 'fvnbm', '7432325653', 'h@gmail.com', NULL, 'shadab', 2640, 2640, 'pending', NULL, NULL, NULL, NULL, NULL, NULL, 0);
+(31, '06-09-2024 18:00:24', 'DH_21', 49, 'Madan Mahal', 'fvnbm', '7432325653', 'h@gmail.com', NULL, 'shadab', 2640, 2640, 'Paid', '2024-10-09', 'shadab', 'dg_4', 'cash', NULL, NULL, 0),
+(32, '23-09-2024 17:29:25', 'DH_11', 53, 'Madan Mahal', 'soumya tiwari', '8319955741', 'soumya@gmail.com', NULL, 'shadab', 121600, 0, 'pending', NULL, NULL, NULL, NULL, NULL, NULL, 0),
+(33, '04-10-2024 15:33:00', 'DH_30', 63, 'Madan Mahal', 'subham soni', '9198900449', 'vinaydhariya21@gmail.com', NULL, 'shadab', 500, 500, 'paid', '2024-10-04', 'shadab', 'dg_4', 'Credit', NULL, NULL, 0),
+(34, '04-10-2024 15:56:07', 'DH_31', 64, 'Madan Mahal', 'm ni btaunga', '9198900449', 'vinaydhariya21@gmail.com', NULL, 'shadab', 500, 0, 'pending', NULL, NULL, NULL, NULL, NULL, NULL, 0),
+(35, '05-10-2024 17:25:31', 'DH_33', 66, 'Madan Mahal', 'Siddharth', '5252222222', '', NULL, 'shadab', 1584, 32, 'pending', NULL, NULL, NULL, NULL, NULL, NULL, 0),
+(36, '05-10-2024 17:28:33', 'DH_33', 67, 'Madan Mahal', 'Siddharth', '5252222222', '', NULL, 'shadab', 126720, 22, 'pending', NULL, NULL, NULL, NULL, NULL, NULL, 0),
+(37, '07-10-2024 11:43:49', 'DH_36', 69, 'Madan Mahal', 'Shubhanshu Jaiswal ', '9632578125', 'shubhsoni1996th@gmail.com', NULL, 'shadab', 18000, 0, 'pending', '23-10-2024 19:02:31', 'shadab', 'dg_4', NULL, NULL, NULL, 0),
+(38, '07-10-2024 11:51:03', 'DH_37', 70, 'Madan Mahal', 'Shrikant Dubey ', '9836521787', 'shubhsoni1996th@gmail.com', NULL, 'shadab', 2700, 2700, 'Paid', '2024-10-22', 'shadab', 'dg_4', 'cash', NULL, 'nothing', 0),
+(39, '26-10-2024 13:27:44', 'DH_40', 74, 'Madan Mahal', 'akshat jha', '8552147963', 'jha@jha.com', NULL, 'DEMO', 588, 588, 'pending', NULL, NULL, NULL, NULL, NULL, NULL, 0),
+(40, '26-10-2024 14:07:57', 'DH_41', 75, 'Madan Mahal', 'dev ', '0987654321', 'dev@gmail.com', NULL, 'DEMO', 3920, 3920, 'pending', NULL, NULL, NULL, NULL, NULL, NULL, 0),
+(41, '26-10-2024 16:52:04', 'DH_42', 76, 'Madan Mahal', 'mayur pillai', '7000102121', 'doagurumd@gmail.com', NULL, 'DEMO', 1900, 1900, 'pending', NULL, NULL, NULL, NULL, NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -1066,14 +1203,14 @@ CREATE TABLE `patient_details` (
   `patient_updated_by_emp_id` varchar(50) DEFAULT NULL,
   `created_at` varchar(100) DEFAULT NULL,
   `updated_at` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `patient_details`
 --
 
 INSERT INTO `patient_details` (`uhid`, `branch_name`, `initialid`, `patient_name`, `dob`, `age`, `weight`, `gender`, `maritalstatus`, `bloodgroup`, `mobileno`, `alternatecontactno`, `emailid`, `contact_person`, `contact_person_name`, `allergy`, `disease`, `isstaff`, `staffempid`, `staffrelationid`, `isforeign`, `isvip`, `fathername`, `husbandname`, `mothername`, `address`, `pincode`, `patient_type`, `credit_By`, `beneficiary_Id`, `aadhaar_no`, `patient_added_by`, `patient_updated_by`, `patient_added_by_emp_id`, `patient_updated_by_emp_id`, `created_at`, `updated_at`) VALUES
-('DH_1', 'Madan Mahal', NULL, 'Raju Pandey', '', '50', '85', 'Male', NULL, 'O+', '8602161019', NULL, 'kuldeepdoauruinfosystems@gmail.com', 'Self', 'Abhinav Pandey', 'No', 'No Disease', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Wright Town', NULL, 'Credit', 'CGHS(Serving)', '123456123', '', 'shadab', NULL, 'dg_4', NULL, '2024-08-12 18:52:16', NULL),
+('DH_1', 'Madan Mahal', NULL, 'Raju Pandey', '', '50', '85', 'Male', NULL, 'O+', '8602161019', NULL, 'siddhartha.marko.3@gmail.com', 'Self', 'Abhinav Pandey', 'No', 'No Disease', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Wright Town', NULL, 'Credit', 'CGHS(Serving)', '123456123', '', 'shadab', NULL, 'dg_4', NULL, '2024-08-12 18:52:16', NULL),
 ('DH_10', 'Madan Mahal', NULL, 'lalui yadab', '2024-01-01', '450', '500', 'Other', NULL, 'A-', '4654564564', NULL, 'kuldeepdoauruinfosystems@gmail.com', 'Other', 'rani ji', 'no', 'Diabetes', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'rani kamlpapati', NULL, 'Credit', 'CGHS(Serving)', 'KAMKA0101', '366152154545', 'shadab', 'shadab', 'dg_4', 'dg_4', '2024-09-02 12:39:33', '2024-09-02 15:12:30.368'),
 ('DH_11', 'Madan Mahal', NULL, 'soumya tiwari', '1994-02-06', '30', '65', 'Female', NULL, 'A+', '8319955741', NULL, 'soumya@gmail.com', 'Self', '', 'no', 'Heart', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'bhopal', NULL, 'General', '', '', '123456789654', 'shadab', NULL, 'dg_4', NULL, '2024-09-02 12:43:45', NULL),
 ('DH_12', 'Madan Mahal', NULL, 'kamla bai', '1500-01-01', '524', '800', 'Female', NULL, 'O+', '6687445631', NULL, 'kam@gmail.com', 'Self', '', 'no', 'Asthma,No Disease,Diabetes,Heart', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'm ram gad swarg gali ', NULL, 'Credit', 'CGHS(Pensioner)', 'PMKY0102542', '655458647864', 'shadab', NULL, 'dg_4', NULL, '2024-09-02 12:46:02', NULL),
@@ -1090,8 +1227,26 @@ INSERT INTO `patient_details` (`uhid`, `branch_name`, `initialid`, `patient_name
 ('DH_22', 'Madan Mahal', NULL, 'Hariom ', '2024-09-06', '20', '52', 'Male', NULL, 'A+', '7489004965', NULL, 'shivharehariom366@gmail.com', 'Self', '', 'no', 'No Disease', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'madan mahal', NULL, 'General', '', '', '', 'shadab', NULL, 'dg_4', NULL, '2024-09-06 15:36:33', NULL),
 ('DH_23', 'Madan Mahal', NULL, 'Demo', '2024-01-01', '24', '70', 'Male', NULL, 'A+', '4654654656', NULL, 'demo@gmail.com', 'Self', '', 'no', 'No Disease', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'okay jabalpur', NULL, 'General', '', '', '355466467465', 'DEMO', NULL, 'dg_19', NULL, '2024-09-12 12:56:39', NULL),
 ('DH_24', 'Madan Mahal', NULL, 'DEMO', '2024-01-01', '24', '70', 'Male', NULL, 'A+', '6545646546', NULL, 'demo@gmail.com', 'Self', '', '', 'No Disease', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'INDIA', NULL, 'General', '', '', '123456789101', 'DEMO', NULL, 'dg_19', NULL, '2024-09-12 13:16:24', NULL),
+('DH_25', 'Madan Mahal', NULL, 'complwete', '2024-06-06', '3', '', 'Male', NULL, '', '7477777777', NULL, 'comple@gmail.com', 'Self', '', '', 'No Disease', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ghar', NULL, 'General', '', '', '', 'shadab', NULL, 'dg_4', NULL, '2024-09-23 17:38:07', NULL),
+('DH_26', 'Madan Mahal', NULL, 'negenral', '2000-05-02', '24', '', 'Male', NULL, '', '5555555555', NULL, '', 'Self', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ghar', NULL, 'General', '', '', '', 'shadab', NULL, 'dg_4', NULL, '2024-09-23 17:43:31', NULL),
+('DH_27', 'Madan Mahal', NULL, 'patient hai', '2000-11-01', '23', '', 'Male', NULL, '', '1111111111', NULL, '', 'Self', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ghar', NULL, 'General', '', '', '', 'shadab', NULL, 'dg_4', NULL, '2024-09-23 17:58:10', NULL),
+('DH_28', 'Madan Mahal', NULL, 'nonemore', '', '20', '', 'Male', NULL, '', '2411111111', NULL, 'kuldeepdoauruinfosystems@gmail.com\n', 'Self', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ghar', NULL, 'General', '', '', '', 'shadab', NULL, 'dg_4', NULL, '2024-09-23 18:05:02', NULL),
+('DH_29', 'Madan Mahal', NULL, 'twomore', '', '10', '', 'Male', NULL, '', '1441111111', NULL, '', 'Self', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'gfhar', NULL, 'General', '', '', '', 'shadab', NULL, 'dg_4', NULL, '2024-09-23 18:09:37', NULL),
 ('DH_3', 'Madan Mahal', NULL, 'Aditya Rao', '', '21', '55', 'Male', NULL, 'A-', '7000102121', NULL, 'doaguruinfosystems@gmail.com', 'Self', '', 'No', 'Heart,Diabetes,Cancer', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Wright Town', NULL, 'Credit', 'CGHS(Pensioner)', '7412587465689', '', 'shadab', NULL, 'dg_4', NULL, '2024-08-12 18:56:26', NULL),
+('DH_30', 'Madan Mahal', NULL, 'subham soni', '', '26', '', 'Male', NULL, '', '9198900449', NULL, 'vinaydhariya21@gmail.com', 'Self', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'gupta colony', NULL, 'Credit', 'CGHS(Pensioner)', '3454324', '', 'shadab', NULL, 'dg_4', NULL, '2024-10-04 13:19:47', NULL),
+('DH_31', 'Madan Mahal', NULL, 'm ni btaunga', '', '27', '', 'Male', NULL, '', '9198900449', NULL, 'vinaydhariya21@gmail.com', 'Self', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'gupta colony', NULL, 'Credit', 'CGHS(Serving)', 'dhggf', '', 'shadab', NULL, 'dg_4', NULL, '2024-10-04 15:53:23', NULL),
+('DH_32', 'Madan Mahal', NULL, 'Akshat', '', '20', '', 'Male', NULL, 'AB+', '8641046668', NULL, '', 'Self', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'shobhapur', NULL, 'General', '', '', '', 'DEMO', NULL, 'dg_19', NULL, '2024-10-04 17:06:40', NULL),
+('DH_33', 'Madan Mahal', NULL, 'Siddharth', '', '56', '', 'Male', NULL, '', '5252222222', NULL, '', 'Self', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ghar', NULL, 'General', '', '', '', 'shadab', NULL, 'dg_4', NULL, '2024-10-05 17:23:51', NULL),
+('DH_34', 'Madan Mahal', NULL, 'dev', '2005-06-05', '19', '', 'Male', NULL, '', '1234567890', NULL, 'dev@gmail.com', 'Self', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'jabalpur', NULL, 'General', '', '', '', 'DEMO', NULL, 'dg_19', NULL, '2024-10-05 17:47:41', NULL),
+('DH_35', 'Madan Mahal', NULL, 'vinay', '', '27', '', 'Male', NULL, '', '8989894562', NULL, '', 'Self', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'gupta colony', NULL, 'General', '', '', '', 'shadab', NULL, 'dg_4', NULL, '2024-10-05 19:05:58', NULL),
+('DH_36', 'Madan Mahal', NULL, 'Shubhanshu Jaiswal ', '1972-04-01', '52', '78', 'Male', NULL, 'A+', '9632578125', NULL, 'shubhsoni1996th@gmail.com', 'Father', 'Shashi Dubey ', 'Dhoop', 'Diabetes,Heart,Kidney', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '9631521465', NULL, 'General', '', '', '981123544565', 'shadab', NULL, 'dg_4', NULL, '2024-10-07 11:36:21', NULL),
+('DH_37', 'Madan Mahal', NULL, 'Shrikant Dubey ', '1900-01-19', '124', '572', 'Male', NULL, 'B+', '9836521787', NULL, 'shubhsoni1996th@gmail.com', 'Self', '', '8532', '854', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '857342108', NULL, 'General', '', '', '857240105327', 'shadab', NULL, 'dg_4', NULL, '2024-10-07 11:46:18', NULL),
+('DH_38', 'Madan Mahal', NULL, 'hariom shivhare', '2005-02-02', '19', '48', 'Male', NULL, 'O+', '9201717067', NULL, 'shivharehariom366@gmail.com', 'Self', '', 'no', 'No Disease', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'madan mahal jabalpur ', NULL, 'General', '', '', '', 'DEMO', NULL, 'dg_19', NULL, '2024-10-07 17:20:05', NULL),
+('DH_39', 'Madan Mahal', NULL, 'foropd', '', '31', '', 'Male', NULL, '', '4444444444', NULL, '', 'Self', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ghar', NULL, 'General', '', '', '', 'shadab', NULL, 'dg_4', NULL, '2024-10-09 17:05:11', NULL),
 ('DH_4', 'Madan Mahal', NULL, 'Abhishek Dubey', '', '30', '70', 'Male', NULL, 'O+', '9806324244', NULL, 'mohitsahu1993@gmail.com', 'Self', '', 'No', 'Cancer', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Wright Town', NULL, 'Credit', 'HDFC Insurance', '45625258741', '', 'shadab', NULL, 'dg_4', NULL, '2024-08-12 19:16:45', NULL),
+('DH_40', 'Madan Mahal', NULL, 'akshat jha', '2004-08-11', '20', '', 'Male', NULL, 'AB+', '8552147963', NULL, 'jha@jha.com', 'Self', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '123', NULL, 'General', '', '', '123456789012', 'DEMO', NULL, 'dg_19', NULL, '2024-10-26 13:20:29', NULL),
+('DH_41', 'Madan Mahal', NULL, 'dev ', '2006-06-13', '18', '', 'Male', NULL, 'O+', '0987654321', NULL, 'dev@gmail.com', 'Self', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'wright town', NULL, 'General', '', '', '', 'DEMO', NULL, 'dg_19', NULL, '2024-10-26 14:00:46', NULL),
+('DH_42', 'Madan Mahal', NULL, 'mayur pillai', '2004-08-11', '20', '85', 'Male', NULL, '', '7000102121', NULL, 'doagurumd@gmail.com', 'Self', 'abhinav pandey', '', 'Arthritis', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '644, Nove Adaresh Colony Yadav Colony, Jabalpur Madhya Pradesh', NULL, 'General', '', '', '', 'DEMO', NULL, 'dg_19', NULL, '2024-10-26 15:52:06', NULL),
 ('DH_5', 'Madan Mahal', NULL, 'Aman', '', '83', '', 'Male', NULL, 'A-', '8602161019', NULL, 'kuldeepdoauruinfosystems@gmail.com\n', 'Self', 'Mohit Sahu', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Jabalpur', NULL, 'General', '', '', '', 'shadab', 'shadab', 'dg_4', 'dg_4', '2024-08-13 01:16:23', '2024-08-17 18:32:26.719'),
 ('DH_6', 'Madan Mahal', NULL, 'mohit', '', '56', '', 'Male', NULL, '', '8989898989', NULL, '', 'Self', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'jbp', NULL, 'General', '', '', '', 'shadab', NULL, 'dg_4', NULL, '2024-08-17 15:59:40', NULL),
 ('DH_7', 'Madan Mahal', NULL, 'rahul', '', '89', '', 'Male', NULL, 'A+', '7877878787', NULL, '', 'Self', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'jbp', NULL, 'General', '', '', '', 'shadab', NULL, 'dg_4', NULL, '2024-08-21 12:22:19', NULL),
@@ -1108,7 +1263,7 @@ CREATE TABLE `patient_disease` (
   `id` int(11) NOT NULL,
   `value` varchar(255) NOT NULL,
   `label` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `patient_disease`
@@ -1150,7 +1305,7 @@ CREATE TABLE `patient_lab_details` (
   `test` varchar(255) NOT NULL,
   `test_status` varchar(255) NOT NULL DEFAULT 'pending',
   `created_date` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `patient_lab_details`
@@ -1179,7 +1334,9 @@ INSERT INTO `patient_lab_details` (`testid`, `tpid`, `patient_uhid`, `patient_na
 (20, 33, 'DH_11', 'soumya tiwari', 'Madan Mahal', 'shadab', 'radiology', 'Computed Tomography (CT) Scan', 'pending', '02-09-2024 12:48:52'),
 (21, 34, 'DH_10', 'lalui yadab', 'Madan Mahal', 'shadab', 'blood', 'Complete Blood Count (CBC)', 'done', '02-09-2024 12:49:46'),
 (22, 35, 'DH_10', 'lalui yadab', 'Madan Mahal', 'shadab', 'oral', 'Interviews', 'done', '02-09-2024 12:53:44'),
-(24, 50, 'DH_24', 'DEMO', 'Madan Mahal', 'DEMO', 'oral', 'Viva Voce Exams', 'done', '12-09-2024 13:27:12');
+(24, 50, 'DH_24', 'DEMO', 'Madan Mahal', 'DEMO', 'oral', 'Viva Voce Exams', 'done', '12-09-2024 13:27:12'),
+(25, 53, 'DH_11', 'soumya tiwari', 'Madan Mahal', 'shadab', 'radiology', 'Ultrasound', 'pending', '23-09-2024 17:26:48'),
+(26, 54, 'DH_25', 'complwete', 'Madan Mahal', 'shadab', 'radiology', 'Computed Tomography (CT) Scan', 'pending', '23-09-2024 17:38:48');
 
 -- --------------------------------------------------------
 
@@ -1202,7 +1359,7 @@ CREATE TABLE `patient_lab_test_details` (
   `payment_status` varchar(255) DEFAULT NULL,
   `lab_type` varchar(255) DEFAULT NULL,
   `created_date` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `patient_lab_test_details`
@@ -1229,7 +1386,7 @@ INSERT INTO `patient_lab_test_details` (`id`, `testid`, `patient_uhid`, `patient
 CREATE TABLE `patient_lab_test_reports` (
   `id` int(11) NOT NULL,
   `testid` int(11) NOT NULL,
-  `file_path` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `file_path` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -1258,7 +1415,7 @@ CREATE TABLE `patient_test_notes` (
   `id` int(11) NOT NULL,
   `note_text` varchar(255) NOT NULL,
   `testid` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `patient_test_notes`
@@ -1281,7 +1438,7 @@ CREATE TABLE `patient_timeline` (
   `event_description` varchar(100) DEFAULT NULL,
   `branch_name` varchar(100) DEFAULT NULL,
   `uhid` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `patient_timeline`
@@ -2085,7 +2242,227 @@ INSERT INTO `patient_timeline` (`event_id`, `event_date`, `event_time`, `event_t
 (794, '12-09-2024', '01:45 PM', 'Treatment Suggest', 'Select Treatment : Re-Root Canal Treatlment @ per tooth for disease : Caries', 'Madan Mahal', 'DH_24'),
 (795, '12-09-2024', '01:45 PM', 'Sitting Considered', '1 Sitting Started', 'Madan Mahal', 'DH_24'),
 (796, '12-09-2024', '01:46 PM', 'Book Sitting Appointment', 'Book Sitting Appointment', 'Madan Mahal', 'DH_24'),
-(797, '12-09-2024', '01:46 PM', 'Treatment Procedure', 'Re-Root Canal Treatlment @ per tooth Treatment Done, TPID : 52', 'Madan Mahal', 'DH_24');
+(797, '12-09-2024', '01:46 PM', 'Treatment Procedure', 'Re-Root Canal Treatlment @ per tooth Treatment Done, TPID : 52', 'Madan Mahal', 'DH_24'),
+(798, '23-09-2024', '17:17:11', 'Appointment', 'Appointment scheduled', 'Madan Mahal', 'DH_11'),
+(799, '23-09-2024', '17:23:01', 'Appointment', 'Patient Check-In', 'Madan Mahal', 'DH_11'),
+(800, NULL, NULL, 'Examination', 'Selected Category Dental-X', 'Madan Mahal', 'DH_11'),
+(801, NULL, NULL, 'Examination', 'Add Teeth DentalX', 'Madan Mahal', 'DH_11'),
+(802, NULL, NULL, 'Treatment Suggest', 'Select Treatment : Re-Root Canal Treatlment @ per tooth for disease : dfdf', 'Madan Mahal', 'DH_11'),
+(803, NULL, NULL, 'Sitting Considered', '1 Sitting Started', 'Madan Mahal', 'DH_11'),
+(804, NULL, NULL, 'Treatment Procedure', 'Re-Root Canal Treatlment @ per tooth Treatment Done, TPID : 53', 'Madan Mahal', 'DH_11'),
+(805, NULL, NULL, 'Final Bill Generation', 'Final Bill Generated for TPID : 53', 'Madan Mahal', 'DH_11'),
+(806, '23-09-2024', '17:38:07', 'Add Patient', 'Add Patient and Appointment scheduled', 'Madan Mahal', 'DH_25'),
+(807, '23-09-2024', '17:38:17', 'Appointment', 'Patient Check-In', 'Madan Mahal', 'DH_25'),
+(808, NULL, NULL, 'Examination', 'Selected Category Dental-X', 'Madan Mahal', 'DH_25'),
+(809, NULL, NULL, 'Examination', 'Add Teeth DentalX', 'Madan Mahal', 'DH_25'),
+(810, NULL, NULL, 'Treatment Suggest', 'Select Treatment : Re-Root Canal Treatlment @ per tooth for disease : s', 'Madan Mahal', 'DH_25'),
+(811, NULL, NULL, 'Sitting Considered', '1 Sitting Started', 'Madan Mahal', 'DH_25'),
+(812, NULL, NULL, 'Book Sitting Appointment', 'Book Sitting Appointment', 'Madan Mahal', 'DH_25'),
+(813, NULL, NULL, 'Treatment Procedure', 'Re-Root Canal Treatlment @ per tooth Treatment Done, TPID : 54', 'Madan Mahal', 'DH_25'),
+(814, NULL, NULL, 'Book Sitting Appointment', 'Book Sitting Appointment', 'Madan Mahal', 'DH_25'),
+(815, NULL, NULL, 'Treatment Procedure', 'Sitting Done, TPID : 54', 'Madan Mahal', 'DH_25'),
+(816, '23-09-2024', '17:42:03', 'Appointment', 'Patient Check-In', 'Madan Mahal', 'DH_25'),
+(817, '23-09-2024', '17:42:24', 'Appointment', 'Patient Check-In', 'Madan Mahal', 'DH_25'),
+(818, NULL, NULL, 'Examination', 'Selected Category Dental-X', 'Madan Mahal', 'DH_25'),
+(819, '23-09-2024', '17:43:31', 'Add Patient', 'Add Patient and Appointment scheduled', 'Madan Mahal', 'DH_26'),
+(820, '23-09-2024', '17:43:43', 'Appointment', 'Patient Check-In', 'Madan Mahal', 'DH_26'),
+(821, NULL, NULL, 'Examination', 'Selected Category Dental-X', 'Madan Mahal', 'DH_26'),
+(822, NULL, NULL, 'Examination', 'Add Teeth DentalX', 'Madan Mahal', 'DH_26'),
+(823, NULL, NULL, 'Examination', 'Add Teeth DentalX', 'Madan Mahal', 'DH_26'),
+(824, NULL, NULL, 'Treatment Suggest', 'Select Treatment : Digital Compuler zcd XRay (R.V.G.) for disease : Caries', 'Madan Mahal', 'DH_26'),
+(825, NULL, NULL, 'Sitting Considered', '1 Sitting Started', 'Madan Mahal', 'DH_26'),
+(826, NULL, NULL, 'Book Sitting Appointment', 'Book Sitting Appointment', 'Madan Mahal', 'DH_26'),
+(827, NULL, NULL, 'Treatment Procedure', 'Sitting Done, TPID : 56', 'Madan Mahal', 'DH_26'),
+(828, '23-09-2024', '17:46:23', 'Appointment', 'Patient Check-In', 'Madan Mahal', 'DH_26'),
+(829, '23-09-2024', '17:58:10', 'Add Patient', 'Add Patient and Appointment scheduled', 'Madan Mahal', 'DH_27'),
+(830, '23-09-2024', '17:58:19', 'Appointment', 'Patient Check-In', 'Madan Mahal', 'DH_27'),
+(831, NULL, NULL, 'Examination', 'Selected Category Dental-X', 'Madan Mahal', 'DH_27'),
+(832, NULL, NULL, 'Examination', 'Add Teeth DentalX', 'Madan Mahal', 'DH_27'),
+(833, NULL, NULL, 'Examination', 'Add Teeth DentalX', 'Madan Mahal', 'DH_27'),
+(834, '23-09-2024', '18:05:02', 'Add Patient', 'Add Patient and Appointment scheduled', 'Madan Mahal', 'DH_28'),
+(835, '23-09-2024', '18:05:18', 'Appointment', 'Patient Check-In', 'Madan Mahal', 'DH_28'),
+(836, NULL, NULL, 'Examination', 'Selected Category Dental-X', 'Madan Mahal', 'DH_28'),
+(837, NULL, NULL, 'Examination', 'Add Teeth DentalX', 'Madan Mahal', 'DH_28'),
+(838, NULL, NULL, 'Examination', 'Selected Category Dental-X', 'Madan Mahal', 'DH_28'),
+(839, '23-09-2024', '18:09:37', 'Add Patient', 'Add Patient and Appointment scheduled', 'Madan Mahal', 'DH_29'),
+(840, '23-09-2024', '18:09:45', 'Appointment', 'Patient Check-In', 'Madan Mahal', 'DH_29'),
+(841, NULL, NULL, 'Examination', 'Selected Category Dental-X', 'Madan Mahal', 'DH_29'),
+(842, NULL, NULL, 'Examination', 'Add Teeth DentalX', 'Madan Mahal', 'DH_29'),
+(843, NULL, NULL, 'Treatment Suggest', 'Select Treatment : Re-Root Canal Treatlment @ per tooth for disease : Caries', 'Madan Mahal', 'DH_29'),
+(844, NULL, NULL, 'Sitting Considered', '1 Sitting Started', 'Madan Mahal', 'DH_29'),
+(845, NULL, NULL, 'Book Sitting Appointment', 'Book Sitting Appointment', 'Madan Mahal', 'DH_29'),
+(846, NULL, NULL, 'Treatment Procedure', 'Sitting Done, TPID : 60', 'Madan Mahal', 'DH_29'),
+(847, '23-09-2024', '18:14:05', 'Appointment', 'Patient Check-In', 'Madan Mahal', 'DH_29'),
+(848, NULL, NULL, 'Examination', 'Start Examintion', 'Madan Mahal', 'DH_29'),
+(849, NULL, NULL, 'Examination', 'Start Examintion', 'Madan Mahal', 'DH_28'),
+(850, NULL, NULL, 'Examination', 'Start Examintion', 'Madan Mahal', 'DH_27'),
+(851, NULL, NULL, 'Examination', 'Start Examintion', 'Madan Mahal', 'DH_26'),
+(852, NULL, NULL, 'Examination', 'Start Examintion', 'Madan Mahal', 'DH_27'),
+(853, NULL, NULL, 'Examination', 'Start Examintion', 'Madan Mahal', 'DH_26'),
+(854, NULL, NULL, 'Examination', 'Start Examintion', 'Madan Mahal', NULL),
+(855, NULL, NULL, 'Examination', 'Start Examintion', 'Madan Mahal', NULL),
+(856, NULL, NULL, 'Examination', 'Start Examintion', 'Madan Mahal', NULL),
+(857, NULL, NULL, 'Examination', 'Start Examintion', 'Madan Mahal', NULL),
+(858, NULL, NULL, 'Examination', 'Start Examintion', 'Madan Mahal', NULL),
+(859, NULL, NULL, 'Examination', 'Start Examintion', 'Madan Mahal', NULL),
+(860, NULL, NULL, 'Examination', 'Start Examintion', 'Madan Mahal', NULL),
+(861, NULL, NULL, 'Examination', 'Start Examintion', 'Madan Mahal', 'DH_28'),
+(862, '24-09-2024', '14:10:07', 'Appointment', 'Appointment scheduled', 'Madan Mahal', 'DH_28'),
+(863, '24-09-2024', '14:10:10', 'Appointment', 'Patient Check-In', 'Madan Mahal', 'DH_28'),
+(864, NULL, NULL, 'Examination', 'Selected Category Dental-X', 'Madan Mahal', 'DH_28'),
+(865, NULL, NULL, 'Examination', 'Add Teeth DentalX', 'Madan Mahal', 'DH_28'),
+(866, NULL, NULL, 'Treatment Suggest', 'Select Treatment : Digital Compuler zcd XRay (R.V.G.) for disease : Caries', 'Madan Mahal', 'DH_28'),
+(867, NULL, NULL, 'Sitting Considered', '1 Sitting Started', 'Madan Mahal', 'DH_28'),
+(868, NULL, NULL, 'Book Sitting Appointment', 'Book Sitting Appointment', 'Madan Mahal', 'DH_28'),
+(869, NULL, NULL, 'Treatment Procedure', 'Sitting Done, TPID : 61', 'Madan Mahal', 'DH_28'),
+(870, '24-09-2024', '14:12:38', 'Appointment', 'Patient Check-In', 'Madan Mahal', 'DH_28'),
+(871, '24-09-2024', '14:12:51', 'Appointment', 'Patient Check-In', 'Madan Mahal', 'DH_28'),
+(872, '24-09-2024', '14:12:55', 'Appointment', 'Patient Check-In', 'Madan Mahal', 'DH_28'),
+(873, NULL, NULL, 'Examination', 'Start Examintion', 'Madan Mahal', 'DH_28'),
+(874, '24-09-2024', '14:46:41', 'Appointment', 'Patient Check-In', 'Madan Mahal', 'DH_28'),
+(875, '24-09-2024', '14:47:21', 'Appointment', 'Appointment scheduled', 'Madan Mahal', 'DH_28'),
+(876, '24-09-2024', '14:47:30', 'Appointment', 'Patient Check-In', 'Madan Mahal', 'DH_28'),
+(877, '24-09-2024', '14:49:27', 'Appointment', 'Appointment scheduled', 'Madan Mahal', 'DH_25'),
+(878, '24-09-2024', '14:49:45', 'Appointment', 'Patient Check-In', 'Madan Mahal', 'DH_25'),
+(879, NULL, NULL, 'Examination', 'Start Examintion', 'Madan Mahal', 'DH_28'),
+(880, '24-09-2024', '14:56:05', 'Appointment', 'Patient Check-In', 'Madan Mahal', 'DH_28'),
+(881, NULL, NULL, 'Examination', 'Start Examintion', 'Madan Mahal', 'DH_28'),
+(882, NULL, NULL, 'Sitting Considered', '2 Sitting Started', 'Madan Mahal', 'DH_28'),
+(883, NULL, NULL, 'Book Sitting Appointment', 'Book Sitting Appointment', 'Madan Mahal', 'DH_28'),
+(884, NULL, NULL, 'Treatment Procedure', 'Sitting Done, TPID : 61', 'Madan Mahal', 'DH_28'),
+(885, '24-09-2024', '14:58:00', 'Appointment', 'Patient Check-In', 'Madan Mahal', 'DH_28'),
+(886, NULL, NULL, 'Examination', 'Start Examintion', 'Madan Mahal', 'DH_28'),
+(887, NULL, NULL, 'Examination', 'Selected Category Dental-X', 'Madan Mahal', 'DH_25'),
+(888, NULL, NULL, 'Examination', 'Add Teeth DentalX', 'Madan Mahal', 'DH_25'),
+(889, NULL, NULL, 'Treatment Suggest', 'Select Treatment : Re-Root Canal Treatlment @ per tooth for disease : Caries', 'Madan Mahal', 'DH_25'),
+(890, '24-09-2024', '20:16:37', 'Appointment', 'Patient Check-In', 'Madan Mahal', 'DH_28'),
+(891, NULL, NULL, 'Examination', 'Start Examintion', 'Madan Mahal', 'DH_25'),
+(892, NULL, NULL, 'Examination', 'Start Examintion', 'Madan Mahal', 'DH_28'),
+(893, '04-10-2024', '13:19:47', 'Add Patient', 'Add Patient and Appointment scheduled', 'Madan Mahal', 'DH_30'),
+(894, '04-10-2024', '13:20:28', 'Appointment', 'Patient Check-In', 'Madan Mahal', 'DH_30'),
+(895, NULL, NULL, 'Examination', 'Selected Category Dental-X', 'Madan Mahal', 'DH_30'),
+(896, NULL, NULL, 'Examination', 'Add Teeth DentalX', 'Madan Mahal', 'DH_30'),
+(897, NULL, NULL, 'Treatment Suggest', 'Select Treatment : Root Canal Treatment @ per tooth for disease : Caries', 'Madan Mahal', 'DH_30'),
+(898, NULL, NULL, 'Sitting Considered', '1 Sitting Started', 'Madan Mahal', 'DH_30'),
+(899, NULL, NULL, 'Treatment Procedure', 'Root Canal Treatment @ per tooth Treatment Done, TPID : 63', 'Madan Mahal', 'DH_30'),
+(900, NULL, NULL, 'Final Bill Generation', 'Final Bill Generated for TPID : 63', 'Madan Mahal', 'DH_30'),
+(901, '04-10-2024', '15:53:23', 'Add Patient', 'Add Patient and Appointment scheduled', 'Madan Mahal', 'DH_31'),
+(902, '04-10-2024', '15:53:59', 'Appointment', 'Patient Check-In', 'Madan Mahal', 'DH_31'),
+(903, NULL, NULL, 'Examination', 'Selected Category Dental-X', 'Madan Mahal', 'DH_31'),
+(904, NULL, NULL, 'Examination', 'Add Teeth DentalX', 'Madan Mahal', 'DH_31'),
+(905, NULL, NULL, 'Treatment Suggest', 'Select Treatment : Root Canal Treatment @ per tooth for disease : Caries', 'Madan Mahal', 'DH_31'),
+(906, NULL, NULL, 'Sitting Considered', '1 Sitting Started', 'Madan Mahal', 'DH_31'),
+(907, NULL, NULL, 'Treatment Procedure', 'Root Canal Treatment @ per tooth Treatment Done, TPID : 64', 'Madan Mahal', 'DH_31'),
+(908, NULL, NULL, 'Final Bill Generation', 'Final Bill Generated for TPID : 64', 'Madan Mahal', 'DH_31'),
+(909, '04-10-2024', '17:06:41', 'Add Patient', 'Add Patient and Appointment scheduled', 'Madan Mahal', 'DH_32'),
+(910, '04-10-2024', '17:11:43', 'Appointment', 'Appointment scheduled', 'Madan Mahal', 'DH_32'),
+(911, '04-10-2024', '17:14:48', 'Appointment', 'Patient Check-In', 'Madan Mahal', 'DH_32'),
+(912, NULL, NULL, 'Examination', 'Selected Category Dental-X', 'Madan Mahal', 'DH_32'),
+(913, '05-10-2024', '17:23:52', 'Add Patient', 'Add Patient and Appointment scheduled', 'Madan Mahal', 'DH_33'),
+(914, '05-10-2024', '17:24:01', 'Appointment', 'Patient Check-In', 'Madan Mahal', 'DH_33'),
+(915, NULL, NULL, 'Examination', 'Selected Category Dental-X', 'Madan Mahal', 'DH_33'),
+(916, NULL, NULL, 'Examination', 'Add Teeth DentalX', 'Madan Mahal', 'DH_33'),
+(917, NULL, NULL, 'Treatment Suggest', 'Select Treatment : Digital Compuler zcd XRay (R.V.G.) for disease : Caries', 'Madan Mahal', 'DH_33'),
+(918, NULL, NULL, 'Sitting Considered', '1 Sitting Started', 'Madan Mahal', 'DH_33'),
+(919, NULL, NULL, 'Treatment Procedure', 'Digital Compuler zcd XRay (R.V.G.) Treatment Done, TPID : 66', 'Madan Mahal', 'DH_33'),
+(920, NULL, NULL, 'Final Bill Generation', 'Final Bill Generated for TPID : 66', 'Madan Mahal', 'DH_33'),
+(921, '05-10-2024', '17:27:21', 'Appointment', 'Appointment scheduled', 'Madan Mahal', 'DH_33'),
+(922, '05-10-2024', '17:27:30', 'Appointment', 'Patient Check-In', 'Madan Mahal', 'DH_33'),
+(923, NULL, NULL, 'Examination', 'Start Examintion', 'Madan Mahal', 'DH_33'),
+(924, NULL, NULL, 'Examination', 'Selected Category Dental-X', 'Madan Mahal', 'DH_33'),
+(925, NULL, NULL, 'Examination', 'Add Teeth DentalX', 'Madan Mahal', 'DH_33'),
+(926, NULL, NULL, 'Treatment Suggest', 'Select Treatment : Re-Root Canal Treatlment @ per tooth for disease : Caries', 'Madan Mahal', 'DH_33'),
+(927, NULL, NULL, 'Sitting Considered', '1 Sitting Started', 'Madan Mahal', 'DH_33'),
+(928, NULL, NULL, 'Treatment Procedure', 'Re-Root Canal Treatlment @ per tooth Treatment Done, TPID : 67', 'Madan Mahal', 'DH_33'),
+(929, NULL, NULL, 'Final Bill Generation', 'Final Bill Generated for TPID : 67', 'Madan Mahal', 'DH_33'),
+(930, '05-10-2024', '17:47:41', 'Add Patient', 'Add Patient and Appointment scheduled', 'Madan Mahal', 'DH_34'),
+(931, '05-10-2024', '17:49:02', 'Appointment', 'Patient Check-In', 'Madan Mahal', 'DH_34'),
+(932, NULL, NULL, 'Examination', 'Selected Category Pediatric', 'Madan Mahal', 'DH_34'),
+(933, NULL, NULL, 'Examination', 'Add Teeth Pediatric DentalX', 'Madan Mahal', 'DH_34'),
+(934, NULL, NULL, 'Treatment Suggest', 'Select Treatment : Amalgam Restoration@ per tooth for disease : Caries', 'Madan Mahal', 'DH_34'),
+(935, NULL, NULL, 'Sitting Considered', '1 Sitting Started', 'Madan Mahal', 'DH_34'),
+(936, NULL, NULL, 'Treatment Procedure', 'Amalgam Restoration@ per tooth Treatment Done, TPID : 68', 'Madan Mahal', 'DH_34'),
+(937, '05-10-2024', '19:05:58', 'Add Patient', 'Add Patient and Appointment scheduled', 'Madan Mahal', 'DH_35'),
+(938, '07-10-2024', '11:36:22', 'Add Patient', 'Add Patient and Appointment scheduled', 'Madan Mahal', 'DH_36'),
+(939, '07-10-2024', '11:36:42', 'Appointment', 'Patient Check-In', 'Madan Mahal', 'DH_36'),
+(940, NULL, NULL, 'Examination', 'Selected Category Dental-X', 'Madan Mahal', 'DH_36'),
+(941, NULL, NULL, 'Examination', 'Add Teeth DentalX', 'Madan Mahal', 'DH_36'),
+(942, NULL, NULL, 'Treatment Suggest', 'Select Treatment : Laminates and Veneers@ per tooth for disease : Caries', 'Madan Mahal', 'DH_36'),
+(943, NULL, NULL, 'Sitting Considered', '1 Sitting Started', 'Madan Mahal', 'DH_36'),
+(944, NULL, NULL, 'Book Sitting Appointment', 'Book Sitting Appointment', 'Madan Mahal', 'DH_36'),
+(945, NULL, NULL, 'Book Sitting Appointment', 'Book Sitting Appointment', 'Madan Mahal', 'DH_36'),
+(946, NULL, NULL, 'Treatment Procedure', 'Laminates and Veneers@ per tooth Treatment Done, TPID : 69', 'Madan Mahal', 'DH_36'),
+(947, NULL, NULL, 'Treatment Procedure', 'Laminates and Veneers@ per tooth Treatment Done, TPID : 69', 'Madan Mahal', 'DH_36'),
+(948, NULL, NULL, 'Final Bill Generation', 'Final Bill Generated for TPID : 69', 'Madan Mahal', 'DH_36'),
+(949, '07-10-2024', '11:46:18', 'Add Patient', 'Add Patient and Appointment scheduled', 'Madan Mahal', 'DH_37'),
+(950, '07-10-2024', '11:46:27', 'Appointment', 'Patient Check-In', 'Madan Mahal', 'DH_37'),
+(951, NULL, NULL, 'Examination', 'Selected Category Dental-X', 'Madan Mahal', 'DH_37'),
+(952, NULL, NULL, 'Examination', 'Add Teeth DentalX', 'Madan Mahal', 'DH_37'),
+(953, NULL, NULL, 'Treatment Suggest', 'Select Treatment : Third Molar Impacted Tooth Removal for disease : Missing Tooth', 'Madan Mahal', 'DH_37'),
+(954, NULL, NULL, 'Sitting Considered', '1 Sitting Started', 'Madan Mahal', 'DH_37'),
+(955, NULL, NULL, 'Book Sitting Appointment', 'Book Sitting Appointment', 'Madan Mahal', 'DH_37'),
+(956, NULL, NULL, 'Treatment Procedure', 'Third Molar Impacted Tooth Removal Treatment Done, TPID : 70', 'Madan Mahal', 'DH_37'),
+(957, NULL, NULL, 'Final Bill Generation', 'Final Bill Generated for TPID : 70', 'Madan Mahal', 'DH_37'),
+(958, '07-10-2024', '17:20:05', 'Add Patient', 'Add Patient and Appointment scheduled', 'Madan Mahal', 'DH_38'),
+(959, '07-10-2024', '17:20:28', 'Appointment', 'Patient Check-In', 'Madan Mahal', 'DH_38'),
+(960, NULL, NULL, 'Examination', 'Selected Category Pediatric', 'Madan Mahal', 'DH_38'),
+(961, NULL, NULL, 'Examination', 'Add Teeth Pediatric DentalX', 'Madan Mahal', 'DH_38'),
+(962, '08-10-2024', '16:26:05', 'Appointment', 'Appointment scheduled', 'Madan Mahal', 'DH_1'),
+(963, '08-10-2024', '16:26:24', 'Appointment', 'Patient Check-In', 'Madan Mahal', 'DH_1'),
+(964, NULL, NULL, 'Examination', 'Selected Category Dental-X', 'Madan Mahal', 'DH_1'),
+(965, NULL, NULL, 'Examination', 'Add Teeth DentalX', 'Madan Mahal', 'DH_1'),
+(966, NULL, NULL, 'Treatment Suggest', 'Select Treatment : Digital Compuler zcd XRay (R.V.G.) for disease : Caries', 'Madan Mahal', 'DH_1'),
+(967, NULL, NULL, 'Sitting Considered', '1 Sitting Started', 'Madan Mahal', 'DH_1'),
+(968, NULL, NULL, 'Treatment Procedure', 'Digital Compuler zcd XRay (R.V.G.) Treatment Done, TPID : 72', 'Madan Mahal', 'DH_1'),
+(969, NULL, NULL, 'Treatment Procedure', 'Sitting Done, TPID : 72', 'Madan Mahal', 'DH_1'),
+(970, NULL, NULL, 'Treatment Procedure', 'Digital Compuler zcd XRay (R.V.G.) Treatment Done, TPID : 72', 'Madan Mahal', 'DH_1'),
+(971, '09-10-2024', '17:00:09', 'Appointment', 'Appointment scheduled', 'Madan Mahal', 'DH_33'),
+(972, '09-10-2024', '17:00:18', 'Appointment', 'Patient Check-In', 'Madan Mahal', 'DH_33'),
+(973, '09-10-2024', '17:05:11', 'Add Patient', 'Add Patient and Appointment scheduled', 'Madan Mahal', 'DH_39'),
+(974, '11-10-2024', '13:19:54', 'Appointment', 'Appointment scheduled', 'Madan Mahal', 'DH_12'),
+(975, '11-10-2024', '13:20:06', 'Appointment', 'Patient Check-In', 'Madan Mahal', 'DH_12'),
+(976, '11-10-2024', '18:40:18', 'Appointment', 'Appointment scheduled', 'Madan Mahal', 'DH_33'),
+(977, '21-10-2024', '18:51:25', 'Appointment', 'Appointment scheduled', 'Madan Mahal', 'DH_32'),
+(978, '21-10-2024', '18:51:36', 'Appointment', 'Patient Check-In', 'Madan Mahal', 'DH_32'),
+(979, NULL, NULL, 'Examination', 'Selected Category Dental-X', 'Madan Mahal', 'DH_32'),
+(980, NULL, NULL, 'Examination', 'Add Teeth DentalX', 'Madan Mahal', 'DH_32'),
+(981, NULL, NULL, 'Treatment Suggest', 'Select Treatment : Amalgam Restoration@ per tooth for disease : Fracture', 'Madan Mahal', 'DH_32'),
+(982, NULL, NULL, 'Sitting Considered', '1 Sitting Started', 'Madan Mahal', 'DH_32'),
+(983, NULL, NULL, 'Treatment Procedure', 'Amalgam Restoration@ per tooth Treatment Done, TPID : 73', 'Madan Mahal', 'DH_32'),
+(984, NULL, NULL, 'Examination', 'Start Examintion', 'Madan Mahal', 'DH_38'),
+(985, '25-10-2024', '17:44:39', 'Appointment', 'Patient Check-In', 'Madan Mahal', 'DH_38'),
+(986, '26-10-2024', '13:20:29', 'Add Patient', 'Add Patient and Appointment scheduled', 'Madan Mahal', 'DH_40'),
+(987, '26-10-2024', '13:22:20', 'Appointment', 'Patient Check-In', 'Madan Mahal', 'DH_40'),
+(988, NULL, NULL, 'Examination', 'Selected Category Dental-X', 'Madan Mahal', 'DH_40'),
+(989, NULL, NULL, 'Examination', 'Add Teeth DentalX', 'Madan Mahal', 'DH_40'),
+(990, NULL, NULL, 'Treatment Suggest', 'Select Treatment : GIC Restoration @ per tooth for disease : Caries', 'Madan Mahal', 'DH_40'),
+(991, NULL, NULL, 'Sitting Considered', '1 Sitting Started', 'Madan Mahal', 'DH_40');
+INSERT INTO `patient_timeline` (`event_id`, `event_date`, `event_time`, `event_type`, `event_description`, `branch_name`, `uhid`) VALUES
+(992, NULL, NULL, 'Treatment Procedure', 'GIC Restoration @ per tooth Treatment Done, TPID : 74', 'Madan Mahal', 'DH_40'),
+(993, NULL, NULL, 'Final Bill Generation', 'Final Bill Generated for TPID : 74', 'Madan Mahal', 'DH_40'),
+(994, '26-10-2024', '14:00:47', 'Add Patient', 'Add Patient and Appointment scheduled', 'Madan Mahal', 'DH_41'),
+(995, '26-10-2024', '14:02:00', 'Appointment', 'Patient Check-In', 'Madan Mahal', 'DH_41'),
+(996, NULL, NULL, 'Examination', 'Selected Category Dental-X', 'Madan Mahal', 'DH_41'),
+(997, NULL, NULL, 'Examination', 'Add Teeth DentalX', 'Madan Mahal', 'DH_41'),
+(998, NULL, NULL, 'Treatment Suggest', 'Select Treatment : Re-Root Canal Treatlment @ per tooth for disease : Caries', 'Madan Mahal', 'DH_41'),
+(999, NULL, NULL, 'Sitting Considered', '1 Sitting Started', 'Madan Mahal', 'DH_41'),
+(1000, NULL, NULL, 'Treatment Procedure', 'Re-Root Canal Treatlment @ per tooth Treatment Done, TPID : 75', 'Madan Mahal', 'DH_41'),
+(1001, NULL, NULL, 'Final Bill Generation', 'Final Bill Generated for TPID : 75', 'Madan Mahal', 'DH_41'),
+(1002, '26-10-2024', '15:52:07', 'Add Patient', 'Add Patient and Appointment scheduled', 'Madan Mahal', 'DH_42'),
+(1003, '26-10-2024', '15:52:57', 'Appointment', 'Patient Check-In', 'Madan Mahal', 'DH_42'),
+(1004, NULL, NULL, 'Examination', 'Selected Category Dental-X', 'Madan Mahal', 'DH_42'),
+(1005, NULL, NULL, 'Examination', 'Add Teeth DentalX', 'Madan Mahal', 'DH_42'),
+(1006, NULL, NULL, 'Examination', 'Start Examintion', 'Madan Mahal', 'DH_42'),
+(1007, '26-10-2024', '16:43:41', 'Appointment', 'Patient Check-In', 'Madan Mahal', 'DH_42'),
+(1008, NULL, NULL, 'Examination', 'Start Examintion', 'Madan Mahal', 'DH_42'),
+(1009, '26-10-2024', '16:45:39', 'Appointment', 'Patient Check-In', 'Madan Mahal', 'DH_42'),
+(1010, NULL, NULL, 'Examination', 'Start Examintion', 'Madan Mahal', 'DH_42'),
+(1011, NULL, NULL, 'Treatment Suggest', 'Select Treatment : Retention plate@ per arch for disease : Impacted', 'Madan Mahal', 'DH_42'),
+(1012, NULL, NULL, 'Sitting Considered', '1 Sitting Started', 'Madan Mahal', 'DH_42'),
+(1013, NULL, NULL, 'Treatment Procedure', 'Retention plate@ per arch Treatment Done, TPID : 76', 'Madan Mahal', 'DH_42'),
+(1014, NULL, NULL, 'Final Bill Generation', 'Final Bill Generated for TPID : 76', 'Madan Mahal', 'DH_42'),
+(1015, '26-10-2024', '18:11:55', 'Appointment', 'Appointment scheduled', 'Madan Mahal', 'DH_29'),
+(1016, '26-10-2024', '18:12:00', 'Appointment', 'Patient Check-In', 'Madan Mahal', 'DH_29');
 
 -- --------------------------------------------------------
 
@@ -2106,7 +2483,7 @@ CREATE TABLE `payment_details` (
   `payment_status` varchar(100) DEFAULT NULL,
   `payment_date` varchar(100) DEFAULT NULL,
   `payment_time` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -2126,7 +2503,7 @@ CREATE TABLE `prescription_details` (
   `duration` varchar(100) DEFAULT NULL,
   `note` varchar(100) DEFAULT NULL,
   `prescription_date` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -2151,7 +2528,7 @@ CREATE TABLE `purchase_inventory` (
   `distributor_number` varchar(255) DEFAULT NULL,
   `bill_receipt_doc` varchar(255) DEFAULT NULL,
   `purchase_date` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `purchase_inventory`
@@ -2196,7 +2573,7 @@ CREATE TABLE `quick_prescription` (
   `frequency` varchar(100) DEFAULT NULL,
   `duration` varchar(100) DEFAULT NULL,
   `note` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `quick_prescription`
@@ -2211,7 +2588,13 @@ INSERT INTO `quick_prescription` (`qp_id`, `name`, `branch_name`, `uhid`, `appoi
 (6, NULL, NULL, NULL, NULL, '89', 'Male', '22-08-2024 17:50:07', 'Swollen gums', NULL, NULL, 'test', 'tetst', 'deded', '223', '1-1-1', '2 minsdsds', 'tesrrssddsdsd'),
 (7, NULL, 'Madan Mahal', NULL, '38', '89', 'Male', '22-08-2024 17:57:12', 'Swollen gums', 'test', 'test', 'tets', 'tetst', 'deded', 'test', '34', '3333', 'sddsddsdsds'),
 (8, 'rahul', 'Madan Mahal', 'DH_7', '38', '89', 'Male', '22-08-2024 18:14:59', 'Bleeding gums', 'test', 'test', 'tets', 'tetst', 'deded', 'test', '34', '3333', 'hshshhshssssss'),
-(9, 'rahul', 'Madan Mahal', 'DH_7', '82', '89', 'Male', '02-09-2024 13:55:26', 'Toothache', 'none', 'none', 'caries', 'dont eat sweets', 'dolo ', '500 mg', '1-1-1', '2 days', '');
+(9, 'rahul', 'Madan Mahal', 'DH_7', '82', '89', 'Male', '02-09-2024 13:55:26', 'Toothache', 'none', 'none', 'caries', 'dont eat sweets', 'dolo ', '500 mg', '1-1-1', '2 days', ''),
+(10, 'complwete', NULL, 'DH_25', '121', '3', 'Male', NULL, '', '', '', '', '', '', NULL, NULL, NULL, NULL),
+(11, 'Siddharth', NULL, 'DH_33', '138', '56', 'Male', NULL, 'Toothache', 'None', 'your', 'Yes', 'Good', 'goods', NULL, NULL, NULL, NULL),
+(12, 'Siddharth', NULL, 'DH_33', '138', '56', 'Male', NULL, 'Toothache', '4135', '43524', '544', '34', '34', NULL, NULL, NULL, NULL),
+(13, 'hariom shivhare', NULL, 'DH_38', '136', '19', 'Male', NULL, 'Toothache', 'gsfdg', 'dsfgdg', 'dgd', 'dfgfdg', 'fdgfdg', NULL, NULL, NULL, NULL),
+(14, 'twomore', NULL, 'DH_29', '146', '10', 'Male', NULL, 'Bleeding gums', 'None', 'your', 'Yes', 'd', 'goods', NULL, NULL, NULL, NULL),
+(15, 'twomore', NULL, 'DH_29', '146', '10', 'Male', NULL, 'Toothache', 'None', 'nbkjhkj', 'hkj', 'hkjh', 'kjh', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -2241,7 +2624,7 @@ CREATE TABLE `security_amount` (
   `refund_date` varchar(50) DEFAULT NULL,
   `received_by` varchar(100) DEFAULT NULL,
   `refund_by` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `security_amount`
@@ -2290,7 +2673,7 @@ CREATE TABLE `sitting_bill` (
   `payment_status` varchar(100) DEFAULT NULL,
   `note` varchar(100) DEFAULT NULL,
   `date` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `sitting_bill`
@@ -2302,7 +2685,7 @@ INSERT INTO `sitting_bill` (`sb_id`, `tp_id`, `branch_name`, `sitting_number`, `
 (4, 3, 'Madan Mahal', 1, 'Pulpectomy (Child) @ per tooth', '18, 17', 2, 2800, 5600, 10, 5040, 2000, NULL, 3040, NULL, NULL, NULL, NULL, NULL, 'Credit', '', '12-08-2024 19:26:47'),
 (5, 3, 'Madan Mahal', 2, 'Pulpectomy (Child) @ per tooth', '18, 17', 2, 2800, 5600, 10, 3040, 1000, NULL, 2040, NULL, NULL, NULL, NULL, NULL, 'Credit', 'tewsat to', '12-08-2024 19:29:05'),
 (6, 3, 'Madan Mahal', 3, 'Pulpectomy (Child) @ per tooth', '18, 17', 2, 2800, 5600, 10, 2040, 1000, NULL, 1040, NULL, NULL, NULL, 'Credit', NULL, 'Credit', 'test four', '12-08-2024 19:46:10'),
-(7, 4, 'Madan Mahal', 1, 'Single Implant', '18, 17', 2, 25000, 50000, 0, 50000, 20000, NULL, 30000, NULL, NULL, NULL, '', NULL, 'pending', '', '13-08-2024 13:45:30'),
+(7, 4, 'Madan Mahal', 1, 'Single Implant', '18, 17', 2, 25000, 50000, 0, 50000, 20000, 20000, 30000, 20000, NULL, NULL, 'Cash', NULL, 'paid', '', '13-08-2024 13:45:30'),
 (8, 4, 'Madan Mahal', 1, 'Single Implant', '18, 17', 2, 25000, 50000, 0, 30000, 5000, NULL, 25000, NULL, NULL, NULL, '', NULL, 'paid', '', '13-08-2024 13:51:14'),
 (9, 6, 'Madan Mahal', 1, 'Root Canal Treatment @ per tooth', '18, 17', 2, 3000, 6000, 10, 5400, 5400, 5400, 0, NULL, NULL, NULL, '', NULL, 'paid', 'test', '15-08-2024 15:13:17'),
 (10, 6, 'Madan Mahal', 2, 'Root Canal Treatment @ per tooth', '18, 17', 2, 3000, 6000, 10, 0, 0, NULL, 0, NULL, NULL, NULL, '', NULL, 'Pending', '', '15-08-2024 16:31:01'),
@@ -2354,7 +2737,7 @@ INSERT INTO `sitting_bill` (`sb_id`, `tp_id`, `branch_name`, `sitting_number`, `
 (56, 15, 'Madan Mahal', 2, 'Retention plate@ per arch', '18, 17', 2, 2000, 4000, 0, 0, 0, 0, 0, 0, 0, NULL, '', NULL, 'Pending', 'test', '30-08-2024 12:15:35'),
 (57, 25, 'Madan Mahal', 1, 'GIC Restoration @ per tooth', '18, 17', 2, 600, 1200, 10, 1080, 1080, 1080, 0, 0, 0, NULL, '', NULL, 'pending', 'test', '30-08-2024 12:21:46'),
 (58, 26, 'Madan Mahal', 1, 'Ceramic Braces', '18, 17', 2, 45000, 90000, 10, 81000, 81000, 81000, 0, 81000, 0, NULL, '', NULL, 'paid', 'test', '30-08-2024 13:07:47'),
-(59, 27, 'Madan Mahal', 1, 'Porcelain Fused to Metal @ per Crown', '18, 17', 2, 3000, 6000, 10, 5400, 2000, 2000, 3400, 0, 0, NULL, '', NULL, 'pending', 'test', '30-08-2024 15:11:50'),
+(59, 27, 'Madan Mahal', 1, 'Porcelain Fused to Metal @ per Crown', '18, 17', 2, 3000, 6000, 10, 5400, 2000, 2000, 3400, 2000, 0, NULL, 'Cash', NULL, 'paid', 'test', '30-08-2024 15:11:50'),
 (60, 28, 'Madan Mahal', 1, 'Dental Jewellery (Skyce Crystal)', '18, 17', 2, 2000, 4000, 10, 3600, 2000, 2000, 1600, 2000, 0, NULL, 'Card', 'asfdsdf', 'paid', '', '30-08-2024 16:35:30'),
 (61, 28, 'Madan Mahal', 1, 'Dental Jewellery (Skyce Crystal)', '18, 17', 2, 2000, 4000, 0, 1600, 1000, 1000, 600, 1000, 0, NULL, '', NULL, 'paid', '', '30-08-2024 16:36:38'),
 (62, 28, 'Madan Mahal', 2, 'Dental Jewellery (Skyce Crystal)', '18, 17', 2, 2000, 4000, 0, 3000, 3000, 3000, 0, 3000, 0, NULL, '', NULL, 'paid', '', '30-08-2024 16:37:23'),
@@ -2379,10 +2762,32 @@ INSERT INTO `sitting_bill` (`sb_id`, `tp_id`, `branch_name`, `sitting_number`, `
 (81, 42, 'Madan Mahal', 2, 'Laminates and Veneers@ per tooth', '18, 17', 2, 10000, 20000, 10, 13000, 2000, 2000, 11000, 2000, 0, NULL, 'Credit', NULL, 'Credit', 'test', '02-09-2024 17:11:07'),
 (82, 42, 'Madan Mahal', 3, 'Laminates and Veneers@ per tooth', '18, 17', 2, 10000, 20000, 10, 11000, 100, 100, 10900, 100, 0, NULL, 'Credit', NULL, 'Credit', 'test', '02-09-2024 17:14:23'),
 (83, 42, 'Madan Mahal', 4, 'Laminates and Veneers@ per tooth', '18, 17', 2, 10000, 20000, 10, 10900, 900, 900, 10000, 900, 0, NULL, 'Credit', NULL, 'Credit', 'test', '02-09-2024 17:17:45'),
-(84, 42, 'Madan Mahal', 5, 'Laminates and Veneers@ per tooth', '18, 17', 2, 10000, 20000, 10, 10000, 10000, 10000, 0, 10000, 0, NULL, 'Credit', NULL, 'Credit', 'test', '02-09-2024 17:18:26'),
+(84, 42, 'Madan Mahal', 5, 'Laminates and Veneers@ per tooth', '18, 17', 2, 10000, 20000, 10, 10000, 10000, 10000, 0, 10000, 0, NULL, 'Credit', NULL, 'paid', 'test', '02-09-2024 17:18:26'),
 (85, 46, 'Madan Mahal', 1, 'Laminates and Veneers@ per tooth', '18', 1, 10000, 10000, 20, 8000, 8000, 8000, 0, 8000, 0, NULL, '', NULL, 'paid', '', '06-09-2024 15:52:39'),
 (86, 49, 'Madan Mahal', 1, 'Oral Prophylaxis (Scaling)', '55, 54', 2, 1500, 3000, 12, 2640, 2640, 2640, 0, 2640, 0, NULL, '', NULL, 'paid', '', '06-09-2024 17:58:10'),
-(87, 52, 'Madan Mahal', 1, 'Re-Root Canal Treatlment @ per tooth', '42', 1, 4000, 4000, 1, 3960, 0, 0, 3960, 0, 0, NULL, '', NULL, 'Pending', '', '12-09-2024 13:46:42');
+(87, 52, 'Madan Mahal', 1, 'Re-Root Canal Treatlment @ per tooth', '42', 1, 4000, 4000, 1, 3960, 0, 0, 3960, 0, 0, NULL, '', NULL, 'Pending', '', '12-09-2024 13:46:42'),
+(88, 53, 'Madan Mahal', 1, 'Re-Root Canal Treatlment @ per tooth', '18, 17, 16, 15, 14, 13, 12, 11, 21, 22, 23, 24, 25, 26, 27, 28, 48, 47, 46, 45, 44, 43, 42, 41, 31, ', 32, 4000, 128000, 5, 121600, 0, NULL, 121600, 0, 0, NULL, '', NULL, 'Pending', '', '23-09-2024 17:29:14'),
+(89, 54, 'Madan Mahal', 1, 'Re-Root Canal Treatlment @ per tooth', '18, 17, 16, 15, 14, 13, 12, 11, 21, 22, 23, 24, 25, 26, 27, 28, 48, 47, 46, 45, 44, 43, 42, 41, 31, ', 32, 4000, 128000, 1, 126720, 0, NULL, 126720, 0, 0, NULL, '', NULL, 'Pending', 'hg', '23-09-2024 17:39:42'),
+(90, 54, 'Madan Mahal', 1, 'Re-Root Canal Treatlment @ per tooth', '18, 17, 16, 15, 14, 13, 12, 11, 21, 22, 23, 24, 25, 26, 27, 28, 48, 47, 46, 45, 44, 43, 42, 41, 31, ', 32, 4000, 128000, 0, 128000, 0, NULL, 128000, 0, 0, NULL, '', NULL, 'Pending', '', '23-09-2024 17:40:44'),
+(91, 56, 'Madan Mahal', 1, 'Digital Compuler zcd XRay (R.V.G.)', '18, 17, 16, 15, 14, 13, 12, 11, 21, 22, 23, 24, 25, 26, 27, 28, 48, 47, 46, 45, 44, 43, 42, 41, 31, ', 32, 50, 1600, 1, 1584, 0, NULL, 1584, 0, 0, NULL, '', NULL, 'Pending', 'tr', '23-09-2024 17:45:51'),
+(92, 60, 'Madan Mahal', 1, 'Re-Root Canal Treatlment @ per tooth', '18, 17, 16, 15, 14, 13, 12, 11, 21, 22, 23, 24, 25, 26, 27, 28, 48, 47, 46, 45, 44, 43, 42, 41, 31, ', 32, 4000, 128000, 1, 126720, 0, NULL, 126720, 0, 0, NULL, '', NULL, 'Pending', 'nhhbv', '23-09-2024 18:11:35'),
+(93, 61, 'Madan Mahal', 1, 'Digital Compuler zcd XRay (R.V.G.)', '18, 17, 16, 15, 14, 13, 12, 11, 21, 22, 23, 24, 25, 26, 27, 28, 48, 47, 46, 45, 44, 43, 42, 41, 31, ', 32, 50, 1600, 1, 1584, 0, NULL, 1584, 0, 0, NULL, '', NULL, 'Pending', 'o', '24-09-2024 14:12:23'),
+(94, 61, 'Madan Mahal', 2, 'Digital Compuler zcd XRay (R.V.G.)', '18, 17, 16, 15, 14, 13, 12, 11, 21, 22, 23, 24, 25, 26, 27, 28, 48, 47, 46, 45, 44, 43, 42, 41, 31, ', 32, 50, 1600, 1, 1600, 0, NULL, 1600, 0, 0, NULL, '', NULL, 'Pending', 'd', '24-09-2024 14:57:38'),
+(95, 63, 'Madan Mahal', 1, 'Root Canal Treatment @ per tooth', '18', 1, 500, 500, 0, 500, 0, NULL, 500, 0, 0, NULL, 'Credit', NULL, 'paid', '', '04-10-2024 13:44:07'),
+(96, 64, 'Madan Mahal', 1, 'Root Canal Treatment @ per tooth', '18', 1, 500, 500, 0, 500, 0, NULL, 500, 0, 0, NULL, 'Credit', NULL, 'paid', '', '04-10-2024 15:55:14'),
+(97, 66, 'Madan Mahal', 1, 'Digital Compuler zcd XRay (R.V.G.)', '18, 17, 16, 15, 14, 13, 12, 11, 21, 22, 23, 24, 25, 26, 27, 28, 48, 47, 46, 45, 44, 43, 42, 41, 31, ', 32, 50, 1600, 1, 1584, 32, NULL, 1552, 32, 0, NULL, '', NULL, 'paid', 'sd', '05-10-2024 17:25:22'),
+(98, 67, 'Madan Mahal', 1, 'Re-Root Canal Treatlment @ per tooth', '18, 17, 16, 15, 14, 13, 12, 11, 21, 22, 23, 24, 25, 26, 27, 28, 48, 47, 46, 45, 44, 43, 42, 41, 31, ', 32, 4000, 128000, 1, 126720, 22, NULL, 126698, 22, 0, NULL, '', NULL, 'paid', '', '05-10-2024 17:28:18'),
+(99, 68, 'Madan Mahal', 1, 'Amalgam Restoration@ per tooth', '55', 1, 200, 200, 10, 180, 180, NULL, 0, 180, 0, NULL, '', NULL, 'paid', 'okay', '05-10-2024 17:53:50'),
+(100, 69, 'Madan Mahal', 1, 'Laminates and Veneers@ per tooth', '18', 1, 10000, 10000, 10, 9000, 0, NULL, 9000, 0, 0, NULL, '', NULL, 'Pending', '', '07-10-2024 11:42:37'),
+(101, 69, 'Madan Mahal', 1, 'Laminates and Veneers@ per tooth', '18', 1, 10000, 10000, 10, 9000, 0, NULL, 9000, 0, 0, NULL, 'Cash', NULL, 'paid', '', '07-10-2024 11:42:37'),
+(102, 70, 'Madan Mahal', 1, 'Third Molar Impacted Tooth Removal', '18', 1, 3000, 3000, 10, 2700, 2400, NULL, 300, 2400, 0, NULL, '', NULL, 'paid', '', '07-10-2024 11:50:10'),
+(103, 72, 'Madan Mahal', 1, 'Digital Compuler zcd XRay (R.V.G.)', '18, 17, 16, 15, 14, 13, 12, 11, 21, 22, 23, 24, 25, 26, 27, 28, 48, 47, 46, 45, 44, 43, 42, 41, 31, ', 32, 58, 1856, 0, 1856, 2, NULL, 1854, 2, 0, NULL, 'Credit', NULL, 'paid', '', '08-10-2024 16:27:12'),
+(104, 72, 'Madan Mahal', 1, 'Digital Compuler zcd XRay (R.V.G.)', '18, 17, 16, 15, 14, 13, 12, 11, 21, 22, 23, 24, 25, 26, 27, 28, 48, 47, 46, 45, 44, 43, 42, 41, 31, ', 32, 58, 1856, 0, 1854, 1, NULL, 1853, 1, 0, NULL, 'Credit', NULL, 'paid', '', '08-10-2024 16:28:55'),
+(105, 72, 'Madan Mahal', 1, 'Digital Compuler zcd XRay (R.V.G.)', '18, 17, 16, 15, 14, 13, 12, 11, 21, 22, 23, 24, 25, 26, 27, 28, 48, 47, 46, 45, 44, 43, 42, 41, 31, ', 32, 58, 1856, 0, 1855, 1, NULL, 1854, 1, 0, NULL, 'Credit', NULL, 'paid', '', '08-10-2024 16:42:37'),
+(106, 73, 'Madan Mahal', 1, 'Amalgam Restoration@ per tooth', '17', 1, 230, 230, 5, 219, 100, NULL, 119, 100, 0, NULL, '', NULL, 'paid', '', '21-10-2024 18:54:47'),
+(107, 74, 'Madan Mahal', 1, 'GIC Restoration @ per tooth', '14', 1, 600, 600, 2, 588, 588, NULL, 0, 588, 0, NULL, '', NULL, 'paid', 'hgfgyfy', '26-10-2024 13:27:05'),
+(108, 75, 'Madan Mahal', 1, 'Re-Root Canal Treatlment @ per tooth', '14', 1, 4000, 4000, 2, 3920, 3920, NULL, 0, 3920, 0, NULL, '', NULL, 'paid', 'okay', '26-10-2024 14:07:42'),
+(109, 76, 'Madan Mahal', 1, 'Retention plate@ per arch', '43', 1, 2000, 2000, 5, 1900, 1900, NULL, 0, 1900, 0, NULL, '', NULL, 'paid', 'gy', '26-10-2024 16:51:20');
 
 -- --------------------------------------------------------
 
@@ -2401,7 +2806,7 @@ CREATE TABLE `staff_salary` (
   `pay_date` datetime(6) DEFAULT NULL,
   `pay_status` varchar(100) DEFAULT NULL,
   `pay_month` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `staff_salary`
@@ -2427,7 +2832,7 @@ CREATE TABLE `super_admin` (
   `super_email` varchar(255) DEFAULT NULL,
   `super_mobile` varchar(255) DEFAULT NULL,
   `super_password` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `super_admin`
@@ -2448,7 +2853,7 @@ CREATE TABLE `treatment_list` (
   `treatment_name` varchar(255) DEFAULT NULL,
   `treatment_cost` varchar(255) DEFAULT NULL,
   `treatment_discount` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -2467,7 +2872,7 @@ CREATE TABLE `treatment_list_copy` (
   `treatment_discount` varchar(255) DEFAULT NULL,
   `value` varchar(1000) DEFAULT NULL,
   `label` varchar(1000) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `treatment_list_copy`
@@ -2523,7 +2928,8 @@ INSERT INTO `treatment_list_copy` (`treatment_id`, `treat_procedure_id`, `treat_
 (49, 1, 'OPD', 'OPD', '500', 350, 350, NULL, 'OPD', 'OPD'),
 (51, 8, 'Dental implants', 'Sinus Lift Procedure', '15000', 15000, 15000, NULL, 'Sinus Lift Procedure', 'Sinus Lift Procedure'),
 (54, 1, 'test procedure', 'test treatment', '9898', 6000, 5000, NULL, 'test value', 'test label'),
-(56, 10, 'test procedure', 'test-three', NULL, 2000, 1000, NULL, 'test-three', 'test-three');
+(56, 10, 'test procedure', 'test-three', NULL, 2000, 1000, NULL, 'test-three', 'test-three'),
+(57, 1, 'Orthodentics (Braces) Procedures', 'okay', NULL, 3, 9, NULL, 'okay', 'okay');
 
 -- --------------------------------------------------------
 
@@ -2542,7 +2948,7 @@ CREATE TABLE `treatment_package` (
   `package_status` varchar(50) DEFAULT NULL,
   `diagnosis_category` varchar(100) DEFAULT NULL,
   `created_at` timestamp(6) NOT NULL DEFAULT current_timestamp(6)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `treatment_package`
@@ -2600,7 +3006,31 @@ INSERT INTO `treatment_package` (`tp_id`, `uhid`, `branch_name`, `appointment_id
 (49, 'DH_21', 'Madan Mahal', 102, 0, 'dg_4', 'shadab', 'completed', 'Pediatric', '2024-09-06 12:24:30.787624'),
 (50, 'DH_24', 'Madan Mahal', 106, 0, 'dg_19', 'DEMO', 'started', 'Dental-X', '2024-09-12 07:49:44.751373'),
 (51, 'DH_24', 'Madan Mahal', 106, 0, 'dg_19', 'DEMO', 'started', 'Dental-X', '2024-09-12 08:14:27.821061'),
-(52, 'DH_24', 'Madan Mahal', 106, 0, 'dg_19', 'DEMO', 'completed', 'Dental-X', '2024-09-12 08:14:36.772815');
+(52, 'DH_24', 'Madan Mahal', 106, 0, 'dg_19', 'DEMO', 'completed', 'Dental-X', '2024-09-12 08:14:36.772815'),
+(53, 'DH_11', 'Madan Mahal', 108, 0, 'dg_4', 'shadab', 'completed', 'Dental-X', '2024-09-23 11:53:16.608652'),
+(54, 'DH_25', 'Madan Mahal', 109, 0, 'dg_4', 'shadab', 'completed', 'Dental-X', '2024-09-23 12:08:22.213704'),
+(55, 'DH_25', 'Madan Mahal', 110, 0, 'dg_4', 'shadab', 'started', 'Dental-X', '2024-09-23 12:12:35.716671'),
+(56, 'DH_26', 'Madan Mahal', 112, 0, 'dg_4', 'shadab', 'completed', 'Dental-X', '2024-09-23 12:13:48.075619'),
+(57, 'DH_27', 'Madan Mahal', 114, 0, 'dg_4', 'shadab', 'started', 'Dental-X', '2024-09-23 12:28:26.472643'),
+(58, 'DH_28', 'Madan Mahal', 115, 0, 'dg_4', 'shadab', 'started', 'Dental-X', '2024-09-23 12:35:24.139529'),
+(59, 'DH_28', 'Madan Mahal', 115, 0, 'dg_4', 'shadab', 'started', 'Dental-X', '2024-09-23 12:38:07.844496'),
+(60, 'DH_29', 'Madan Mahal', 116, 0, 'dg_4', 'shadab', 'completed', 'Dental-X', '2024-09-23 12:39:50.770477'),
+(61, 'DH_28', 'Madan Mahal', 118, 0, 'dg_4', 'shadab', 'completed', 'Dental-X', '2024-09-24 08:40:15.148942'),
+(62, 'DH_25', 'Madan Mahal', 121, 0, 'dg_4', 'shadab', 'started', 'Dental-X', '2024-09-24 13:30:50.460970'),
+(63, 'DH_30', 'Madan Mahal', 123, 0, 'dg_4', 'shadab', 'completed', 'Dental-X', '2024-10-04 07:50:34.754179'),
+(64, 'DH_31', 'Madan Mahal', 124, 0, 'dg_4', 'shadab', 'completed', 'Dental-X', '2024-10-04 10:24:09.469874'),
+(65, 'DH_32', 'Madan Mahal', 126, 0, 'dg_19', 'DEMO', 'started', 'Dental-X', '2024-10-04 11:46:23.912975'),
+(66, 'DH_33', 'Madan Mahal', 127, 0, 'dg_4', 'shadab', 'completed', 'Dental-X', '2024-10-05 11:54:10.957092'),
+(67, 'DH_33', 'Madan Mahal', 128, 0, 'dg_4', 'shadab', 'completed', 'Dental-X', '2024-10-05 11:57:35.127868'),
+(68, 'DH_34', 'Madan Mahal', 129, 0, 'dg_19', 'DEMO', 'completed', 'Pediatric', '2024-10-05 12:19:24.127142'),
+(69, 'DH_36', 'Madan Mahal', 131, 0, 'dg_4', 'shadab', 'completed', 'Dental-X', '2024-10-07 06:08:16.029097'),
+(70, 'DH_37', 'Madan Mahal', 134, 0, 'dg_4', 'shadab', 'completed', 'Dental-X', '2024-10-07 06:17:33.321580'),
+(71, 'DH_38', 'Madan Mahal', 136, 0, 'dg_19', 'DEMO', 'started', 'Pediatric', '2024-10-07 11:51:46.326438'),
+(72, 'DH_1', 'Madan Mahal', 137, 0, 'dg_4', 'shadab', 'completed', 'Dental-X', '2024-10-08 10:56:28.503600'),
+(73, 'DH_32', 'Madan Mahal', 142, 0, 'dg_19', 'DEMO', 'completed', 'Dental-X', '2024-10-21 13:21:46.405102'),
+(74, 'DH_40', 'Madan Mahal', 143, 0, 'dg_19', 'DEMO', 'completed', 'Dental-X', '2024-10-26 07:53:19.362049'),
+(75, 'DH_41', 'Madan Mahal', 144, 0, 'dg_19', 'DEMO', 'completed', 'Dental-X', '2024-10-26 08:32:41.413963'),
+(76, 'DH_42', 'Madan Mahal', 145, 0, 'dg_19', 'DEMO', 'completed', 'Dental-X', '2024-10-26 10:23:42.370937');
 
 -- --------------------------------------------------------
 
@@ -2611,7 +3041,7 @@ INSERT INTO `treatment_package` (`tp_id`, `uhid`, `branch_name`, `appointment_id
 CREATE TABLE `treat_procedure_list` (
   `treat_procedure_id` int(100) NOT NULL,
   `treat_procedure_name` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `treat_procedure_list`
@@ -2654,7 +3084,7 @@ CREATE TABLE `treat_suggest` (
   `note` varchar(255) DEFAULT NULL,
   `current_sitting_status` varchar(100) DEFAULT NULL,
   `upcoming_sitting_status` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `treat_suggest`
@@ -2716,7 +3146,25 @@ INSERT INTO `treat_suggest` (`ts_id`, `tp_id`, `appoint_id`, `branch_name`, `p_u
 (56, 46, 104, 'Madan Mahal', 'DH_22', 'Caries', 'Laminates and Veneers@ per tooth', '10000', NULL, NULL, 'completed', NULL, '1', 1, NULL, NULL, NULL, NULL, NULL),
 (57, 49, 102, 'Madan Mahal', 'DH_21', 'Caries', 'Oral Prophylaxis (Scaling)', '1500', NULL, NULL, 'completed', NULL, '1', 1, NULL, NULL, NULL, NULL, NULL),
 (58, 50, 106, 'Madan Mahal', 'DH_24', '50% good', 'Digital Compuler zcd XRay (R.V.G.)', '50', NULL, NULL, 'pending', NULL, '1', NULL, NULL, NULL, NULL, NULL, NULL),
-(59, 52, 106, 'Madan Mahal', 'DH_24', 'Caries', 'Re-Root Canal Treatlment @ per tooth', '4000', NULL, NULL, 'completed', NULL, '453', 1, NULL, NULL, NULL, NULL, NULL);
+(59, 52, 106, 'Madan Mahal', 'DH_24', 'Caries', 'Re-Root Canal Treatlment @ per tooth', '4000', NULL, NULL, 'completed', NULL, '453', 1, NULL, NULL, NULL, NULL, NULL),
+(60, 53, 108, 'Madan Mahal', 'DH_11', 'dfdf', 'Re-Root Canal Treatlment @ per tooth', '4000', NULL, NULL, 'completed', NULL, '3432', 1, NULL, NULL, NULL, NULL, NULL),
+(61, 54, 109, 'Madan Mahal', 'DH_25', 's', 'Re-Root Canal Treatlment @ per tooth', '4000', NULL, NULL, 'ongoing', NULL, '3', 1, NULL, NULL, NULL, NULL, NULL),
+(62, 56, 112, 'Madan Mahal', 'DH_26', 'Caries', 'Digital Compuler zcd XRay (R.V.G.)', '50', NULL, NULL, 'ongoing', NULL, '3', 1, NULL, NULL, NULL, NULL, NULL),
+(63, 60, 116, 'Madan Mahal', 'DH_29', 'Caries', 'Re-Root Canal Treatlment @ per tooth', '4000', NULL, NULL, 'ongoing', NULL, '3', 1, NULL, NULL, NULL, NULL, NULL),
+(64, 61, 118, 'Madan Mahal', 'DH_28', 'Caries', 'Digital Compuler zcd XRay (R.V.G.)', '50', NULL, NULL, 'ongoing', NULL, '3', 2, NULL, NULL, NULL, NULL, NULL),
+(65, 62, 121, 'Madan Mahal', 'DH_25', 'Caries', 'Re-Root Canal Treatlment @ per tooth', '4000', NULL, NULL, 'pending', NULL, '2', NULL, NULL, NULL, NULL, NULL, NULL),
+(66, 63, 123, 'Madan Mahal', 'DH_30', 'Caries', 'Root Canal Treatment @ per tooth', '500', NULL, NULL, 'completed', NULL, '1', 1, NULL, NULL, NULL, NULL, NULL),
+(67, 64, 124, 'Madan Mahal', 'DH_31', 'Caries', 'Root Canal Treatment @ per tooth', '500', NULL, NULL, 'completed', NULL, '1', 1, NULL, NULL, NULL, NULL, NULL),
+(68, 66, 127, 'Madan Mahal', 'DH_33', 'Caries', 'Digital Compuler zcd XRay (R.V.G.)', '50', NULL, NULL, 'completed', NULL, '1', 1, NULL, NULL, NULL, NULL, NULL),
+(69, 67, 128, 'Madan Mahal', 'DH_33', 'Caries', 'Re-Root Canal Treatlment @ per tooth', '4000', NULL, NULL, 'completed', NULL, '1', 1, NULL, NULL, NULL, NULL, NULL),
+(70, 68, 129, 'Madan Mahal', 'DH_34', 'Caries', 'Amalgam Restoration@ per tooth', '200', NULL, NULL, 'completed', NULL, '1', 1, NULL, NULL, NULL, NULL, NULL),
+(71, 69, 131, 'Madan Mahal', 'DH_36', 'Caries', 'Laminates and Veneers@ per tooth', '10000', NULL, NULL, 'completed', NULL, '1', 1, NULL, NULL, NULL, NULL, NULL),
+(72, 70, 134, 'Madan Mahal', 'DH_37', 'Missing Tooth', 'Third Molar Impacted Tooth Removal', '3000', NULL, NULL, 'completed', NULL, '1', 1, NULL, NULL, NULL, NULL, NULL),
+(73, 72, 137, 'Madan Mahal', 'DH_1', 'Caries', 'Digital Compuler zcd XRay (R.V.G.)', '58', NULL, NULL, 'completed', NULL, '1', 1, NULL, NULL, NULL, NULL, NULL),
+(74, 73, 142, 'Madan Mahal', 'DH_32', 'Fracture', 'Amalgam Restoration@ per tooth', '230', NULL, NULL, 'completed', NULL, '1', 1, NULL, NULL, NULL, NULL, NULL),
+(75, 74, 143, 'Madan Mahal', 'DH_40', 'Caries', 'GIC Restoration @ per tooth', '600', NULL, NULL, 'completed', NULL, '1', 1, NULL, NULL, NULL, NULL, NULL),
+(76, 75, 144, 'Madan Mahal', 'DH_41', 'Caries', 'Re-Root Canal Treatlment @ per tooth', '4000', NULL, NULL, 'completed', NULL, '1', 1, NULL, NULL, NULL, NULL, NULL),
+(77, 76, 145, 'Madan Mahal', 'DH_42', 'Impacted', 'Retention plate@ per arch', '2000', NULL, NULL, 'completed', NULL, '2', 1, NULL, NULL, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -2751,6 +3199,12 @@ ALTER TABLE `chief_complain_list`
 --
 ALTER TABLE `clinic_prescription`
   ADD PRIMARY KEY (`pr_id`);
+
+--
+-- Indexes for table `currencydetails`
+--
+ALTER TABLE `currencydetails`
+  ADD PRIMARY KEY (`cr_id`);
 
 --
 -- Indexes for table `dental_examination`
@@ -2994,7 +3448,7 @@ ALTER TABLE `treat_suggest`
 -- AUTO_INCREMENT for table `appointments`
 --
 ALTER TABLE `appointments`
-  MODIFY `appoint_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
+  MODIFY `appoint_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=147;
 
 --
 -- AUTO_INCREMENT for table `appointment_notification`
@@ -3021,22 +3475,28 @@ ALTER TABLE `clinic_prescription`
   MODIFY `pr_id` int(100) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `currencydetails`
+--
+ALTER TABLE `currencydetails`
+  MODIFY `cr_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT for table `dental_examination`
 --
 ALTER TABLE `dental_examination`
-  MODIFY `exm_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `exm_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
 -- AUTO_INCREMENT for table `dental_prescription`
 --
 ALTER TABLE `dental_prescription`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT for table `dental_treatment`
 --
 ALTER TABLE `dental_treatment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
 
 --
 -- AUTO_INCREMENT for table `drugs`
@@ -3048,7 +3508,7 @@ ALTER TABLE `drugs`
 -- AUTO_INCREMENT for table `employee_attendance`
 --
 ALTER TABLE `employee_attendance`
-  MODIFY `attendance_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `attendance_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `employee_complaints`
@@ -3066,7 +3526,7 @@ ALTER TABLE `employee_leave`
 -- AUTO_INCREMENT for table `employee_register`
 --
 ALTER TABLE `employee_register`
-  MODIFY `sr_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `sr_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `employee_timeline`
@@ -3120,13 +3580,13 @@ ALTER TABLE `lab_tests`
 -- AUTO_INCREMENT for table `otpcollections`
 --
 ALTER TABLE `otpcollections`
-  MODIFY `otp_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `otp_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `patient_bills`
 --
 ALTER TABLE `patient_bills`
-  MODIFY `bill_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `bill_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `patient_disease`
@@ -3138,7 +3598,7 @@ ALTER TABLE `patient_disease`
 -- AUTO_INCREMENT for table `patient_lab_details`
 --
 ALTER TABLE `patient_lab_details`
-  MODIFY `testid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `testid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `patient_lab_test_details`
@@ -3162,7 +3622,7 @@ ALTER TABLE `patient_test_notes`
 -- AUTO_INCREMENT for table `patient_timeline`
 --
 ALTER TABLE `patient_timeline`
-  MODIFY `event_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=798;
+  MODIFY `event_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1017;
 
 --
 -- AUTO_INCREMENT for table `payment_details`
@@ -3186,7 +3646,7 @@ ALTER TABLE `purchase_inventory`
 -- AUTO_INCREMENT for table `quick_prescription`
 --
 ALTER TABLE `quick_prescription`
-  MODIFY `qp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `qp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `security_amount`
@@ -3198,7 +3658,7 @@ ALTER TABLE `security_amount`
 -- AUTO_INCREMENT for table `sitting_bill`
 --
 ALTER TABLE `sitting_bill`
-  MODIFY `sb_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+  MODIFY `sb_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
 
 --
 -- AUTO_INCREMENT for table `staff_salary`
@@ -3222,13 +3682,13 @@ ALTER TABLE `treatment_list`
 -- AUTO_INCREMENT for table `treatment_list_copy`
 --
 ALTER TABLE `treatment_list_copy`
-  MODIFY `treatment_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `treatment_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT for table `treatment_package`
 --
 ALTER TABLE `treatment_package`
-  MODIFY `tp_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `tp_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 
 --
 -- AUTO_INCREMENT for table `treat_procedure_list`
@@ -3240,7 +3700,7 @@ ALTER TABLE `treat_procedure_list`
 -- AUTO_INCREMENT for table `treat_suggest`
 --
 ALTER TABLE `treat_suggest`
-  MODIFY `ts_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `ts_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
 -- Constraints for dumped tables

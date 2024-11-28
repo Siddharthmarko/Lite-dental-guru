@@ -14,7 +14,7 @@ function Doctor() {
   const dispatch = useDispatch();
   const { refreshTable, currentUser } = useSelector((state) => state.user);
   const token = currentUser?.token;
-  const branch = currentUser.branch_name;
+  const branch = currentUser?.branch_name;
   const [patients, setPatients] = useState([]);
   const [doctors, setDoctors] = useState([]);
   const [appointmentsData, setAppointmentsData] = useState([]);
@@ -316,7 +316,11 @@ function Doctor() {
       });
       setFilteredDoctor(filteredDoctors);
     } else {
-      setFilteredDoctor(availableDoctorOnDate);
+      let currentDoctor = availableDoctorOnDate.filter(
+        (item) => item.employee_ID == currentUser?.employee_ID
+      );
+      console.log("Available doctor - : ", currentDoctor);
+      setFilteredDoctor(currentDoctor);
     }
   };
 
@@ -346,13 +350,13 @@ function Doctor() {
             value={selectedDate}
             onChange={(e) => setSelectedDate(e.target.value)}
           />
-          <input
+          {/* <input
             class="form-control mr-sm-2 mt-3 mb-2 w-75 m-auto"
             type="search"
             placeholder="Search Doctor"
             aria-label="Search"
             onChange={handleSearchChange}
-          />
+          /> */}
         </div>
 
         <div className="table-responsive" id="tab">
@@ -404,11 +408,11 @@ function Doctor() {
                         appointment.appointment_dateTime
                       ).getTime();
                       // Check if the appointment timing overlaps with the current slot
-
+                      console.log(new Date(slot));
+                      console.log(new Date(appointment.appointment_dateTime));
                       return appointmentTime === slotTime;
                     });
                   });
-
                 return (
                   <tr key={index}>
                     {/* <td>{index + 1}</td> */}
@@ -426,11 +430,12 @@ function Doctor() {
                           <option value="Morning">Morning</option>
                           {/* Display available time slots for the current doctor */}
                           {availableMorningSlots &&
-                            availableMorningSlots?.map((slot, i) => (
+                            availableMorningSlots.map((slot, i) => (
                               <option key={i} value={slot} disabled>
                                 {new Date(slot).toLocaleTimeString([], {
                                   hour: "2-digit",
                                   minute: "2-digit",
+                                  hour12: true, // Use 12-hour format
                                 })}
                               </option>
                             ))}
@@ -441,13 +446,14 @@ function Doctor() {
                           style={{ cursor: "pointer" }}
                         >
                           {/* Display available time slots for the current doctor */}
-                          <option value="Morning">Evening</option>
+                          <option value="Evening">Evening</option>
                           {availableEveningSlots &&
-                            availableEveningSlots?.map((slot, i) => (
+                            availableEveningSlots.map((slot, i) => (
                               <option key={i} value={slot} disabled>
                                 {new Date(slot).toLocaleTimeString([], {
                                   hour: "2-digit",
                                   minute: "2-digit",
+                                  hour12: true, // Use 12-hour format
                                 })}
                               </option>
                             ))}

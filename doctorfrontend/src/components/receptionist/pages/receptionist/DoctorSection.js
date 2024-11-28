@@ -13,7 +13,7 @@ import animationData from "../../images/animation/loading-effect.json";
 
 function DoctorSection() {
   const { refreshTable, currentUser } = useSelector((state) => state.user);
-  const branch = currentUser.branch_name;
+  const branch = currentUser?.branch_name;
   const token = currentUser?.token;
   const [branchDetail, setBranchDetail] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);

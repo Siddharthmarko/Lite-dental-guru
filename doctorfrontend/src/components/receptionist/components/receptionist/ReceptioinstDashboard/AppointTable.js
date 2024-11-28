@@ -34,7 +34,7 @@ const AppointTable = () => {
 
   const [filteredData, setFilteredData] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const branch = currentUser.branch_name;
+  const branch = currentUser?.branch_name;
   const [appointmentsData, setAppointmentData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [loadingEffect, setLoadingEffect] = useState(true);
@@ -56,7 +56,8 @@ const AppointTable = () => {
           },
         }
       );
-      setDoctors(response?.data?.data);
+      console.log("all doctors and not used  - ", response?.data?.data);
+      setDoctors([{ ...currentUser }]);
     } catch (error) {
       console.log(error);
     }
@@ -110,11 +111,11 @@ const AppointTable = () => {
 
   // console.log(appointmentsData);
   // useEffect(() => {
-    // const intervalId = setInterval(() => {
-    //   dispatch(toggleTableRefresh());
-    // }, 5000);
+  // const intervalId = setInterval(() => {
+  //   dispatch(toggleTableRefresh());
+  // }, 5000);
 
-    // return () => clearInterval(intervalId);
+  // return () => clearInterval(intervalId);
   // }, [dispatch]);
 
   // previous code 1
@@ -191,7 +192,12 @@ const AppointTable = () => {
           },
         }
       );
-      setAppointmentData(response?.data?.data);
+      console.log("check this data", response?.data?.data);
+      let all = response?.data?.data;
+      let currentDoctor = all.filter(
+        (item) => item.assigned_doctor_id == currentUser?.employee_ID
+      );
+      setAppointmentData(currentDoctor);
       setLoadingEffect(false);
       // paginate(currentPage)
     } catch (error) {
@@ -219,8 +225,10 @@ const AppointTable = () => {
       } else {
         console.log("An error occurred:", error.message);
       }
-    } 
+    }
   };
+
+  console.log(tp_id);
 
   console.log(appointmentsData);
 
@@ -263,8 +271,8 @@ const AppointTable = () => {
         {
           status: newStatus,
           appointmentId: appointmentId,
-          appointment_updated_by: currentUser.employee_name,
-          appointment_updated_by_emp_id: currentUser.employee_ID,
+          appointment_updated_by: currentUser?.employee_name,
+          appointment_updated_by_emp_id: currentUser?.employee_ID,
         },
         {
           headers: {
@@ -331,13 +339,25 @@ const AppointTable = () => {
     action,
     appointId,
     uhid,
-    appointment_status,
+    appointStatus,
+    treatment,
+    tpid
   ) => {
-    // alert(appointId, uhid, appointment_status, treatment_provided, tpid);
-    let tpid = appointmentsData.tp_id;
-    console.log(tp_id);
-    console.log(tp_id.tp_id);
-    return;
+    // const foundItem = tp_id?.find((item) => item.appoint_id === appointId);
+    // console.log(foundItem);
+    // let tpid = foundItem?.tp_id;
+    console.log(
+      `action: ${action}, appointId: ${appointId}, uhid:${uhid}, appointStatus:${appointStatus}, treatment:${treatment}, tpid:${tpid}`
+    );
+
+    // alert(tpid);
+
+    if (!tpid) {
+      navigate(`/examination-Dashboard/${appointId}/${uhid}`);
+      return;
+      // alert("tpid required");
+    }
+
     try {
       let requestBody = {
         action,
@@ -358,25 +378,18 @@ const AppointTable = () => {
       if (action === "in treatment") {
         timelineForStartTreat(uhid);
 
-        // const filterForPendingTp = treatData?.filter((item) => {
-        //   return item.tp_id === tpid && item.package_status === "ongoing";
-        // });
-
-        const filterForPendingTp = appointmentsData?.filter((item) => {
+        const filterForPendingTp = tp_id?.filter((item) => {
           return (
             item.appoint_id === appointId && item.treatment_provided === "OPD"
           );
         });
 
         console.log(filterForPendingTp);
-        // alert(filterForPendingTp.length);
 
-        const filterForGoingTp = treatData?.filter((item) => {
+        const filterForGoingTp = tp_id?.filter((item) => {
           return (
-            item.tp_id === tpid &&
-            (item.package_status !== "started" ||
-              item.package_status !== "completed") &&
-            item.treatment_status === "ongoing" &&
+            item.appoint_id === appointId &&
+            item.package_status === "started" &&
             item.current_path !== null
           );
         });
@@ -388,14 +401,12 @@ const AppointTable = () => {
           filterForPendingTp[0]?.package_status !== "complete" &&
           filterForPendingTp[0]?.package_status !== "completed"
         ) {
-          // alert("filter pending tp");
           navigate(`/TreatmentDashBoard/${tpid}/${appointId}`);
         } else if (filterForGoingTp.length > 0) {
-          const appointFilter = appointmentsData?.filter((tad) => {
+          const appointFilter = tp_id?.filter((tad) => {
             return tad.appoint_id === appointId;
           });
-          alert("current path");
-          // navigate(appointFilter[0]?.current_path);
+          navigate(appointFilter[0]?.current_path);
         } else {
           navigate(`/examination-Dashboard/${appointId}/${uhid}`);
         }
@@ -423,13 +434,9 @@ const AppointTable = () => {
           },
         }
       );
-
-      // setAppointments(res.data.result);
-      // setFilterTableData(res.data.result);
-      // setSelectedActions({ ...selectedActions, [appointId]: action });
     } catch (error) {
       // setLoading(false);
-      // console.error("Error updating appointment status:", error.message);
+      console.error("Error updating appointment status:", error.message);
     }
   };
 
@@ -456,8 +463,8 @@ const AppointTable = () => {
           status: newStatus,
           cancelReason: reason,
           appointmentId: appointmentId,
-          appointment_updated_by: currentUser.employee_name,
-          appointment_updated_by_emp_id: currentUser.employee_ID,
+          appointment_updated_by: currentUser?.employee_name,
+          appointment_updated_by_emp_id: currentUser?.employee_ID,
         },
         {
           headers: {
@@ -641,7 +648,7 @@ const AppointTable = () => {
               />
             </div>
 
-            <div className="mt-sm-2 mt-lg-0">
+            {/* <div className="mt-sm-2 mt-lg-0">
               <select
                 className="form-select text-capitalize"
                 onChange={(e) => setSelectedDoctor(e.target.value)}
@@ -658,11 +665,8 @@ const AppointTable = () => {
                     {doctor.employee_name}
                   </option>
                 ))}
-                {/* <option value="Dr. Ajay">Dr. Ajay</option>
-      <option value="Dr. Vijay">Dr. Vijay</option>
-      <option value="Dr. Mohit">Dr. Mohit</option> */}
               </select>
-            </div>
+            </div> */}
             <Form.Group
               controlId="rowsPerPageSelect"
               style={{ display: "flex", justifyContent: "center" }}
@@ -784,8 +788,10 @@ const AppointTable = () => {
                             <div className="dropdown">
                               {!(
                                 // patient.appointment_status == "in treatment" ||
-                                patient.appointment_status == "Complete" ||
-                                patient.appointment_status == "Cancel"
+                                (
+                                  patient.appointment_status == "Complete" ||
+                                  patient.appointment_status == "Cancel"
+                                )
                               ) ? (
                                 <button
                                   className="btn btn-primary dropdown-toggle"
@@ -816,7 +822,7 @@ const AppointTable = () => {
                       </ul> */}
 
                               <ul className="dropdown-menu">
-                                {patient.appointment_status !== "Check-In" &&
+                                {patient.appointment_status !== "in treatment" && patient.appointment_status !== "Check-In" &&
                                   patient.appointment_status !== "Cancel" &&
                                   appointmentDate <= todayDate && (
                                     <li className="text-center">
@@ -867,7 +873,7 @@ const AppointTable = () => {
                                         >
                                           Change Status to "Appoint"
                                         </a>
-                                      </button> 
+                                      </button>
                                     </li>
                                   )}
                                 {patient.appointment_status === "Check-In" &&
@@ -876,49 +882,67 @@ const AppointTable = () => {
                                     <li className="text-center">
                                       {" "}
                                       <button
-                                        className={`btn btn-warning mx-2 my-1 ${
+                                        onClick={() =>
+                                          handleAction(
+                                            "in treatment",
+                                            patient.appoint_id,
+                                            patient.uhid,
+                                            patient.appointment_status,
+                                            patient.treatment_provided
+                                          )
+                                        }
+                                        className={`btn btn-success mx-2 my-1 remove ${
                                           loading ? "disabled" : ""
                                         }`}
                                       >
-<Link to={`/examination-Dashboard/${patient.appoint_id}/${patient.uhid}`}  >
+                                        {/* <Link to={`/examination-Dashboard/${patient.appoint_id}/${patient.uhid}`}  > */}
+                                        <Link className="text-decoration-none text-light">
                                           Start Treatment
                                         </Link>
                                       </button>
                                     </li>
                                   )}
-                                     {patient.appointment_status !== "Check-In" && patient.appointment_status !== "Complete" &&
-                                  patient.appointment_status !== "Check Out" &&
-                                  patient.appointment_status !== "Appoint" && (
-                                    <>
-                                      <li>
-                                        <button
-                                          className="btn btn-warning mx-2 my-1"
-                                          onClick={() =>
-                                            handleAction(
-                                              "in treatment",
-                                              patient.appoint_id,
-                                              patient.patient_uhid,
-                                              patient.appointment_status,
-                                              patient.treatment_provided
-                                            )
-                                          }
-                                        >
-                                          Again Treatment
-                                        </button>
-                                      </li>
-                                    </>
+
+                                {patient.appointment_status === "in treatment" && (
+                                    <li className="text-center">
+                                      {" "}
+                                      <button
+                                        onClick={() =>
+                                          handleAction(
+                                            "in treatment",
+                                            patient.appoint_id,
+                                            patient.uhid,
+                                            patient.appointment_status,
+                                            patient.treatment_provided
+                                          )
+                                        }
+                                        className={`btn btn-success mx-2 my-1 remove ${
+                                          loading ? "disabled" : ""
+                                        }`}
+                                      >
+                                        {/* <Link to={`/examination-Dashboard/${patient.appoint_id}/${patient.uhid}`}  > */}
+                                        <Link className="text-decoration-none text-light">
+                                          Continue Treatment
+                                        </Link>
+                                      </button>
+                                    </li>
                                   )}
+
+                                
                                 {patient.appointment_status === "Check-In" &&
                                   patient.appointment_status !== "Cancel" &&
                                   appointmentDate <= todayDate && (
                                     <li className="text-center">
                                       {" "}
                                       <button
-                                        className={`btn btn-warning mx-2 my-1 ${
+                                        className={`btn btn-primary mx-2 my-1 remove ${
                                           loading ? "disabled" : ""
                                         }`}
                                       >
-<Link to={`/Quick-Prescription/${patient.appoint_id}/${patient.uhid}`}  >
+                                        <Link
+                                          className="text-decoration-none text-light"
+                                          to={`/Quick-Prescription/${patient.appoint_id}/${patient.uhid}`}
+                                        >
                                           Quick Prescription
                                         </Link>
                                       </button>
@@ -955,8 +979,8 @@ const AppointTable = () => {
                                       </button>
                                     </li>
                                   )}
-                                {(patient.appointment_status === "Check-In" ||
-                                  patient.appointment_status !== "Cancel") && (
+                                {( (patient.appointment_status === "Check-In" ||
+                                  patient.appointment_status !== "Cancel") && patient.appointment_status !== "in treatment" ) && (
                                   <li className="text-center">
                                     {" "}
                                     <button
@@ -1060,6 +1084,10 @@ const AppointTable = () => {
 
 export default AppointTable;
 const Wrapper = styled.div`
+  .remove {
+    text-decoration: none;
+  }
+
   #title {
     white-space: nowrap; /* Prevent text wrapping */
 

@@ -16,7 +16,7 @@ function EditPatientDetails({ onClose, patientInfo, allPatientData }) {
   const [loading, setLoading] = useState(false);
   const { currentUser, refreshTable } = useSelector((state) => state.user);
   const {currentBranch} = useSelector((state) => state.branch);
-  const branch = currentUser.branch_name;
+  const branch = currentUser?.branch_name;
   const token = currentUser?.token;
   const [show, setShow] = useState(false);
   const [selectedDisease, setSelectedDisease] = useState([]);
@@ -86,8 +86,8 @@ console.log(insuranceCompany)
     credit_By : patientInfo.credit_By,
     beneficiary_Id : patientInfo.beneficiary_Id,
     address: patientInfo.address,
-    patient_updated_by: currentUser.employee_name,
-    patient_updated_by_emp_id: currentUser.employee_ID,
+    patient_updated_by: currentUser?.employee_name,
+    patient_updated_by_emp_id: currentUser?.employee_ID,
   });
   console.log(data);
 
@@ -264,7 +264,7 @@ console.log(insuranceCompany)
                   >
                     <option value="">Select Patient Type</option>
                     <option value="General">General</option>
-                    {currentBranch[0].allow_insurance == "Yes" && <option value="Credit">Credit</option>}
+                    {currentBranch[0]?.allow_insurance == "Yes" && <option value="Credit">Credit</option>}
                   
                   </select>
                 </div>

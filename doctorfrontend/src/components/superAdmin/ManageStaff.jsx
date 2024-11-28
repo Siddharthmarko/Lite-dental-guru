@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 import Header from "../receptionist/components/receptionist/Header";
 import Sider from "../receptionist/components/receptionist/Sider";
-// import BranchSelector from "../../components/BranchSelector";
+// import BranchSelector from "./BranchSelector";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import cogoToast from "cogo-toast";
@@ -10,6 +10,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Lottie from "react-lottie";
 import animationData from "../../animation/loading-effect.json";
 import { IoPersonAdd } from "react-icons/io5";
+import { IoMdArrowRoundBack } from "react-icons/io";
 
 const ManageStaff = () => {
   const [showAddEmployee, setShowAddEmployee] = useState(false);
@@ -19,10 +20,11 @@ const ManageStaff = () => {
   const dispatch = useDispatch();
   const fileinput = useRef(null);
   const user = useSelector((state) => state.user);
-  console.log(`User Name: ${user.name}, User ID: ${user.id}`);
+  const token = user.currentUser?.token;
+  console.log(`User Name: ${user.currentUser?.name}, User ID: ${user.currentUser?.id}`)
   console.log("User State:", user);
-  const branch = useSelector((state) => state.branch);
-  console.log(`User Name: ${branch.name}`);
+  const branch_name = useSelector((state) => state.user.currentUser?.branch_name);
+  console.log(`User Name: ${branch_name}`);
   const [doctorList, setDoctorList] = useState([]);
   const [keyword, setkeyword] = useState("");
   const [empProfilePicture, setEmpProfilePicture] = useState(null);
@@ -59,7 +61,7 @@ const ManageStaff = () => {
   const getBranchData = async () => {
     try {
       const { data } = await axios.get(
-        "https://dentalguru-superadmin.vimubds5.a2hosted.com/api/v1/super-admin/getBranch"
+        "http://localhost:8888/api/v1/super-admin/getBranch"
       );
       setBranchDetails(data);
     } catch (error) {
@@ -291,11 +293,11 @@ const ManageStaff = () => {
     setLoading(true);
     try {
       const { data } = await axios.get(
-        `https://dentalguru-superadmin.vimubds5.a2hosted.com/api/v1/super-admin/getEmployeeDataByBranch/${branch.name}`,
+        `http://localhost:8888/api/v1/super-admin/getEmployeeDataByBranch/${branch_name}`,
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${user.token}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
@@ -324,7 +326,7 @@ const ManageStaff = () => {
   useEffect(() => {
     getDocDetailsList();
     getBranchData();
-  }, [branch.name]);
+  }, [branch_name]);
 
   console.log(doctorList);
 
@@ -391,12 +393,12 @@ const ManageStaff = () => {
       console.log(inEmpData, empProfilePicture);
 
       const { data } = await axios.post(
-        "https://dentalguru-superadmin.vimubds5.a2hosted.com/api/v1/super-admin/enroll-employee",
+        "http://localhost:8888/api/v1/super-admin/enroll-employee",
         formData,
         {
           headers: {
             "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${user.token}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
@@ -444,9 +446,9 @@ const ManageStaff = () => {
   const addEmployeeTimeline = async () => {
     try {
       const response = await axios.post(
-        `https://dentalguru-superadmin.vimubds5.a2hosted.com/api/v1/super-admin/addSuperAdminNotify`,
+        `http://localhost:8888/api/v1/super-admin/addSuperAdminNotify`,
         {
-          branch_name: branch.name,
+          branch_name: branch_name,
           title: "New Employee Registered",
           event_msg: `Please Check Manage Staff List ${inEmpData.empName}`,
           open: "/manage-staff",
@@ -456,7 +458,7 @@ const ManageStaff = () => {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${user.token}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
@@ -485,12 +487,12 @@ const ManageStaff = () => {
     setLoading(true);
     try {
       const response = await axios.put(
-        `https://dentalguru-superadmin.vimubds5.a2hosted.com/api/v1/super-admin/editEmployeeDetails/${branch.name}/${eid}`,
+        `http://localhost:8888/api/v1/super-admin/editEmployeeDetails/${branch_name}/${eid}`,
         { status: "Approved" },
         {
           headers: {
             "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${user.token}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
@@ -543,6 +545,14 @@ const ManageStaff = () => {
                 <Sider />
               </div>
               <div className="col-lg-11 col-11 ps-0">
+              <div className="container-fluid mt-3">
+                  <div className="d-flex justify-content-between">
+                    {/* <BranchSelector /> */}
+                  </div>
+                </div>
+                <button className="btn btn-success" onClick={() => window.history.go(-1) }>
+                  <IoMdArrowRoundBack /> Back
+                </button>
                 {notApprovedList.length > 0 && (
                   <>
                     <div className="container mt-4">
@@ -1525,7 +1535,7 @@ const Container = styled.div`
   }
 
   th {
-    background-color: #004aad;
+    background-color: #008080;
     color: white;
     position: sticky;
   }
@@ -1533,7 +1543,7 @@ const Container = styled.div`
   .sticky {
     position: sticky;
     top: 0;
-    background-color: #004aad;
+    background-color: #008080;
     color: white;
     z-index: 1;
   }
